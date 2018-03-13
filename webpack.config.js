@@ -36,10 +36,9 @@ module.exports = {
       'bootstrap',
       'react',
       'redux',
-      'react-redux',
-      'draft-js'
+      'react-redux'
     ],
-    playground: [
+    mvdb: [
       // This is app root, all other JS are imported
       './ui/js/index.tsx'
     ]
