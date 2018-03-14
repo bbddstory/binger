@@ -15,7 +15,7 @@ class Login extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {};
-    this.windowClick = this.windowClick.bind(this);
+    // this.windowClick = this.windowClick.bind(this);
   }
 
   toggleOpt(optName: string) {
@@ -27,32 +27,40 @@ class Login extends React.Component<any, any> {
     //   }
   }
 
-  windowClick(e: any) {
-    e.preventDefault();
-    if (!e.target.classList.contains('id-nav-opt'))
-      this.props.toggleNavOpt();
-  }
+  // windowClick(e: any) {
+  //   e.preventDefault();
+  //   if (!e.target.classList.contains('id-nav-opt'))
+  //     this.props.toggleNavOpt();
+  // }
 
   componentDidMount() {
-    if (window)
-      window.addEventListener('click', this.windowClick, false)
+    // if (window)
+    //   window.addEventListener('click', this.windowClick, false)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this.windowClick, false)
+    // window.removeEventListener('click', this.windowClick, false)
+  }
+
+  handleSubmit(e: any) {
+    if(e.keyCode === 13){
+      console.log(e.keyCode);
+      e.preventDefault();
+    }
   }
 
   render() {
     return (
-        <form className="login-form">
+        <form className="login-form" onSubmit={(e) => this.handleSubmit(e)}>
             <img src="ui/images/login/lamp_head.png" width="102" height="115" className="login-brand" />
             <div className="form-group">
-                <input type="email" className="form-control" id="email" placeholder="Email" />
+                <input type="email" className="form-control" placeholder="Email" value={this.state.email} 
+                  onKeyDown={(e) => this.handleSubmit(e)}/>
             </div>
             <div className="form-group">
-                <input type="password" className="form-control" id="password" placeholder="Password" />
+                <input type="password" className="form-control" placeholder="Password" value={this.state.password}
+                  onKeyDown={(e) => this.handleSubmit(e)}/>
             </div>
-            {/* <button type="submit" className="btn btn-primary">Submit</button> */}
         </form>
     )
   }

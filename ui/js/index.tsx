@@ -14,9 +14,7 @@ import Sandbox from './sandbox';
 class Mvdb extends React.Component<any, any> {
   render() {
     return (
-      <div id="playground-wrapper">
-        <Login />
-      </div>
+      <Login />
     )
   }
 }
