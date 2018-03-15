@@ -1,12 +1,13 @@
 import '../../css/root.scss';
 
 import * as React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../components/header';
 import Search from '../components/search';
 import Breadcrumb from '../components/breadcrumb';
 import Folders from '../components/folders';
+import Thumbs from '../components/thumbs';
 import Footer from '../components/footer';
 
 class Categories extends React.Component<any, any> {
@@ -44,7 +45,13 @@ class Categories extends React.Component<any, any> {
         <Header />
         <Search />
         <Breadcrumb />
-        <Folders />
+        <Switch>
+          <Route exact path='/categories' component={Folders} />
+          <Route path='/categories/animations' component={Thumbs} />
+          <Route path='/categories/documentaries' component={Thumbs} />
+          <Route path='/categories/movies' component={Thumbs} />
+          <Route path='/categories/tv' component={Thumbs} />
+        </Switch>
         <Footer />
       </div>
     )
