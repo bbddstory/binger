@@ -10,7 +10,8 @@
 @import 'index';
 
 // Components
-@import './nav/about';
-@import './nav/apps';
-@import './nav/notice';
-@import './nav/me';
+@import './components/header';
+@import './components/search';
+@import './components/breadcrumb';
+@import './components/folders';
+@import './components/footer';

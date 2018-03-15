@@ -2,17 +2,27 @@ import '../css/root.scss';
 
 import * as React from 'react';
 import { render } from 'react-dom';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import masterReducer from './reducers/masterReducer';
 import Login from './login';
+import Animations from './views/animations';
+import Categories from './views/categories';
+import Movies from './views/movies';
 
 class Binger extends React.Component<any, any> {
   render() {
     return (
-      <Login />
+      <div>
+        <Switch>
+          <Route exact path='/' component={Login} />
+          <Route path='/animations' component={Animations} />
+          <Route path='/categories' component={Categories} />
+          <Route path='/movies' component={Movies} />
+        </Switch>
+      </div>
     )
   }
 }
