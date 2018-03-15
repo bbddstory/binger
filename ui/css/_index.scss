@@ -11,11 +11,17 @@
 // HTML tags customization
 html, body {
   height: 100%;
-  overflow: hidden;
-  background: rgb(119, 118, 118);
+  overflow-y: auto;
+  // background: rgb(119, 118, 118);
+  background-image: url("../images/login/footer_lodyas.png");
+  background-repeat: repeat;
 }
 
-#playground {
+#binger {
+  border: 1px solid green;
+}
+
+#__playground {
   height: 100%;
 
   #playground-wrapper {
