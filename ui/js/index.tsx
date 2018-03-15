@@ -8,10 +8,8 @@ import { createStore } from 'redux';
 
 import masterReducer from './reducers/masterReducer';
 import Login from './login';
-import Nav from './nav';
-import Sandbox from './sandbox';
 
-class Mvdb extends React.Component<any, any> {
+class Binger extends React.Component<any, any> {
   render() {
     return (
       <Login />
@@ -37,8 +35,8 @@ const unsubscribe = masterStore.subscribe(() =>
 render(
   <HashRouter>
     <Provider store={masterStore}>
-      <Mvdb />
+      <Binger />
     </Provider>
   </HashRouter>,
-  document.getElementById('mvdb')
+  document.getElementById('binger')
 );

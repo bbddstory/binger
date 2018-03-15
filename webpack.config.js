@@ -11,7 +11,7 @@ const CommonsChunkConfig = new ccp({
 // Extracts all imported css from javascript imports into a css file
 // for parallel loading of CSS and JS in the browsers
 const ExtractTextWebpackPluginConfig = new ExtractTextWebpackPlugin({
-  filename: 'app.css',
+  filename: 'binger.css',
   allChunks: true
 });
 const StyleLoaderConfig = {
@@ -38,7 +38,7 @@ module.exports = {
       'redux',
       'react-redux'
     ],
-    mvdb: [
+    binger: [
       // This is app root, all other JS are imported
       './ui/js/index.tsx'
     ]

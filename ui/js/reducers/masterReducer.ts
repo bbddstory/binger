@@ -1,6 +1,6 @@
-import { toggleNavOpt } from './navReducers';
 import { combineReducers } from 'redux';
+import { login } from './loginReducer';
 
 export default combineReducers({
-  toggleNavOpt
+  login
 });
