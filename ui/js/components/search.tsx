@@ -1,9 +1,25 @@
+import '../../css/root.scss';
+
 import * as React from 'react';
+import { Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Search = () => (
-  <div className="search">
-    <h1>Search</h1>
-  </div>
-);
+export default class Header extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props)
+    this.state = { email: 'keyword' }
+  }
 
-export default Search;
+  handleChange(e: any) {
+  }
+
+  render() {
+    return (
+      <div className="row search form-group">
+        {/* <img src="ui/images/nav/ic_search_white_24px.svg" /> */}
+        <input autoFocus type="text" className="col-8 form-control" placeholder="Search" value={this.state.keyword}
+          onChange={(e) => this.handleChange(e)} onKeyDown={(e) => this.handleChange(e)} />
+      </div>
+    )
+  }
+}
