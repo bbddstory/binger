@@ -1,6 +1,37 @@
 .folders {
-    border: 1px solid red;
+    _border: 1px solid red;
     margin: 0 auto;
     width: 900px;
-    height: 1000px;
+
+    .cat-row {
+        display: table;
+        margin: 0 auto;
+
+        .category {
+            display: inline-block;
+            height: 100px;
+            width: 300px; // margin: 0 auto;
+            border-radius: 2px;
+            margin: 15px;
+            cursor: pointer;
+        }
+        .docs {
+            background: url('../images/folders/docs.png') no-repeat 50% 50% #fff;
+        }
+        .tv {
+            background: url('../images/folders/tv.png') no-repeat 50% 50% #fff;
+        }
+        .anime {
+            background: url('../images/folders/anime.png') no-repeat 50% 50% #fff;
+        }
+        .movies {
+            background: url('../images/folders/movie.png') no-repeat 50% 100% #fff;
+        }
+        .xxx {
+            background: url('../images/folders/xxx.png') no-repeat 50% 50% #fff;
+        }
+        .ero {
+            background: url('../images/folders/ero.png') no-repeat 50% 50% #fff;
+        }
+    }
 }

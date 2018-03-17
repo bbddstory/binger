@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import masterReducer from './reducers/masterReducer';
-import Login from './login';
+import Login from './views/login';
 import Animations from './views/animations';
 import Categories from './views/categories';
 import Movies from './views/movies';

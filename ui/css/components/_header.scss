@@ -1,5 +1,20 @@
 .header {
-    border: 1px solid red;
-    margin: 0 auto;
+    _border: 1px solid red;
     width: 900px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    .nav-opts {
+        _border: 1px solid green;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        a {
+            _border: 1px solid red;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+    }
 }

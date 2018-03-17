@@ -15,22 +15,19 @@ export default class Header extends React.Component<any, any> {
 
   render() {
     return (
-      <nav className="header navbar navbar-expand-lg navbar-light">
-        <a className="navbar-brand" title="About" data-toggle="modal" data-target="#aboutModal">
-          <img src="ui/images/login/brand.png" width="200" className="d-inline-block align-top" />
+      <nav className="header">
+        <a className="navbar-brand" title="About">
+          <img src="ui/images/cat/brand.png" width="200px" />
         </a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse justify-content-end" id="navbarColor01">
-          <a className="id-nav-opt navbar-brand" title="Playthings">
-            <img src="ui/images/nav/ic_watch_later_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Playthings" />
+        <div className="nav-opts">
+          <a className="id-nav-opt navbar-brand" title="Watch Later">
+            <img src="ui/images/nav/ic_watch_later_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Watch Later" />
           </a>
-          <a className="id-nav-opt navbar-brand" title="Notification">
-            <img src="ui/images/nav/ic_favorite_border_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Notification" />
+          <a className="id-nav-opt navbar-brand" title="Recommendations">
+            <img src="ui/images/nav/ic_favorite_border_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Recommendatiosn" />
           </a>
-          <a className="id-nav-opt navbar-brand rightmost-opt" title="Me">
-            <img src="ui/images/nav/ic_notifications_none_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Me" />
+          <a className="id-nav-opt navbar-brand rightmost-opt" title="Notifications">
+            <img src="ui/images/nav/ic_notifications_none_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Notifications" />
           </a>
           <a className="id-nav-opt navbar-brand rightmost-opt" title="Me">
             <img src="ui/images/nav/ic_account_circle_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Me" />

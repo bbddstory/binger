@@ -1,17 +1,14 @@
-// Venders
-@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import '../../node_modules/draft-js/dist/Draft.css';
-
-// Customization
-@import 'bootstrap';
+// Vendor
+@import '../../node_modules/reset.css/reset.css';
 
 // Basics
-@import 'login';
+@import './views/login';
 @import 'index';
 
 // Components
 @import './components/header';
 @import './components/search';
-@import './components/breadcrumb';
+@import './components/path';
 @import './components/folders';
+@import './components/thumbs';
 @import './components/footer';

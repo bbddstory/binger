@@ -5,7 +5,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../components/header';
 import Search from '../components/search';
-import Breadcrumb from '../components/breadcrumb';
+import Path from '../components/path';
 import Folders from '../components/folders';
 import Thumbs from '../components/thumbs';
 import Footer from '../components/footer';
@@ -44,13 +44,15 @@ class Categories extends React.Component<any, any> {
       <div>
         <Header />
         <Search />
-        <Breadcrumb />
+        <Path />
         <Switch>
           <Route exact path='/categories' component={Folders} />
-          <Route path='/categories/animations' component={Thumbs} />
-          <Route path='/categories/documentaries' component={Thumbs} />
+          <Route path='/categories/anime' component={Thumbs} />
+          <Route path='/categories/docs' component={Thumbs} />
           <Route path='/categories/movies' component={Thumbs} />
           <Route path='/categories/tv' component={Thumbs} />
+          <Route path='/categories/xxx' component={Thumbs} />
+          <Route path='/categories/ero' component={Thumbs} />
         </Switch>
         <Footer />
       </div>

@@ -1,0 +1,27 @@
+.path {
+    _border: 1px solid red;
+    width: 900px;
+    height: 50px;
+    background-color: transparent;
+    display: flex;
+    font-family: RalewayReg;
+    color: #fff;
+
+    li {
+        font-size: 20px;
+        
+        &::after {
+            content: '/';
+            margin: 0 10px;
+        }
+    }
+
+    .active {
+        color: #999;
+
+        &::after {
+            content: '';
+            margin: 0;
+        }
+    }
+}

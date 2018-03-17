@@ -18,7 +18,14 @@ html, body {
 }
 
 #binger {
-  border: 1px solid green;
+  _border: 1px solid green;
+  display: flex;
+  justify-content: center;
+}
+
+a, a:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 #__playground {

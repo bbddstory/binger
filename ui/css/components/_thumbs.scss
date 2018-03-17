@@ -1,0 +1,57 @@
+.thumbs {
+    _border: 1px solid red;
+    margin: 0 auto;
+    width: 900px;
+
+    .thumb-row {
+        display: flex;
+        margin-bottom: 30px;
+
+        .thumb {
+            display: flex; // margin: 0 auto;
+            width: 300px;
+
+            .thumbnail {
+                width: 91px;
+                height: 134px;
+                background: deeppink;
+                cursor: pointer;
+            }
+            .tus {
+                background: url('../images/thumbs/inception.jpg') no-repeat #fff;
+                background-size: contain;
+            }
+            .tep {
+                background: url('../images/thumbs/the_english_patient.jpg') no-repeat #fff;
+                background-size: contain;
+            }
+            .tsw {
+                background: url('../images/thumbs/shape_of_water.jpg') no-repeat #fff;
+                background-size: contain;
+            }
+            
+            .details {
+                width: 209px;
+                position: relative;
+                color: #808080;
+                font-size: 14px;
+                padding: 0 20px 0 5px;
+
+                .title {
+                    color: #fff;
+                    font-size: 18px;
+                }
+
+                .year {
+                    position: absolute;
+                    bottom: 20px;
+                }
+                
+                .director {
+                    position: absolute;
+                    bottom: 0;
+                }
+            }
+        }
+    }
+}

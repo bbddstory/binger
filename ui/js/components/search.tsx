@@ -15,9 +15,9 @@ export default class Header extends React.Component<any, any> {
 
   render() {
     return (
-      <div className="row search form-group">
+      <div className="search">
         {/* <img src="ui/images/nav/ic_search_white_24px.svg" /> */}
-        <input autoFocus type="text" className="col-8 form-control" placeholder="Search" value={this.state.keyword}
+        <input autoFocus type="text" className="" placeholder="Search" value={this.state.keyword}
           onChange={(e) => this.handleChange(e)} onKeyDown={(e) => this.handleChange(e)} />
       </div>
     )
