@@ -1,6 +1,10 @@
+'use strict';
+
 import { combineReducers } from 'redux';
-import { login } from './loginReducer';
+import { loginReducer } from './loginReducer';
+import { moviesReducer } from './moviesReducer';
 
 export default combineReducers({
-  login
+  loginReducer,
+  moviesReducer
 });

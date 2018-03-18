@@ -1,12 +1,24 @@
+'use strict';
+
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-const path = () => (
-  <ol className="path">
-    <li><Link to="/categories">Categories</Link></li>
-    <li><Link to="/categories/movies">Movies</Link></li>
-    <li className="active">Details</li>
-  </ol>
-);
+export default class path extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props)
+    this.state = {}
+  }
 
-export default path;
+  handleChange(e: any) {
+  }
+
+  render() {
+    return (
+      <ol className="path">
+        <li><Link to="/main">Categories</Link></li>
+        <li><Link to="/main/movies">Movies</Link></li>
+        <li className="active">Details</li>
+      </ol>
+    )
+  }
+}

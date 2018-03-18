@@ -1,3 +1,5 @@
+'use strict';
+
 // Action types
 export const LOGIN = 'LOGIN';
 

@@ -1,31 +1,13 @@
 'use strict';
 
-import '../../css/root.scss';
-
 import * as React from 'react';
-import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginAct } from '../actions/loginActions';
+import { loginAct } from '../../actions/loginActions';
 
-class Folders extends React.Component<any, any> {
+class Categories extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
     this.state = { email: 'bbddstory@gmail.com', pwd: 'LEON314@firebase' }
-  }
-
-  handleChange(e: any) {
-    if (e.keyCode === 13) {
-      // console.log(this.state);
-      // console.log('-- info: ', this.props.loginState);
-
-      this.props.loginDispath(this.state.email, this.state.pwd)
-    } else {
-      if (e.target.type === 'email') {
-        this.setState({ email: e.target.value })
-      } else {
-        this.setState({ pwd: e.target.value })
-      }
-    }
   }
 
   handleClick(hash: string) {
@@ -37,14 +19,6 @@ class Folders extends React.Component<any, any> {
     } else {
       window.location.hash = url + '/' + hash;
     }
-  }
-
-  componentWillUpdate(prevProps: any, prevState: any) {
-    console.log('-- CB from reducer', prevProps);
-    console.log('-- CB from reducer', prevState);
-
-    console.log('-- CB from reducer', this.props);
-    console.log('-- CB from reducer', this.state);
   }
 
   render() {
@@ -68,7 +42,7 @@ class Folders extends React.Component<any, any> {
 }
 
 const mapStateToProps = (state: any) => ({
-  loginState: state.login
+  loginState: state.loginReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -77,4 +51,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Folders);
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

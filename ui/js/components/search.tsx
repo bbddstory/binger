@@ -1,8 +1,6 @@
-import '../../css/root.scss';
+'use strict';
 
 import * as React from 'react';
-import { Route, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 export default class Header extends React.Component<any, any> {
   constructor(props: any) {

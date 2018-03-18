@@ -1,16 +1,11 @@
-import '../../css/root.scss';
+'use strict';
 
 import * as React from 'react';
-import { Route, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 export default class Header extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
-    this.state = { email: 'bbddstory@gmail.com', pwd: 'LEON314@firebase' }
-  }
-
-  handleChange(e: any) {
+    this.state = {}
   }
 
   render() {
@@ -34,29 +29,6 @@ export default class Header extends React.Component<any, any> {
           </a>
         </div>
       </nav>
-      // <nav className="header">
-      //   {/* <ul className="navbar">
-      //     <li><img src="ui/images/icon/ic_account_circle_white_24px.svg" /></li>
-      //     <li><img src="ui/images/icon/ic_favorite_border_white_24px.svg" /></li>
-      //     <li><img src="ui/images/icon/ic_notifications_none_white_24px.svg" /></li>
-      //   </ul> */}
-      //   {/* <img className="navbar-brand" src="ui/images/login/brand.png" width="200" /> */}
-      //   <a className="navbar-brand" href="#">Logo</a>
-      //   <ul className="nav justify-content-end">
-      //     <li className="nav-item">
-      //       <a className="nav-link" href="#">Link</a>
-      //     </li>
-      //     <li className="nav-item">
-      //       <a className="nav-link" href="#">Link</a>
-      //     </li>
-      //     <li className="nav-item">
-      //       <a className="nav-link" href="#">Link</a>
-      //     </li>
-      //     <li className="nav-item">
-      //       <a className="nav-link disabled" href="#">Disabled</a>
-      //     </li>
-      //   </ul>
-      // </nav>
     )
   }
 }
