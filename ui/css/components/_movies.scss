@@ -2,42 +2,59 @@
     _border: 1px solid red;
     margin: 0 auto;
     width: 900px;
+    margin-bottom: 50px;
 
     .tile {
         display: inline-block;
         width: 300px;
+        margin-bottom: 45px;
+
+        @keyframes example {
+            from {
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+            }
+            to {
+                -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+                -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+                box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+            }
+        }
 
         .thumbnail {
+            display: inline-block;
+            vertical-align: bottom;
             width: 91px;
             height: 134px;
-            background: deeppink;
             cursor: pointer;
-        }
-        .tus {
-            background: url('../images/thumbs/inception.jpg') no-repeat #fff;
-            background-size: contain;
-        }
-        .tep {
-            background: url('../images/thumbs/the_english_patient.jpg') no-repeat #fff;
-            background-size: contain;
-        }
-        .tsw {
-            background: url('../images/thumbs/shape_of_water.jpg') no-repeat #fff;
-            background-size: contain;
+            &:hover {
+                animation-name: example;
+                animation-duration: .3s;
+                animation-fill-mode: forwards;
+            }
         }
         .details {
+            display: inline-block;
+            vertical-align: top;
             width: 184px;
+            height: 134px;
             position: relative;
             color: #808080;
             font-size: 14px;
             padding: 0 20px 0 5px;
+
             .title {
+                position: absolute;
+                top: 0;
                 color: #fff;
                 font-size: 18px;
             }
             .year {
-                position: absolute;
-                bottom: 20px;
+                // position: absolute;
+                // bottom: 20px;
+                display: block;
+                // margin-bottom: 5px;
             }
             .director {
                 position: absolute;

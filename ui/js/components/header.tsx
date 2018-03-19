@@ -12,7 +12,7 @@ export default class Header extends React.Component<any, any> {
     return (
       <nav className="header">
         <a className="navbar-brand" title="About">
-          <img src="ui/images/cat/brand.png" width="200px" />
+          <img src="ui/images/header/brand.png" width="200px" />
         </a>
         <div className="nav-opts">
           <a className="id-nav-opt navbar-brand" title="Watch Later">

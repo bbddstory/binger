@@ -39,7 +39,6 @@ export function loginReducer(state: any = init, action: any) {
         ns.email = action.email;
         ns.firebase = firebase;
         window.location.hash = window.location.hash + 'main/'
-        
       }, reason => {
         console.log(reason);
       });
