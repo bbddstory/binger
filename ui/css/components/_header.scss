@@ -2,13 +2,14 @@
     _border: 1px solid red;
     width: 900px;
     padding: 0;
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
 
     .nav-opts {
         _border: 1px solid green;
         width: 100%;
+        padding-right: 5px;
         display: flex;
         justify-content: flex-end;
 

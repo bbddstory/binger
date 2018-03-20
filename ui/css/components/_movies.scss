@@ -2,7 +2,7 @@
     _border: 1px solid red;
     margin: 0 auto;
     width: 900px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 
     .tile {
         display: inline-block;
@@ -43,22 +43,23 @@
             color: #808080;
             font-size: 14px;
             padding: 0 20px 0 5px;
+            background: rgba(0, 0, 0, .2);
 
             .title {
                 position: absolute;
-                top: 0;
+                top: 5px;
                 color: #fff;
-                font-size: 18px;
+                font-size: 16px;
             }
             .year {
                 // position: absolute;
                 // bottom: 20px;
                 display: block;
-                // margin-bottom: 5px;
+                margin-bottom: -5px;
             }
             .director {
                 position: absolute;
-                bottom: 0;
+                bottom: 5px;
             }
         }
     }

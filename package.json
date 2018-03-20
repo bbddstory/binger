@@ -4,10 +4,10 @@
   "description": "Video database on home NAS",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf ./build/*",
-    "build": "npm run clean && webpack -d -w",
-    "start": "webpack-dev-server"
+    "t": "echo \"Error: no test specified\" && exit 1",
+    "c": "rm -rf ./build/*",
+    "b": "npm run c && webpack -d -w",
+    "s": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
