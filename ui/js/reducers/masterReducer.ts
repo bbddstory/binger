@@ -2,9 +2,9 @@
 
 import { combineReducers } from 'redux';
 import { loginReducer } from './loginReducer';
-import { moviesReducer } from './moviesReducer';
+import { dataReducer } from './dataReducer';
 
 export default combineReducers({
   loginReducer,
-  moviesReducer
+  dataReducer
 });

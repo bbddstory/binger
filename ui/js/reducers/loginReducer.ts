@@ -32,10 +32,6 @@ export function loginReducer(state: any = init, action: any) {
       });
       
       authPromise.then(() => {
-        // firebase.database().ref('Animations').once('value').then((snapshot) => {
-        //   let value = snapshot.val();
-        //   console.log(value);
-        // });
         ns.email = action.email;
         ns.firebase = firebase;
         window.location.hash = window.location.hash + 'main/'

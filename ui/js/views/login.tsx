@@ -25,7 +25,7 @@ class Login extends React.Component<any, any> {
   render() {
     return (
       <form className="login-form">
-        <img src="ui/images/login/binger.png" width="256" height="77" />
+        <img src="ui/images/header/brand.png" width="250" />
         <input autoFocus type="email" placeholder="Email" value={this.state.email}
           onChange={(e) => this.handleChange(e)} onKeyDown={(e) => this.handleChange(e)} />
         <input type="password" placeholder="Password" value={this.state.pwd}

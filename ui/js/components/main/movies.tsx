@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { moviesAct } from '../../actions/moviesActions';
+import { dataAct } from '../../actions/dataActions';
 import Pages from '../pages';
 import { anime_data, doc_data, movie_data, tv_data } from './data';
 
@@ -13,47 +13,31 @@ class Movies extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    this.props.loginState.firebase.database().ref('Movies')
-      // .limitToFirst(24)
-      .orderByChild('index').startAt(24).endAt(35)
-      // .orderByChild('year').startAt('2016').endAt('2017')
-      .once('value').then((snapshot: any) => {
-      let value = snapshot.val();
-      // this.props.moviesDispath(value);
-      this.setState({
-        movies: value
-      });
-    })
-    // this.setState({
-    //   movies: movie_data 
-    // });
+    // this.props.loginState.firebase.database().ref('Movies')
+    //   .orderByChild('index').startAt(0).endAt(11)
+    //   .once('value').then((snapshot: any) => {
+    //   let value = snapshot.val();
+    //   console.log('value: ', value);
+      
+    //   this.props.moviesDispath(value);
+    // })
+
+    this.props.moviesDispath(movie_data);
   }
-
-  // componentWillUpdate(prevProps: any, prevState: any) {
-  //   // console.log('-- CB from reducer', prevProps);
-  //   // console.log('-- CB from reducer', prevState);
-  //   // console.log('-- CB from reducer', this.props);
-  //   // console.log('-- CB from reducer', this.state);
-  //   console.log('-- 1');
-
-  //   this.setState({
-  //     movies: this.props.moviesState.movies
-  //   });
-  // }
 
   render() {
     return (
       <div className="movies">
-        {Object.keys(this.state.movies).map((key: any) => {
+        {Object.keys(this.props.dataState.data).map((key: any) => {
           return <div className="tile" key={key}>
             <img className="thumbnail" alt="Poster"
-              src={this.state.movies[key].poster === 'N/A' ? this.state.dummyPoster : this.state.movies[key].poster} />
+              src={this.props.dataState.data[key].poster === 'N/A' ? 
+              this.state.dummyPoster : this.props.dataState.data[key].poster} />
             <div className="details">
-              <div className="title">{this.state.movies[key].engTitle}</div>
-              {/* <div className="year">{this.state.movies[key].year}</div> */}
+              <div className="title">{this.props.dataState.data[key].engTitle}</div>
               <div className="director">
-                <span className="year">{this.state.movies[key].year}</span>
-                <br />{this.state.movies[key].director}
+                <span className="year">{this.props.dataState.data[key].year}</span>
+                <br />{this.props.dataState.data[key].director}
               </div>
             </div>
           </div>
@@ -66,12 +50,13 @@ class Movies extends React.Component<any, any> {
 
 const mapStateToProps = (state: any) => ({
   loginState: state.loginReducer,
-  moviesState: state.moviesReducer
+  dataState: state.dataReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
   moviesDispath: (movies: any) => {
-    dispatch(moviesAct(movies))
+    console.log('movies: ', movies);
+    dispatch(dataAct(movies))
   }
 });
 

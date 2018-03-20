@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { moviesAct } from '../actions/moviesActions';
+import { dataAct } from '../actions/dataActions';
 
-export default class Pages extends React.Component<any, any> {
+class Pages extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = { movies: {}, dummyPoster: 'ui/images/movie/poster.png' };
@@ -22,3 +22,16 @@ export default class Pages extends React.Component<any, any> {
         )
     }
 }
+
+const mapStateToProps = (state: any) => ({
+    dataState: state.dataReducer
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+    moviesDispath: (movies: any) => {
+        console.log('movies: ', movies);
+        dispatch(dataAct(movies))
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pages);
