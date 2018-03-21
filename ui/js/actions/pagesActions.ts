@@ -7,30 +7,26 @@ export const PREV_PAGE = 'PREV_PAGE';
 export const NEXT_PAGE = 'NEXT_PAGE';
 
 // Action creators
-export function firstPageAct(data: any) {
+export function firstPageAct() {
   return {
-    type: FIRST_PAGE,
-    data
+    type: FIRST_PAGE
   }
 }
 
-export function lastPageAct(data: any) {
+export function lastPageAct() {
   return {
-    type: FIRST_PAGE,
-    data
+    type: LAST_PAGE,
   }
 }
 
-export function prevPageAct(data: any) {
+export function prevPageAct() {
   return {
-    type: FIRST_PAGE,
-    data
+    type: PREV_PAGE
   }
 }
 
-export function nextPageAct(data: any) {
+export function nextPageAct() {
   return {
-    type: FIRST_PAGE,
-    data
+    type: NEXT_PAGE
   }
 }
