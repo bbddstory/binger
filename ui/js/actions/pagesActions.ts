@@ -13,3 +13,24 @@ export function firstPageAct(data: any) {
     data
   }
 }
+
+export function lastPageAct(data: any) {
+  return {
+    type: FIRST_PAGE,
+    data
+  }
+}
+
+export function prevPageAct(data: any) {
+  return {
+    type: FIRST_PAGE,
+    data
+  }
+}
+
+export function nextPageAct(data: any) {
+  return {
+    type: FIRST_PAGE,
+    data
+  }
+}
