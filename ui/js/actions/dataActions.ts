@@ -1,12 +1,24 @@
 'use strict';
 
 // Action types
-export const LOAD_DATA = 'LOAD_DATA';
+export const INIT_PAGES = 'INIT_PAGES';
+export const GOTO_PAGE = 'GOTO_PAGE';
 
 // Action creators
-export function dataAct(data: any) {
+export function initPage(data: any, itemCnt: number, itemPerPage: number) {
   return {
-    type: LOAD_DATA,
-    data
+    type: INIT_PAGES,
+    data,
+    itemCnt,
+    itemPerPage
+  }
+}
+export function goToPage(data: any, currPage: number, itemStartIdx: number, itemEndIdx: number) {
+  return {
+    type: GOTO_PAGE,
+    data,
+    currPage,
+    itemStartIdx,
+    itemEndIdx
   }
 }

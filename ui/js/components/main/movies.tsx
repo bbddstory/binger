@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { dataAct } from '../../actions/dataActions';
+import { initPage } from '../../actions/dataActions';
 import Pages from '../pages';
 import { anime_data, doc_data, movie_data, tv_data } from './data';
 
@@ -12,17 +12,25 @@ class Movies extends React.Component<any, any> {
     this.state = { movies: {}, dummyPoster: 'ui/images/movie/poster.png' };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     // this.props.loginState.firebase.database().ref('Movies')
     //   .orderByChild('index').startAt(0).endAt(11)
     //   .once('value').then((snapshot: any) => {
     //   let value = snapshot.val();
-    //   console.log('value: ', value);
-      
-    //   this.props.moviesDispath(value);
+    //   this.props.initPage(value, Object.keys(value).length, 12);
     // })
 
-    this.props.moviesDispath(movie_data);
+    let i = 0, itemPerPage = 21, data: any = {};
+    for (let p in movie_data) {
+      if (i < itemPerPage) {
+        data[p] = movie_data[p];
+        i++;
+      } else {
+        break
+      }
+    }
+
+    this.props.initPage(data, Object.keys(movie_data).length, itemPerPage);
   }
 
   render() {
@@ -31,8 +39,8 @@ class Movies extends React.Component<any, any> {
         {Object.keys(this.props.dataState.data).map((key: any) => {
           return <div className="tile" key={key}>
             <img className="thumbnail" alt="Poster"
-              src={this.props.dataState.data[key].poster === 'N/A' ? 
-              this.state.dummyPoster : this.props.dataState.data[key].poster} />
+              src={this.props.dataState.data[key].poster === 'N/A' ?
+                this.state.dummyPoster : this.props.dataState.data[key].poster} />
             <div className="details">
               <div className="title">{this.props.dataState.data[key].engTitle}</div>
               <div className="director">
@@ -54,9 +62,8 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  moviesDispath: (movies: any) => {
-    console.log('movies: ', movies);
-    dispatch(dataAct(movies))
+  initPage: (data: any, itemCnt: number, itemPerPage: number) => {
+    dispatch(initPage(data, itemCnt, itemPerPage))
   }
 });
 
