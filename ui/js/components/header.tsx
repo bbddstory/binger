@@ -1,6 +1,7 @@
 'use strict';
 
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Header extends React.Component<any, any> {
   constructor(props: any) {
@@ -12,17 +13,17 @@ export default class Header extends React.Component<any, any> {
     return (
       <nav className="header">
         <a className="navbar-brand" title="About">
-          <img src="ui/images/header/brand.png" width="200px" />
+          <img src="ui/images/login/phantom_zone.png" width="200px" />
         </a>
         <div className="nav-opts">
-          <a className="id-nav-opt navbar-brand" title="Watch Later">
-            <img src="ui/images/nav/ic_watch_later_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Watch Later" />
-          </a>
-          <a className="id-nav-opt navbar-brand" title="Recommendations">
-            <img src="ui/images/nav/ic_favorite_border_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Recommendatiosn" />
-          </a>
+          <Link to="/main/home" className="id-nav-opt navbar-brand" title="Home">
+            <img src="ui/images/nav/ic_home_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Home" />
+          </Link>
           <a className="id-nav-opt navbar-brand rightmost-opt" title="Notifications">
             <img src="ui/images/nav/ic_notifications_none_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Notifications" />
+          </a>
+          <a className="id-nav-opt navbar-brand" title="Messages">
+            <img src="ui/images/nav/ic_message_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Messages" />
           </a>
           <a className="id-nav-opt navbar-brand rightmost-opt" title="Me">
             <img src="ui/images/nav/ic_account_circle_white_24px.svg" width="30" height="30" className="id-nav-opt d-inline-block align-top" alt="Me" />

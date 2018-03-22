@@ -15,12 +15,12 @@ import masterReducer from './reducers/masterReducer';
 class Binger extends React.Component<any, any> {
   render() {
     return (
-      <div className="center">
+      // <div className="center">
         <Switch>
           <Route exact path='/' component={Login} />
           <Route path='/main' component={Main} />
         </Switch>
-      </div>
+      // </div>
     )
   }
 }

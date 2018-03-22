@@ -9,9 +9,10 @@ html, body {
   font-family: OpenSans;
   overflow-y: auto;
   overflow-x: hidden;
-  background: url("../images/login/footer_lodyas.png") repeat;
   scrollbar-face-color: #acacac;
   scrollbar-track-color: #d7d7d7;
+  background: url("../images/login/DSC03651_login.jpg") no-repeat;
+  background-size: cover;
 }
 
 ::-webkit-scrollbar {
@@ -35,15 +36,16 @@ html, body {
   display: flex;
   justify-content: center;
 
-  .center {
-    _border: 1px solid green;
-    // border-left: 1px solid #444;
-    // border-right: 1px solid #444;
-    height: 100%;
-    padding: 0 59px;
-    // background: url("../images/login/footer_lodyas.png") repeat;
-    background-size: cover;
-  }
+  // .center {
+  //   _border: 1px solid green;
+  //   padding: 0 59px;
+  //   background-size: cover;
+  // }
+}
+
+.main_bg{
+  background: url("../images/login/footer_lodyas.png") repeat !important;
+  // background-size: cover !important;
 }
 
 a, a:hover {

@@ -1,37 +1,29 @@
-.folders {
+.categories {
     _border: 1px solid red;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
     width: 900px;
+    height: 70px;
+    background-color: transparent;
+    font-family: OpenSans;
+    color: #fff;
+    
+    ol {
+        width: 630px;
+        display: flex;
+        justify-content: space-between;
+        
+        a {
+            color: #00a651;
+            font-size: 20px;
 
-    .cat-row {
-        display: table;
-        margin: 0 auto;
+            &:hover {
+                color: #fff;
+            }
+        }
 
-        .category {
-            display: inline-block;
-            height: 100px;
-            width: 300px; // margin: 0 auto;
-            border-radius: 2px;
-            margin: 15px;
-            cursor: pointer;
-        }
-        .docs {
-            background: url('../images/cats/docs.png') no-repeat 50% 50% #fff;
-        }
-        .tv {
-            background: url('../images/cats/tv.png') no-repeat 50% 50% #fff;
-        }
-        .anime {
-            background: url('../images/cats/anime.png') no-repeat 50% 50% #fff;
-        }
-        .movies {
-            background: url('../images/cats/movie.png') no-repeat 50% 100% #fff;
-        }
-        .xxx {
-            background: url('../images/cats/xxx.png') no-repeat 50% 50% #fff;
-        }
-        .ero {
-            background: url('../images/cats/ero.png') no-repeat 50% 50% #fff;
+        .active {
+            color: #fff;
         }
     }
 }

@@ -22,10 +22,14 @@ class Login extends React.Component<any, any> {
     }
   }
 
+  componentDidMount() {
+    document.getElementsByTagName('body')[0].className = '';
+  }
+
   render() {
     return (
       <form className="login-form">
-        <img src="ui/images/header/brand.png" width="250" />
+        <img src="ui/images/login/phantom_zone.png" width="287" />
         <input autoFocus type="email" placeholder="Email" value={this.state.email}
           onChange={(e) => this.handleChange(e)} onKeyDown={(e) => this.handleChange(e)} />
         <input type="password" placeholder="Password" value={this.state.pwd}

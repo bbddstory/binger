@@ -5,9 +5,10 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../components/header';
 import Search from '../components/search';
-import Path from '../components/path';
-import Categories from '../components/main/categories';
+import Categories from '../components/categories';
+import Home from '../components/main/home';
 import Movies from '../components/main/movies';
+import Footer from '../components/footer';
 
 class Main extends React.Component<any, any> {
   constructor(props: any) {
@@ -15,21 +16,26 @@ class Main extends React.Component<any, any> {
     this.state = { email: 'bbddstory@gmail.com', pwd: 'LEON314@firebase' }
   }
 
+  componentDidMount() {
+    document.getElementsByTagName('body')[0].className = 'main_bg';
+  }
+
   render() {
     return (
       <div>
         <Header />
         <Search />
-        <Path />
+        <Categories />
         <Switch>
-          <Route exact path='/main' component={Categories} />
+          <Route path='/main/home' component={Home} />
           <Route path='/main/anime' component={Movies} />
           <Route path='/main/docs' component={Movies} />
           <Route path='/main/movies' component={Movies} />
           <Route path='/main/tv' component={Movies} />
-          <Route path='/main/xxx' component={Movies} />
+          <Route path='/main/adult' component={Movies} />
           <Route path='/main/ero' component={Movies} />
         </Switch>
+        <Footer />
       </div>
     )
   }
