@@ -1,0 +1,29 @@
+.categories {
+    _border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    width: 900px;
+    height: 70px;
+    background-color: transparent;
+    font-family: OpenSans;
+    color: #fff;
+    
+    ol {
+        width: 630px;
+        display: flex;
+        justify-content: space-between;
+        
+        a {
+            color: #00a651;
+            font-size: 20px;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+
+        .active {
+            color: #fff;
+        }
+    }
+}

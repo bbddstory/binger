@@ -4,25 +4,24 @@ import * as firebase from 'firebase';
 import { LOGIN } from '../actions/loginActions';
 
 let init = {
-  email: ''
+  email: '',
+  firebase: ''
 }
 
-export function login(state: any = init, action: any) {
+export function loginReducer(state: any = init, action: any) {
   switch (action.type) {
     case LOGIN:
       let ns = (<any>Object).assign({}, state);
-      // ns.email = action.email;
-      // console.log(window.location.hash);
-      window.location.hash = window.location.hash + 'categories/'
+      window.location.hash = window.location.hash + 'main/home'
       
-      const config = {
-        apiKey: 'AIzaSyDM7aH-HGeu6e0F6IKjgy0gjeoeTqkLGOc',
-        authDomain: 'phantomzone-leon.firebaseapp.com',
-        databaseURL: 'https://phantomzone-leon.firebaseio.com',
-        projectId: 'phantomzone-leon',
-        storageBucket: 'phantomzone-leon.appspot.com',
-        messagingSenderId: '885937044869'
-      };
+      // const config = {
+      //   apiKey: 'AIzaSyDM7aH-HGeu6e0F6IKjgy0gjeoeTqkLGOc',
+      //   authDomain: 'phantomzone-leon.firebaseapp.com',
+      //   databaseURL: 'https://phantomzone-leon.firebaseio.com',
+      //   projectId: 'phantomzone-leon',
+      //   storageBucket: 'phantomzone-leon.appspot.com',
+      //   messagingSenderId: '885937044869'
+      // };
       
       // firebase.initializeApp(config);
       
@@ -33,12 +32,9 @@ export function login(state: any = init, action: any) {
       // });
       
       // authPromise.then(() => {
-      //   firebase.database().ref('Animations').once('value').then((snapshot) => {
-      //     let value = snapshot.val();
-      //     console.log(value);
-      //   });
-      //   window.location.hash = window.location.hash + 'categories/'
-        
+      //   ns.email = action.email;
+      //   ns.firebase = firebase;
+      //   window.location.hash = window.location.hash + 'main/'
       // }, reason => {
       //   console.log(reason);
       // });

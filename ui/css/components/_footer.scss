@@ -1,6 +1,25 @@
 .footer {
-    border: 1px solid red;
-    margin: 0 auto;
-    width: 900px;
-    height: 150px;
+    _border: 1px solid red;
+    height: 60px;
+    background: rgba(#000, .5);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    ol {
+        width: 630px;
+        display: flex;
+        justify-content: space-between;
+        
+        a {
+            color: #666;
+            font-size: 16px;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
 }

@@ -1,6 +1,22 @@
 .header {
-    border: 1px solid red;
-    margin: 0 auto;
+    _border: 1px solid red;
     width: 900px;
-    height: 200px;
+    padding: 0;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+
+    .nav-opts {
+        _border: 1px solid green;
+        width: 100%;
+        padding-right: 5px;
+        display: flex;
+        justify-content: flex-end;
+
+        a {
+            _border: 1px solid red;
+            cursor: pointer;
+            margin-left: 17px;
+        }
+    }
 }

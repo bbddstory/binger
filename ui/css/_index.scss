@@ -1,24 +1,56 @@
 @font-face {
-  font-family: RalewayBold;
-  src: url("../fonts/Raleway-Bold.ttf");
-}
-
-@font-face {
-  font-family: RalewayReg;
-  src: url("../fonts/Raleway-Regular.ttf");
+  font-family: OpenSans;
+  src: url("../fonts/OpenSans-Regular.ttf");
 }
 
 // HTML tags customization
 html, body {
   height: 100%;
+  font-family: OpenSans;
   overflow-y: auto;
-  // background: rgb(119, 118, 118);
-  background-image: url("../images/login/footer_lodyas.png");
-  background-repeat: repeat;
+  overflow-x: hidden;
+  scrollbar-face-color: #acacac;
+  scrollbar-track-color: #d7d7d7;
+  background: url("../images/login/DSC03651_login.jpg") no-repeat;
+  background-size: cover;
+}
+
+::-webkit-scrollbar {
+  width: 0.3em;
+  height: 0.3em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #acacac;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #d7d7d7;
+  border-radius: 3px;
 }
 
 #binger {
-  border: 1px solid green;
+  _border: 1px solid green;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  // .center {
+  //   _border: 1px solid green;
+  //   padding: 0 59px;
+  //   background-size: cover;
+  // }
+}
+
+.main_bg{
+  background: url("../images/login/footer_lodyas.png") repeat !important;
+  // background-size: cover !important;
+}
+
+a, a:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 #__playground {
@@ -40,7 +72,7 @@ html, body {
 
     .brand-txt {
       margin-left: 3px;
-      font-family: RalewayBold, Arial, sans-serif;
+      font-family: OpenSans, Arial, sans-serif;
       font-size: 20px;
     }
 
@@ -63,7 +95,7 @@ html, body {
         top: 50%;
         left: 50%;
         transform: translateX(-50%);
-        font-family: RalewayBold, Arial, sans-serif;
+        font-family: OpenSans, Arial, sans-serif;
         font-size: 40px;
         white-space: nowrap;
       }

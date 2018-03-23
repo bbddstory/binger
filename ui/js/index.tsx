@@ -1,3 +1,5 @@
+'use strict';
+
 import '../css/root.scss';
 
 import * as React from 'react';
@@ -6,26 +8,27 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
+import Login from './views/login';
+import Main from './views/main';
 import masterReducer from './reducers/masterReducer';
-import Login from './login';
-import Animations from './views/animations';
-import Categories from './views/categories';
-import Movies from './views/movies';
 
 class Binger extends React.Component<any, any> {
   render() {
     return (
-      <div>
+      // <div className="center">
         <Switch>
           <Route exact path='/' component={Login} />
-          <Route path='/animations' component={Animations} />
-          <Route path='/categories' component={Categories} />
-          <Route path='/movies' component={Movies} />
+          <Route path='/main' component={Main} />
         </Switch>
-      </div>
+      // </div>
     )
   }
 }
+
+// const loginMiddleware = (store: any) => (next: any) => (action: any) => {
+//   console.log('loginMiddleware: ', action);
+//   next(action);
+// }
 
 // Create master store for all data
 let masterStore = createStore(masterReducer);

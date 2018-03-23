@@ -33,7 +33,6 @@ const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
 module.exports = {
   entry: {
     vendor: [
-      'bootstrap',
       'react',
       'redux',
       'react-redux'
