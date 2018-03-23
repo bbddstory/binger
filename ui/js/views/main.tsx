@@ -22,7 +22,7 @@ class Main extends React.Component<any, any> {
 
   render() {
     return (
-      <div>
+      <div id="center">
         <Header />
         <Search />
         <Categories />

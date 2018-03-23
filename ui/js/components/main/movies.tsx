@@ -1,5 +1,6 @@
 'use strict';
 
+import * as jq from 'jquery';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { initPage } from '../../actions/dataActions';
@@ -12,6 +13,68 @@ class Movies extends React.Component<any, any> {
     this.state = { movies: {}, dummyPoster: 'ui/images/movie/poster.png' };
   }
 
+  inView = (el: string) => {
+    var docViewTop = jq(window).scrollTop();
+    var docViewBottom = docViewTop + jq(window).height();
+
+    var elemTop = jq(el).offset().top;
+    var elemBottom = elemTop + jq(el).height();
+
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+  }
+
+  handleScroll = () => {
+    // For Pages component
+    if (!this.inView('#controls') && !jq('#controls').hasClass('controls-fixed')) {
+      jq('#controls').addClass('controls-fixed')
+    }
+    if (this.inView('#pages')) {
+      jq('#controls').removeClass('controls-fixed')
+    }
+    // For Search component
+    if (!this.inView('.search') && !jq('.search').hasClass('search-fixed')) {
+      jq('.search').addClass('search-fixed')
+    }
+    // if (this.inView('#pages')) {
+    //   jq('#controls').removeClass('controls-fixed')
+    // }
+    // For Categories component
+    if (!this.inView('.categories') && !jq('.categories').hasClass('categories-fixed')) {
+      jq('.categories').addClass('categories-fixed')
+    }
+    // if (this.inView('#pages')) {
+    //   jq('#controls').removeClass('controls-fixed')
+    // }
+  }
+  
+  resetFooter = () => {
+    if (Math.ceil(jq('.footer').offset().top + jq('.footer').height()) < window.innerHeight) {
+      jq('.footer').addClass('footer-fixed')
+    }
+    if (Math.ceil(document.getElementById('center').scrollHeight) > window.innerHeight) {
+      jq('.footer').removeClass('footer-fixed')
+    }
+  }
+  
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, true);
+    window.addEventListener('resize', this.handleScroll, true);
+    window.addEventListener('resize', this.resetFooter, true);
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll, true);
+    window.removeEventListener('resize', this.handleScroll, true);
+    window.removeEventListener('resize', this.resetFooter, true);
+  }
+  
+  componentDidUpdate() {
+    this.resetFooter();
+    setTimeout(() => {
+      this.handleScroll();
+    }, 1000);
+  }
+
   componentWillMount() {
     // this.props.loginState.firebase.database().ref('Movies')
     //   .orderByChild('index').startAt(0).endAt(11)
@@ -20,7 +83,7 @@ class Movies extends React.Component<any, any> {
     //   this.props.initPage(value, Object.keys(value).length, 12);
     // })
 
-    let i = 0, itemPerPage = 21, data: any = {};
+    let i = 0, itemPerPage = 12, data: any = {};
     for (let p in movie_data) {
       if (i < itemPerPage) {
         data[p] = movie_data[p];

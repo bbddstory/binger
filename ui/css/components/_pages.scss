@@ -1,4 +1,8 @@
-.pages {
+#pages {
+    height: 42px;
+}
+
+#controls {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,7 +34,7 @@
         border-top-right-radius: 2px;
     }
 
-    div {
+    .page-no {
         height: 42px;
         padding: 0 20px;
         line-height: 42px;
@@ -38,4 +42,10 @@
         font-size: 16px;
         background: #f2f2f2;
     }
+}
+
+.controls-fixed {
+    position: absolute;
+    bottom: 0;
+    width: 900px;
 }

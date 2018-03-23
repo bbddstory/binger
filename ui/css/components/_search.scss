@@ -16,3 +16,12 @@
         border-radius: 2px;
     }
 }
+
+.search-fixed {
+    position: fixed;
+    top: 0;
+    padding: 0;
+    justify-content: left;
+    width: 300px;
+    // width: 900px;
+}
