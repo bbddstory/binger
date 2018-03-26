@@ -1,18 +1,73 @@
-.search {
-    _border: 1px solid red;
-    display: flex;
-    justify-content: center;
-    width: 900px;
+#search {
     height: 42px;
-    padding: 10px 0 20px;
+    padding-bottom: 70px;
 
-    input {
-        border: 0;
-        width: 590px;
-        font-size: 16px;
-        line-height: 42px;
-        padding-left: 20px;
-        padding-right: 20px;
-        border-radius: 2px;
+    #search-box {
+        _border: 1px solid red;
+        display: flex;
+        justify-content: center;
+        width: 900px;
+        height: 42px;
+    
+        input {
+            border: 0;
+            width: 590px;
+            font-size: 16px;
+            line-height: 42px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 2px;
+        }
+    }
+    
+    @keyframes extentWidth {
+        from {
+            width: 590px;
+        }
+        to {
+            width: 900px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    .search-fixed {
+        position: absolute;
+        z-index: 100;
+        top: 0;
+        padding-top: 0 !important;
+        
+        input {
+            border-radius: 0 !important;
+            animation-name: extentWidth;
+            animation-duration: .5s;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    @keyframes restoreWidth {
+        from {
+            width: 900px;
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+        to {
+            width: 590px;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+    }
+
+    .search-restore {
+        input {
+            width: 900px;
+            animation-name: restoreWidth;
+            animation-duration: .5s;
+            animation-fill-mode: forwards;
+        }
     }
 }
