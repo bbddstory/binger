@@ -1,6 +1,8 @@
+$animTime: .3s;
+
 #search {
     height: 42px;
-    padding-bottom: 70px;
+    padding-bottom: 60px;
 
     #search-box {
         _border: 1px solid red;
@@ -42,8 +44,9 @@
         
         input {
             border-radius: 0 !important;
+
             animation-name: extentWidth;
-            animation-duration: .5s;
+            animation-duration: $animTime;
             animation-fill-mode: forwards;
         }
     }
@@ -65,8 +68,9 @@
     .search-restore {
         input {
             width: 900px;
+            
             animation-name: restoreWidth;
-            animation-duration: .5s;
+            animation-duration: $animTime;
             animation-fill-mode: forwards;
         }
     }

@@ -12,37 +12,52 @@ class Details extends React.Component<any, any> {
 
   componentWillMount() {
     let url = window.location.hash,
-        lastChar = url.substring(url.length - 1);
-        
+      lastChar = url.substring(url.length - 1);
+
     if (lastChar === '/') {
       url = url.substring(0, url.length - 1);
     }
     url = url.substring(url.lastIndexOf('/') + 1);
-
-    // console.log(url);
-    this.setState({key: url});
+    this.setState({ key: url });
   }
-  
+
   render() {
     return (
       <div id="details">
         <div className="details-box">
           <div className="poster">
-            <img className="thumbnail" alt="Poster"
+            <img className="thumbnail" alt="Poster" width="182px"
               src={this.props.dataState.data[this.state.key].poster === 'N/A' ?
                 this.state.dummyPoster : this.props.dataState.data[this.state.key].poster} />
           </div>
+
           <div className="details">
-            {this.props.dataState.data[this.state.key].engTitle}
-            {this.props.dataState.data[this.state.key].origTitle}
-            {this.props.dataState.data[this.state.key].type}
-            {this.props.dataState.data[this.state.key].director}
-            {this.props.dataState.data[this.state.key].imdb_id}
-            {this.props.dataState.data[this.state.key].rating}
-            {this.props.dataState.data[this.state.key].runtime}
-            {this.props.dataState.data[this.state.key].year}
+            {/* {this.props.dataState.data[this.state.key].type} */}
+            <span className="title">{this.props.dataState.data[this.state.key].engTitle}</span>
+            <br />
+            <span>
+              {this.props.dataState.data[this.state.key].engTitle === this.props.dataState.data[this.state.key].origTitle ?
+                '' : this.props.dataState.data[this.state.key].origTitle}
+            </span>
+            <br />
+            <span className="entries">
+              {this.props.dataState.data[this.state.key].year}<br />
+              {this.props.dataState.data[this.state.key].director}<br />
+              {this.props.dataState.data[this.state.key].runtime}<br />
+            </span>
+            <div className="imdb">
+              <div>
+                <span className="rating">{this.props.dataState.data[this.state.key].rating}</span>&nbsp;/10
+              </div>
+              <a target="_blank" href={'http://www.imdb.com/title/' + this.props.dataState.data[this.state.key].imdb_id}>
+                <img src="ui/images/details/imdb_horizontal.png" alt="IMDB" width="68px" />
+              </a>
+            </div>
           </div>
-          <div className="plot">{this.props.dataState.data[this.state.key].plot}</div>
+
+          <div className="plot">
+            {this.props.dataState.data[this.state.key].plot}
+          </div>
         </div>
       </div>
     )
