@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
+import * as jq from 'jquery';
 import { goToPage } from '../actions/dataActions';
 import { anime_data, doc_data, movie_data, tv_data } from './main/data';
 
@@ -56,6 +57,23 @@ class Pages extends React.Component<any, any> {
         }
 
         this.props.goToPage(data, currPage, itemStartIdx, itemEndIdx);
+    }
+
+    componentDidMount() {
+        jq(document).on("keydown", (e) => {
+            if (e.which === 37) {
+                this.goToPage('PREV');
+            }
+            if (e.which === 39) {
+                this.goToPage('NEXT');
+            }
+            if (e.shiftKey && (e.which === 36)) {
+                this.goToPage('FIRST');
+            }
+            if (e.shiftKey && (e.which === 35)) {
+                this.goToPage('LAST');
+            }
+        });
     }
 
     render() {

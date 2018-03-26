@@ -1,51 +1,71 @@
 #pages {
-    height: 42px;
-}
-
-#controls {
+    // width: 900px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    height: 42px;
 
-    button {
-        height: 42px;
-        padding: 10px 20px;
-        font-family: OpenSans;
-        font-size: 16px;
-        background: #fff;
-        border: 0;
-        cursor: pointer;
-
-        &:hover {
-            background: #00a651;
-            color: #fff;
+    #controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 424px;
+    
+        button {
+            width: 76px;
+            height: 42px;
+            padding: 0 20px;
+            font-family: OpenSans;
+            font-size: 16px;
+            background: #fff;
+            border: 0;
+            cursor: pointer;
+    
+            &:hover {
+                background: #00a651;
+                color: #fff;
+            }
+        }
+        
+        .first {
+            border-right: 1px solid #f2f2f2;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+    
+        .last {
+            border-left: 1px solid #f2f2f2;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+    
+        .page-no {
+            height: 42px;
+            width: 80px;
+            padding: 0 20px;
+            text-align: center;
+            line-height: 42px;
+            font-family: OpenSans;
+            font-size: 16px;
+            background: #f2f2f2;
         }
     }
     
-    .first {
-        border-right: 1px solid #f2f2f2;
-        border-bottom-left-radius: 2px;
-        border-top-left-radius: 2px;
+    .controls-fixed {
+        position: absolute;
+        bottom: 0;
+        width: 900px;
+        -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.5);
+    
+        .first {
+            border-top-left-radius: 5px !important;
+            border-bottom-left-radius: 0 !important;
+        }
+    
+        .last {
+            border-top-right-radius: 5px !important;
+            border-bottom-right-radius: 0 !important;
+        }
     }
-
-    .last {
-        border-left: 1px solid #f2f2f2;
-        border-bottom-right-radius: 2px;
-        border-top-right-radius: 2px;
-    }
-
-    .page-no {
-        height: 42px;
-        padding: 0 20px;
-        line-height: 42px;
-        font-family: OpenSans;
-        font-size: 16px;
-        background: #f2f2f2;
-    }
-}
-
-.controls-fixed {
-    position: absolute;
-    bottom: 0;
-    width: 900px;
 }
