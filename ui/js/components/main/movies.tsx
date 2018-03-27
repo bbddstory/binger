@@ -12,7 +12,7 @@ import { anime_data, doc_data, movie_data, tv_data } from './data';
 class Movies extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { ipp: 21, dummyPoster: 'ui/images/movie/poster.png' };
+    this.state = { ipp: 15, dummyPoster: 'ui/images/movie/poster.png' };
   }
 
   handleScroll = () => {

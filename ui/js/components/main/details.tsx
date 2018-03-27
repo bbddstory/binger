@@ -32,26 +32,22 @@ class Details extends React.Component<any, any> {
           </div>
 
           <div className="details">
-            {/* {this.props.dataState.data[this.state.key].type} */}
             <span className="title">{this.props.dataState.data[this.state.key].engTitle}</span>
-            <br />
-            <span>
+            <span className="orig-title">
               {this.props.dataState.data[this.state.key].engTitle === this.props.dataState.data[this.state.key].origTitle ?
-                '' : this.props.dataState.data[this.state.key].origTitle}
+                '' : this.props.dataState.data[this.state.key].origTitle + ' (original title)'}
             </span>
-            <br />
             <span className="entries">
               {this.props.dataState.data[this.state.key].year}<br />
               {this.props.dataState.data[this.state.key].director}<br />
               {this.props.dataState.data[this.state.key].runtime}<br />
             </span>
             <div className="imdb">
-              <div>
-                <span className="rating">{this.props.dataState.data[this.state.key].rating}</span>&nbsp;/10
-              </div>
               <a target="_blank" href={'http://www.imdb.com/title/' + this.props.dataState.data[this.state.key].imdb_id}>
                 <img src="ui/images/details/imdb_horizontal.png" alt="IMDB" width="68px" />
               </a>
+              <span className="rating">{this.props.dataState.data[this.state.key].rating}</span>
+              <span className="out-of">/10</span>
             </div>
           </div>
 

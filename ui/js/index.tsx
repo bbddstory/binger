@@ -12,15 +12,13 @@ import Login from './views/login';
 import Main from './views/main';
 import masterReducer from './reducers/masterReducer';
 
-class Binger extends React.Component<any, any> {
+class App extends React.Component<any, any> {
   render() {
     return (
-      // <div className="center">
-        <Switch>
-          <Route exact path='/' component={Login} />
-          <Route path='/main' component={Main} />
-        </Switch>
-      // </div>
+      <Switch>
+        <Route exact path='/' component={Login} />
+        <Route path='/main' component={Main} />
+      </Switch>
     )
   }
 }
@@ -48,8 +46,8 @@ const unsubscribe = masterStore.subscribe(() =>
 render(
   <HashRouter>
     <Provider store={masterStore}>
-      <Binger />
+      <App />
     </Provider>
   </HashRouter>,
-  document.getElementById('binger')
+  document.getElementById('app')
 );

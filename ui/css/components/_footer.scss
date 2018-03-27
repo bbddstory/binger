@@ -7,18 +7,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
     ol {
-        width: 630px;
         display: flex;
         justify-content: space-between;
-        
+        width: 630px;
+        margin-top: 5px;
         a {
-            color: #666;
+            color: #888;
             font-size: 16px;
-
             &:hover {
-                color: #fff;
+                color: #f2f2f2;
+                img {
+                    opacity: 1;
+                }
+            }
+            img {
+                opacity: .5;
+                vertical-align: middle;
+                margin-right: 2px;
             }
         }
     }

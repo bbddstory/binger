@@ -80,11 +80,11 @@ class Pages extends React.Component<any, any> {
         return (
             <div id="pages">
                 <div id="controls">
-                    <button className="first" onClick={e => this.goToPage('FIRST')}>First</button>
-                    <button onClick={e => this.goToPage('PREV')}>Prev</button>
+                    <button className="first" onClick={e => this.goToPage('FIRST')}>❬❬</button>
+                    <button onClick={e => this.goToPage('PREV')}>❬</button>
                     <div className="page-no">{this.props.dataState.currPage} / {this.props.dataState.totalPage}</div>
-                    <button onClick={e => this.goToPage('NEXT')}>Next</button>
-                    <button className="last" onClick={e => this.goToPage('LAST')}>Last</button>
+                    <button onClick={e => this.goToPage('NEXT')}>❭</button>
+                    <button className="last" onClick={e => this.goToPage('LAST')}>❭❭</button>
                 </div>
             </div>
         )
