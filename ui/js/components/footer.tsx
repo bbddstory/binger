@@ -3,14 +3,18 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from "react-intl";
+import { connect } from 'react-redux';
+import { switchLang } from '../actions/localeActions';
 
-export default class Header extends React.Component<any, any> {
+class Footer extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
     this.state = { email: 'keyword' }
   }
 
-  handleChange(e: any) {
+  switchLang = (e: string) => {
+    console.log(e);
+    this.props.switchLang(e);
   }
 
   render() {
@@ -23,12 +27,26 @@ export default class Header extends React.Component<any, any> {
             <img alt="Feedback" src="ui/images/footer/ic_feedback_white_24px.svg" />
             <FormattedMessage id='ft.fb' />
           </Link></li>
-          <li><Link to="/main/language">
+          <li>
             <img alt="Feedback" src="ui/images/footer/ic_language_white_24px.svg" />
-            <FormattedMessage id='ft.lang' />
-          </Link></li>
+            <span onClick={e => this.switchLang('en')}>English</span>&nbsp;|
+            <span onClick={e => this.switchLang('zh')}>中文</span>&nbsp;|
+            <span onClick={e => this.switchLang('ja')}>日本語</span>
+          </li>
         </ol>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state: any) => ({
+  localeState: state.localeReducer
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  switchLang: (lang: string) => {
+    dispatch(switchLang(lang))
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

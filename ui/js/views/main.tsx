@@ -12,6 +12,7 @@ import Home from '../components/main/home';
 import Movies from '../components/main/movies';
 import Footer from '../components/footer';
 import Details from '../components/main/details';
+import EditDetails from '../components/editDetails';
 
 import lang from "../../i18n/languages";
 import { addLocaleData, IntlProvider } from 'react-intl';
@@ -87,6 +88,7 @@ class Main extends React.Component<any, any> {
             <Route path='/main/details' component={Details} />
           </Switch>
           <Footer />
+          {/* {localeState.lang === 'en' && <EditDetails />} */}
         </div>
       </IntlProvider>
     )

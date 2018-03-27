@@ -1,7 +1,6 @@
 'use strict';
 
-import * as firebase from 'firebase';
-import { LOGIN } from '../actions/loginActions';
+import { LOCALE } from '../actions/localeActions';
 
 let init = {
   lang: 'ja'
@@ -9,9 +8,9 @@ let init = {
 
 export function localeReducer(state: any = init, action: any) {
   switch (action.type) {
-    case LOGIN:
+    case LOCALE:
       let ns = (<any>Object).assign({}, state);
-      window.location.hash = window.location.hash + 'main/home'
+      ns.lang = action.lang;
       
       // const config = {
       //   apiKey: 'AIzaSyDM7aH-HGeu6e0F6IKjgy0gjeoeTqkLGOc',

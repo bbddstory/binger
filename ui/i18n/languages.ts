@@ -18,8 +18,7 @@ const lang: LangInterface =  {
         'pg.last': 'Last (Shift + End)',
         'ft.zone': 'PhantomZone',
         'ft.home': 'Home',
-        'ft.fb': 'Give feedback',
-        'ft.lang': 'Languages'
+        'ft.fb': 'Give feedback'
     },
     zh: {
         'cats.movies': '电影',
@@ -33,9 +32,8 @@ const lang: LangInterface =  {
         'pg.next': '下一页 (Right Arrow)',
         'pg.last': '最后页 (Shift + End)',
         'ft.zone': '幽灵地带',
-        'ft.home': '返回主页',
-        'ft.fb': '发送反馈',
-        'ft.lang': '切换语言'
+        'ft.home': '首页',
+        'ft.fb': '发送反馈'
     },
     ja: {
         'cats.movies': '映画',
@@ -50,8 +48,7 @@ const lang: LangInterface =  {
         'pg.last': '最後のページ (Shift + End)',
         'ft.zone': '幽霊地帯',
         'ft.home': 'ホーム',
-        'ft.fb': 'フィードバック',
-        'ft.lang': 'スイッチ言語'
+        'ft.fb': 'フィードバック'
     }
 }
 

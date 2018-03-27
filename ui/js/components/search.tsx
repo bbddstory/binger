@@ -30,9 +30,10 @@ export default class Header extends React.Component<any, any> {
     return (
       <div id="search">
         <div id="search-box">
-          {/* <img src="ui/images/nav/ic_search_white_24px.svg" /> */}
           <input autoFocus id="search-input" type="text" placeholder="Search" value={this.state.keyword}
             onChange={(e) => this.handleChange(e)} onKeyDown={(e) => this.handleChange(e)} />
+          <img className="mag" src="ui/images/search/ic_search_black_24px.svg" />
+          <img className="arrow" src="ui/images/search/ic_keyboard_arrow_down_black_24px.svg" />
         </div>
       </div>
     )
