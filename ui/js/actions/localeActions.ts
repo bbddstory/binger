@@ -4,7 +4,7 @@
 export const LOCALE = 'LOCALE';
 
 // Action creators
-export function switchLang(lang: string) {
+export function switchLangAct(lang: string) {
   return {
     type: LOCALE,
     lang

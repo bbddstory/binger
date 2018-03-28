@@ -39,7 +39,7 @@ module.exports = {
     ],
     app: [
       // This is app root, all other JS are imported
-      './ui/js/index.tsx'
+      './ui/js/views/index.tsx'
     ]
   },
   // Enable sourcemaps for debugging webpack's output.

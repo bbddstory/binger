@@ -4,21 +4,23 @@ import * as jq from 'jquery';
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { inView } from '../util/utils';
+
+import { resetSearch, resetPages, resetFooter } from '../util/utils';
+
 import Header from '../components/header';
-import Search from '../components/search';
 import Categories from '../components/categories';
+import Search from '../components/search';
 import Home from '../components/main/home';
 import Movies from '../components/main/movies';
-import Footer from '../components/footer';
 import Details from '../components/main/details';
-import EditDetails from '../components/editDetails';
+import EditDetails from '../components/main/editDetails';
+import Footer from '../components/footer';
 
-import lang from "../../i18n/languages";
-import { addLocaleData, IntlProvider } from 'react-intl';
-import * as en from "react-intl/locale-data/en";
-import * as zh from "react-intl/locale-data/zh";
-import * as ja from "react-intl/locale-data/ja";
+import { IntlProvider, addLocaleData } from 'react-intl';
+import lang from '../../i18n/languages';
+import * as en from 'react-intl/locale-data/en';
+import * as zh from 'react-intl/locale-data/zh';
+import * as ja from 'react-intl/locale-data/ja';
 
 addLocaleData(en);
 addLocaleData(zh);
@@ -26,63 +28,45 @@ addLocaleData(ja);
 
 class Main extends React.Component<any, any> {
   constructor(props: any) {
-    super(props)
-    this.state = { email: 'bbddstory@gmail.com', pwd: 'LEON314@firebase' }
-  }
-
-  resetFooter = () => {
-    if (Math.ceil(jq('.footer').offset().top + jq('.footer').height()) < window.innerHeight) {
-      jq('.footer').addClass('footer-fixed')
-    }
-    if (Math.ceil(document.getElementById('center').scrollHeight) > window.innerHeight) {
-      jq('.footer').removeClass('footer-fixed')
-    }
-  }
-
-  handleScroll = () => {
-    // For Search component
-    if (!inView('#search') && !jq('#search-box').hasClass('search-fixed')) {
-      jq('#search-box').removeClass('search-restore');
-      jq('#search-box').addClass('search-fixed');
-    }
-    if (inView('#search') && jq('#search-box').hasClass('search-fixed')) {
-      jq('#search-box').removeClass('search-fixed');
-      jq('#search-box').addClass('search-restore');
-    }
+    super(props);
+    this.state = {}
   }
 
   componentDidMount() {
-    document.getElementsByTagName('body')[0].className = 'main_bg';
-    window.addEventListener('scroll', this.handleScroll, true);
-    window.addEventListener('resize', this.handleScroll, true);
-    window.addEventListener('resize', this.resetFooter, true);
-    this.resetFooter();
+    jq('body')[0].className = 'main-bg';
+    window.addEventListener('scroll', resetSearch, true);
+    window.addEventListener('scroll', resetFooter, true);
+    window.addEventListener('resize', resetSearch, true);
+    window.addEventListener('resize', resetFooter, true);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll, true);
-    window.removeEventListener('resize', this.handleScroll, true);
-    window.removeEventListener('resize', this.resetFooter, true);
+    window.removeEventListener('scroll', resetSearch, true);
+    window.removeEventListener('scroll', resetFooter, true);
+    window.removeEventListener('resize', resetSearch, true);
+    window.removeEventListener('resize', resetFooter, true);
   }
 
-  componentDidUpdate() {
-    this.resetFooter();
-  }
+  // componentDidUpdate() {
+  //   resetPages();
+  //   resetFooter();
+  // }
 
   render() {
     const { localeState } = this.props;
+
     return (
       <IntlProvider locale={localeState.lang} messages={lang[localeState.lang]}>
-        <div id="center">
+        <div id='center'>
           <Header />
           <Categories />
           <Search />
           <Switch>
             <Route path='/main/home' component={Home} />
-            <Route path='/main/anime' component={Movies} />
-            <Route path='/main/docs' component={Movies} />
             <Route path='/main/movies' component={Movies} />
             <Route path='/main/tv' component={Movies} />
+            <Route path='/main/docs' component={Movies} />
+            <Route path='/main/anime' component={Movies} />
             <Route path='/main/adult' component={Movies} />
             <Route path='/main/ero' component={Movies} />
             <Route path='/main/details' component={Details} />
@@ -95,15 +79,15 @@ class Main extends React.Component<any, any> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  dataState: state.dataReducer,
-  localeState: state.localeReducer
+const mapStateToProps = (store: any) => ({
+  localeState: store.localeReducer,
+  dataState: store.dataReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loginDispath: (email: string, pwd: string) => {
+  // loginDispath: (email: string, pwd: string) => {
     // dispatch(loginAct(email, pwd))
-  }
+  // }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

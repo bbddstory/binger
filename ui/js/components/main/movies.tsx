@@ -4,10 +4,10 @@ import * as jq from 'jquery';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { inView } from '../../util/utils';
-import { initPage } from '../../actions/dataActions';
+import { resetPages, resetFooter } from '../../util/utils';
+import { initPageAct } from '../../actions/dataActions';
 import Pages from '../pages';
-import { anime_data, doc_data, movie_data, tv_data } from './data';
+import { anime_data, doc_data, movie_data, tv_data } from '../../data/data';
 
 class Movies extends React.Component<any, any> {
   constructor(props: any) {
@@ -15,29 +15,20 @@ class Movies extends React.Component<any, any> {
     this.state = { ipp: 21, dummyPoster: 'ui/images/movie/poster.png' };
   }
 
-  handleScroll = () => {
-    // For Pages component
-    if (!inView('#controls') && !jq('#controls').hasClass('controls-fixed')) {
-      jq('#controls').addClass('controls-fixed')
-    }
-    if (inView('#pages')) {
-      jq('#controls').removeClass('controls-fixed')
-    }
-  }
-  
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll, true);
-    window.addEventListener('resize', this.handleScroll, true);
+    window.addEventListener('scroll', resetPages, true);
+    window.addEventListener('resize', resetPages, true);
   }
   
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll, true);
-    window.removeEventListener('resize', this.handleScroll, true);
+    window.removeEventListener('scroll', resetPages, true);
+    window.removeEventListener('resize', resetPages, true);
   }
   
   componentDidUpdate() {
+    resetPages();
+    resetFooter();
     setTimeout(() => {
-      this.handleScroll();
     }, 1000);
   }
 
@@ -52,24 +43,26 @@ class Movies extends React.Component<any, any> {
       }
     }
 
-    this.props.initPage(data, Object.keys(movie_data).length, itemPerPage);
+    this.props.initPageDispatch(data, Object.keys(movie_data).length, itemPerPage);
   }
 
   render() {
+    const { dataState } = this.props;
+
     return (
       <div className="movies">
-        {Object.keys(this.props.dataState.data).map((key: any) => {
+        {Object.keys(dataState.data).map((key: any) => {
           return <div className="tile" key={key}>
             <Link to={"/main/details/" + key}>
               <img className="thumbnail" alt="Poster"
-                src={this.props.dataState.data[key].poster === 'N/A' ?
-                  this.state.dummyPoster : this.props.dataState.data[key].poster} />
+                src={dataState.data[key].poster === 'N/A' ?
+                  this.state.dummyPoster : dataState.data[key].poster} />
             </Link>
             <div className="details">
-              <div className="title">{this.props.dataState.data[key].engTitle}</div>
+              <div className="title">{dataState.data[key].engTitle}</div>
               <div className="director">
-                <span className="year">{this.props.dataState.data[key].year}</span>
-                <br />{this.props.dataState.data[key].director}
+                <span className="year">{dataState.data[key].year}</span>
+                <br />{dataState.data[key].director}
               </div>
             </div>
           </div>
@@ -80,14 +73,14 @@ class Movies extends React.Component<any, any> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  loginState: state.loginReducer,
-  dataState: state.dataReducer
+const mapStateToProps = (store: any) => ({
+  loginState: store.loginReducer,
+  dataState: store.dataReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  initPage: (data: any, itemCnt: number, itemPerPage: number) => {
-    dispatch(initPage(data, itemCnt, itemPerPage))
+  initPageDispatch: (data: any, itemCnt: number, itemPerPage: number) => {
+    dispatch(initPageAct(data, itemCnt, itemPerPage))
   }
 });
 

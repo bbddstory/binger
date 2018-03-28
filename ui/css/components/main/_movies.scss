@@ -1,0 +1,61 @@
+.movies {
+    width: 900px;
+    margin: 0 auto 60px;
+    .tile {
+        display: inline-block;
+        width: 300px;
+        margin-bottom: 45px;
+        @keyframes tileShadow {
+            from {
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+            }
+            to {
+                -webkit-box-shadow: 0px 8px 15px 0px rgba(#000, .5);
+                -moz-box-shadow: 0px 8px 15px 0px rgba(#000, .5);
+                box-shadow: 0px 8px 15px 0px rgba(#000, .5);
+            }
+        }
+        .thumbnail {
+            display: inline-block;
+            width: 91px;
+            height: 134px;
+            vertical-align: bottom;
+            cursor: pointer;
+            &:hover {
+                animation-name: tileShadow;
+                animation-duration: .2s;
+                animation-fill-mode: forwards;
+            }
+        }
+        .details {
+            display: inline-block;
+            position: relative;
+            width: 184px;
+            height: 134px;
+            vertical-align: top;
+            color: #808080;
+            font-size: 14px;
+            padding: 0 20px 0 5px;
+            background: rgba(0, 0, 0, .2);
+            .title {
+                position: absolute;
+                z-index: 0;
+                top: 5px;
+                color: #fff;
+                font-size: 16px;
+            }
+            .year {
+                display: block;
+                margin-bottom: -5px;
+            }
+            .director {
+                position: absolute;
+                z-index: 0;
+                color: #888;
+                bottom: 5px;
+            }
+        }
+    }
+}

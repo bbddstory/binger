@@ -1,29 +1,22 @@
 .categories {
-    _border: 1px solid red;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
     width: 900px;
     height: 40px;
-    background-color: transparent;
-    font-family: OpenSans;
     color: #fff;
-    // padding: 0 135px;
-    
+    background-color: transparent;
+    margin-top: 20px;
     ol {
-        width: 630px;
         display: flex;
         justify-content: space-between;
-        
+        width: 630px;
         a {
             color: #00a651;
             font-size: 20px;
-
             &:hover {
                 color: #fff;
             }
         }
-
         .active {
             color: #fff;
         }
@@ -33,10 +26,8 @@
 .categories-fixed {
     position: fixed;
     top: 0;
-    // padding: 0;
     justify-content: flex-end;
-    width: 900px; // width: 900px;
-
+    width: 900px;
     ol {
         width: 550px;
     }

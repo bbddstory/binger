@@ -1,0 +1,55 @@
+@font-face {
+  font-family: OpenSans;
+  src: url("../fonts/OpenSans-Regular.ttf");
+}
+
+::-webkit-scrollbar {
+  width: 0.3em;
+  height: 0.3em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #acacac;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #d7d7d7;
+  border-radius: 3px;
+}
+
+html, body {
+  height: 100%;
+  font-family: OpenSans, 'Microsoft YaHei', Arial, sans-serif;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-face-color: #acacac;
+  scrollbar-track-color: #d7d7d7;
+  background: url("../images/login/login_bg.jpg") 50% no-repeat;
+  background-size: cover;
+}
+
+a, a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.main-bg{
+  background: url("../images/login/main_bg.png") repeat !important;
+}
+
+.popup-bg {
+  position: absolute;
+  z-index: 500;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(#000, .6);
+}

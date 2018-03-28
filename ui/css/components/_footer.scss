@@ -1,5 +1,4 @@
 .footer {
-    _border: 1px solid red;
     height: 60px;
     background: rgba(#000, .5);
     border-top-left-radius: 5px;
@@ -20,6 +19,7 @@
                 &:hover {
                     color: #f2f2f2;
                 }
+                margin: 0 5px;
             }
             a {
                 color: #888;

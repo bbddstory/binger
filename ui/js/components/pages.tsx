@@ -1,19 +1,20 @@
 'use strict';
 
+import * as jq from 'jquery';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as jq from 'jquery';
-import { goToPage } from '../actions/dataActions';
-import { anime_data, doc_data, movie_data, tv_data } from './main/data';
+import { goToPageAct } from '../actions/dataActions';
+import { anime_data, doc_data, movie_data, tv_data } from '../data/data';
 
 class Pages extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
-        this.state = { movies: {}, dummyPoster: 'ui/images/movie/poster.png' };
+        this.state = {}
     }
 
     goToPage(page: string) {
         let currPage, itemStartIdx, itemEndIdx;
+        
         switch (page) {
             case 'FIRST':
                 currPage = 1;
@@ -78,8 +79,8 @@ class Pages extends React.Component<any, any> {
 
     render() {
         return (
-            <div id="pages">
-                <div id="controls">
+            <div className="pages">
+                <div className="controls">
                     <button className="first" onClick={e => this.goToPage('FIRST')}>❬❬</button>
                     <button onClick={e => this.goToPage('PREV')}>❬</button>
                     <div className="page-no">{this.props.dataState.currPage} / {this.props.dataState.totalPage}</div>
@@ -98,7 +99,7 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
     goToPage: (data: any, currPage: number, itemStartIdx: number, itemEndIdx: number) => {
-        dispatch(goToPage(data, currPage, itemStartIdx, itemEndIdx))
+        dispatch(goToPageAct(data, currPage, itemStartIdx, itemEndIdx))
     }
 });
 

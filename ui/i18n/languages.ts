@@ -1,24 +1,25 @@
 interface LangInterface {
-    // en: any,
-    // ja: any,
     [key: string]: any
 }
 
-const lang: LangInterface =  {
+const lang: LangInterface = {
     en: {
         'cats.movies': 'Movies',
         'cats.tv': 'TV',
         'cats.docs': 'Documentaries',
         'cats.anime': 'Animations',
-        'cats.xxx': 'XXX',
-        'cats.jav': 'JAV',
+        'cats.xxx': 'AAA',
+        'cats.jav': 'BBB',
         'pg.first': 'First (Shift + Home)',
         'pg.prev': 'Prev (Left Arrow)',
         'pg.next': 'Next (Right Arrow)',
         'pg.last': 'Last (Shift + End)',
         'ft.zone': 'PhantomZone',
         'ft.home': 'Home',
-        'ft.fb': 'Give feedback'
+        'ft.fb': 'Give feedback',
+        'home.watch': 'Watch Later',
+        'home.recomm': 'Recommendations',
+        'home.empty': 'List is empty'
     },
     zh: {
         'cats.movies': '电影',
@@ -33,7 +34,10 @@ const lang: LangInterface =  {
         'pg.last': '最后页 (Shift + End)',
         'ft.zone': '幽灵地带',
         'ft.home': '首页',
-        'ft.fb': '发送反馈'
+        'ft.fb': '发送反馈',
+        'home.watch': '我的视频',
+        'home.recomm': '用户推荐',
+        'home.empty': '列表为空'
     },
     ja: {
         'cats.movies': '映画',
@@ -48,7 +52,10 @@ const lang: LangInterface =  {
         'pg.last': '最後のページ (Shift + End)',
         'ft.zone': '幽霊地帯',
         'ft.home': 'ホーム',
-        'ft.fb': 'フィードバック'
+        'ft.fb': 'フィードバック',
+        'home.watch': '後で見る',
+        'home.recomm': 'おすすめ',
+        'home.empty': '再生リストは空です'
     }
 }
 
