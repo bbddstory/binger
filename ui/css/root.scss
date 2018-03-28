@@ -1,15 +1,19 @@
 // Vendor
 @import '../../node_modules/reset.css/reset.css';
 
-// Basics
+// Views
 @import './views/login';
-@import 'index';
+@import './views/index';
 
 // Components
 @import './components/header';
-@import './components/search';
 @import './components/categories';
-@import './components/movies';
+@import './components/search';
 @import './components/pages';
-@import './components/home';
 @import './components/footer';
+
+// Components/Main
+@import './components/main/home';
+@import './components/main/movies';
+@import './components/main/details';
+@import './components/main/editDetails';

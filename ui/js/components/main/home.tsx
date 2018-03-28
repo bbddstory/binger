@@ -3,29 +3,25 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { loginAct } from '../../actions/loginActions';
+import { FormattedMessage } from "react-intl";
 
 class Home extends React.Component<any, any> {
   constructor(props: any) {
-    super(props)
-    this.state = { email: 'bbddstory@gmail.com', pwd: 'LEON314@firebase' }
-  }
-
-  handleClick(hash: string) {
-    let url = window.location.hash,
-        lastChar = url.substring(url.length - 1);
-    
-    if(lastChar === '/') {
-      window.location.hash = url + hash;
-    } else {
-      window.location.hash = url + '/' + hash;
-    }
+    super(props);
+    this.state = {}
   }
 
   render() {
     return (
       <div className="home">
-        <h3>Watch Later</h3>
-        <h3>Recommendations</h3>
+        <h3><FormattedMessage id='home.watch' /></h3>
+        <div className="my-list empty">
+          <FormattedMessage id='home.empty' />
+        </div>
+        <h3><FormattedMessage id='home.recomm' /></h3>
+        <div className="my-list empty">
+          <FormattedMessage id='home.empty' />
+        </div>
       </div>
     )
   }

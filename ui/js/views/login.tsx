@@ -6,7 +6,7 @@ import { loginAct } from '../actions/loginActions';
 
 class Login extends React.Component<any, any> {
   constructor(props: any) {
-    super(props)
+    super(props);
     this.state = { email: 'bbddstory@gmail.com', pwd: 'LEON314@firebase' }
   }
 
@@ -29,19 +29,19 @@ class Login extends React.Component<any, any> {
   render() {
     return (
       <form className="login-form">
-        <img src="ui/images/login/phantom_zone.png" width="287" />
+        <img src="ui/images/login/brand.png" width="287" />
         <input autoFocus type="email" placeholder="Email" value={this.state.email}
-          onChange={(e) => this.handleChange(e)} onKeyDown={(e) => this.handleChange(e)} />
+          onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
         <input type="password" placeholder="Password" value={this.state.pwd}
-          onChange={(e) => this.handleChange(e)} onKeyDown={(e) => this.handleChange(e)} />
+          onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
       </form>
     )
   }
 }
 
-// Here state is the masterStore defined in index.tsx
-const mapStateToProps = (state: any) => ({
-  loginState: state.loginReducer
+// Here store is the masterStore defined in index.tsx
+const mapStateToProps = (store: any) => ({
+  // loginState: store.loginReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

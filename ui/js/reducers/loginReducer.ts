@@ -12,7 +12,7 @@ export function loginReducer(state: any = init, action: any) {
   switch (action.type) {
     case LOGIN:
       let ns = (<any>Object).assign({}, state);
-      window.location.hash = window.location.hash + 'main/home'
+      location.hash = location.hash + 'main/home'
       
       // const config = {
       //   apiKey: 'AIzaSyDM7aH-HGeu6e0F6IKjgy0gjeoeTqkLGOc',
@@ -34,7 +34,7 @@ export function loginReducer(state: any = init, action: any) {
       // authPromise.then(() => {
       //   ns.email = action.email;
       //   ns.firebase = firebase;
-      //   window.location.hash = window.location.hash + 'main/'
+      //   location.hash = location.hash + 'main/'
       // }, reason => {
       //   console.log(reason);
       // });
