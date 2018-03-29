@@ -1,6 +1,6 @@
 'use strict';
 
-import '../../css/root.scss';
+import '../../css/app.scss';
 
 import * as React from 'react';
 import { render } from 'react-dom';

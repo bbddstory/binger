@@ -1,10 +1,34 @@
-.details-box {
+.details {
     display: flex;
     justify-content: center;
     padding: 50px 0;
     background: rgba(#000, .6);
     border-radius: 2px;
-    .details {
+    .poster {
+        position: relative;
+        div {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .watch-later {
+            top: 0;
+            background: rgba(#000, .6) url("../images/details/ic_watch_later_white_24px.svg") 50% no-repeat;
+        }
+        .recomm {
+            top: 0;
+            right: 0;
+            background: rgba(#000, .6) url("../images/details/ic_thumb_up_white_24px.svg") 50% no-repeat;
+        }
+        .edit {
+            bottom: 0;
+            background: rgba(#000, .6) url("../images/details/ic_edit_white_24px.svg") 50% no-repeat;
+        }
+    }
+    .entries {
         position: relative;
         width: 260px;
         height: 268px;
@@ -21,7 +45,7 @@
             font-style: italic;
             margin-top: 10px;
         }
-        .entries {
+        .misc {
             display: block;
             color: #888;
             line-height: 1.5;

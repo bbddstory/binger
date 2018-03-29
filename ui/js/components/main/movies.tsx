@@ -5,7 +5,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { resetPages, resetFooter } from '../../util/utils';
-import { initPageAct } from '../../actions/dataActions';
+import { initPageAct, setKeyAct } from '../../actions/dataActions';
 import Pages from '../pages';
 import { anime_data, doc_data, movie_data, tv_data } from '../../data/data';
 
@@ -13,6 +13,10 @@ class Movies extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = { ipp: 21, dummyPoster: 'ui/images/movie/poster.png' };
+  }
+
+  setKey = (key: string) => {
+    this.props.setKeyDispath(key);
   }
 
   componentDidMount() {
@@ -53,7 +57,7 @@ class Movies extends React.Component<any, any> {
       <div className="movies">
         {Object.keys(dataState.data).map((key: any) => {
           return <div className="tile" key={key}>
-            <Link to={"/main/details/" + key}>
+            <Link to={"/main/details/" + key} onClick={e => {this.setKey(key)}}>
               <img className="thumbnail" alt="Poster"
                 src={dataState.data[key].poster === 'N/A' ?
                   this.state.dummyPoster : dataState.data[key].poster} />
@@ -81,6 +85,9 @@ const mapStateToProps = (store: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   initPageDispatch: (data: any, itemCnt: number, itemPerPage: number) => {
     dispatch(initPageAct(data, itemCnt, itemPerPage))
+  },
+  setKeyDispath: (key: string) => {
+    dispatch(setKeyAct(key))
   }
 });
 

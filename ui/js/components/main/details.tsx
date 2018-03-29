@@ -3,57 +3,76 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { cleanUrl } from '../../util/utils';
-// import { loginAct } from '../../actions/loginActions';
+import { setKeyAct } from '../../actions/dataActions';
+import EditDetails from '../../components/main/editDetails';
 
 class Details extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { dummyPoster: 'ui/images/movie/poster.png' }
+    this.state = { dummyPoster: 'ui/images/movie/poster.png', opts: false, edit: false }
+  }
+
+  toggleOpts = () => {
+    this.setState({ opts: !this.state.opts })
+  }
+
+  editDetails = () => {
+    this.setState({ edit: true })
   }
 
   componentWillMount() {
     cleanUrl();
-    let hash = location.hash;
-    hash = hash.substring(hash.lastIndexOf('/') + 1);
-    this.setState({ key: hash });
+    // let hash = location.hash;
+    // hash = hash.substring(hash.lastIndexOf('/') + 1);
+    // this.setState({ key: hash });
+    // this.props.setKeyDispath(hash);
+  }
+
+  componentDidMount() {
+    this.editDetails()
   }
 
   render() {
     const { dataState } = this.props;
+    const key = this.props.dataState.key;
+    const { opts, edit } = this.state;
 
     return (
-      <div id="details">
-        <div className="details-box">
-          <div className="poster">
-            <img className="thumbnail" alt="Poster" width="182px"
-              src={dataState.data[this.state.key].poster === 'N/A' ?
-                this.state.dummyPoster : dataState.data[this.state.key].poster} />
-          </div>
+      <div className="details">
+        <div className="poster" onMouseEnter={e => { this.toggleOpts() }} onMouseLeave={e => { this.toggleOpts() }}>
+          <img alt="Poster" width="182px"
+            src={dataState.data[key].poster === 'N/A' ?
+              this.state.dummyPoster : dataState.data[key].poster} />
+          {opts && <div className="watch-later" title="Watch later"></div>}
+          {opts && <div className="recomm" title="Recommend to a friend"></div>}
+          {opts && <div className="edit" title="Edit details" onClick={e => { this.editDetails() }}></div>}
+        </div>
 
-          <div className="details">
-            <span className="title">{dataState.data[this.state.key].engTitle}</span>
-            <span className="orig-title">
-              {dataState.data[this.state.key].engTitle === dataState.data[this.state.key].origTitle ?
-                '' : dataState.data[this.state.key].origTitle + ' (original title)'}
-            </span>
-            <span className="entries">
-              {dataState.data[this.state.key].year}<br />
-              {dataState.data[this.state.key].director}<br />
-              {dataState.data[this.state.key].runtime}<br />
-            </span>
-            <div className="imdb">
-              <a target="_blank" href={'http://www.imdb.com/title/' + dataState.data[this.state.key].imdb_id}>
-                <img src="ui/images/details/imdb.png" alt="IMDB" width="68px" />
-              </a>
-              <span className="rating">{dataState.data[this.state.key].rating}</span>
-              <span className="out-of">/10</span>
-            </div>
-          </div>
-
-          <div className="plot">
-            {dataState.data[this.state.key].plot}
+        <div className="entries">
+          <span className="title">{dataState.data[key].engTitle}</span>
+          <span className="orig-title">
+            {dataState.data[key].engTitle === dataState.data[key].origTitle ?
+              '' : dataState.data[key].origTitle + ' (original title)'}
+          </span>
+          <span className="misc">
+            {dataState.data[key].year}<br />
+            {dataState.data[key].runtime}<br />
+            {dataState.data[key].director}<br />
+          </span>
+          <div className="imdb" title="Show this movie on IMDB">
+            <a target="_blank" href={'http://www.imdb.com/title/' + dataState.data[key].imdb_id}>
+              <img src="ui/images/details/imdb.png" alt="IMDB" width="68px" />
+            </a>
+            <span className="rating">{dataState.data[key].rating}</span>
+            <span className="out-of">/10</span>
           </div>
         </div>
+
+        <div className="plot">
+          {dataState.data[key].plot}
+        </div>
+
+        {edit && <EditDetails />}
       </div>
     )
   }
@@ -64,9 +83,9 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  // loginDispath: (email: string, pwd: string) => {
-  //   dispatch(loginAct(email, pwd))
-  // }
+  setKeyDispath: (key: string) => {
+    dispatch(setKeyAct(key))
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
