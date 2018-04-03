@@ -4,12 +4,17 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { cleanUrl } from '../../util/utils';
 import { setKeyAct } from '../../actions/dataActions';
+import { editDetailsAct } from '../../actions/uiActions';
 import EditDetails from '../../components/main/editDetails';
 
 class Details extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { dummyPoster: 'ui/images/movie/poster.png', opts: false, edit: false }
+    this.state = { dummyPoster: 'ui/images/movie/poster.png', opts: false }
+  }
+
+  handleChildUnmount = () => {
+    return true
   }
 
   toggleOpts = () => {
@@ -17,7 +22,8 @@ class Details extends React.Component<any, any> {
   }
 
   editDetails = () => {
-    this.setState({ edit: true })
+    // this.setState({ edit: true })
+    this.props.editDetailsDispath(true)
   }
 
   componentWillMount() {
@@ -29,11 +35,11 @@ class Details extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    this.editDetails()
+    // this.editDetails()
   }
 
   render() {
-    const { dataState } = this.props;
+    const { dataState, uiState } = this.props;
     const key = this.props.dataState.key;
     const { opts, edit } = this.state;
 
@@ -72,19 +78,23 @@ class Details extends React.Component<any, any> {
           {dataState.data[key].plot}
         </div>
 
-        {edit && <EditDetails />}
+        {uiState.editDetails && <EditDetails />}
       </div>
     )
   }
 }
 
 const mapStateToProps = (store: any) => ({
-  dataState: store.dataReducer
+  dataState: store.dataReducer,
+  uiState: store.uiReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
   setKeyDispath: (key: string) => {
     dispatch(setKeyAct(key))
+  },
+  editDetailsDispath: (status: boolean) => {
+    dispatch(editDetailsAct(status))
   }
 });
 
