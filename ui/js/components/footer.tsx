@@ -37,7 +37,7 @@ class Footer extends React.Component<any, any> {
 }
 
 const mapStateToProps = (store: any) => ({
-  // localeState: state.localeReducer
+  localeState: store.localeReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
