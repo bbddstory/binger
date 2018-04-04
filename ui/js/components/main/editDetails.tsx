@@ -17,21 +17,21 @@ class EditDetails extends React.Component<any, any> {
     this.props.editDetailsDispath(false)
   }
 
-  // handleUpdate(form: any) {
-  //   console.log(form);
-  // }
+  onUpdate(form: any) {
+    console.log(form);
+  }
   
-  handleChange(values: any) {
+  onChange(values: any) {
     for (let p in values) {
       if (!regex[p].test(values[p])) {
-        this.setState({ [p]: true })
+        this.setState({ formValid: false, [p]: true })
       } else {
         this.setState({ [p]: false })
       }
     }
   }
 
-  handleSubmit(values: any) {
+  onSubmit(values: any) {
     console.log(values);
   }
 
@@ -41,11 +41,7 @@ class EditDetails extends React.Component<any, any> {
 
     return (
       <div className="popup-bg">
-        <LocalForm
-          // onUpdate={(form) => this.handleUpdate(form)}
-          onChange={(values) => this.handleChange(values)}
-          onSubmit={(values) => this.handleSubmit(values)}
-        >
+        <LocalForm onUpdate={(form) => this.onUpdate(form)} onChange={(values) => this.onChange(values)} onSubmit={(values) => this.onSubmit(values)}>
           <div className="popup-panel">
             <div className="panel-body">
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -68,25 +64,31 @@ class EditDetails extends React.Component<any, any> {
                 </div>
                 <div style={{ width: '22.9%' }}>
                   <label>Runtime</label>
-                  <input type="text" className="runtime" placeholder="N/A" defaultValue={dataState.data[key].runtime} />
+                  <Control.text model=".runtime" placeholder="N/A" defaultValue={dataState.data[key].runtime} />
+                  {this.state.runtime && <span>Format: 1h 30min</span>}
                 </div>
                 <div style={{ width: '49%' }}>
                   <label>Director(s)</label>
-                  <input type="text" placeholder="N/A" defaultValue={dataState.data[key].director} />
+                  <Control.text model=".director" placeholder="N/A" defaultValue={dataState.data[key].director} />
+                  {this.state.director && <span>Name(s) separated by comma</span>}
                 </div>
               </div>
               <label>Poster</label>
-              <textarea className="poster" placeholder="N/A" defaultValue={dataState.data[key].poster} />
+              <Control.textarea className="poster" model=".poster" placeholder="N/A" defaultValue={dataState.data[key].poster} />
+              {this.state.poster && <span>Must be a valid URL</span>}
               <label className="textarea-lbl">Plot</label>
-              <textarea className="plot" placeholder="N/A" defaultValue={dataState.data[key].plot} />
+              <Control.textarea className="plot" model=".plot" placeholder="N/A" defaultValue={dataState.data[key].plot} />
+              {this.state.plot && <span>Contains invalid characters</span>}
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ width: '23%' }}>
                   <label>IMDB ID</label>
-                  <input type="text" placeholder="N/A" defaultValue={dataState.data[key].imdb_id} />
+                  <Control.text model=".imdb_id" placeholder="N/A" defaultValue={dataState.data[key].imdb_id} />
+                  {this.state.imdb_id && <span>Format: tt1234567</span>}
                 </div>
                 <div style={{ width: '23%' }}>
                   <label>Rating</label>
-                  <input type="text" placeholder="N/A" defaultValue={dataState.data[key].rating} />
+                  <Control.text model=".rating" placeholder="N/A" defaultValue={dataState.data[key].rating} />
+                  {this.state.rating && <span>Format: 9.9</span>}
                 </div>
                 <div style={{ width: '23%' }}>
                   <label>Status</label>
