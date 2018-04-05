@@ -4,27 +4,24 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from "react-intl";
 import { editDetailsAct } from '../../actions/uiActions';
+import { saveDetailsAct } from '../../actions/detailsActions';
 import { regex } from '../../util/regex';
 import { LocalForm, Field, Control } from 'react-redux-form';
 
 class EditDetails extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
   cancelEdit() {
     this.props.editDetailsDispath(false)
   }
 
-  onUpdate(form: any) {
-    console.log(form);
-  }
-  
   onChange(values: any) {
     for (let p in values) {
       if (!regex[p].test(values[p])) {
-        this.setState({ formValid: false, [p]: true })
+        this.setState({ [p]: true })
       } else {
         this.setState({ [p]: false })
       }
@@ -32,7 +29,17 @@ class EditDetails extends React.Component<any, any> {
   }
 
   onSubmit(values: any) {
-    console.log(values);
+    let formValid = true;
+    
+    for (let p in values) {
+      if (!regex[p].test(values[p])) {
+        formValid = false;
+      }
+    }
+    
+    if (formValid) {
+      this.props.saveDetailsDispath(values);
+    }
   }
 
   render() {
@@ -41,7 +48,7 @@ class EditDetails extends React.Component<any, any> {
 
     return (
       <div className="popup-bg">
-        <LocalForm onUpdate={(form) => this.onUpdate(form)} onChange={(values) => this.onChange(values)} onSubmit={(values) => this.onSubmit(values)}>
+        <LocalForm onChange={(values) => this.onChange(values)} onSubmit={(values) => this.onSubmit(values)}>
           <div className="popup-panel">
             <div className="panel-body">
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -132,6 +139,9 @@ const mapStateToProps = (store: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   editDetailsDispath: (status: boolean) => {
     dispatch(editDetailsAct(status))
+  },
+  saveDetailsDispath: (values: any) => {
+    dispatch(saveDetailsAct(values))
   }
 });
 

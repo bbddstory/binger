@@ -1,6 +1,6 @@
 'use strict';
 
-import * as jq from 'jquery';
+import swal from 'sweetalert2';
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -33,7 +33,8 @@ class Main extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    jq('body')[0].className = 'main-bg';
+    document.querySelector('body').className = 'main-bg';
+    swal.hideLoading();
     window.addEventListener('scroll', resetSearch, true);
     window.addEventListener('scroll', resetFooter, true);
     window.addEventListener('resize', resetSearch, true);

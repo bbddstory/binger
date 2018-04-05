@@ -5,7 +5,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { resetPages, resetFooter } from '../../util/utils';
-import { initPageAct, setKeyAct } from '../../actions/dataActions';
+import { initPagesAct, setKeyAct, loadDataAct } from '../../actions/dataActions';
 import Pages from '../pages';
 import { anime_data, doc_data, movie_data, tv_data } from '../../data/data';
 
@@ -37,17 +37,19 @@ class Movies extends React.Component<any, any> {
   }
 
   componentWillMount() {
-    let i = 0, itemPerPage = this.state.ipp, data: any = {};
-    for (let p in movie_data) {
-      if (i < itemPerPage) {
-        data[p] = movie_data[p];
-        i++;
-      } else {
-        break
-      }
-    }
+    this.props.loadDataDispath('Movies');
+    // let i = 0, itemPerPage = this.state.ipp, data: any = {};
 
-    this.props.initPageDispatch(data, Object.keys(movie_data).length, itemPerPage);
+    // for (let p in movie_data) {
+    //   if (i < itemPerPage) {
+    //     data[p] = movie_data[p];
+    //     i++;
+    //   } else {
+    //     break
+    //   }
+    // }
+
+    // this.props.initPagesDispatch(data, Object.keys(movie_data).length, itemPerPage);
   }
 
   render() {
@@ -83,11 +85,14 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  initPageDispatch: (data: any, itemCnt: number, itemPerPage: number) => {
-    dispatch(initPageAct(data, itemCnt, itemPerPage))
+  initPagesDispatch: (data: any, itemCnt: number, itemPerPage: number) => {
+    dispatch(initPagesAct(data, itemCnt, itemPerPage))
   },
   setKeyDispath: (key: string) => {
     dispatch(setKeyAct(key))
+  },
+  loadDataDispath: (category: string) => {
+    dispatch(loadDataAct(category))
   }
 });
 

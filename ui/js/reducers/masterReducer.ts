@@ -1,14 +1,16 @@
 'use strict';
 
 import { combineReducers } from 'redux';
+import { localeReducer } from './localeReducer';
 import { loginReducer } from './loginReducer';
 import { dataReducer } from './dataReducer';
-import { localeReducer } from './localeReducer';
+import { detailsReducer } from './detailsReducer';
 import { uiReducer } from './uiReducer';
 
 export default combineReducers({
+  localeReducer,
   loginReducer,
   dataReducer,
-  localeReducer,
+  detailsReducer,
   uiReducer
 });

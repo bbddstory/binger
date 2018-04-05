@@ -23,7 +23,7 @@ class Login extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    document.getElementsByTagName('body')[0].className = '';
+    document.body.className = '';
   }
 
   render() {

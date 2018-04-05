@@ -13,16 +13,7 @@ class Search extends React.Component<any, any> {
   }
   
   placeholderTxt() {
-    switch (this.props.localeState.lang) {
-      case 'en':
-        return 'Search (Press Ctrl + F to focus)';
-      case 'zh':
-        return '搜索（按 Ctrl + F 组合键聚焦）';
-      case 'ja':
-        return '検索（Ctrl + F キーを押してフォーカスを合わせます）';
-      default:
-        return 'Search (Press Ctrl + F to focus)';
-    }
+    return lang[this.props.localeState.lang]['search.txt']
   }
 
   componentDidMount() {

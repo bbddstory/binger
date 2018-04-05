@@ -47,5 +47,5 @@ render(
       <App />
     </Provider>
   </HashRouter>,
-  document.getElementById('app')
+  document.querySelector('#app')
 );

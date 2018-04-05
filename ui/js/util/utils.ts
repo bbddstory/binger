@@ -65,7 +65,7 @@ export const resetFooter = () => {
     if (Math.ceil(jq('.footer').offset().top + jq('.footer').height()) < window.innerHeight) {
         jq('.footer').addClass('footer-fixed')
     }
-    if (Math.ceil(document.getElementById('center').scrollHeight) > window.innerHeight) {
+    if (Math.ceil(document.querySelector('#center').scrollHeight) > window.innerHeight) {
         jq('.footer').removeClass('footer-fixed')
     }
 }

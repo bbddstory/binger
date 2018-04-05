@@ -30,9 +30,9 @@ let init = {
 
 export function dataReducer(state: any = init, action: any) {
   let ns = (<any>Object).assign({}, state);
+
   switch (action.type) {
     case INIT_PAGES:
-      // ns = (<any>Object).assign({}, state);
       ns.data = action.data;
       ns.itemCnt = action.itemCnt;
       ns.totalPage = Math.ceil(action.itemCnt / action.itemPerPage);
@@ -41,7 +41,6 @@ export function dataReducer(state: any = init, action: any) {
 
       return ns;
     case GOTO_PAGE:
-      // ns = (<any>Object).assign({}, state);
       ns.data = action.data;
       ns.currPage = action.currPage;
       ns.itemStartIdx = action.itemStartIdx;
