@@ -35,15 +35,30 @@ export function setKeyAct(key: string) {
 }
 
 export function loadDataAct(category: string, ipp: number) {
-  return (dispatch: any, getState: any) => {
+  return async (dispatch: any, getState: any) => {
     let firebase = getState().loginReducer.firebase;
     
     if (firebase.apps) {
       swal('Loading ' + category + ' Data', 'Please wait...', 'info').then(() => {}, (dismiss) => {});
       swal.showLoading();
+      let itemCnt: number;
 
-      firebase.database().ref(category)
-        // .orderByChild('year').startAt('2016').endAt('2017')
+      console.log('-- await "itemCnt"');
+      
+      await firebase.database().ref(category)
+        .orderByChild('index').limitToLast(1)
+        .once('value').then((snapshot: any) => {
+          let data = snapshot.val();
+
+          for(let p in data) {
+            itemCnt = data[p]['index'];
+          };
+          console.log(itemCnt);
+        });
+
+      console.log('-- await "Movies data"');
+
+      await firebase.database().ref(category)
         .orderByChild('index').startAt(0).endAt(20)
         // .limitToFirst(3)
         .once('value').then((snapshot: any) => {
@@ -57,7 +72,7 @@ export function loadDataAct(category: string, ipp: number) {
       swal({
         type: 'error',
         title: 'You\'re Not Signed In',
-        html: 'Please sign in first, using your Google account.',
+        html: 'Please sign in using your Google account.',
         allowOutsideClick: false,
         allowEscapeKey: false,
         confirmButtonText: 'Sign In'
@@ -66,34 +81,5 @@ export function loadDataAct(category: string, ipp: number) {
       }, (dismiss) => {});
       swal.showLoading();
     }
-
-    // let authPromise = firebase.auth().signInWithEmailAndPassword(email, pwd).catch(error => {
-    //   // Handle Errors here.
-    //   swal({
-    //     type: 'error',
-    //     title: 'Sign in Failed',
-    //     html: '<span class="err-code">' + error.code + '</span>' + '<br>' + error.message,
-    //     showConfirmButton: true,
-    //     allowOutsideClick: true,
-    //     allowEscapeKey: true
-    //   }).then(() => {
-    //   }, (dismiss) => {
-    //   });
-    // });
-
-    // authPromise.then((e) => {
-    //   if (e) {
-    //     swal.close();
-    //     location.hash = location.hash + 'main/home'
-
-    //     dispatch({
-    //       type: LOGIN,
-    //       email,
-    //       firebase
-    //     })
-    //   }
-    // }, reason => {
-    //   console.log(reason);
-    // });
   }
 }
