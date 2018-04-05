@@ -34,7 +34,7 @@ export function setKeyAct(key: string) {
   }
 }
 
-export function loadDataAct(category: string) {
+export function loadDataAct(category: string, ipp: number) {
   return (dispatch: any, getState: any) => {
     let firebase = getState().loginReducer.firebase;
     
@@ -47,10 +47,10 @@ export function loadDataAct(category: string) {
         .orderByChild('index').startAt(0).endAt(20)
         // .limitToFirst(3)
         .once('value').then((snapshot: any) => {
-          let value = snapshot.val();
-
-          console.log(value);
+          let data = snapshot.val();
+          console.log(data);
           
+          dispatch(initPagesAct(data, itemCnt, ipp));
           swal.close();
         });
     } else {

@@ -37,7 +37,7 @@ class Movies extends React.Component<any, any> {
   }
 
   componentWillMount() {
-    this.props.loadDataDispath('Movies');
+    this.props.loadDataDispath('Movies', this.state.ipp);
     // let i = 0, itemPerPage = this.state.ipp, data: any = {};
 
     // for (let p in movie_data) {
@@ -91,8 +91,8 @@ const mapDispatchToProps = (dispatch: any) => ({
   setKeyDispath: (key: string) => {
     dispatch(setKeyAct(key))
   },
-  loadDataDispath: (category: string) => {
-    dispatch(loadDataAct(category))
+  loadDataDispath: (category: string, ipp: number) => {
+    dispatch(loadDataAct(category, ipp))
   }
 });
 
