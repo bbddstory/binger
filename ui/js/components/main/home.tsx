@@ -4,11 +4,16 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { loginAct } from '../../actions/loginActions';
 import { FormattedMessage } from "react-intl";
+import { resetFooter } from '../../util/utils';
 
 class Home extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {}
+  }
+
+  componentDidMount() {
+    resetFooter();
   }
 
   render() {
@@ -27,8 +32,8 @@ class Home extends React.Component<any, any> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  loginState: state.loginReducer
+const mapStateToProps = (store: any) => ({
+  loginState: store.loginReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

@@ -20,7 +20,7 @@ export default class Categories extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    console.log(parseParam('p'));
+    // console.log(parseParam('p'));
   }
 
   render() {

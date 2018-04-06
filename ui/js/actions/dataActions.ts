@@ -3,30 +3,10 @@
 import swal from 'sweetalert2';
 
 // Action types
-export const INIT_PAGES = 'INIT_PAGES';
 export const GOTO_PAGE = 'GOTO_PAGE';
 export const SET_KEY = 'SET_KEY';
 
 // Action creators
-export function initPagesAct(data: any, itemCnt: number, itemPerPage: number) {
-  return {
-    type: INIT_PAGES,
-    data,
-    itemCnt,
-    itemPerPage
-  }
-}
-
-export function goToPageAct(data: any, currPage: number, itemStartIdx: number, itemEndIdx: number) {
-  return {
-    type: GOTO_PAGE,
-    data,
-    currPage,
-    itemStartIdx,
-    itemEndIdx
-  }
-}
-
 export function setKeyAct(key: string) {
   return {
     type: SET_KEY,
@@ -34,40 +14,40 @@ export function setKeyAct(key: string) {
   }
 }
 
-export function loadDataAct(category: string, ipp: number) {
+export function loadDataAct(category: string, currPage: number, startAt: number, endAt: number) {
   return async (dispatch: any, getState: any) => {
     let firebase = getState().loginReducer.firebase;
-    
-    if (firebase.apps) {
-      swal('Loading ' + category + ' Data', 'Please wait...', 'info').then(() => {}, (dismiss) => {});
-      swal.showLoading();
-      let itemCnt: number;
 
-      console.log('-- await "itemCnt"');
-      
+    if (firebase.apps) {
+      swal('Loading Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
+      swal.showLoading();
+      let itemCnt: number, isNull = false;
+
       await firebase.database().ref(category)
         .orderByChild('index').limitToLast(1)
         .once('value').then((snapshot: any) => {
           let data = snapshot.val();
-
-          for(let p in data) {
-            itemCnt = data[p]['index'];
-          };
-          console.log(itemCnt);
-        });
-
-      console.log('-- await "Movies data"');
-
-      await firebase.database().ref(category)
-        .orderByChild('index').startAt(0).endAt(20)
-        // .limitToFirst(3)
-        .once('value').then((snapshot: any) => {
-          let data = snapshot.val();
-          console.log(data);
           
-          dispatch(initPagesAct(data, itemCnt, ipp));
-          swal.close();
+          if (data) {
+            for (let p in data) {
+              itemCnt = data[p]['index'];
+            }
+          } else {
+            isNull = true;
+          }
         });
+
+      if (!isNull) {
+        await firebase.database().ref(category)
+          .orderByChild('index').startAt(startAt).endAt(endAt)
+          .once('value').then((snapshot: any) => {
+            // DISPATCH from here
+            dispatch({ type: GOTO_PAGE, data: snapshot.val(), itemCnt, currPage, startAt, endAt });
+            swal.close();
+          });
+      } else {
+        swal.close();
+      }
     } else {
       swal({
         type: 'error',
@@ -78,8 +58,7 @@ export function loadDataAct(category: string, ipp: number) {
         confirmButtonText: 'Sign In'
       }).then(() => {
         location.hash = '#';
-      }, (dismiss) => {});
-      swal.showLoading();
+      }, (dismiss) => { });
     }
   }
 }

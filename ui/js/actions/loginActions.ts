@@ -2,6 +2,7 @@
 
 import swal from 'sweetalert2';
 import * as firebase from 'firebase';
+import config from '../util/firebase';
 
 // Action types
 export const LOGIN = 'LOGIN';
@@ -11,15 +12,6 @@ export function loginAct(email: string, pwd: string) {
   return (dispatch: any) => {
     swal('Signing In', 'Please wait...', 'info').then(() => {}, (dismiss) => {});
     swal.showLoading();
-
-    const config = {
-      apiKey: 'AIzaSyDM7aH-HGeu6e0F6IKjgy0gjeoeTqkLGOc',
-      authDomain: 'phantomzone-leon.firebaseapp.com',
-      databaseURL: 'https://phantomzone-leon.firebaseio.com',
-      messagingSenderId: '885937044869',
-      projectId: 'phantomzone-leon',
-      storageBucket: 'phantomzone-leon.appspot.com'
-    };
 
     if (!firebase.apps.length) {
       firebase.initializeApp(config);

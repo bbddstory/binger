@@ -3,8 +3,8 @@
 import * as jq from 'jquery';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { goToPageAct } from '../actions/dataActions';
-import { anime_data, doc_data, movie_data, tv_data } from '../data/data';
+import { loadDataAct } from '../actions/dataActions';
+import dataTypes from '../util/dataTypes';
 
 class Pages extends React.Component<any, any> {
     constructor(props: any) {
@@ -12,36 +12,44 @@ class Pages extends React.Component<any, any> {
         this.state = {}
     }
 
-    goToPage(page: string) {
-        let currPage, itemStartIdx, itemEndIdx;
-        
+    gotoPage(page: string) {
+        let currPage, startAt, endAt;
+
         switch (page) {
             case 'FIRST':
-                currPage = 1;
-                itemStartIdx = 0;
-                itemEndIdx = this.props.dataState.itemPerPage - 1;
+                if (this.props.dataState.currPage > 1) {
+                    currPage = 1;
+                    startAt = 0;
+                    endAt = this.props.dataState.ipp - 1;
+                } else {
+                    return
+                }
                 break;
             case 'LAST':
-                currPage = this.props.dataState.totalPage;
-                itemStartIdx = this.props.dataState.itemPerPage * (this.props.dataState.totalPage - 1);
-                itemEndIdx = this.props.dataState.itemCnt - 1;
+                if (this.props.dataState.currPage < this.props.dataState.pageCnt) {
+                    currPage = this.props.dataState.pageCnt;
+                    startAt = this.props.dataState.ipp * (this.props.dataState.pageCnt - 1);
+                    endAt = this.props.dataState.itemCnt - 1;
+                } else {
+                    return
+                }
                 break;
             case 'PREV':
                 if (this.props.dataState.currPage > 1) {
                     currPage = this.props.dataState.currPage - 1;
-                    itemStartIdx = this.props.dataState.itemStartIdx - this.props.dataState.itemPerPage;
-                    itemEndIdx = itemStartIdx + this.props.dataState.itemPerPage - 1;
+                    startAt = this.props.dataState.startAt - this.props.dataState.ipp;
+                    endAt = startAt + this.props.dataState.ipp - 1;
                 } else {
                     return
                 }
                 break;
             case 'NEXT':
-                if (this.props.dataState.currPage < this.props.dataState.totalPage) {
+                if (this.props.dataState.currPage < this.props.dataState.pageCnt) {
                     currPage = this.props.dataState.currPage + 1;
-                    itemStartIdx = this.props.dataState.itemStartIdx + this.props.dataState.itemPerPage;
-                    itemEndIdx = this.props.dataState.itemEndIdx + this.props.dataState.itemPerPage;
-                    if (itemEndIdx > (this.props.dataState.itemCnt - 1)) {
-                        itemEndIdx = this.props.dataState.itemCnt - 1
+                    startAt = this.props.dataState.startAt + this.props.dataState.ipp;
+                    endAt = this.props.dataState.endAt + this.props.dataState.ipp;
+                    if (endAt > (this.props.dataState.itemCnt - 1)) {
+                        endAt = this.props.dataState.itemCnt - 1
                     }
                 } else {
                     return
@@ -49,57 +57,62 @@ class Pages extends React.Component<any, any> {
                 break;
         }
 
-        let i = 0, data: any = {};
-        for (let p in movie_data) {
-            if (i >= itemStartIdx && i <= itemEndIdx) {
-                data[p] = movie_data[p];
-            }
-            i++;
-        }
+        this.props.loadDataDispatch(dataTypes.MOVIE, currPage, startAt, endAt);
+    }
 
-        this.props.goToPage(data, currPage, itemStartIdx, itemEndIdx);
+    currPage = () => {
+        return this.props.dataState.currPage
+    }
+
+    onKeyUp(e: any) {
+        console.log(e.target.value);
     }
 
     componentDidMount() {
-        jq(document).on("keydown", (e) => {
+        jq(document).on('keydown', (e) => {
             if (e.which === 37) {
-                this.goToPage('PREV');
+                this.gotoPage('PREV');
             }
             if (e.which === 39) {
-                this.goToPage('NEXT');
+                this.gotoPage('NEXT');
             }
             if (e.shiftKey && (e.which === 36)) {
-                this.goToPage('FIRST');
+                this.gotoPage('FIRST');
             }
             if (e.shiftKey && (e.which === 35)) {
-                this.goToPage('LAST');
+                this.gotoPage('LAST');
             }
-        });
+        })
+    }
+
+    componentWillUnmount() {
+        jq(document).off('keydown');
     }
 
     render() {
         return (
             <div className="pages">
                 <div className="controls">
-                    <button className="first" onClick={e => this.goToPage('FIRST')}>❬❬</button>
-                    <button onClick={e => this.goToPage('PREV')}>❬</button>
-                    <div className="page-no">{this.props.dataState.currPage} / {this.props.dataState.totalPage}</div>
-                    <button onClick={e => this.goToPage('NEXT')}>❭</button>
-                    <button className="last" onClick={e => this.goToPage('LAST')}>❭❭</button>
+                    <button className="first" onClick={e => this.gotoPage('FIRST')}>❬❬</button>
+                    <button onClick={e => this.gotoPage('PREV')}>❬</button>
+                    <div className="page-no">
+                        <input type="text" className="page-no-input" placeholder={this.currPage()} onKeyUp={e => this.onKeyUp(e)} /><span className="page-cnt">/&nbsp;{this.props.dataState.pageCnt}</span>
+                    </div>
+                    <button onClick={e => this.gotoPage('NEXT')}>❭</button>
+                    <button className="last" onClick={e => this.gotoPage('LAST')}>❭❭</button>
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state: any) => ({
-    dataState: state.dataReducer,
-    pagesState: state.pagesReducer
+const mapStateToProps = (store: any) => ({
+    dataState: store.dataReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-    goToPage: (data: any, currPage: number, itemStartIdx: number, itemEndIdx: number) => {
-        dispatch(goToPageAct(data, currPage, itemStartIdx, itemEndIdx))
+    loadDataDispatch: (category: string, currPage: number, startAt: number, endAt: number) => {
+        dispatch(loadDataAct(category, currPage, startAt, endAt))
     }
 });
 

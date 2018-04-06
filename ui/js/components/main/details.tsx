@@ -13,29 +13,12 @@ class Details extends React.Component<any, any> {
     this.state = { dummyPoster: 'ui/images/movie/poster.png', opts: false }
   }
 
-  handleChildUnmount = () => {
-    return true
-  }
-
   toggleOpts = () => {
     this.setState({ opts: !this.state.opts })
   }
 
-  editDetails = () => {
-    // this.setState({ edit: true })
-    this.props.editDetailsDispath(true)
-  }
-
   componentWillMount() {
     cleanUrl();
-    // let hash = location.hash;
-    // hash = hash.substring(hash.lastIndexOf('/') + 1);
-    // this.setState({ key: hash });
-    // this.props.setKeyDispath(hash);
-  }
-
-  componentDidMount() {
-    // this.editDetails()
   }
 
   render() {
@@ -45,13 +28,13 @@ class Details extends React.Component<any, any> {
 
     return (
       <div className="details">
-        <div className="poster" onMouseEnter={e => { this.toggleOpts() }} onMouseLeave={e => { this.toggleOpts() }}>
+        <div className="poster" onMouseEnter={e => this.toggleOpts() } onMouseLeave={e => this.toggleOpts() }>
           <img alt="Poster" width="182px"
             src={dataState.data[key].poster === 'N/A' ?
               this.state.dummyPoster : dataState.data[key].poster} />
           {opts && <div className="watch-later" title="Watch later"></div>}
           {opts && <div className="recomm" title="Recommend to a friend"></div>}
-          {opts && <div className="edit" title="Edit details" onClick={e => { this.editDetails() }}></div>}
+          {opts && <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispath(true)}></div>}
         </div>
 
         <div className="entries">
@@ -90,12 +73,8 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setKeyDispath: (key: string) => {
-    dispatch(setKeyAct(key))
-  },
-  editDetailsDispath: (status: boolean) => {
-    dispatch(editDetailsAct(status))
-  }
+  setKeyDispath: (key: string) => dispatch(setKeyAct(key)),
+  editDetailsDispath: (status: boolean) => dispatch(editDetailsAct(status))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
