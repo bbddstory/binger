@@ -66,7 +66,7 @@ class Movies extends React.Component<any, any> {
             </div>
           </div>
         })}
-        <Pages />
+        {Object.keys(dataState.data).length && <Pages />}
       </div>
     )
   }

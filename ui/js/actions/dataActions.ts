@@ -21,7 +21,7 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
     if (firebase.apps) {
       swal('Loading Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
       swal.showLoading();
-      let itemCnt: number, isNull = false;
+      let itemCnt: number, noData = false;
 
       await firebase.database().ref(category)
         .orderByChild('index').limitToLast(1)
@@ -33,11 +33,11 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
               itemCnt = data[p]['index'];
             }
           } else {
-            isNull = true;
+            noData = true;
           }
         });
 
-      if (!isNull) {
+      if (!noData) {
         await firebase.database().ref(category)
           .orderByChild('index').startAt(startAt).endAt(endAt)
           .once('value').then((snapshot: any) => {

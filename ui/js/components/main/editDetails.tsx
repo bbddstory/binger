@@ -19,23 +19,27 @@ class EditDetails extends React.Component<any, any> {
   }
 
   onChange(values: any) {
-    for (let p in values) {
-      if (!regex[p].test(values[p])) {
-        this.setState({ [p]: true })
-      } else {
-        this.setState({ [p]: false })
-      }
-    }
+    // for (let p in values) {
+    //   if (!regex[p].test(values[p])) {
+    //     this.setState({ [p]: true })
+    //   } else {
+    //     this.setState({ [p]: false })
+    //   }
+    // }
   }
 
   onSubmit(values: any) {
     let formValid = true;
     
     for (let p in values) {
-      if (!regex[p].test(values[p])) {
-        formValid = false;
-      }
+      values[p] = values[p].trim()
     }
+
+    // for (let p in values) {
+    //   if (!regex[p].test(values[p])) {
+    //     formValid = false;
+    //   }
+    // }
     
     if (formValid) {
       this.props.saveDetailsDispath(values);
@@ -77,7 +81,7 @@ class EditDetails extends React.Component<any, any> {
                 <div style={{ width: '49%' }}>
                   <label>Director(s)</label>
                   <Control.text model=".director" placeholder="N/A" defaultValue={dataState.data[key].director} />
-                  {this.state.director && <span>Name(s) separated by comma</span>}
+                  {this.state.director && <span>One or more names separated by comma</span>}
                 </div>
               </div>
               <label>Poster</label>
@@ -99,24 +103,21 @@ class EditDetails extends React.Component<any, any> {
                 </div>
                 <div style={{ width: '23%' }}>
                   <label>Status</label>
-                  <select defaultValue={dataState.data[key].status}>
+                  <Control.select model=".status" defaultValue={dataState.data[key].status}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                  </select>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                  </Control.select>
                 </div>
                 <div style={{ width: '23%' }}>
-                  <label>Type</label>
-                  <select defaultValue={dataState.data[key].type}>
-                    <option value="1">Movie</option>
-                    <option value="2">TV</option>
-                    <option value="3">Documentary</option>
-                    <option value="4">Animation</option>
-                    <option value="5">XXX</option>
-                    <option value="6">JAV</option>
-                  </select>
+                  <label>Index</label>
+                  <Control.text model=".index" placeholder="N/A" defaultValue={dataState.data[key].index} readOnly/>
                 </div>
               </div>
             </div>

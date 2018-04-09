@@ -4,6 +4,7 @@
     .tile {
         display: inline-block;
         width: 300px;
+        background: rgba(0, 0, 0, .2);
         margin-bottom: 45px;
         @keyframes tileShadow {
             from {
@@ -37,8 +38,7 @@
             vertical-align: top;
             color: #808080;
             font-size: 14px;
-            padding: 0 20px 0 5px;
-            background: rgba(0, 0, 0, .2);
+            padding: 0 0 0 5px;
             .title {
                 position: absolute;
                 z-index: 0;

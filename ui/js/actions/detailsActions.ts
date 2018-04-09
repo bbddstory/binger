@@ -1,8 +1,11 @@
 'use strict';
 
+import swal from 'sweetalert2';
+
 // Action types
 export const SET_KEY = 'SET_KEY';
 export const SAVE_DETAILS = 'SAVE_DETAILS';
+import { editDetailsAct } from '../actions/uiActions';
 
 // Action creators
 export function setKeyAct(key: string) {
@@ -13,38 +16,20 @@ export function setKeyAct(key: string) {
 }
 
 export function saveDetailsAct(values: any) {
-  return {
-    type: SAVE_DETAILS,
-    values
+  return async (dispatch: any, getState: any) => {
+    let firebase = getState().loginReducer.firebase;
+
+    if (firebase.apps) {
+      swal('Saving Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
+      swal.showLoading();
+
+      await firebase.database().ref('Movies/' + getState().dataReducer.key)
+        .set(values).then((snapshot: any) => {
+          swal.close();
+          dispatch(editDetailsAct(false));
+
+          dispatch({ type: SAVE_DETAILS, values });
+        });
+    }
   }
-  // (dispatch: any) => {
-  //   const config = {
-  //     apiKey: 'AIzaSyDM7aH-HGeu6e0F6IKjgy0gjeoeTqkLGOc',
-  //     authDomain: 'phantomzone-leon.firebaseapp.com',
-  //     databaseURL: 'https://phantomzone-leon.firebaseio.com',
-  //     projectId: 'phantomzone-leon',
-  //     storageBucket: 'phantomzone-leon.appspot.com',
-  //     messagingSenderId: '885937044869'
-  //   };
-
-  //   firebase.initializeApp(config);
-
-  //   let authPromise = firebase.auth().signInWithEmailAndPassword(email, pwd).catch(error => {
-  //     // Handle Errors here.
-  //     let errorCode = error.code;
-  //     let errorMessage = error.message;
-  //   });
-
-  //   authPromise.then(() => {
-  //     location.hash = location.hash + 'main/home'
-
-  //     dispatch({
-  //       type: LOGIN,
-  //       email,
-  //       firebase
-  //     })
-  //   }, reason => {
-  //     console.log(reason);
-  //   });
-  // }
 }

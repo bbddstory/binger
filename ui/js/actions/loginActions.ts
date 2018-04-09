@@ -36,11 +36,7 @@ export function loginAct(email: string, pwd: string) {
         swal.close();
         location.hash = location.hash + 'main/home'
         
-        dispatch({
-          type: LOGIN,
-          email,
-          firebase
-        })
+        dispatch({ type: LOGIN, email, firebase })
       }
     }, reason => {
       console.log(reason);

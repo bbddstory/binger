@@ -27,13 +27,13 @@ class Details extends React.Component<any, any> {
     const { opts, edit } = this.state;
 
     return (
-      <div className="details">
+      <div className="video-details">
         <div className="poster" onMouseEnter={e => this.toggleOpts() } onMouseLeave={e => this.toggleOpts() }>
           <img alt="Poster" width="182px"
             src={dataState.data[key].poster === 'N/A' ?
               this.state.dummyPoster : dataState.data[key].poster} />
-          {opts && <div className="watch-later" title="Watch later"></div>}
-          {opts && <div className="recomm" title="Recommend to a friend"></div>}
+          {opts && <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>}
+          {opts && <div className="recomm" title="Recommend to a friend" onClick={e => this.props.recommDispatch()}></div>}
           {opts && <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispath(true)}></div>}
         </div>
 
@@ -74,7 +74,9 @@ const mapStateToProps = (store: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   setKeyDispath: (key: string) => dispatch(setKeyAct(key)),
-  editDetailsDispath: (status: boolean) => dispatch(editDetailsAct(status))
+  editDetailsDispath: (status: boolean) => dispatch(editDetailsAct(status)),
+  watchLaterDispatch: () => dispatch(watchLaterAct()),
+  recommDispatch: () => dispatch(recommAct())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
