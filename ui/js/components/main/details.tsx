@@ -11,7 +11,11 @@ import EditDetails from '../../components/main/editDetails';
 class Details extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { dummyPoster: 'ui/images/movie/poster.png', opts: false }
+    this.state = {
+      dummyPoster: 'ui/images/movie/poster.png',
+      opts: false,
+      recomm: false
+    }
   }
 
   toggleOpts() {
@@ -19,30 +23,33 @@ class Details extends React.Component<any, any> {
   }
 
   toggleRecomm() {
-    this.setState({ recomm: !this.state.recomm })
-
-    // this.props.recommDispatch()
+    // this.props.loadFriendsDispatch();
+    this.setState({ recomm: !this.state.recomm });
   }
 
   componentWillMount() {
     cleanUrl();
-    this.props.loadFriendsDispatch();
   }
 
   render() {
-    const { dataState, uiState } = this.props;
+    const { loginState, dataState, uiState } = this.props;
     const key = this.props.dataState.key;
-    const { opts, edit } = this.state;
+    const { dummyPoster, opts, recomm } = this.state;
 
     return (
       <div className="video-details">
-        <div className="poster" onMouseEnter={e => this.toggleOpts() } onMouseLeave={e => this.toggleOpts() }>
+        <div className="poster" onMouseEnter={e => this.toggleOpts()} onMouseLeave={e => this.toggleOpts()}>
           <img alt="Poster" width="182px"
             src={dataState.data[key].poster === 'N/A' ?
-              this.state.dummyPoster : dataState.data[key].poster} />
+              dummyPoster : dataState.data[key].poster} />
           {opts && <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>}
           {opts && <div className="recomm" title="Recommend to a friend" onClick={e => this.toggleRecomm()}></div>}
-          {this.state.recomm && <div className="friend-list">
+          {recomm && <div className="friend-list">
+            <ul>
+              {Object.keys(loginState.friends).map((key: any) => {
+                return <li key={key}>{loginState.friends[key]}</li>
+              })}
+            </ul>
           </div>}
           {opts && <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true)}></div>}
         </div>
@@ -78,6 +85,7 @@ class Details extends React.Component<any, any> {
 }
 
 const mapStateToProps = (store: any) => ({
+  loginState: store.loginReducer,
   dataState: store.dataReducer,
   uiState: store.uiReducer
 });

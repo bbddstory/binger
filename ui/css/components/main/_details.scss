@@ -28,17 +28,28 @@
             background: rgba(#000, .6) url("../images/details/ic_edit_white_24px.svg") 50% no-repeat;
         }
         .friend-list {
-            background-color: crimson;
+            background: rgba(#000, .8);
             position: absolute;
             z-index: 1000;
             top: 0;
             right: -103px;
-            width: 150px;
-            height: 100px;
+            width: 100px;
+            height: 200px;
+            color: #f2f2f2;
+            overflow-y: auto;
             border-radius: 5px;
             -webkit-box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
             -moz-box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
             box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
+            ul {
+                padding: 10px;
+                li {
+                    margin-bottom: 5px;
+                    &:hover {
+                        color: crimson;
+                    }
+                }
+            }
         }
     }
     .entries {

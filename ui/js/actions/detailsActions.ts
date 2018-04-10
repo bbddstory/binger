@@ -7,6 +7,7 @@ export const SET_KEY = 'SET_KEY';
 export const WATCH_LATER = 'WATCH_LATER';
 export const RECOMM = 'RECOMM';
 export const SAVE_DETAILS = 'SAVE_DETAILS';
+export const LOAD_FRIENDS = 'LOAD_FRIENDS';
 import { toggleEditDetailsAct } from '../actions/uiActions';
 
 // Action creators
@@ -23,11 +24,16 @@ export function loadFriendsAct() {
         user = getState().loginReducer.user;
 
     if (firebase.apps) {
+      // await setTimeout(() => {
+      //   console.log('-- Timing out...');
+        
+      // }, 3000);
       await firebase.database().ref('Users/' + user + '/friends')
         .once('value').then((snapshot: any) => {
           let data = snapshot.val();
 
           if (data) {
+            dispatch({ type: LOAD_FRIENDS, data });
           }
         });
     }
