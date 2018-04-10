@@ -4,7 +4,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { cleanUrl } from '../../util/utils';
 import { setKeyAct } from '../../actions/dataActions';
-import { editDetailsAct } from '../../actions/uiActions';
+import { toggleEditDetailsAct } from '../../actions/uiActions';
+import { loadFriendsAct, watchLaterAct, recommAct } from '../../actions/detailsActions';
 import EditDetails from '../../components/main/editDetails';
 
 class Details extends React.Component<any, any> {
@@ -13,12 +14,19 @@ class Details extends React.Component<any, any> {
     this.state = { dummyPoster: 'ui/images/movie/poster.png', opts: false }
   }
 
-  toggleOpts = () => {
-    this.setState({ opts: !this.state.opts })
+  toggleOpts() {
+    this.setState({ opts: !this.state.opts, recomm: false })
+  }
+
+  toggleRecomm() {
+    this.setState({ recomm: !this.state.recomm })
+
+    // this.props.recommDispatch()
   }
 
   componentWillMount() {
     cleanUrl();
+    this.props.loadFriendsDispatch();
   }
 
   render() {
@@ -33,8 +41,10 @@ class Details extends React.Component<any, any> {
             src={dataState.data[key].poster === 'N/A' ?
               this.state.dummyPoster : dataState.data[key].poster} />
           {opts && <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>}
-          {opts && <div className="recomm" title="Recommend to a friend" onClick={e => this.props.recommDispatch()}></div>}
-          {opts && <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispath(true)}></div>}
+          {opts && <div className="recomm" title="Recommend to a friend" onClick={e => this.toggleRecomm()}></div>}
+          {this.state.recomm && <div className="friend-list">
+          </div>}
+          {opts && <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true)}></div>}
         </div>
 
         <div className="entries">
@@ -73,10 +83,11 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setKeyDispath: (key: string) => dispatch(setKeyAct(key)),
-  editDetailsDispath: (status: boolean) => dispatch(editDetailsAct(status)),
+  loadFriendsDispatch: () => dispatch(loadFriendsAct()),
+  setKeyDispatch: (key: string) => dispatch(setKeyAct(key)),
   watchLaterDispatch: () => dispatch(watchLaterAct()),
-  recommDispatch: () => dispatch(recommAct())
+  recommDispatch: () => dispatch(recommAct()),
+  editDetailsDispatch: (status: boolean) => dispatch(toggleEditDetailsAct(status))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Details);

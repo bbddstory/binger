@@ -52,7 +52,7 @@ class Movies extends React.Component<any, any> {
       <div className="movies">
         {Object.keys(dataState.data).map((key: any) => {
           return <div className="tile" key={key}>
-            <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispath(key)}>
+            <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
               <img className="thumbnail" alt="Poster"
                 src={dataState.data[key].poster === 'N/A' ?
                   this.state.dummyPoster : dataState.data[key].poster} />
@@ -80,7 +80,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   loadDataDispatch: (category: string, currPage: number, startAt: number, endAt: number) => {
     dispatch(loadDataAct(category, currPage, startAt, endAt))
   },
-  setKeyDispath: (key: string) => {
+  setKeyDispatch: (key: string) => {
     dispatch(setKeyAct(key))
   }
 });

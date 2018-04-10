@@ -1,12 +1,12 @@
 'use strict';
 
 // Action types
-export const EDIT_DETAILS = 'EDIT_DETAILS';
+export const TOGGLE_EDIT_DETAILS = 'TOGGLE_EDIT_DETAILS';
 
 // Action creators
-export function editDetailsAct(status: boolean) {
+export function toggleEditDetailsAct(status: boolean) {
   return {
-    type: EDIT_DETAILS,
+    type: TOGGLE_EDIT_DETAILS,
     status
   }
 }

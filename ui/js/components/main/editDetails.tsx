@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from "react-intl";
-import { editDetailsAct } from '../../actions/uiActions';
+import { toggleEditDetailsAct } from '../../actions/uiActions';
 import { saveDetailsAct } from '../../actions/detailsActions';
 import regex from '../../util/regex';
 import { LocalForm, Field, Control } from 'react-redux-form';
@@ -15,7 +15,7 @@ class EditDetails extends React.Component<any, any> {
   }
 
   cancelEdit() {
-    this.props.editDetailsDispath(false)
+    this.props.editDetailsDispatch(false)
   }
 
   onChange(values: any) {
@@ -42,7 +42,7 @@ class EditDetails extends React.Component<any, any> {
     // }
     
     if (formValid) {
-      this.props.saveDetailsDispath(values);
+      this.props.saveDetailsDispatch(values);
     }
   }
 
@@ -138,10 +138,10 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  editDetailsDispath: (status: boolean) => {
-    dispatch(editDetailsAct(status))
+  editDetailsDispatch: (status: boolean) => {
+    dispatch(toggleEditDetailsAct(status))
   },
-  saveDetailsDispath: (values: any) => {
+  saveDetailsDispatch: (values: any) => {
     dispatch(saveDetailsAct(values))
   }
 });

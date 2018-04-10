@@ -31,12 +31,21 @@ export function loginAct(email: string, pwd: string) {
       });
     });
 
-    authPromise.then((e) => {
+    authPromise.then(async (e) => {
       if(e) {
+        let user = email.substr(0, email.indexOf('@'));
+        
+        await firebase.database().ref('Users/' + user)
+        .once('value').then((snapshot: any) => {
+          let data = snapshot.val();
+          
+          if (data) {
+            dispatch({ type: LOGIN, data, firebase })
+          }
+        });
+        
         swal.close();
         location.hash = location.hash + 'main/home'
-        
-        dispatch({ type: LOGIN, email, firebase })
       }
     }, reason => {
       console.log(reason);

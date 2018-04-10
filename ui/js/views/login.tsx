@@ -12,7 +12,7 @@ class Login extends React.Component<any, any> {
 
   handleChange(e: any) {
     if (e.keyCode === 13) {
-      this.props.loginDispath(this.state.email, this.state.pwd)
+      this.props.loginDispatch(this.state.email, this.state.pwd)
     } else {
       if (e.target.type === 'email') {
         this.setState({ email: e.target.value })
@@ -45,7 +45,7 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loginDispath: (email: string, pwd: string) => {
+  loginDispatch: (email: string, pwd: string) => {
     dispatch(loginAct(email, pwd))
   }
 });

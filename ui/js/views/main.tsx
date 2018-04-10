@@ -86,7 +86,7 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  // loginDispath: (email: string, pwd: string) => {
+  // loginDispatch: (email: string, pwd: string) => {
     // dispatch(loginAct(email, pwd))
   // }
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-import { EDIT_DETAILS } from '../actions/uiActions';
+import { TOGGLE_EDIT_DETAILS } from '../actions/uiActions';
 
 let init = {
   editDetails: false
@@ -8,7 +8,7 @@ let init = {
 
 export function uiReducer(state: any = init, action: any) {
   switch (action.type) {
-    case EDIT_DETAILS:
+    case TOGGLE_EDIT_DETAILS:
       let ns = (<any>Object).assign({}, state);
       ns.editDetails = action.status;
       
