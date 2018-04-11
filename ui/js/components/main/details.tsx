@@ -64,9 +64,7 @@ class Details extends React.Component<any, any> {
             {dataState.data[key].director}<br />
           </span>
           <div className="imdb" title="Show this movie on IMDB">
-            <a target="_blank" href={'http://www.imdb.com/title/' + dataState.data[key].imdb_id}>
-              <img src="images/details/imdb.svg" alt="IMDB" width="68px" />
-            </a>
+            <a title="IMDB" target="_blank" href={'http://www.imdb.com/title/' + dataState.data[key].imdb_id}></a>
             <span className="rating">{dataState.data[key].rating}</span>
             <span className="out-of">/10</span>
           </div>

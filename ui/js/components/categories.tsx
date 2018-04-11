@@ -1,12 +1,12 @@
 'use strict';
 
 import * as React from 'react';
-import { connect } from 'react-redux';
-import vTypes from '../util/vTypes';
-import { setCategoryAct } from '../actions/categoriesActions';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { cleanUrl, parseHash, parseParam } from '../util/utils';
+import { cleanUrl } from '../util/utils';
+import { setCategoryAct } from '../actions/categoriesActions';
+import vTypes from '../util/vTypes';
 
 class Categories extends React.Component<any, any> {
   constructor(props: any) {
@@ -72,6 +72,7 @@ class Categories extends React.Component<any, any> {
 }
 
 const mapStateToProps = (store: any) => ({
+  localeState: store.localeReducer,
   dataState: store.dataReducer
 });
 

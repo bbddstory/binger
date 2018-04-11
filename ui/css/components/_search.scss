@@ -20,19 +20,20 @@ $animTime: .3s;
             padding-left: 54px;
             padding-right: 54px;
         }
-        .mag {
+        div {
             position: absolute;
-            top: 0;
-            left: 0;
-            padding: 9px 15px;
+            width: 54px;
+            height: 42px;
             opacity: .4;
+            box-sizing: border-box;
+        }
+        .mag {
+            left: 0;
+            background: url("../images/search/ic_search_black_24px.svg") 50% 50% no-repeat;
         }
         .arrow {
-            position: absolute;
-            top: 0;
             right: 0;
-            padding: 9px 15px;
-            opacity: .4;
+            background: url("../images/search/ic_keyboard_arrow_down_black_24px.svg") 50% 50% no-repeat;
             cursor: pointer;
         }
     }

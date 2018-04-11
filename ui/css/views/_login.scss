@@ -9,9 +9,11 @@
     background: rgba(#000, .6);
     border-radius: 5px;
     box-shadow: 0px 5px 12px 0px rgba(#000, .5);
-    img {
-        display: block;
+    .logo {
+        width: 287px;
+        height: 150px;
         margin: 0 auto;
+        background: url("../images/login/brand.png");
     }
 }
 

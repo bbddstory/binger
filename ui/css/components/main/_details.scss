@@ -45,8 +45,6 @@
             -moz-box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
             box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
             li {
-                // margin-bottom: 5px;
-                // width: 100px;
                 height: 26px;
                 box-sizing: border-box;
                 padding-left: 5px;
@@ -93,9 +91,10 @@
             display: flex;
             bottom: 0;
             a {
-                display: block;
-                width: 68px;
-                height: 32px; // background: url('../images/details/imdb.png') no-repeat;
+                width: 71px;
+                height: 32px;
+                background: url('../images/details/imdb.svg') no-repeat;
+                background-size: contain;
             }
             .rating {
                 align-self: flex-end;
