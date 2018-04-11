@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import dataTypes from '../util/dataTypes';
+import vTypes from '../util/vTypes';
 import { setCategoryAct } from '../actions/categoriesActions';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -11,11 +11,13 @@ import { cleanUrl, parseHash, parseParam } from '../util/utils';
 class Categories extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
-    this.state = { active: '' }
+    this.state = {}
   }
 
-  chkStatus = (cat: string) => {
-    return cat === parseHash() ? 'active' : ''
+  setCat(cat: string) {
+    // return cat === parseHash() ? 'active' : ''
+    // this.setState({ currCat: cat})
+    this.props.setCatDispatch(cat)
   }
 
   componentWillMount() {
@@ -27,36 +29,39 @@ class Categories extends React.Component<any, any> {
   }
 
   render() {
+    // const { dataState } = this.props.dataState;
+    const currCat = this.props.dataState.category;
+
     return (
       <div className="categories">
         <ol>
           <li>
-            <Link to="/main/movies" className={this.chkStatus('movies')} onClick={e => this.props.setCatDispatch(dataTypes.MOVIE)}>
+            <Link to="/main/movies" className={currCat === vTypes.MOVIE ? 'active' : ''} onClick={e => this.setCat(vTypes.MOVIE)}>
               <FormattedMessage id='cats.movies' />
             </Link>
           </li>
           <li>
-            <Link to="/main/tv" className={this.chkStatus('tv')} onClick={e => this.props.setCatDispatch(dataTypes.TV)}>
+            <Link to="/main/tv" className={currCat === vTypes.TV ? 'active' : ''} onClick={e => this.props.setCatDispatch(vTypes.TV)}>
               <FormattedMessage id='cats.tv' />
             </Link>
           </li>
           <li>
-            <Link to="/main/docs" className={this.chkStatus('docs')} onClick={e => this.props.setCatDispatch(dataTypes.DOC)}>
+            <Link to="/main/docs" className={currCat === vTypes.DOC ? 'active' : ''} onClick={e => this.props.setCatDispatch(vTypes.DOC)}>
               <FormattedMessage id='cats.docs' />
             </Link>
           </li>
           <li>
-            <Link to="/main/anime" className={this.chkStatus('anime')} onClick={e => this.props.setCatDispatch(dataTypes.ANIME)}>
+            <Link to="/main/anime" className={currCat === vTypes.ANIME ? 'active' : ''} onClick={e => this.props.setCatDispatch(vTypes.ANIME)}>
               <FormattedMessage id='cats.anime' />
             </Link>
           </li>
           <li>
-            <Link to="/main/xxx" className={this.chkStatus('xxx')} onClick={e => this.props.setCatDispatch(dataTypes.XXX)}>
+            <Link to="/main/xxx" className={currCat === vTypes.XXX ? 'active' : ''} onClick={e => this.props.setCatDispatch(vTypes.XXX)}>
               <FormattedMessage id='cats.xxx' />
             </Link>
           </li>
           <li>
-            <Link to="/main/jav" className={this.chkStatus('jav')} onClick={e => this.props.setCatDispatch(dataTypes.JAV)}>
+            <Link to="/main/jav" className={currCat === vTypes.JAV ? 'active' : ''} onClick={e => this.props.setCatDispatch(vTypes.JAV)}>
               <FormattedMessage id='cats.jav' />
             </Link>
           </li>
@@ -67,7 +72,7 @@ class Categories extends React.Component<any, any> {
 }
 
 const mapStateToProps = (store: any) => ({
-  // loginState: store.loginReducer
+  dataState: store.dataReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

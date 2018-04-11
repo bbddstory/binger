@@ -3,6 +3,7 @@
 import { GOTO_PAGE, SET_KEY } from '../actions/dataActions';
 import { SAVE_DETAILS } from '../actions/detailsActions';
 import { SET_CATEGORY } from '../actions/categoriesActions';
+import vTypes from '../util/vTypes';
 
 interface initInterface {
   [key: string]: any
@@ -27,7 +28,7 @@ let init: initInterface = {
   // },
   key: '',
   data: {},
-  category: '',
+  category: vTypes.HOME,
   itemCnt: 0, // Total number of records in designated category
   ipp: 12, // itemPerPage
   pageCnt: 0,

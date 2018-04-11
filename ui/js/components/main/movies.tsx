@@ -4,14 +4,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { resetPages, resetFooter } from '../../util/utils';
-import dataTypes from '../../util/dataTypes';
+import vTypes from '../../util/vTypes';
 import { loadDataAct, setKeyAct } from '../../actions/dataActions';
 import Pages from '../pages';
 
 class Movies extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { dummyPoster: 'ui/images/movie/poster.png' };
+    this.state = { dummyPoster: 'images/movie/poster.png' };
   }
 
   componentWillMount() {
@@ -19,7 +19,7 @@ class Movies extends React.Component<any, any> {
     
     if (data.constructor === Object && Object.keys(data).length === 0) {
       this.props.loadDataDispatch(
-        dataTypes.MOVIE,
+        vTypes.MOVIE,
         this.props.dataState.currPage,
         this.props.dataState.startAt,
         this.props.dataState.endAt

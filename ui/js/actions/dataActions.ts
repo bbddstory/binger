@@ -48,17 +48,6 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
       } else {
         swal.close();
       }
-    } else {
-      swal({
-        type: 'error',
-        title: 'You\'re Not Signed In',
-        html: 'Please sign in using your Google account.',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        confirmButtonText: 'Sign In'
-      }).then(() => {
-        location.hash = '#';
-      }, (dismiss) => { });
     }
   }
 }

@@ -18,65 +18,29 @@ export function setKeyAct(key: string) {
   }
 }
 
-export function loadFriendsAct() {
-  return async (dispatch: any, getState: any) => {
-    let firebase = getState().loginReducer.firebase,
-        user = getState().loginReducer.user;
-
-    if (firebase.apps) {
-      // await setTimeout(() => {
-      //   console.log('-- Timing out...');
-        
-      // }, 3000);
-      await firebase.database().ref('Users/' + user + '/friends')
-        .once('value').then((snapshot: any) => {
-          let data = snapshot.val();
-
-          if (data) {
-            dispatch({ type: LOAD_FRIENDS, data });
-          }
-        });
-    }
-  }
-}
-
 export function watchLaterAct() {
   return async (dispatch: any, getState: any) => {
     let firebase = getState().loginReducer.firebase,
         user = getState().loginReducer.user,
-        vid = getState().dataReducer.data[getState().dataReducer.key],
-        exist = false;
+        values = getState().dataReducer.data[getState().dataReducer.key];
 
     if (firebase.apps) {
       await firebase.database().ref('Users/' + user + '/watchlater/' + getState().dataReducer.key)
-        // .orderByChild('index')//.limitToLast(1)
-        .once('value').then((snapshot: any) => {
-          let data = snapshot.val();
-
-          if (data) {
-            exist = true
-          }
+        .set(values).then((snapshot: any) => {
+          // dispatch({ type: WATCH_LATER });
         });
-
-      if (!exist) {
-        await firebase.database().ref('Users/' + user + '/watchlater/' + getState().dataReducer.key)
-          .set(vid).then((snapshot: any) => {
-            // dispatch({ type: WATCH_LATER });
-          });
-      }
     }
   }
 }
 
-export function recommAct() {
+export function recommAct(user: string) {
   return async (dispatch: any, getState: any) => {
     let firebase = getState().loginReducer.firebase,
-      user = getState().loginReducer.user,
-      vid = getState().dataReducer.data[getState().dataReducer.key];
+      values = getState().dataReducer.data[getState().dataReducer.key];
 
     if (firebase.apps) {
       await firebase.database().ref('Users/' + user + '/recomm/' + getState().dataReducer.key)
-        .set(vid).then((snapshot: any) => {
+        .set(values).then((snapshot: any) => {
           // dispatch({ type: RECOMM });
         });
     }

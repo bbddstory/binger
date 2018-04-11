@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import { cleanUrl } from '../../util/utils';
 import { setKeyAct } from '../../actions/dataActions';
 import { toggleEditDetailsAct } from '../../actions/uiActions';
-import { loadFriendsAct, watchLaterAct, recommAct } from '../../actions/detailsActions';
+import { watchLaterAct, recommAct } from '../../actions/detailsActions';
 import EditDetails from '../../components/main/editDetails';
 
 class Details extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      dummyPoster: 'ui/images/movie/poster.png',
+      dummyPoster: 'images/movie/poster.png',
       opts: false,
       recomm: false
     }
@@ -20,10 +20,10 @@ class Details extends React.Component<any, any> {
 
   toggleOpts() {
     this.setState({ opts: !this.state.opts, recomm: false })
+    // this.setState({ opts: true, recomm: true })
   }
 
   toggleRecomm() {
-    // this.props.loadFriendsDispatch();
     this.setState({ recomm: !this.state.recomm });
   }
 
@@ -44,13 +44,11 @@ class Details extends React.Component<any, any> {
               dummyPoster : dataState.data[key].poster} />
           {opts && <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>}
           {opts && <div className="recomm" title="Recommend to a friend" onClick={e => this.toggleRecomm()}></div>}
-          {recomm && <div className="friend-list">
-            <ul>
-              {Object.keys(loginState.friends).map((key: any) => {
-                return <li key={key}>{loginState.friends[key]}</li>
-              })}
-            </ul>
-          </div>}
+          {recomm && <ul>
+            {Object.keys(loginState.friends).map((user: string) => {
+              return <li key={user} onClick={e => this.props.recommDispatch(user)}>{loginState.friends[user]}</li>
+            })}
+          </ul>}
           {opts && <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true)}></div>}
         </div>
 
@@ -67,7 +65,7 @@ class Details extends React.Component<any, any> {
           </span>
           <div className="imdb" title="Show this movie on IMDB">
             <a target="_blank" href={'http://www.imdb.com/title/' + dataState.data[key].imdb_id}>
-              <img src="ui/images/details/imdb.png" alt="IMDB" width="68px" />
+              <img src="images/details/imdb.svg" alt="IMDB" width="68px" />
             </a>
             <span className="rating">{dataState.data[key].rating}</span>
             <span className="out-of">/10</span>
@@ -91,10 +89,8 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loadFriendsDispatch: () => dispatch(loadFriendsAct()),
-  setKeyDispatch: (key: string) => dispatch(setKeyAct(key)),
   watchLaterDispatch: () => dispatch(watchLaterAct()),
-  recommDispatch: () => dispatch(recommAct()),
+  recommDispatch: (user: string) => dispatch(recommAct(user)),
   editDetailsDispatch: (status: boolean) => dispatch(toggleEditDetailsAct(status))
 });
 

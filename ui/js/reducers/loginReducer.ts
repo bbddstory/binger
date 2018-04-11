@@ -14,21 +14,24 @@ export function loginReducer(state: any = init, action: any) {
 
   switch (action.type) {
     case LOGIN:
+      console.log(action.firebase);
+      
       ns = action.data;
+      ns.category = 'home';
       ns.user = action.data.email.substr(0, action.data.email.indexOf('@'));
       ns.firebase = action.firebase;
-      ns.friends = {
-        foo_1: 'John',
-        foo_2: 'Jane',
-        foo_3: 'Joe',
-        foo_4: 'Job',
-        foo_5: 'Joseph',
-        foo_6: 'Jason',
-        foo_7: 'Jenkins',
-        foo_8: 'Justin',
-        foo_9: 'Akita',
-        foo_10: 'Ishigawa Kentosan'
-      }
+      // ns.friends = {
+      //   foo_1: 'John',
+      //   foo_2: 'Jane',
+      //   foo_3: 'Joe',
+      //   foo_4: 'Job',
+      //   foo_5: 'Joseph',
+      //   foo_6: 'Jason',
+      //   foo_7: 'Jenkins',
+      //   foo_8: 'Justin',
+      //   foo_9: 'Akira',
+      //   foo_10: 'Ishigawa Kentosan'
+      // }
 
       return ns;
     case LOAD_FRIENDS:

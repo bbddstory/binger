@@ -39,8 +39,8 @@ class Search extends React.Component<any, any> {
         <div className="search-box">
           <input autoFocus className="search-input" type="text" placeholder={this.placeholderTxt()} value={this.state.keyword}
             onChange={(e) => this.handleChange(e)} onKeyDown={(e) => this.handleChange(e)} />
-          <img className="mag" src="ui/images/search/ic_search_black_24px.svg" />
-          <img className="arrow" src="ui/images/search/ic_keyboard_arrow_down_black_24px.svg" />
+          <img className="mag" src="images/search/ic_search_black_24px.svg" />
+          <img className="arrow" src="images/search/ic_keyboard_arrow_down_black_24px.svg" />
         </div>
       </div>
     )

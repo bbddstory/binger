@@ -32,6 +32,24 @@ class Main extends React.Component<any, any> {
     this.state = {}
   }
 
+  componentWillMount() {
+    let firebase = this.props.loginState.firebase;
+
+    if (!firebase.apps) {
+      swal({
+        type: 'error',
+        title: 'You\'re Not Signed In',
+        html: 'Please sign in using your Google account.',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        confirmButtonText: 'Sign In'
+      }).then(() => {
+        location.hash = '#';
+        location.reload();
+      }, (dismiss) => { });
+    }
+  }
+
   componentDidMount() {
     document.querySelector('body').className = 'main-bg';
     swal.hideLoading();
@@ -82,7 +100,7 @@ class Main extends React.Component<any, any> {
 
 const mapStateToProps = (store: any) => ({
   localeState: store.localeReducer,
-  dataState: store.dataReducer
+  loginState: store.loginReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

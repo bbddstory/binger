@@ -3,13 +3,14 @@
 import swal from 'sweetalert2';
 import * as firebase from 'firebase';
 import config from '../util/firebase';
+import vTypes from '../util/vTypes';
 
 // Action types
 export const LOGIN = 'LOGIN';
 
 // Action creators
 export function loginAct(email: string, pwd: string) {
-  return (dispatch: any) => {
+  return (dispatch: any, getState: any) => {
     swal('Signing In', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
     swal.showLoading();
 
@@ -36,16 +37,18 @@ export function loginAct(email: string, pwd: string) {
         let user = email.substr(0, email.indexOf('@'));
 
         await firebase.database().ref('Users/' + user)
-          .once('value').then((snapshot: any) => {
+          .on('value', (snapshot: any) => {
             let data = snapshot.val();
 
             if (data) {
-              dispatch({ type: LOGIN, data, firebase })
+              dispatch({ type: LOGIN, data, firebase });
+              swal.close();
+              if (getState().dataReducer.category === vTypes.HOME) {
+                location.hash = location.hash + 'main/home'
+              }
             }
           });
 
-        swal.close();
-        location.hash = location.hash + 'main/home'
       }
     }, reason => {
       console.log(reason);

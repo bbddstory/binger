@@ -1,8 +1,9 @@
-interface dataTypesInterface {
+interface vTypesInterface {
     [key: string]: string
 }
 
-const dataTypes: dataTypesInterface = {
+const vTypes: vTypesInterface = {
+    HOME: 'Home',
     MOVIE: 'Movies',
     TV: 'TV',
     DOC: 'Documentaries',
@@ -11,4 +12,4 @@ const dataTypes: dataTypesInterface = {
     JAV: 'JAV'
 }
 
-export default dataTypes;
+export default vTypes;
