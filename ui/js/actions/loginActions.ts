@@ -13,11 +13,12 @@ export function loginAct(email: string, pwd: string) {
   return (dispatch: any, getState: any) => {
     swal('Signing In', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
     swal.showLoading();
-
+    
+    // If Firebase has already been initialised, do not initialise again.
     if (!firebase.apps.length) {
       firebase.initializeApp(config);
     }
-
+    
     let authPromise = firebase.auth().signInWithEmailAndPassword(email, pwd).catch(error => {
       // Handle Errors here.
       swal({
@@ -31,10 +32,17 @@ export function loginAct(email: string, pwd: string) {
       }, (dismiss) => {
       });
     });
-
+    
     authPromise.then(async e => {
       if (e) {
         let user = email.substr(0, email.indexOf('@'));
+
+        /**
+         * Set a cookie for keeping the user session.
+         * When the page is refreshed, automatically sign in again.
+         */
+        document.cookie = 'email=' + email;
+        document.cookie = 'pwd=' + pwd;
 
         await firebase.database().ref('Users/' + user)
           .on('value', (snapshot: any) => {
@@ -43,8 +51,10 @@ export function loginAct(email: string, pwd: string) {
             if (data) {
               dispatch({ type: LOGIN, data, firebase });
               swal.close();
-              if (getState().dataReducer.category === vTypes.HOME) {
-                location.hash = location.hash + 'main/home'
+
+              let hash = location.hash;
+              if (getState().dataReducer.category === vTypes.HOME && !hash.endsWith('main/home')) {
+                location.hash = 'main/home'
               }
             }
           });

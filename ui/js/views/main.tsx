@@ -5,13 +5,15 @@ import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { resetSearch, resetPages, resetFooter } from '../util/utils';
+import { parseCookie, resetSearch, resetPages, resetFooter } from '../util/utils';
+import { loginAct } from '../actions/loginActions';
 
 import Header from '../components/header';
 import Categories from '../components/categories';
 import Search from '../components/search';
 import Home from '../components/main/home';
 import Movies from '../components/main/movies';
+import Tv from '../components/main/tv';
 import Details from '../components/main/details';
 import EditDetails from '../components/main/editDetails';
 import Footer from '../components/footer';
@@ -33,20 +35,28 @@ class Main extends React.Component<any, any> {
   }
 
   componentWillMount() {
+    // If this is a normal login, then firebase should exist already
     let firebase = this.props.loginState.firebase;
 
     if (!firebase.apps) {
-      swal({
-        type: 'error',
-        title: 'You\'re Not Signed In',
-        html: 'Please sign in using your Google account.',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        confirmButtonText: 'Sign In'
-      }).then(() => {
-        location.hash = '#';
-        location.reload();
-      }, (dismiss) => { });
+      let ca = document.cookie.split(';');
+
+      if (ca[0] === '' || ca.length < 2) { // No user cookies found or not enough user info
+        swal({
+          type: 'error',
+          title: 'You\'re Not Signed In',
+          html: 'Please sign in using your Google account.',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          confirmButtonText: 'Sign In'
+        }).then(() => {
+          location.hash = '#';
+          location.reload();
+        }, (dismiss) => { });
+      } else {
+        let co = parseCookie(ca);
+        this.props.loginDispatch(co.email, co.pwd);
+      }
     }
   }
 
@@ -83,11 +93,11 @@ class Main extends React.Component<any, any> {
           <Switch>
             <Route path='/main/home' component={Home} />
             <Route path='/main/movies' component={Movies} />
-            <Route path='/main/tv' component={Movies} />
+            <Route path='/main/tv' component={Tv} />
             <Route path='/main/docs' component={Movies} />
             <Route path='/main/anime' component={Movies} />
-            <Route path='/main/adult' component={Movies} />
-            <Route path='/main/ero' component={Movies} />
+            <Route path='/main/xxx' component={Movies} />
+            <Route path='/main/jav' component={Movies} />
             <Route path='/main/details' component={Details} />
           </Switch>
           <Footer />
@@ -104,9 +114,9 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  // loginDispatch: (email: string, pwd: string) => {
-    // dispatch(loginAct(email, pwd))
-  // }
+  loginDispatch: (email: string, pwd: string) => {
+    dispatch(loginAct(email, pwd))
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

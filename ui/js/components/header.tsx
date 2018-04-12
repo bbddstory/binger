@@ -17,7 +17,7 @@ class Header extends React.Component<any, any> {
       <nav className="header">
         <Link to="/main/home" className="logo" title="Phantom"></Link>
         <div className="nav-opts">
-          <Link to="/main/home" className="opt-home" title="Home"></Link>
+          <Link to="/main/home" className="opt-home" title="Home" onClick={e => this.props.setCatDispatch(vTypes.HOME)}></Link>
           <Link to="/main/add" className="opt-add" title="Add video"></Link>
           <Link to="/main/notices" className="opt-notice" title="Notifications"></Link>
           <Link to="/main/messages" className="opt-msg" title="Messages"></Link>

@@ -6,7 +6,7 @@
     margin-top: 20px;
     .logo {
         width: 200px;
-        height: 105px;
+        height: 100px;
         background: url("../images/login/brand.png") no-repeat;
         background-size: contain;
     }
@@ -22,19 +22,19 @@
             cursor: pointer;
         }
         .opt-home {
-            background: url("../images/header/ic_home_white_24px.svg") no-repeat;
+            background: url("../images/header/ic_home_white_24px.svg") 50% no-repeat;
         }
         .opt-add {
-            background: url("../images/header/ic_library_add_white_24px.svg") no-repeat;
+            background: url("../images/header/ic_library_add_white_24px.svg") 50% no-repeat;
         }
         .opt-notice {
-            background: url("../images/header/ic_notifications_none_white_24px.svg") no-repeat;
+            background: url("../images/header/ic_notifications_none_white_24px.svg") 50% no-repeat;
         }
         .opt-msg {
-            background: url("../images/header/ic_message_white_24px.svg") no-repeat;
+            background: url("../images/header/ic_message_white_24px.svg") 50% no-repeat;
         }
         .opt-me {
-            background: url("../images/header/ic_account_circle_white_24px.svg") no-repeat;
+            background: url("../images/header/ic_account_circle_white_24px.svg") 50% no-repeat;
         }
     }
 }

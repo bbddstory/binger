@@ -30,7 +30,7 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
           
           if (data) {
             for (let p in data) {
-              itemCnt = data[p]['index'];
+              itemCnt = data[p]['index'] + 1;
             }
           } else {
             noData = true;

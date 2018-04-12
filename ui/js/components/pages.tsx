@@ -4,7 +4,7 @@ import * as jq from 'jquery';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { loadDataAct } from '../actions/dataActions';
-import vTypes from '../util/vTypes';
+// import vTypes from '../util/vTypes';
 
 class Pages extends React.Component<any, any> {
     constructor(props: any) {
@@ -57,7 +57,7 @@ class Pages extends React.Component<any, any> {
                 break;
         }
 
-        this.props.loadDataDispatch(vTypes.MOVIE, currPage, startAt, endAt);
+        this.props.loadDataDispatch(this.props.dataState.category, currPage, startAt, endAt);
     }
 
     currPage = () => {

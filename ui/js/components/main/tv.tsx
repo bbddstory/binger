@@ -8,19 +8,19 @@ import vTypes from '../../util/vTypes';
 import { loadDataAct, setKeyAct } from '../../actions/dataActions';
 import Pages from '../pages';
 
-class Movies extends React.Component<any, any> {
+class Tv extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = { dummyPoster: 'images/movie/poster.png' };
   }
 
   componentWillMount() {
-    let data = this.props.dataState.data;
+    // let data = this.props.dataState.data;
     
     // if (data.constructor === Object && Object.keys(data).length === 0) {
-    if (this.props.dataState.category === vTypes.MOVIE) {
+    if (this.props.dataState.category === vTypes.TV) {
       this.props.loadDataDispatch(
-        vTypes.MOVIE,
+        vTypes.TV,
         this.props.dataState.currPage,
         this.props.dataState.startAt,
         this.props.dataState.endAt
@@ -51,23 +51,23 @@ class Movies extends React.Component<any, any> {
 
     return (
       <div className="movies">
-        {Object.keys(dataState.data).map((key: any) => {
+        {dataState.data && Object.keys(dataState.data).length && Object.keys(dataState.data).map((key: any) => {
           return <div className="tile" key={key}>
             <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
-              <img className="thumbnail" alt="Poster"
+              {/* <img className="thumbnail" alt="Poster"
                 src={dataState.data[key].poster === 'N/A' ?
-                  this.state.dummyPoster : dataState.data[key].poster} />
+                  this.state.dummyPoster : dataState.data[key].poster} /> */}
             </Link>
             <div className="details">
               <div className="title">{dataState.data[key].engTitle}</div>
               <div className="director">
                 <span className="year">{dataState.data[key].year}</span>
-                <br />{dataState.data[key].director}
+                {/* <br />{dataState.data[key].director} */}
               </div>
             </div>
           </div>
         })}
-        {Object.keys(dataState.data).length && <Pages />}
+        {dataState.data && Object.keys(dataState.data).length && <Pages />}
       </div>
     )
   }
@@ -86,4 +86,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Movies);
+export default connect(mapStateToProps, mapDispatchToProps)(Tv);

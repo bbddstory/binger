@@ -1,5 +1,16 @@
 import * as jq from 'jquery';
 
+export const parseCookie = (ca: any) => {
+    let co: any = {};
+
+    for (let i in ca) {
+        let c = ca[i].trim().split('=');
+        co[c[0]] = c[1];
+    }
+    
+    return co;
+}
+
 export const cleanUrl = () => {
     let hash = location.hash,
         lastChar = hash.substring(hash.length - 1);
