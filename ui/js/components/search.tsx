@@ -22,7 +22,7 @@ class Search extends React.Component<any, any> {
         jq('.search-input').blur();
       }
 
-      if (e.ctrlKey && (e.which === 70)) {
+      if (e.ctrlKey && e.shiftKey && (e.which === 70)) {
         e.preventDefault();
         jq('.search-input').focus();
         jq('.search-input').select();

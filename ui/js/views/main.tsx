@@ -14,6 +14,8 @@ import Search from '../components/search';
 import Home from '../components/main/home';
 import Movies from '../components/main/movies';
 import Tv from '../components/main/tv';
+import Docs from '../components/main/docs';
+import Anime from '../components/main/anime';
 import Details from '../components/main/details';
 import EditDetails from '../components/main/editDetails';
 import Footer from '../components/footer';
@@ -94,8 +96,8 @@ class Main extends React.Component<any, any> {
             <Route path='/main/home' component={Home} />
             <Route path='/main/movies' component={Movies} />
             <Route path='/main/tv' component={Tv} />
-            <Route path='/main/docs' component={Movies} />
-            <Route path='/main/anime' component={Movies} />
+            <Route path='/main/docs' component={Docs} />
+            <Route path='/main/anime' component={Anime} />
             <Route path='/main/xxx' component={Movies} />
             <Route path='/main/jav' component={Movies} />
             <Route path='/main/details' component={Details} />
