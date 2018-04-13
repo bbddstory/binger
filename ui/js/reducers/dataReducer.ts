@@ -2,7 +2,7 @@
 
 import { GOTO_PAGE, SET_KEY } from '../actions/dataActions';
 import { SAVE_DETAILS } from '../actions/detailsActions';
-import { SET_CATEGORY } from '../actions/categoriesActions';
+import { SWITCH_CAT } from '../actions/categoriesActions';
 import vTypes from '../util/vTypes';
 
 interface initInterface {
@@ -41,8 +41,17 @@ export function dataReducer(state: any = init, action: any) {
   let ns = (<any>Object).assign({}, state);
 
   switch (action.type) {
-    case SET_CATEGORY:
-      ns.category = action.cat;
+    case SWITCH_CAT:
+      if (action.cat === vTypes.HOME) {
+        ns.category = action.cat;
+      } else { // Needs to reset all pagination related values
+        ns.category = action.cat;
+        ns.itemCnt = 0;
+        ns.pageCnt = 0;
+        ns.currPage = 1;
+        ns.startAt = 0;
+        ns.endAt = 11;
+      }
 
       return ns;
     case GOTO_PAGE:

@@ -11,7 +11,7 @@ import Pages from '../pages';
 class Movies extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { dummyPoster: 'images/movie/poster.png' };
+    this.state = { dummyPoster: 'ui/images/posters/' + vTypes.MOVIE + '.png' };
   }
 
   componentWillMount() {

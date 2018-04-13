@@ -11,7 +11,7 @@ import Pages from '../pages';
 class Tv extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { dummyPoster: 'images/movie/poster.png' };
+    this.state = { dummyPoster: 'ui/images/posters/' + vTypes.TV + '.png' };
   }
 
   componentWillMount() {
@@ -54,9 +54,9 @@ class Tv extends React.Component<any, any> {
         {dataState.data && Object.keys(dataState.data).length && Object.keys(dataState.data).map((key: any) => {
           return <div className="tile" key={key}>
             <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
-              {/* <img className="thumbnail" alt="Poster"
-                src={dataState.data[key].poster === 'N/A' ?
-                  this.state.dummyPoster : dataState.data[key].poster} /> */}
+              <img className="thumbnail" alt="Poster"
+                src={dataState.data[key].poster && dataState.data[key].poster !== 'N/A' ?
+                  dataState.data[key].poster : this.state.dummyPoster} />
             </Link>
             <div className="details">
               <div className="title">{dataState.data[key].engTitle}</div>

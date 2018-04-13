@@ -1,12 +1,12 @@
 'use strict';
 
 // Action types
-export const SET_CATEGORY = 'SET_CATEGORY';
+export const SWITCH_CAT = 'SWITCH_CAT';
 
 // Action creators
-export function setCategoryAct(cat: string) {
+export function switchCatAct(cat: string) {
   return {
-    type: SET_CATEGORY,
+    type: SWITCH_CAT,
     cat
   }
 }

@@ -5,19 +5,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { cleanUrl } from '../util/utils';
-import { setCategoryAct } from '../actions/categoriesActions';
+import { switchCatAct } from '../actions/categoriesActions';
 import vTypes from '../util/vTypes';
 
 class Categories extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
     this.state = {}
-  }
-
-  setCat(cat: string) {
-    // return cat === parseHash() ? 'active' : ''
-    // this.setState({ currCat: cat})
-    this.props.setCatDispatch(cat)
   }
 
   componentWillMount() {
@@ -36,32 +30,32 @@ class Categories extends React.Component<any, any> {
       <div className="categories">
         <ol>
           <li>
-            <Link to="/main/movies" className={currCat === vTypes.MOVIE ? 'active' : ''} onClick={e => this.setCat(vTypes.MOVIE)}>
+            <Link to="/main/movies" className={currCat === vTypes.MOVIE ? 'active' : ''} onClick={e => this.props.switchCatDispatch(vTypes.MOVIE)}>
               <FormattedMessage id='cats.movies' />
             </Link>
           </li>
           <li>
-            <Link to="/main/tv" className={currCat === vTypes.TV ? 'active' : ''} onClick={e => this.props.setCatDispatch(vTypes.TV)}>
+            <Link to="/main/tv" className={currCat === vTypes.TV ? 'active' : ''} onClick={e => this.props.switchCatDispatch(vTypes.TV)}>
               <FormattedMessage id='cats.tv' />
             </Link>
           </li>
           <li>
-            <Link to="/main/docs" className={currCat === vTypes.DOC ? 'active' : ''} onClick={e => this.props.setCatDispatch(vTypes.DOC)}>
+            <Link to="/main/docs" className={currCat === vTypes.DOC ? 'active' : ''} onClick={e => this.props.switchCatDispatch(vTypes.DOC)}>
               <FormattedMessage id='cats.docs' />
             </Link>
           </li>
           <li>
-            <Link to="/main/anime" className={currCat === vTypes.ANIME ? 'active' : ''} onClick={e => this.props.setCatDispatch(vTypes.ANIME)}>
+            <Link to="/main/anime" className={currCat === vTypes.ANIME ? 'active' : ''} onClick={e => this.props.switchCatDispatch(vTypes.ANIME)}>
               <FormattedMessage id='cats.anime' />
             </Link>
           </li>
           <li>
-            <Link to="/main/xxx" className={currCat === vTypes.XXX ? 'active' : ''} onClick={e => this.props.setCatDispatch(vTypes.XXX)}>
+            <Link to="/main/xxx" className={currCat === vTypes.XXX ? 'active' : ''} onClick={e => this.props.switchCatDispatch(vTypes.XXX)}>
               <FormattedMessage id='cats.xxx' />
             </Link>
           </li>
           <li>
-            <Link to="/main/jav" className={currCat === vTypes.JAV ? 'active' : ''} onClick={e => this.props.setCatDispatch(vTypes.JAV)}>
+            <Link to="/main/jav" className={currCat === vTypes.JAV ? 'active' : ''} onClick={e => this.props.switchCatDispatch(vTypes.JAV)}>
               <FormattedMessage id='cats.jav' />
             </Link>
           </li>
@@ -77,8 +71,8 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setCatDispatch: (cat: string) => {
-    dispatch(setCategoryAct(cat))
+  switchCatDispatch: (cat: string) => {
+    dispatch(switchCatAct(cat))
   }
 });
 
