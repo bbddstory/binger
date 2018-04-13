@@ -66,11 +66,11 @@ class Details extends React.Component<any, any> {
                 Creator: {dataState.data[key].creator}<br />
                 Stars: {dataState.data[key].stars}
               </span>
-              <div className="actions" title="Show this movie on IMDB">
+              <div className="actions">
                 <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
                 <div className="recomm" title="Recommend to a friend" onClick={e => this.toggleRecomm()}></div>
                 <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true)}></div>
-                <a className="closed-caption" target="_blank" href={'https://subscene.com/subtitles/title?q=/' + dataState.data[key].engTitle}></a>
+                <a className="closed-caption" target="_blank" href={'https://subscene.com/subtitles/title?q=' + dataState.data[key].engTitle}></a>
                 {/* <a title="IMDB" target="_blank" href={'http://www.imdb.com/title/' + dataState.data[key].imdb_id}></a>
                 <span className="rating">{dataState.data[key].rating}</span>
                 <span className="out-of">/10</span> */}
@@ -81,6 +81,8 @@ class Details extends React.Component<any, any> {
               <div className="plot-txt">{dataState.data[key].plot}</div>
               <div className="sites">
                 <a className="imdb" target="_blank" href={'http://www.imdb.com/title/' + dataState.data[key].imdb_id}></a>
+                <a className="mtime" target="_blank" href={dataState.data[key].mtime}></a>
+                <a className="douban" target="_blank" href={dataState.data[key].douban}></a>
               </div>
             </div>
 

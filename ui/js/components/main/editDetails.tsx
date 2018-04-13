@@ -31,9 +31,9 @@ class EditDetails extends React.Component<any, any> {
   onSubmit(values: any) {
     let formValid = true;
     
-    for (let p in values) {
-      values[p] = values[p].trim()
-    }
+    // for (let p in values) {
+    //   values[p] = values[p].trim()
+    // }
 
     // for (let p in values) {
     //   if (!regex[p].test(values[p])) {
