@@ -12,7 +12,7 @@ class Details extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      dummyPoster: 'ui/images/movie/poster.png',
+      dummyPoster: 'images/movie/poster.png',
       opts: false,
       recomm: false
     }
@@ -95,7 +95,7 @@ class Details extends React.Component<any, any> {
             <iframe width="440" height="247.5" src={dataState.data[key].featurette} frameBorder="0" allowFullScreen></iframe>
           </div>
           <a className="more-vid" target="_blank" href={'https://www.youtube.com/results?search_query=' + dataState.data[key].engTitle}>
-            <img src="ui/images/details/youtube.png" alt="YouTube" /> More videos on YouTube
+            <img src="images/details/youtube.png" alt="YouTube" /> More videos on YouTube
           </a>
 
           <h1>Comments</h1>

@@ -3,7 +3,7 @@
 import swal from 'sweetalert2';
 import * as firebase from 'firebase';
 import config from '../util/firebase';
-import vTypes from '../util/vTypes';
+import cats from '../util/cats';
 
 // Action types
 export const LOGIN = 'LOGIN';
@@ -53,7 +53,7 @@ export function loginAct(email: string, pwd: string) {
               swal.close();
 
               let hash = location.hash;
-              if (getState().dataReducer.category === vTypes.HOME && !hash.endsWith('main/home')) {
+              if (getState().dataReducer.category === cats.HOME && !hash.endsWith('main/home')) {
                 location.hash = 'main/home'
               }
             }

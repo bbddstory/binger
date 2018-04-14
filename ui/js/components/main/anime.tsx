@@ -4,7 +4,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { resetPages, resetFooter } from '../../util/utils';
-import vTypes from '../../util/vTypes';
+import cats from '../../util/cats';
 import { loadDataAct, setKeyAct } from '../../actions/dataActions';
 import Pages from '../pages';
 
@@ -18,9 +18,9 @@ class Anime extends React.Component<any, any> {
     // let data = this.props.dataState.data;
     
     // if (data.constructor === Object && Object.keys(data).length === 0) {
-    if (this.props.dataState.category === vTypes.ANIME) {
+    if (this.props.dataState.category === cats.ANIME) {
       this.props.loadDataDispatch(
-        vTypes.ANIME,
+        cats.ANIME,
         this.props.dataState.currPage,
         this.props.dataState.startAt,
         this.props.dataState.endAt

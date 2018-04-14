@@ -3,7 +3,7 @@
 import { GOTO_PAGE, SET_KEY } from '../actions/dataActions';
 import { SAVE_DETAILS } from '../actions/detailsActions';
 import { SWITCH_CAT } from '../actions/categoriesActions';
-import vTypes from '../util/vTypes';
+import cats from '../util/cats';
 
 interface initInterface {
   [key: string]: any
@@ -28,7 +28,7 @@ let init: initInterface = {
   // },
   key: '',
   data: {},
-  category: vTypes.HOME,
+  category: cats.HOME,
   itemCnt: 0, // Total number of records in designated category
   ipp: 12, // itemPerPage
   pageCnt: 0,
@@ -42,7 +42,7 @@ export function dataReducer(state: any = init, action: any) {
 
   switch (action.type) {
     case SWITCH_CAT:
-      if (action.cat === vTypes.HOME) {
+      if (action.cat === cats.HOME) {
         ns.category = action.cat;
       } else { // Needs to reset all pagination related values
         ns.category = action.cat;

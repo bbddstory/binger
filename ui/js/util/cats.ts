@@ -1,8 +1,8 @@
-interface vTypesInterface {
+interface catsInterface {
     [key: string]: string
 }
 
-const vTypes: vTypesInterface = {
+const cats: catsInterface = {
     HOME: 'Home',
     MOVIE: 'Movies',
     TV: 'TV',
@@ -12,4 +12,4 @@ const vTypes: vTypesInterface = {
     JAV: 'JAV'
 }
 
-export default vTypes;
+export default cats;

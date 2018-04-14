@@ -1,11 +1,11 @@
-.movies {
+.list {
     width: 900px;
     margin: 0 auto 60px;
     .tile {
         display: inline-block;
-        width: 300px;
+        width: 280px;
         background: rgba(0, 0, 0, .2);
-        margin-bottom: 45px;
+        margin: 0 10px 45px;
         @keyframes tileShadow {
             from {
                 -webkit-box-shadow: none;
@@ -30,6 +30,42 @@
                 animation-fill-mode: forwards;
             }
         }
+        .dummy-poster-movies {
+            display: inline-block;
+            width: 91px;
+            height: 134px;
+            background: url("../images/posters/Movies.png");
+        }
+        .dummy-poster-tv {
+            display: inline-block;
+            width: 91px;
+            height: 134px;
+            background: url("../images/posters/TV.png");
+        }
+        .dummy-poster-documentaries {
+            display: inline-block;
+            width: 91px;
+            height: 134px;
+            background: url("../images/posters/Documentaries.png");
+        }
+        .dummy-poster-animations {
+            display: inline-block;
+            width: 91px;
+            height: 134px;
+            background: url("../images/posters/Animations.png");
+        }
+        .dummy-poster-xxx {
+            display: inline-block;
+            width: 91px;
+            height: 134px;
+            background: url("../images/posters/XXX.png");
+        }
+        .dummy-poster-jav {
+            display: inline-block;
+            width: 91px;
+            height: 134px;
+            background: url("../images/posters/JAV.png");
+        }
         .details {
             display: inline-block;
             position: relative;
@@ -50,7 +86,7 @@
                 display: block;
                 margin-bottom: -5px;
             }
-            .director {
+            .details-btm {
                 position: absolute;
                 z-index: 0;
                 color: #888;
