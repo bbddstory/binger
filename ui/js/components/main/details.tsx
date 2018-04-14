@@ -62,7 +62,7 @@ class Details extends React.Component<any, any> {
               </span>
               <span className="misc">
                 Year: {dataState.data[key].year}<br />
-                Runtime: {dataState.data[key].runtime} (each episode)<br />
+                Runtime: {dataState.data[key].runtime}<br />
                 Creator: {dataState.data[key].creator}<br />
                 Stars: {dataState.data[key].stars}
               </span>
@@ -94,13 +94,21 @@ class Details extends React.Component<any, any> {
             <iframe width="440" height="247.5" src={dataState.data[key].trailer} frameBorder="0" allowFullScreen></iframe>
             <iframe width="440" height="247.5" src={dataState.data[key].featurette} frameBorder="0" allowFullScreen></iframe>
           </div>
-          <a className="more-vid" target="_blank" href={'https://www.youtube.com/results?search_query=' + dataState.data[key].engTitle}>
-            <img src="images/details/youtube.png" alt="YouTube" /> More videos on YouTube
-          </a>
+          <div className="youtube">
+            <a target="_blank" href={'https://www.youtube.com/results?search_query=' + dataState.data[key].engTitle}>More videos on YouTube</a>
+          </div>
 
           <h1>Comments</h1>
           <div className="comments">
-            <span>No comments</span>
+            {/* <span>No comments</span> */}
+            <textarea className="comm-input"></textarea>
+            <div className="panel-footer">
+              <button className="secondary">Cancel</button>
+              <button type="submit">Save</button>
+            </div></div>
+          <div className="panel-footer">
+            <button className="secondary">Clear</button>
+            <button type="submit">Comment</button>
           </div>
         </div>
       )
