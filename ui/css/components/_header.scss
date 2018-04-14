@@ -34,7 +34,10 @@
             background: url("../images/header/ic_message_white_24px.svg") 50% no-repeat;
         }
         .opt-me {
-            background: url("../images/header/ic_account_circle_white_24px.svg") 50% no-repeat;
+            width: auto;
+            padding-left: 28px;
+            line-height: 30px;
+            background: url("../images/header/ic_account_circle_white_24px.svg") 0 50% no-repeat;
         }
     }
 }

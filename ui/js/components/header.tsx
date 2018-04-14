@@ -21,7 +21,7 @@ class Header extends React.Component<any, any> {
           <Link to="/main/add" className="opt-add" title="Add video"></Link>
           <Link to="/main/notices" className="opt-notice" title="Notifications"></Link>
           <Link to="/main/messages" className="opt-msg" title="Messages"></Link>
-          <Link to="/main/me" className="opt-me" title="Me"></Link>
+          <Link to="/main/me" className="opt-me" title="Me">{this.props.loginState.nickname}</Link>
         </div>
       </nav>
     )
@@ -29,7 +29,7 @@ class Header extends React.Component<any, any> {
 }
 
 const mapStateToProps = (store: any) => ({
-  // dataState: store.dataReducer
+  loginState: store.loginReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

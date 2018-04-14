@@ -99,16 +99,20 @@ class Details extends React.Component<any, any> {
           </div>
 
           <h1>Comments</h1>
-          <div className="comments">
-            {/* <span>No comments</span> */}
-            <textarea className="comm-input"></textarea>
-            <div className="panel-footer">
+          {dataState.data[key].comments && Object.keys(dataState.data[key].comments).map((id: any) => {
+            return <div className="comment" key={id}>
+                <h2>{dataState.data[key].comments[id].title}</h2>
+                <h4>{dataState.data[key].comments[id].time} by {dataState.data[key].comments[id].user}</h4>
+                <span>{dataState.data[key].comments[id].txt}</span>
+              </div>
+          })}
+
+          <div className="add-comment">
+            <textarea placeholder="Add a public comment..."></textarea>
+            <div>
               <button className="secondary">Cancel</button>
-              <button type="submit">Save</button>
-            </div></div>
-          <div className="panel-footer">
-            <button className="secondary">Clear</button>
-            <button type="submit">Comment</button>
+              <button type="submit">Comment</button>
+            </div>
           </div>
         </div>
       )
