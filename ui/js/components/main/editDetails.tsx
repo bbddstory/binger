@@ -122,7 +122,7 @@ class EditDetails extends React.Component<any, any> {
               </div>
             </div>
             <div className="panel-footer">
-              <button className="secondary" onClick={e => this.cancelEdit()}>Cancel</button>
+              <button className="btn-cancel" onClick={e => this.cancelEdit()}>Cancel</button>
               <button type="submit">Save</button>
             </div>
           </div>

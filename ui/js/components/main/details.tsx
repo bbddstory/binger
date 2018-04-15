@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { cleanUrl } from '../../util/utils';
 import { setKeyAct } from '../../actions/dataActions';
 import { toggleEditDetailsAct } from '../../actions/uiActions';
 import { watchLaterAct, recommAct } from '../../actions/detailsActions';
@@ -14,21 +13,25 @@ class Details extends React.Component<any, any> {
     this.state = {
       dummyPoster: 'images/movie/poster.png',
       opts: false,
-      recomm: false
+      recomm: false,
+      comment: ''
     }
-  }
-
-  toggleOpts() {
-    this.setState({ opts: !this.state.opts, recomm: false })
-    // this.setState({ opts: true, recomm: true })
   }
 
   toggleRecomm() {
     this.setState({ recomm: !this.state.recomm });
   }
 
-  componentWillMount() {
-    cleanUrl();
+  cancelComment() {
+    this.setState({ comment: '' });
+  }
+
+  handleChange(e: any) {
+    this.setState({comment: e.target.value});
+  }
+
+  submitComment() {
+    
   }
 
   render() {
@@ -40,18 +43,10 @@ class Details extends React.Component<any, any> {
       return (
         <div>
           <div className="video-details">
-            <div className="poster" onMouseEnter={e => this.toggleOpts()} onMouseLeave={e => this.toggleOpts()}>
+            <div className="poster">
               <img alt="Poster" width="182px"
                 src={dataState.data[key].poster && dataState.data[key].poster !== 'N/A' ?
                   dataState.data[key].poster : this.state.dummyPoster} />
-              {/* {opts && <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>}
-              {opts && <div className="recomm" title="Recommend to a friend" onClick={e => this.toggleRecomm()}></div>}
-              {recomm && <ul>
-                {Object.keys(loginState.friends).map((user: string) => {
-                  return <li key={user} onClick={e => this.props.recommDispatch(user)}>{loginState.friends[user]}</li>
-                })}
-              </ul>}
-              {opts && <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true)}></div>} */}
             </div>
 
             <div className="entries">
@@ -68,12 +63,14 @@ class Details extends React.Component<any, any> {
               </span>
               <div className="actions">
                 <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
-                <div className="recomm" title="Recommend to a friend" onClick={e => this.toggleRecomm()}></div>
+                <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
                 <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true)}></div>
-                <a className="closed-caption" target="_blank" href={'https://subscene.com/subtitles/title?q=' + dataState.data[key].engTitle}></a>
-                {/* <a title="IMDB" target="_blank" href={'http://www.imdb.com/title/' + dataState.data[key].imdb_id}></a>
-                <span className="rating">{dataState.data[key].rating}</span>
-                <span className="out-of">/10</span> */}
+                <a target="_blank" href={'https://subscene.com/subtitles/title?q=' + dataState.data[key].engTitle}></a>
+                {recomm && <ul>
+                  {Object.keys(loginState.friends).map((user: string) => {
+                    return <li key={user} onClick={e => this.props.recommDispatch(user)}>{loginState.friends[user]}</li>
+                  })}
+                </ul>}
               </div>
             </div>
 
@@ -108,10 +105,10 @@ class Details extends React.Component<any, any> {
           })}
 
           <div className="add-comment">
-            <textarea placeholder="Add a public comment..."></textarea>
+            <textarea placeholder="Add a public comment..." value={this.state.comment} onChange={e => this.handleChange(e)}></textarea>
             <div>
-              <button className="secondary">Cancel</button>
-              <button type="submit">Comment</button>
+              <button className="btn-cancel" onClick={e => this.cancelComment()}>Cancel</button>
+              <button type="submit" onClick={e => this.submitComment()}>Comment</button>
             </div>
           </div>
         </div>

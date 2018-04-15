@@ -3,7 +3,7 @@
 import { LOCALE } from '../actions/localeActions';
 
 let init = {
-  lang: 'ja'
+  lang: 'en'
 }
 
 export function localeReducer(state: any = init, action: any) {
