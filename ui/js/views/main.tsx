@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { parseCookie, resetSearch, resetPages, resetFooter } from '../util/utils';
 import { loginAct } from '../actions/loginActions';
 
+import Loader from '../components/loader';
 import Header from '../components/header';
 import Categories from '../components/categories';
 import Search from '../components/search';
@@ -89,6 +90,7 @@ class Main extends React.Component<any, any> {
     return (
       <IntlProvider locale={localeState.lang} messages={lang[localeState.lang]}>
         <div id='center'>
+          <Loader />
           <Header />
           <Categories />
           <Search />

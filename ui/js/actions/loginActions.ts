@@ -4,6 +4,7 @@ import swal from 'sweetalert2';
 import * as firebase from 'firebase';
 import config from '../util/firebase';
 import cats from '../util/cats';
+import { TOGGLE_LOADER } from '../actions/uiActions';
 
 // Action types
 export const LOGIN = 'LOGIN';
@@ -11,8 +12,9 @@ export const LOGIN = 'LOGIN';
 // Action creators
 export function loginAct(email: string, pwd: string) {
   return (dispatch: any, getState: any) => {
-    swal('Signing In', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
-    swal.showLoading();
+    // swal('Signing In', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
+    // swal.showLoading();
+    dispatch({ type: TOGGLE_LOADER, status: true });
     
     // If Firebase has already been initialised, do not initialise again.
     if (!firebase.apps.length) {
@@ -50,7 +52,8 @@ export function loginAct(email: string, pwd: string) {
 
             if (data) {
               dispatch({ type: LOGIN, data, firebase });
-              swal.close();
+              // swal.close();
+              dispatch({ type: TOGGLE_LOADER, status: false });
 
               let hash = location.hash;
               if (getState().dataReducer.category === cats.HOME && !hash.endsWith('main/home')) {

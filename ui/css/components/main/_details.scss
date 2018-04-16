@@ -14,47 +14,12 @@
             margin: 5px;
             cursor: pointer;
         }
-        ul {
-            position: absolute;
-            z-index: 1000;
-            top: 5px;
-            right: -140px;
-            width: 120px;
-            max-height: 200px;
-            border: 1px solid #444;
-            padding: 10px;
-            color: #f2f2f2;
-            background: rgba(#000, .8);
-            overflow-x: hidden;
-            overflow-y: auto;
-            border-radius: 5px;
-            -webkit-box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
-            -moz-box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
-            box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
-            li {
-                height: 26px;
-                box-sizing: border-box;
-                padding-left: 5px;
-                padding-right: 5px;
-                line-height: 26px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                cursor: pointer;
-                &:hover {
-                    background: #fff;
-                    color: #000;
-                    border-radius: 2px;
-                }
-            }
-        }
     }
     .entries {
         position: relative;
         width: 260px;
         height: 268px;
         color: #f2f2f2;
-        overflow: hidden;
         padding: 0 25px 0 8px;
         text-overflow: ellipsis;
         .title {
@@ -103,6 +68,40 @@
                 background-size: contain;
                 cursor: pointer;
             }
+            ul {
+                position: absolute;
+                z-index: 1000;
+                top: -10px;
+                left: 80px;
+                width: 120px;
+                max-height: 200px;
+                border: 1px solid #444;
+                padding: 10px;
+                color: #f2f2f2;
+                background: rgba(#000, .8);
+                overflow-x: hidden;
+                overflow-y: auto;
+                border-radius: 5px;
+                -webkit-box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
+                -moz-box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
+                box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
+                li {
+                    height: 26px;
+                    box-sizing: border-box;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                    line-height: 26px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    cursor: pointer;
+                    &:hover {
+                        background: #fff;
+                        color: #000;
+                        border-radius: 2px;
+                    }
+                }
+            }
         }
     }
     .plot {
@@ -110,16 +109,16 @@
         height: 268px;
         .plot-txt {
             width: 350px;
-            height: 200px; //268px
+            height: 200px;
             color: #f2f2f2;
             line-height: 1.6;
             overflow-y: auto;
         }
         .sites {
-            display: flex; // background: green;
+            display: flex;
             width: 350px;
             height: 68px;
-            align-items: flex-end; // justify-content: space-between;
+            align-items: flex-end;
             a {
                 display: block;
                 margin-right: 10px;
@@ -200,14 +199,22 @@
 .add-comment {
     display: flex;
     flex-direction: column;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    .comment-title-lt {
+        width: 900px;
+        padding: 10px 0;
+        box-sizing: border-box;
+        color: #f2f2f2;
+        background: rgba(#000, 0);
+        border-bottom: 1px solid #f2f2f2;
+    }
     .comment-title {
         width: 900px;
         margin-bottom: 0;
         padding-top: 10px;
         box-sizing: border-box;
         color: #f2f2f2;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(#000, 0.6);
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
         border-bottom-left-radius: 0;
@@ -224,7 +231,7 @@
         color: #f2f2f2;
         font-size: 16px;
         line-height: 1.5;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(#000, 0.6);
         border: 0;
         border-top-left-radius: 0;
         border-top-right-radius: 0;

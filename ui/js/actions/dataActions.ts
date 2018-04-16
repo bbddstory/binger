@@ -1,6 +1,7 @@
 'use strict';
 
 import swal from 'sweetalert2';
+import { TOGGLE_LOADER } from '../actions/uiActions';
 
 // Action types
 export const GOTO_PAGE = 'GOTO_PAGE';
@@ -19,15 +20,16 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
     let firebase = getState().loginReducer.firebase;
 
     if (firebase.apps) {
-      swal('Loading Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
-      swal.showLoading();
+      dispatch({ type: TOGGLE_LOADER, status: true });
+      // swal('Loading Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
+      // swal.showLoading();
       let itemCnt: number, noData = false;
 
       await firebase.database().ref(category)
         .orderByChild('index').limitToLast(1)
         .once('value').then((snapshot: any) => {
           let data = snapshot.val();
-          
+
           if (data) {
             for (let p in data) {
               itemCnt = data[p]['index'] + 1;
@@ -43,10 +45,12 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
           .once('value').then((snapshot: any) => {
             // DISPATCH from here
             dispatch({ type: GOTO_PAGE, data: snapshot.val(), itemCnt, currPage, startAt, endAt });
-            swal.close();
+            dispatch({ type: TOGGLE_LOADER, status: false });
+            // swal.close();
           });
       } else {
-        swal.close();
+        dispatch({ type: TOGGLE_LOADER, status: false });
+        // swal.close();
       }
     }
   }

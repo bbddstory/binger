@@ -15,7 +15,8 @@ class Details extends React.Component<any, any> {
       opts: false,
       recomm: false,
       title: '',
-      comment: ''
+      comment: '',
+      showComment: false
     }
   }
 
@@ -23,8 +24,12 @@ class Details extends React.Component<any, any> {
     this.setState({ recomm: !this.state.recomm });
   }
 
+  commentFocus() {
+    this.setState({ showComment: true });
+  }
+
   cancelComment() {
-    this.setState({ title: '', comment: '' });
+    this.setState({ title: '', comment: '', showComment: false });
   }
 
   titleChange(e: any) {
@@ -53,7 +58,7 @@ class Details extends React.Component<any, any> {
   render() {
     const { loginState, dataState, uiState } = this.props;
     const key = this.props.dataState.key;
-    const { opts, recomm } = this.state;
+    const { opts, recomm, showComment } = this.state;
 
     if (Object.keys(dataState.data).length) {
       return (
@@ -112,6 +117,16 @@ class Details extends React.Component<any, any> {
           </div>
 
           <h1>Comments</h1>
+
+          <div className="add-comment">
+            <input className={showComment ? "comment-title" : "comment-title-lt"} type="text" placeholder={showComment ? "Title" : "Add a public comment..."} value={this.state.title} onChange={e => this.titleChange(e)} onFocus={e => this.commentFocus()} />
+            {showComment && <textarea placeholder="Add a public comment..." value={this.state.comment} onChange={e => this.commentChange(e)}></textarea>}
+            {showComment && <div>
+              <button className="btn-cancel" onClick={e => this.cancelComment()}>Cancel</button>
+              <button className="btn-main" type="submit" onClick={e => this.submitComment()}>Comment</button>
+            </div>}
+          </div>
+
           {dataState.data[key].comments && Object.keys(dataState.data[key].comments).map((id: any) => {
             return <div className="comment" key={id}>
               <div className="title-row">
@@ -124,15 +139,6 @@ class Details extends React.Component<any, any> {
               <span>{dataState.data[key].comments[id].txt}</span>
             </div>
           })}
-
-          <div className="add-comment">
-            <input className="comment-title" type="text" placeholder="Title" value={this.state.title} onChange={e => this.titleChange(e)} />
-            <textarea placeholder="Add a public comment..." value={this.state.comment} onChange={e => this.commentChange(e)}></textarea>
-            <div>
-              <button className="btn-cancel" onClick={e => this.cancelComment()}>Cancel</button>
-              <button className="btn-main" type="submit" onClick={e => this.submitComment()}>Comment</button>
-            </div>
-          </div>
         </div>
       )
     } else {
