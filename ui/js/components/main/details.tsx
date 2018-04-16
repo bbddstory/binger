@@ -4,7 +4,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { setKeyAct } from '../../actions/dataActions';
 import { toggleEditDetailsAct } from '../../actions/uiActions';
-import { watchLaterAct, recommAct } from '../../actions/detailsActions';
+import { watchLaterAct, recommAct, commentAct, delCommentAct } from '../../actions/detailsActions';
 import EditDetails from '../../components/main/editDetails';
 
 class Details extends React.Component<any, any> {
@@ -14,6 +14,7 @@ class Details extends React.Component<any, any> {
       dummyPoster: 'images/movie/poster.png',
       opts: false,
       recomm: false,
+      title: '',
       comment: ''
     }
   }
@@ -23,15 +24,30 @@ class Details extends React.Component<any, any> {
   }
 
   cancelComment() {
-    this.setState({ comment: '' });
+    this.setState({ title: '', comment: '' });
   }
 
-  handleChange(e: any) {
-    this.setState({comment: e.target.value});
+  titleChange(e: any) {
+    this.setState({ title: e.target.value });
+  }
+
+  commentChange(e: any) {
+    this.setState({ comment: e.target.value });
   }
 
   submitComment() {
-    
+    if (this.state.title && this.state.comment) {
+      let t = new Date();
+      this.props.commentDispatch({
+        [t.getTime()]: {
+          time: t.getFullYear() + '.' + (t.getMonth() + 1) + '.' + t.getDate(),
+          title: this.state.title,
+          txt: this.state.comment,
+          user: this.props.loginState.user
+        }
+      });
+      this.cancelComment();
+    }
   }
 
   render() {
@@ -98,17 +114,23 @@ class Details extends React.Component<any, any> {
           <h1>Comments</h1>
           {dataState.data[key].comments && Object.keys(dataState.data[key].comments).map((id: any) => {
             return <div className="comment" key={id}>
-                <h2>{dataState.data[key].comments[id].title}</h2>
-                <h4>{dataState.data[key].comments[id].time} by {dataState.data[key].comments[id].user}</h4>
-                <span>{dataState.data[key].comments[id].txt}</span>
+              <div className="title-row">
+                {dataState.data[key].comments[id].user === loginState.user && <div className="del-comment" onClick={e => this.props.delCommentDispatch(id)}></div>}
+                <div>
+                  <h2>{dataState.data[key].comments[id].title}</h2>
+                  <h4>{dataState.data[key].comments[id].time} by {dataState.data[key].comments[id].user}</h4>
+                </div>
               </div>
+              <span>{dataState.data[key].comments[id].txt}</span>
+            </div>
           })}
 
           <div className="add-comment">
-            <textarea placeholder="Add a public comment..." value={this.state.comment} onChange={e => this.handleChange(e)}></textarea>
+            <input className="comment-title" type="text" placeholder="Title" value={this.state.title} onChange={e => this.titleChange(e)} />
+            <textarea placeholder="Add a public comment..." value={this.state.comment} onChange={e => this.commentChange(e)}></textarea>
             <div>
               <button className="btn-cancel" onClick={e => this.cancelComment()}>Cancel</button>
-              <button type="submit" onClick={e => this.submitComment()}>Comment</button>
+              <button className="btn-main" type="submit" onClick={e => this.submitComment()}>Comment</button>
             </div>
           </div>
         </div>
@@ -128,6 +150,8 @@ const mapStateToProps = (store: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   watchLaterDispatch: () => dispatch(watchLaterAct()),
   recommDispatch: (user: string) => dispatch(recommAct(user)),
+  commentDispatch: (values: any) => dispatch(commentAct(values)),
+  delCommentDispatch: (id: string) => dispatch(delCommentAct(id)),
   editDetailsDispatch: (status: boolean) => dispatch(toggleEditDetailsAct(status))
 });
 

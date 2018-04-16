@@ -1,7 +1,7 @@
 'use strict';
 
 import { GOTO_PAGE, SET_KEY } from '../actions/dataActions';
-import { SAVE_DETAILS } from '../actions/detailsActions';
+import { SAVE_COMMENT, DEL_COMMENT, SAVE_DETAILS } from '../actions/detailsActions';
 import { SWITCH_CAT } from '../actions/categoriesActions';
 import cats from '../util/cats';
 
@@ -69,6 +69,15 @@ export function dataReducer(state: any = init, action: any) {
       return ns;
     case SAVE_DETAILS:
       ns.data[state.key] = action.values;
+
+      return ns;
+    case SAVE_COMMENT:
+      let ck = Object.keys(action.values)[0];
+      ns.data[state.key].comments[ck] = action.values[ck];
+
+      return ns;
+    case DEL_COMMENT:
+      delete ns.data[state.key].comments[action.id];
 
       return ns;
     default:

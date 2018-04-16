@@ -123,7 +123,7 @@ class EditDetails extends React.Component<any, any> {
             </div>
             <div className="panel-footer">
               <button className="btn-cancel" onClick={e => this.cancelEdit()}>Cancel</button>
-              <button type="submit">Save</button>
+              <button className="btn-main" type="submit">Save</button>
             </div>
           </div>
         </LocalForm>

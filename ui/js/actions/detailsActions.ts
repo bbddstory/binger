@@ -6,6 +6,8 @@ import swal from 'sweetalert2';
 export const SET_KEY = 'SET_KEY';
 export const WATCH_LATER = 'WATCH_LATER';
 export const RECOMM = 'RECOMM';
+export const SAVE_COMMENT = 'SAVE_COMMENT';
+export const DEL_COMMENT = 'DEL_COMMENT';
 export const SAVE_DETAILS = 'SAVE_DETAILS';
 export const LOAD_FRIENDS = 'LOAD_FRIENDS';
 import { toggleEditDetailsAct } from '../actions/uiActions';
@@ -47,6 +49,41 @@ export function recommAct(user: string) {
   }
 }
 
+export function commentAct(values: any) {
+  return async (dispatch: any, getState: any) => {
+    let firebase = getState().loginReducer.firebase;
+
+    if (firebase.apps) {
+      swal('Saving Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
+      swal.showLoading();
+
+      let ck = Object.keys(values)[0];
+      await firebase.database().ref(getState().dataReducer.category + '/' + getState().dataReducer.key + '/comments')
+        .update(values).then((snapshot: any) => {
+          swal.close();
+          dispatch({ type: SAVE_COMMENT, values });
+        });
+    }
+  }
+}
+
+export function delCommentAct(id: string) {
+  return async (dispatch: any, getState: any) => {
+    let firebase = getState().loginReducer.firebase;
+
+    if (firebase.apps) {
+      swal('Saving Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
+      swal.showLoading();
+
+      await firebase.database().ref(getState().dataReducer.category + '/' + getState().dataReducer.key + '/comments/' + id)
+        .remove().then((snapshot: any) => {
+          swal.close();
+          dispatch({ type: DEL_COMMENT, id });
+        });
+    }
+  }
+}
+
 export function saveDetailsAct(values: any) {
   return async (dispatch: any, getState: any) => {
     let firebase = getState().loginReducer.firebase;
@@ -55,7 +92,7 @@ export function saveDetailsAct(values: any) {
       swal('Saving Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
       swal.showLoading();
 
-      await firebase.database().ref('Movies/' + getState().dataReducer.key)
+      await firebase.database().ref(getState().dataReducer.category + '/' + getState().dataReducer.key)
         .set(values).then((snapshot: any) => {
           swal.close();
           dispatch(toggleEditDetailsAct(false));
