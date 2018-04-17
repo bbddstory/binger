@@ -6,10 +6,10 @@ export const TOGGLE_LOADER = 'TOGGLE_LOADER';
 export const TOGGLE_EDIT_DETAILS = 'TOGGLE_EDIT_DETAILS';
 
 // Action creators
-export function switchLocaleAct(lang: string) {
+export function switchLocaleAct(locale: string) {
   return {
     type: LOCALE,
-    lang
+    locale
   }
 }
 

@@ -32,7 +32,7 @@ let init: initInterface = {
   category: cats.HOME,
   itemCnt: 0, // Total number of records in designated category
   ipp: 12, // itemPerPage
-  pageCnt: 0,
+  pageCnt: 1,
   currPage: 1,
   startAt: 0, // Start index of items on current page
   endAt: 11 // End index of items on current page
@@ -48,7 +48,7 @@ export function dataReducer(state: any = init, action: any) {
       } else if (state.prevCat !== action.cat) { // Needs to reset all pagination related values
         ns.category = action.cat;
         ns.itemCnt = 0;
-        ns.pageCnt = 0;
+        ns.pageCnt = 1;
         ns.currPage = 1;
         ns.startAt = 0;
         ns.endAt = 11;

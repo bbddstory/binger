@@ -54,24 +54,24 @@
             }
         }
     }
-    @keyframes resetControls {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
+    // @keyframes resetControls {
+    //     from {
+    //         opacity: 0;
+    //     }
+    //     to {
+    //         opacity: 1;
+    //     }
+    // }
     .controls-fixed {
         position: absolute;
         bottom: 0;
-        opacity: 0;
+        opacity: 1;
         -webkit-box-shadow: 0px -3px 5px 0px rgba(#000, .5);
         -moz-box-shadow: 0px -3px 5px 0px rgba(#000, .5);
         box-shadow: 0px -3px 5px 0px rgba(#000, .5);
-        animation-name: resetControls;
-        animation-duration: .2s;
-        animation-fill-mode: forwards;
+        // animation-name: resetControls;
+        // animation-duration: .2s;
+        // animation-fill-mode: forwards;
         .first {
             border-top-left-radius: 5px !important;
             border-bottom-left-radius: 0 !important;

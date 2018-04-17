@@ -14,9 +14,13 @@ class Loader extends React.Component<any, any> {
     const { uiState } = this.props;
 
     return (
-      uiState.loader && <div className="spinner">
-        <div className="double-bounce1"></div>
-        <div className="double-bounce2"></div>
+      uiState.loader &&
+      <div className="loader-mask">
+        <span className="loader-title">{uiState.loaderTxt}</span>
+        {uiState.loading && <div className="spinner">
+          <div className="double-bounce1"></div>
+          <div className="double-bounce2"></div>
+        </div>}
       </div>
     )
   }
@@ -28,9 +32,6 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  // editDetailsDispatch: (status: boolean) => {
-  //   dispatch(toggleEditDetailsAct(status))
-  // },
   // saveDetailsDispatch: (values: any) => {
   //   dispatch(saveDetailsAct(values))
   // }

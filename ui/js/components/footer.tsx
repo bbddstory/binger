@@ -37,6 +37,7 @@ class Footer extends React.Component<any, any> {
 }
 
 const mapStateToProps = (store: any) => ({
+  uiState: store.uiReducer,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

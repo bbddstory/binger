@@ -20,27 +20,27 @@ export const cleanUrl = () => {
     }
 }
 
-export const parseHash = () => {
-    let hash = location.hash;
+// export const parseHash = () => {
+//     let hash = location.hash;
 
-    if (hash.indexOf('?') !== -1) { // There're parameters in the URL
-        return hash.substring(hash.lastIndexOf('/') + 1, hash.indexOf('?'))
-    } else { // There're no parameters
-        let arr = hash.split('/');
-        return arr[arr.length - 1];
-    }
-}
+//     if (hash.indexOf('?') !== -1) { // There're parameters in the URL
+//         return hash.substring(hash.lastIndexOf('/') + 1, hash.indexOf('?'))
+//     } else { // There're no parameters
+//         let arr = hash.split('/');
+//         return arr[arr.length - 1];
+//     }
+// }
 
-export const parseParam = (p: string) => {
-    let results = new RegExp('[\?&]' + p + '=[a-zA-Z0-9]*').exec(location.hash);
+// export const parseParam = (p: string) => {
+//     let results = new RegExp('[\?&]' + p + '=[a-zA-Z0-9]*').exec(location.hash);
 
-    if (results !== null) {
-        let arr = results[0].split('=');
-        return arr[arr.length - 1];
-    } else {
-        return null;
-    }
-}
+//     if (results !== null) {
+//         let arr = results[0].split('=');
+//         return arr[arr.length - 1];
+//     } else {
+//         return null;
+//     }
+// }
 
 export const inView = (el: string) => {
     let docViewTop = jq(window).scrollTop();
@@ -72,11 +72,11 @@ export const resetPages = () => {
     }
 }
 
-export const resetFooter = () => {
-    if (Math.ceil(jq('.footer').offset().top + jq('.footer').height()) < window.innerHeight) {
-        jq('.footer').addClass('footer-fixed')
-    }
-    if (Math.ceil(document.querySelector('#center').scrollHeight) > window.innerHeight) {
-        jq('.footer').removeClass('footer-fixed')
-    }
-}
+// export const resetFooter = () => {
+//     if (Math.ceil(jq('.footer').offset().top + jq('.footer').height()) < window.innerHeight) {
+//         jq('.footer').addClass('footer-fixed')
+//     }
+//     if (Math.ceil(document.querySelector('#center').scrollHeight) > window.innerHeight) {
+//         jq('.footer').removeClass('footer-fixed')
+//     }
+// }

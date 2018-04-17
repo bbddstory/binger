@@ -1,6 +1,5 @@
 'use strict';
 
-import swal from 'sweetalert2';
 import * as firebase from 'firebase';
 import config from '../util/firebase';
 import cats from '../util/cats';
@@ -12,9 +11,7 @@ export const LOGIN = 'LOGIN';
 // Action creators
 export function loginAct(email: string, pwd: string) {
   return (dispatch: any, getState: any) => {
-    // swal('Signing In', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
-    // swal.showLoading();
-    dispatch({ type: TOGGLE_LOADER, status: true });
+    dispatch({ type: TOGGLE_LOADER, status: true, loaderTxt: 'Signing in...' });
     
     // If Firebase has already been initialised, do not initialise again.
     if (!firebase.apps.length) {
@@ -23,16 +20,8 @@ export function loginAct(email: string, pwd: string) {
     
     let authPromise = firebase.auth().signInWithEmailAndPassword(email, pwd).catch(error => {
       // Handle Errors here.
-      swal({
-        type: 'error',
-        title: 'Sign in Failed',
-        html: '<span class="err-code">' + error.code + '</span>' + '<br>' + error.message,
-        showConfirmButton: true,
-        allowOutsideClick: true,
-        allowEscapeKey: true
-      }).then(() => {
-      }, (dismiss) => {
-      });
+      dispatch({ type: TOGGLE_LOADER, status: true, loaderTxt: 'Sign in Failed', loading: false });
+      console.log(error.code, error.message);
     });
     
     authPromise.then(async e => {
@@ -53,7 +42,6 @@ export function loginAct(email: string, pwd: string) {
             if (data) {
               dispatch({ type: LOGIN, data, firebase });
               dispatch({ type: TOGGLE_LOADER, status: false });
-              // swal.close();
 
               let hash = location.hash;
               if (getState().dataReducer.category === cats.HOME && !hash.endsWith('main/home')) {

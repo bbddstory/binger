@@ -18,12 +18,7 @@ class Categories extends React.Component<any, any> {
     cleanUrl();
   }
 
-  componentDidMount() {
-    // console.log(parseParam('p'));
-  }
-
   render() {
-    // const { dataState } = this.props.dataState;
     const currCat = this.props.dataState.category;
 
     return (
@@ -66,7 +61,7 @@ class Categories extends React.Component<any, any> {
 }
 
 const mapStateToProps = (store: any) => ({
-  localeState: store.localeReducer,
+  uiState: store.uiReducer,
   dataState: store.dataReducer
 });
 

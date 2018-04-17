@@ -1,11 +1,10 @@
 'use strict';
 
-import swal from 'sweetalert2';
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { parseCookie, resetSearch, resetPages, resetFooter } from '../util/utils';
+import { parseCookie, resetSearch, resetPages } from '../util/utils';
 import { loginAct } from '../actions/loginActions';
 
 import Loader from '../components/loader';
@@ -35,24 +34,15 @@ class Main extends React.Component<any, any> {
   }
 
   componentWillMount() {
-    // If this is a normal login, then firebase should exist already
+    // If this is a normal login firebase should exist already
     let firebase = this.props.loginState.firebase;
 
     if (!firebase.apps) {
       let ca = document.cookie.split(';');
 
       if (ca[0] === '' || ca.length < 2) { // No user cookies found or not enough user info
-        swal({
-          type: 'error',
-          title: 'You\'re Not Signed In',
-          html: 'Please sign in using your Google account.',
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          confirmButtonText: 'Sign In'
-        }).then(() => {
-          location.hash = '#';
-          location.reload();
-        }, (dismiss) => { });
+        location.hash = '#';
+        location.reload();
       } else {
         let co = parseCookie(ca);
         this.props.loginDispatch(co.email, co.pwd);
@@ -62,18 +52,13 @@ class Main extends React.Component<any, any> {
 
   componentDidMount() {
     document.querySelector('body').className = 'main-bg';
-    swal.hideLoading();
     window.addEventListener('scroll', resetSearch, true);
-    window.addEventListener('scroll', resetFooter, true);
     window.addEventListener('resize', resetSearch, true);
-    window.addEventListener('resize', resetFooter, true);
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', resetSearch, true);
-    window.removeEventListener('scroll', resetFooter, true);
     window.removeEventListener('resize', resetSearch, true);
-    window.removeEventListener('resize', resetFooter, true);
   }
 
   render() {

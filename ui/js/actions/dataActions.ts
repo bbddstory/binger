@@ -1,6 +1,5 @@
 'use strict';
 
-// import swal from 'sweetalert2';
 import { TOGGLE_LOADER } from '../actions/uiActions';
 
 // Action types
@@ -28,8 +27,6 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
 
     if (firebase.apps) {
       dispatch({ type: TOGGLE_LOADER, status: true });
-      // swal('Loading Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
-      // swal.showLoading();
       let itemCnt: number, noData = false;
 
       await firebase.database().ref(category)
@@ -52,11 +49,9 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
           .once('value').then((snapshot: any) => {
             dispatch({ type: GOTO_PAGE, data: snapshot.val(), itemCnt, currPage, startAt, endAt });
             dispatch({ type: TOGGLE_LOADER, status: false });
-            // swal.close();
           });
       } else {
         dispatch({ type: TOGGLE_LOADER, status: false });
-        // swal.close();
       }
     }
   }

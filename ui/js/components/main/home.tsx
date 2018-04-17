@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginAct } from '../../actions/loginActions';
 import { FormattedMessage } from "react-intl";
-import { resetFooter } from '../../util/utils';
 
 class Home extends React.Component<any, any> {
   constructor(props: any) {
@@ -15,10 +14,6 @@ class Home extends React.Component<any, any> {
 
   list(type: string) {
     return !!this.props.loginState[type]
-  }
-
-  componentDidMount() {
-    resetFooter();
   }
 
   render() {

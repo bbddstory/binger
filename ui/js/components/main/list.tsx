@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { resetPages, resetFooter } from '../../util/utils';
+import { resetPages } from '../../util/utils';
 import cats from '../../util/cats';
 import { setKeyAct, syncCatAct, loadDataAct } from '../../actions/dataActions';
 import Pages from '../pages';
@@ -30,16 +30,10 @@ class List extends React.Component<any, any> {
     this.loadData();
     window.addEventListener('scroll', resetPages, true);
     window.addEventListener('resize', resetPages, true);
-    // resetPages();
-    // resetFooter();
   }
   
   componentDidUpdate() {
     this.loadData();
-    // setTimeout(() => {
-      // resetPages();
-      // resetFooter();
-    // }, 200);
   }
 
   componentWillUnmount() {
