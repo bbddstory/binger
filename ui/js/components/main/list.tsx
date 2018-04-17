@@ -51,13 +51,13 @@ class List extends React.Component<any, any> {
             <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
               {dataState.data[key].poster && dataState.data[key].poster !== 'N/A' ?
                 <img className="thumbnail" alt="Poster" src={dataState.data[key].poster} /> :
-                <div className={'dummy-poster-' + cats.TV.toLowerCase()}></div>}
+                <div className={'dummy-poster-' + dataState.category.toLowerCase()}></div>}
             </Link>
             <div className="details">
               <div className="title">{dataState.data[key].engTitle}</div>
               <div className="details-btm">
-                <span className="year">{dataState.data[key].year}</span>
-                <br />{dataState.data[key].creator}
+                <span className="year">{dataState.data[key].year}</span><br />
+                {dataState.data[key].director || dataState.data[key].creator || dataState.data[key].prod}
               </div>
             </div>
           </div>

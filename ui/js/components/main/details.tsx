@@ -65,9 +65,9 @@ class Details extends React.Component<any, any> {
         <div>
           <div className="video-details">
             <div className="poster">
-              <img alt="Poster" width="182px"
-                src={dataState.data[key].poster && dataState.data[key].poster !== 'N/A' ?
-                  dataState.data[key].poster : this.state.dummyPoster} />
+              {dataState.data[key].poster && dataState.data[key].poster !== 'N/A' ?
+              <img alt="Poster" width="182px" src={dataState.data[key].poster} /> :
+              <div className={'dummy-poster-' + dataState.category.toLowerCase()}></div>}
             </div>
 
             <div className="entries">
@@ -79,7 +79,7 @@ class Details extends React.Component<any, any> {
               <span className="misc">
                 Year: {dataState.data[key].year}<br />
                 Runtime: {dataState.data[key].runtime}<br />
-                Creator: {dataState.data[key].creator}<br />
+                {dataState.data[key].director ? 'Director: ' + dataState.data[key].director : 'Creator: ' + dataState.data[key].creator}<br />
                 Stars: {dataState.data[key].stars}
               </span>
               <div className="actions">

@@ -6,13 +6,41 @@
     border-radius: 2px;
     .poster {
         position: relative;
-        div {
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            border-radius: 5px;
-            margin: 5px;
-            cursor: pointer;
+        .dummy-poster-movies {
+            width: 182px;
+            height: 268px;
+            background: url("../images/posters/Movies.png");
+            background-size: contain;
+        }
+        .dummy-poster-tv {
+            width: 182px;
+            height: 268px;
+            background: url("../images/posters/TV.png");
+            background-size: contain;
+        }
+        .dummy-poster-documentaries {
+            width: 182px;
+            height: 268px;
+            background: url("../images/posters/Documentaries.png");
+            background-size: contain;
+        }
+        .dummy-poster-animations {
+            width: 182px;
+            height: 268px;
+            background: url("../images/posters/Animations.png");
+            background-size: contain;
+        }
+        .dummy-poster-xxx {
+            width: 182px;
+            height: 268px;
+            background: url("../images/posters/XXX.png");
+            background-size: contain;
+        }
+        .dummy-poster-jav {
+            width: 182px;
+            height: 268px;
+            background: url("../images/posters/JAV.png");
+            background-size: contain;
         }
     }
     .entries {
