@@ -41,7 +41,6 @@ class Login extends React.Component<any, any> {
 
 // Here store is the masterStore defined in index.tsx
 const mapStateToProps = (store: any) => ({
-  // loginState: store.loginReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

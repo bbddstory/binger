@@ -4,7 +4,7 @@
 export const SEARCH = 'SEARCH';
 
 // Action creators
-export function searchAct(lang: string) {
+export function searchAct(keyword: string) {
   return (dispatch: any) => {
 
   }

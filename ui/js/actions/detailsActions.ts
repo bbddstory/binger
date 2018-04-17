@@ -1,6 +1,7 @@
 'use strict';
 
-import swal from 'sweetalert2';
+// import swal from 'sweetalert2';
+import { TOGGLE_LOADER } from '../actions/uiActions';
 
 // Action types
 export const SET_KEY = 'SET_KEY';
@@ -9,7 +10,6 @@ export const RECOMM = 'RECOMM';
 export const SAVE_COMMENT = 'SAVE_COMMENT';
 export const DEL_COMMENT = 'DEL_COMMENT';
 export const SAVE_DETAILS = 'SAVE_DETAILS';
-export const LOAD_FRIENDS = 'LOAD_FRIENDS';
 import { toggleEditDetailsAct } from '../actions/uiActions';
 
 // Action creators
@@ -54,13 +54,15 @@ export function commentAct(values: any) {
     let firebase = getState().loginReducer.firebase;
 
     if (firebase.apps) {
-      swal('Saving Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
-      swal.showLoading();
+      dispatch({ type: TOGGLE_LOADER, status: true });
+      // swal('Saving Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
+      // swal.showLoading();
 
       let ck = Object.keys(values)[0];
       await firebase.database().ref(getState().dataReducer.category + '/' + getState().dataReducer.key + '/comments')
         .update(values).then((snapshot: any) => {
-          swal.close();
+          dispatch({ type: TOGGLE_LOADER, status: false });
+          // swal.close();
           dispatch({ type: SAVE_COMMENT, values });
         });
     }
@@ -72,12 +74,14 @@ export function delCommentAct(id: string) {
     let firebase = getState().loginReducer.firebase;
 
     if (firebase.apps) {
-      swal('Saving Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
-      swal.showLoading();
+      dispatch({ type: TOGGLE_LOADER, status: true });
+      // swal('Saving Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
+      // swal.showLoading();
 
       await firebase.database().ref(getState().dataReducer.category + '/' + getState().dataReducer.key + '/comments/' + id)
         .remove().then((snapshot: any) => {
-          swal.close();
+          dispatch({ type: TOGGLE_LOADER, status: false });
+          // swal.close();
           dispatch({ type: DEL_COMMENT, id });
         });
     }
@@ -89,12 +93,14 @@ export function saveDetailsAct(values: any) {
     let firebase = getState().loginReducer.firebase;
 
     if (firebase.apps) {
-      swal('Saving Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
-      swal.showLoading();
+      dispatch({ type: TOGGLE_LOADER, status: true });
+      // swal('Saving Data', 'Please wait...', 'info').then(() => { }, (dismiss) => { });
+      // swal.showLoading();
 
       await firebase.database().ref(getState().dataReducer.category + '/' + getState().dataReducer.key)
         .set(values).then((snapshot: any) => {
-          swal.close();
+          dispatch({ type: TOGGLE_LOADER, status: false });
+          // swal.close();
           dispatch(toggleEditDetailsAct(false));
           dispatch({ type: SAVE_DETAILS, values });
         });

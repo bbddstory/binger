@@ -1,6 +1,6 @@
 'use strict';
 
-import { GOTO_PAGE, SET_KEY } from '../actions/dataActions';
+import { GOTO_PAGE, SET_KEY, SYNC_CAT } from '../actions/dataActions';
 import { SAVE_COMMENT, DEL_COMMENT, SAVE_DETAILS } from '../actions/detailsActions';
 import { SWITCH_CAT } from '../actions/categoriesActions';
 import cats from '../util/cats';
@@ -28,6 +28,7 @@ let init: initInterface = {
   // },
   key: '',
   data: {},
+  prevCat: cats.HOME,
   category: cats.HOME,
   itemCnt: 0, // Total number of records in designated category
   ipp: 12, // itemPerPage
@@ -44,7 +45,7 @@ export function dataReducer(state: any = init, action: any) {
     case SWITCH_CAT:
       if (action.cat === cats.HOME) {
         ns.category = action.cat;
-      } else { // Needs to reset all pagination related values
+      } else if (state.prevCat !== action.cat) { // Needs to reset all pagination related values
         ns.category = action.cat;
         ns.itemCnt = 0;
         ns.pageCnt = 0;
@@ -65,6 +66,10 @@ export function dataReducer(state: any = init, action: any) {
       return ns;
     case SET_KEY:
       ns.key = action.key;
+
+      return ns;
+    case SYNC_CAT:
+      ns.prevCat = ns.category;
 
       return ns;
     case SAVE_DETAILS:

@@ -103,8 +103,6 @@ class Details extends React.Component<any, any> {
                 <a className="douban" target="_blank" href={dataState.data[key].douban}></a>
               </div>
             </div>
-
-            {uiState.editDetails && <EditDetails />}
           </div>
 
           <h1>Trailer and featurette</h1>
@@ -139,6 +137,8 @@ class Details extends React.Component<any, any> {
               <span>{dataState.data[key].comments[id].txt}</span>
             </div>
           })}
+
+          {uiState.editDetails && <EditDetails />}
         </div>
       )
     } else {

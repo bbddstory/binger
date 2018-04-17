@@ -5,22 +5,20 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { resetPages, resetFooter } from '../../util/utils';
 import cats from '../../util/cats';
-import { loadDataAct, setKeyAct } from '../../actions/dataActions';
+import { setKeyAct, syncCatAct, loadDataAct } from '../../actions/dataActions';
 import Pages from '../pages';
 
-class Docs extends React.Component<any, any> {
+class List extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { dummyPoster: 'images/movie/poster.png' };
+    this.state = { dummyPoster: 'images/posters/' + this.props.dataState.category + '.png' };
   }
-
-  componentWillMount() {
-    // let data = this.props.dataState.data;
-    
-    // if (data.constructor === Object && Object.keys(data).length === 0) {
-    if (this.props.dataState.category === cats.DOC) {
+  
+  loadData() {
+    if (this.props.dataState.category !== this.props.dataState.prevCat) {
+      this.props.syncCat();
       this.props.loadDataDispatch(
-        cats.DOC,
+        this.props.dataState.category,
         this.props.dataState.currPage,
         this.props.dataState.startAt,
         this.props.dataState.endAt
@@ -29,15 +27,18 @@ class Docs extends React.Component<any, any> {
   }
 
   componentDidMount() {
+    this.loadData();
     window.addEventListener('scroll', resetPages, true);
     window.addEventListener('resize', resetPages, true);
-    resetFooter();
+    // resetPages();
+    // resetFooter();
   }
   
   componentDidUpdate() {
+    this.loadData();
     // setTimeout(() => {
-    //   resetPages();
-    //   resetFooter();
+      // resetPages();
+      // resetFooter();
     // }, 200);
   }
 
@@ -50,19 +51,19 @@ class Docs extends React.Component<any, any> {
     const { dataState } = this.props;
 
     return (
-      <div className="movies">
+      <div className="list">
         {dataState.data && Object.keys(dataState.data).length && Object.keys(dataState.data).map((key: any) => {
           return <div className="tile" key={key}>
             <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
-              {/* <img className="thumbnail" alt="Poster"
-                src={dataState.data[key].poster === 'N/A' ?
-                  this.state.dummyPoster : dataState.data[key].poster} /> */}
+              {dataState.data[key].poster && dataState.data[key].poster !== 'N/A' ?
+                <img className="thumbnail" alt="Poster" src={dataState.data[key].poster} /> :
+                <div className={'dummy-poster-' + cats.TV.toLowerCase()}></div>}
             </Link>
             <div className="details">
               <div className="title">{dataState.data[key].engTitle}</div>
-              <div className="director">
+              <div className="details-btm">
                 <span className="year">{dataState.data[key].year}</span>
-                {/* <br />{dataState.data[key].director} */}
+                <br />{dataState.data[key].creator}
               </div>
             </div>
           </div>
@@ -78,6 +79,9 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
+  syncCat: () => {
+    dispatch(syncCatAct())
+  },
   loadDataDispatch: (category: string, currPage: number, startAt: number, endAt: number) => {
     dispatch(loadDataAct(category, currPage, startAt, endAt))
   },
@@ -86,4 +90,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Docs);
+export default connect(mapStateToProps, mapDispatchToProps)(List);

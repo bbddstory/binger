@@ -1,18 +1,12 @@
 'use strict';
 
 import { combineReducers } from 'redux';
-import { localeReducer } from './localeReducer';
-import { loginReducer } from './loginReducer';
-import { homeReducer } from './homeReducer';
-import { dataReducer } from './dataReducer';
-import { detailsReducer } from './detailsReducer';
 import { uiReducer } from './uiReducer';
+import { loginReducer } from './loginReducer';
+import { dataReducer } from './dataReducer';
 
 export default combineReducers({
-  localeReducer,
+  uiReducer,
   loginReducer,
-  homeReducer,
-  dataReducer,
-  detailsReducer,
-  uiReducer
+  dataReducer
 });

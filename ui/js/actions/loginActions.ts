@@ -52,8 +52,8 @@ export function loginAct(email: string, pwd: string) {
 
             if (data) {
               dispatch({ type: LOGIN, data, firebase });
-              // swal.close();
               dispatch({ type: TOGGLE_LOADER, status: false });
+              // swal.close();
 
               let hash = location.hash;
               if (getState().dataReducer.category === cats.HOME && !hash.endsWith('main/home')) {

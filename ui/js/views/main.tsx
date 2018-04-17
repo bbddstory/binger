@@ -13,10 +13,7 @@ import Header from '../components/header';
 import Categories from '../components/categories';
 import Search from '../components/search';
 import Home from '../components/main/home';
-import Movies from '../components/main/movies';
-import Tv from '../components/main/tv';
-import Docs from '../components/main/docs';
-import Anime from '../components/main/anime';
+import List from '../components/main/list';
 import Details from '../components/main/details';
 import EditDetails from '../components/main/editDetails';
 import Footer from '../components/footer';
@@ -79,16 +76,11 @@ class Main extends React.Component<any, any> {
     window.removeEventListener('resize', resetFooter, true);
   }
 
-  // componentDidUpdate() {
-  //   resetPages();
-  //   resetFooter();
-  // }
-
   render() {
-    const { localeState } = this.props;
+    const { uiState } = this.props;
 
     return (
-      <IntlProvider locale={localeState.lang} messages={lang[localeState.lang]}>
+      <IntlProvider locale={uiState.locale} messages={lang[uiState.locale]}>
         <div id='center'>
           <Loader />
           <Header />
@@ -96,16 +88,15 @@ class Main extends React.Component<any, any> {
           <Search />
           <Switch>
             <Route path='/main/home' component={Home} />
-            <Route path='/main/movies' component={Movies} />
-            <Route path='/main/tv' component={Tv} />
-            <Route path='/main/docs' component={Docs} />
-            <Route path='/main/anime' component={Anime} />
-            <Route path='/main/xxx' component={Movies} />
-            <Route path='/main/jav' component={Movies} />
+            <Route path='/main/movies' component={List} />
+            <Route path='/main/tv' component={List} />
+            <Route path='/main/docs' component={List} />
+            <Route path='/main/anime' component={List} />
+            <Route path='/main/xxx' component={List} />
+            <Route path='/main/jav' component={List} />
             <Route path='/main/details' component={Details} />
           </Switch>
           <Footer />
-          {/* {localeState.lang === 'en' && <EditDetails />} */}
         </div>
       </IntlProvider>
     )
@@ -113,7 +104,7 @@ class Main extends React.Component<any, any> {
 }
 
 const mapStateToProps = (store: any) => ({
-  localeState: store.localeReducer,
+  uiState: store.uiReducer,
   loginState: store.loginReducer
 });
 

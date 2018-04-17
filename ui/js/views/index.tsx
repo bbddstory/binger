@@ -24,11 +24,6 @@ class App extends React.Component<any, any> {
   }
 }
 
-// const loginMiddleware = (store: any) => (next: any) => (action: any) => {
-//   console.log('loginMiddleware: ', action);
-//   next(action);
-// }
-
 // Create master store for all data
 let masterStore = createStore(masterReducer, applyMiddleware(thunk));
 

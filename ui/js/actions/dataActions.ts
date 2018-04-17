@@ -1,17 +1,24 @@
 'use strict';
 
-import swal from 'sweetalert2';
+// import swal from 'sweetalert2';
 import { TOGGLE_LOADER } from '../actions/uiActions';
 
 // Action types
 export const GOTO_PAGE = 'GOTO_PAGE';
 export const SET_KEY = 'SET_KEY';
+export const SYNC_CAT = 'SYNC_CAT';
 
 // Action creators
 export function setKeyAct(key: string) {
   return {
     type: SET_KEY,
     key
+  }
+}
+
+export function syncCatAct() {
+  return {
+    type: SYNC_CAT
   }
 }
 
@@ -43,7 +50,6 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
         await firebase.database().ref(category)
           .orderByChild('index').startAt(startAt).endAt(endAt)
           .once('value').then((snapshot: any) => {
-            // DISPATCH from here
             dispatch({ type: GOTO_PAGE, data: snapshot.val(), itemCnt, currPage, startAt, endAt });
             dispatch({ type: TOGGLE_LOADER, status: false });
             // swal.close();

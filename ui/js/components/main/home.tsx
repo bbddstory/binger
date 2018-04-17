@@ -4,7 +4,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginAct } from '../../actions/loginActions';
-// import { loadWatchLaterAct, loadRecommAct } from '../../actions/homeActions';
 import { FormattedMessage } from "react-intl";
 import { resetFooter } from '../../util/utils';
 
@@ -15,16 +14,7 @@ class Home extends React.Component<any, any> {
   }
 
   list(type: string) {
-    // console.log(this.props.loginState);
-    // return false;
-    
-    // return !!Object.keys(this.props.loginState[type])
     return !!this.props.loginState[type]
-  }
-
-  componentWillMount() {
-    // this.props.loadWatchLaterDispatch();
-    // this.props.loadRecommDispatch();
   }
 
   componentDidMount() {
@@ -87,12 +77,7 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  // loadWatchLaterDispatch: () => {
-  //   dispatch(loadWatchLaterAct())
-  // },
-  // loadRecommDispatch: () => {
-  //   dispatch(loadRecommAct())
-  // }
+  // loadRecommDispatch: () => dispatch(loadRecommAct())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

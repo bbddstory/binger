@@ -13,7 +13,7 @@ class Search extends React.Component<any, any> {
   }
   
   placeholderTxt() {
-    return lang[this.props.localeState.lang]['search.txt']
+    return lang[this.props.uiState.locale]['search.txt']
   }
 
   componentDidMount() {
@@ -50,7 +50,7 @@ class Search extends React.Component<any, any> {
 }
 
 const mapStateToProps = (store: any) => ({
-  localeState: store.localeReducer
+  uiState: store.uiReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

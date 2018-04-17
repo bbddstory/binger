@@ -1,7 +1,6 @@
 'use strict';
 
 import { LOGIN } from '../actions/loginActions';
-import { LOAD_FRIENDS } from '../actions/detailsActions';
 
 let init = {
   email: '',
@@ -14,8 +13,6 @@ export function loginReducer(state: any = init, action: any) {
 
   switch (action.type) {
     case LOGIN:
-      console.log(action.firebase);
-      
       ns = action.data;
       ns.category = 'home';
       ns.user = action.data.email.substr(0, action.data.email.indexOf('@'));
@@ -32,10 +29,6 @@ export function loginReducer(state: any = init, action: any) {
       //   foo_9: 'Akira',
       //   foo_10: 'Ishigawa Kentosan'
       // }
-
-      return ns;
-    case LOAD_FRIENDS:
-      ns.friends = action.data;
 
       return ns;
     default:

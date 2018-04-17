@@ -12,7 +12,7 @@ export function loadWatchLaterAct() {
 
     if (firebase.apps) {
       await firebase.database().ref('Users/' + user + '/watchlater')
-        .orderByChild('index')//.limitToLast(1)
+        .orderByChild('index')
         .once('value').then((snapshot: any) => {
           let data = snapshot.val();
 
@@ -31,7 +31,7 @@ export function loadRecommAct() {
 
     if (firebase.apps) {
       await firebase.database().ref('Users/' + user + '/recomm')
-        .orderByChild('index')//.limitToLast(1)
+        .orderByChild('index')
         .once('value').then((snapshot: any) => {
           let data = snapshot.val();
 
