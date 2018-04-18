@@ -5,13 +5,13 @@ import { SAVE_COMMENT, DEL_COMMENT, SAVE_DETAILS } from '../actions/detailsActio
 import { SWITCH_CAT } from '../actions/categoriesActions';
 import cats from '../util/cats';
 
-interface initInterface {
+interface IDataReducer {
   [key: string]: any
 }
 
-let init: initInterface = {
+let init: IDataReducer = {
   // key: '-L75lYVDwtkdnCrElxSV',
-  // data: {
+  // buffer: {
   //   "-L75lYVDwtkdnCrElxSV": {
   //     "director": "Khian Bartlett, Carol Damgen",
   //     "engTitle": "Three Billboards Outside Ebbing, Missouri",
@@ -27,7 +27,7 @@ let init: initInterface = {
   //   }
   // },
   key: '',
-  data: {},
+  buffer: {},
   latest: {},
   prevCat: cats.HOME,
   category: cats.HOME,
@@ -61,7 +61,7 @@ export function dataReducer(state: any = init, action: any) {
 
       return ns;
     case GOTO_PAGE:
-      ns.data = action.data;
+      ns.buffer = action.buffer;
       ns.itemCnt = action.itemCnt;
       ns.pageCnt = Math.ceil(action.itemCnt / init.ipp);
       ns.currPage = action.currPage;
@@ -78,16 +78,16 @@ export function dataReducer(state: any = init, action: any) {
 
       return ns;
     case SAVE_DETAILS:
-      ns.data[state.key] = action.values;
+      ns.buffer[state.key] = action.values;
 
       return ns;
     case SAVE_COMMENT:
       let ck = Object.keys(action.values)[0];
-      ns.data[state.key].comments[ck] = action.values[ck];
+      ns.buffer[state.key].comments[ck] = action.values[ck];
 
       return ns;
     case DEL_COMMENT:
-      delete ns.data[state.key].comments[action.id];
+      delete ns.buffer[state.key].comments[action.id];
 
       return ns;
     default:

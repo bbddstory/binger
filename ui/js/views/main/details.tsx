@@ -60,33 +60,33 @@ class Details extends React.Component<any, any> {
     const key = this.props.dataState.key;
     const { opts, recomm, showComment } = this.state;
 
-    if (Object.keys(dataState.data).length) {
+    if (Object.keys(dataState.buffer).length) {
       return (
         <div>
           <div className="video-details">
             <div className="poster">
-              {dataState.data[key].poster && dataState.data[key].poster !== 'N/A' ?
-              <img alt="Poster" width="182px" src={dataState.data[key].poster} /> :
+              {dataState.buffer[key].poster && dataState.buffer[key].poster !== 'N/A' ?
+              <img alt="Poster" width="182px" src={dataState.buffer[key].poster} /> :
               <div className={'dummy-poster-' + dataState.category.toLowerCase()}></div>}
             </div>
 
             <div className="entries">
-              <span className="title">{dataState.data[key].engTitle}</span>
+              <span className="title">{dataState.buffer[key].engTitle}</span>
               <span className="orig-title">
-                {dataState.data[key].origTitle === 'N/A' || dataState.data[key].engTitle === dataState.data[key].origTitle ?
-                  '' : dataState.data[key].origTitle + ' (original title)'}
+                {dataState.buffer[key].origTitle === 'N/A' || dataState.buffer[key].engTitle === dataState.buffer[key].origTitle ?
+                  '' : dataState.buffer[key].origTitle + ' (original title)'}
               </span>
               <span className="misc">
-                Year: {dataState.data[key].year}<br />
-                Runtime: {dataState.data[key].runtime}<br />
-                {dataState.data[key].director ? 'Director: ' + dataState.data[key].director : 'Creator: ' + dataState.data[key].creator}<br />
-                Stars: {dataState.data[key].stars}
+                Year: {dataState.buffer[key].year}<br />
+                Runtime: {dataState.buffer[key].runtime}<br />
+                {dataState.buffer[key].director ? 'Director: ' + dataState.buffer[key].director : 'Creator: ' + dataState.buffer[key].creator}<br />
+                Stars: {dataState.buffer[key].stars}
               </span>
               <div className="actions">
                 <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
                 <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
                 <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true)}></div>
-                <a target="_blank" href={'https://subscene.com/subtitles/title?q=' + dataState.data[key].engTitle}></a>
+                <a target="_blank" href={'https://subscene.com/subtitles/title?q=' + dataState.buffer[key].engTitle}></a>
                 {recomm && <ul>
                   {Object.keys(loginState.friends).map((user: string) => {
                     return <li key={user} onClick={e => this.props.recommDispatch(user)}>{loginState.friends[user]}</li>
@@ -96,22 +96,22 @@ class Details extends React.Component<any, any> {
             </div>
 
             <div className="plot">
-              <div className="plot-txt">{dataState.data[key].plot}</div>
+              <div className="plot-txt">{dataState.buffer[key].plot}</div>
               <div className="sites">
-                <a className="imdb" target="_blank" href={'http://www.imdb.com/title/' + dataState.data[key].imdb_id}></a>
-                <a className="douban" target="_blank" href={dataState.data[key].douban}></a>
-                <a className="mtime" target="_blank" href={dataState.data[key].mtime}></a>
+                <a className="imdb" target="_blank" href={'http://www.imdb.com/title/' + dataState.buffer[key].imdb_id}></a>
+                <a className="douban" target="_blank" href={dataState.buffer[key].douban}></a>
+                <a className="mtime" target="_blank" href={dataState.buffer[key].mtime}></a>
               </div>
             </div>
           </div>
 
           <h1>Trailer and featurette</h1>
           <div className="trailer">
-            <iframe width="440" height="247.5" src={dataState.data[key].trailer} frameBorder="0" allowFullScreen></iframe>
-            <iframe width="440" height="247.5" src={dataState.data[key].featurette} frameBorder="0" allowFullScreen></iframe>
+            <iframe width="440" height="247.5" src={dataState.buffer[key].trailer} frameBorder="0" allowFullScreen></iframe>
+            <iframe width="440" height="247.5" src={dataState.buffer[key].featurette} frameBorder="0" allowFullScreen></iframe>
           </div>
           <div className="youtube">
-            <a target="_blank" href={'https://www.youtube.com/results?search_query=' + dataState.data[key].engTitle}>More videos on YouTube</a>
+            <a target="_blank" href={'https://www.youtube.com/results?search_query=' + dataState.buffer[key].engTitle}>More videos on YouTube</a>
           </div>
 
           <h1>Comments</h1>
@@ -125,16 +125,16 @@ class Details extends React.Component<any, any> {
             </div>}
           </div>
 
-          {dataState.data[key].comments && Object.keys(dataState.data[key].comments).map((id: any) => {
+          {dataState.buffer[key].comments && Object.keys(dataState.buffer[key].comments).map((id: any) => {
             return <div className="comment" key={id}>
               <div className="title-row">
-                {dataState.data[key].comments[id].user === loginState.user && <div className="del-comment" onClick={e => this.props.delCommentDispatch(id)}></div>}
+                {dataState.buffer[key].comments[id].user === loginState.user && <div className="del-comment" onClick={e => this.props.delCommentDispatch(id)}></div>}
                 <div>
-                  <h2>{dataState.data[key].comments[id].title}</h2>
-                  <h4>{dataState.data[key].comments[id].time} by {dataState.data[key].comments[id].user}</h4>
+                  <h2>{dataState.buffer[key].comments[id].title}</h2>
+                  <h4>{dataState.buffer[key].comments[id].time} by {dataState.buffer[key].comments[id].user}</h4>
                 </div>
               </div>
-              <span>{dataState.data[key].comments[id].txt}</span>
+              <span>{dataState.buffer[key].comments[id].txt}</span>
             </div>
           })}
 

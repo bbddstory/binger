@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginAct } from '../../actions/loginActions';
 import { FormattedMessage } from "react-intl";
+import TileList from './tileList';
 
 class Home extends React.Component<any, any> {
   constructor(props: any) {
@@ -25,22 +26,24 @@ class Home extends React.Component<any, any> {
         <h3><FormattedMessage id='home.latest' /></h3>
         <div className={!this.list('watchlater') ? "my-list empty" : "my-list"}>
           {!this.list('watchlater') ? <FormattedMessage id='home.empty' /> :
-            Object.keys(dataState.latest).map((key: any) => {
-              return <div className="tile" key={key}>
-                <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
-                  {dataState.latest[key].poster && dataState.latest[key].poster !== 'N/A' ?
-                    <img className="thumbnail" alt="Poster" src={dataState.latest[key].poster} /> :
-                    <div className="dummy-poster-new"></div>}
-                </Link>
-                <div className="details">
-                  <div className="title">{dataState.latest[key].engTitle}</div>
-                  <div className="director">
-                    <span className="year">{dataState.latest[key].year}</span>
-                    <br />{dataState.latest[key].director}
-                  </div>
-                </div>
-              </div>
-            })}
+            <TileList dataRef={dataState.latest} showPages={false} category="" />
+            // Object.keys(dataState.latest).map((key: any) => {
+            //   return <div className="tile" key={key}>
+            //     <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
+            //       {dataState.latest[key].poster && dataState.latest[key].poster !== 'N/A' ?
+            //         <img className="thumbnail" alt="Poster" src={dataState.latest[key].poster} /> :
+            //         <div className="dummy-poster-new"></div>}
+            //     </Link>
+            //     <div className="details">
+            //       <div className="title">{dataState.latest[key].engTitle}</div>
+            //       <div className="director">
+            //         <span className="year">{dataState.latest[key].year}</span>
+            //         <br />{dataState.latest[key].director}
+            //       </div>
+            //     </div>
+            //   </div>
+            // })
+          }
         </div>
 
         <h3><FormattedMessage id='home.watch' /></h3>

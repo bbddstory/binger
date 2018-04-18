@@ -34,10 +34,10 @@ export function loadLatestAct() {
         await firebase.database().ref(cats[p])
           .orderByChild('index').limitToLast(3)
           .once('value').then((snapshot: any) => {
-            let data = snapshot.val();
+            let buffer = snapshot.val();
   
-            if (data) {
-              ns = (<any>Object).assign(ns, data);
+            if (buffer) {
+              ns = (<any>Object).assign(ns, buffer);
             }
           });
       }
@@ -58,11 +58,11 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
       await firebase.database().ref(category)
         .orderByChild('index').limitToLast(1)
         .once('value').then((snapshot: any) => {
-          let data = snapshot.val();
+          let buffer = snapshot.val();
 
-          if (data) {
-            for (let p in data) {
-              itemCnt = data[p]['index'] + 1;
+          if (buffer) {
+            for (let p in buffer) {
+              itemCnt = buffer[p]['index'] + 1;
             }
           } else {
             noData = true;
@@ -73,7 +73,7 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
         await firebase.database().ref(category)
           .orderByChild('index').startAt(startAt).endAt(endAt)
           .once('value').then((snapshot: any) => {
-            dispatch({ type: GOTO_PAGE, data: snapshot.val(), itemCnt, currPage, startAt, endAt });
+            dispatch({ type: GOTO_PAGE, buffer: snapshot.val(), itemCnt, currPage, startAt, endAt });
             dispatch({ type: TOGGLE_LOADER, status: false });
           });
       } else {

@@ -58,52 +58,52 @@ class EditDetails extends React.Component<any, any> {
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ width: '48.5%' }}>
                   <label>English Title</label>
-                  <Control.text model=".engTitle" placeholder="N/A" defaultValue={dataState.data[key].engTitle} />
+                  <Control.text model=".engTitle" placeholder="N/A" defaultValue={dataState.buffer[key].engTitle} />
                   {this.state.engTitle && <span>Contains invalid characters</span>}
                 </div>
                 <div style={{ width: '49%' }}>
                   <label>Original Title</label>
-                  <Control.text model=".origTitle" placeholder="N/A" defaultValue={dataState.data[key].origTitle} />
+                  <Control.text model=".origTitle" placeholder="N/A" defaultValue={dataState.buffer[key].origTitle} />
                   {this.state.origTitle && <span>Contains invalid characters</span>}
                 </div>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ width: '22.9%' }}>
                   <label>Year</label>
-                  <Control.text model=".year" placeholder="N/A" defaultValue={dataState.data[key].year} />
+                  <Control.text model=".year" placeholder="N/A" defaultValue={dataState.buffer[key].year} />
                   {this.state.year && <span>Must be 4 digits</span>}
                 </div>
                 <div style={{ width: '22.9%' }}>
                   <label>Runtime</label>
-                  <Control.text model=".runtime" placeholder="N/A" defaultValue={dataState.data[key].runtime} />
+                  <Control.text model=".runtime" placeholder="N/A" defaultValue={dataState.buffer[key].runtime} />
                   {this.state.runtime && <span>Format: 1h 30min</span>}
                 </div>
                 <div style={{ width: '49%' }}>
                   <label>Director(s)</label>
-                  <Control.text model=".director" placeholder="N/A" defaultValue={dataState.data[key].director} />
+                  <Control.text model=".director" placeholder="N/A" defaultValue={dataState.buffer[key].director} />
                   {this.state.director && <span>One or more names separated by comma</span>}
                 </div>
               </div>
               <label>Poster</label>
-              <Control.textarea className="poster" model=".poster" placeholder="N/A" defaultValue={dataState.data[key].poster} />
+              <Control.textarea className="poster" model=".poster" placeholder="N/A" defaultValue={dataState.buffer[key].poster} />
               {this.state.poster && <span>Must be a valid URL</span>}
               <label className="textarea-lbl">Plot</label>
-              <Control.textarea className="plot" model=".plot" placeholder="N/A" defaultValue={dataState.data[key].plot} />
+              <Control.textarea className="plot" model=".plot" placeholder="N/A" defaultValue={dataState.buffer[key].plot} />
               {this.state.plot && <span>Contains invalid characters</span>}
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ width: '23%' }}>
                   <label>IMDB ID</label>
-                  <Control.text model=".imdb_id" placeholder="N/A" defaultValue={dataState.data[key].imdb_id} />
+                  <Control.text model=".imdb_id" placeholder="N/A" defaultValue={dataState.buffer[key].imdb_id} />
                   {this.state.imdb_id && <span>Format: tt1234567</span>}
                 </div>
                 <div style={{ width: '23%' }}>
                   <label>Rating</label>
-                  <Control.text model=".rating" placeholder="N/A" defaultValue={dataState.data[key].rating} />
+                  <Control.text model=".rating" placeholder="N/A" defaultValue={dataState.buffer[key].rating} />
                   {this.state.rating && <span>Format: 9.9</span>}
                 </div>
                 <div style={{ width: '23%' }}>
                   <label>Status</label>
-                  <Control.select model=".status" defaultValue={dataState.data[key].status}>
+                  <Control.select model=".status" defaultValue={dataState.buffer[key].status}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -117,7 +117,7 @@ class EditDetails extends React.Component<any, any> {
                 </div>
                 <div style={{ width: '23%' }}>
                   <label>Index</label>
-                  <Control.text model=".index" placeholder="N/A" defaultValue={dataState.data[key].index} readOnly/>
+                  <Control.text model=".index" placeholder="N/A" defaultValue={dataState.buffer[key].index} readOnly/>
                 </div>
               </div>
             </div>

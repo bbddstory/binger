@@ -6,16 +6,7 @@ import { connect } from 'react-redux';
 import { switchCatAct } from '../../actions/categoriesActions';
 import cats from '../../util/cats';
 
-export interface props { txt: string, switchCatDispatch: any, loginState: any }
-
-interface IReduxProps extends React.Props<any> {
-  txt: string, switchCatDispatch: any, loginState: any
-}
-
-interface ICompProps extends React.Props<any> {
-}
-
-class Header extends React.Component<IReduxProps & ICompProps, any> {
+class Header extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {}
@@ -47,4 +38,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   }
 });
 
-export default connect<{}, {}, ICompProps>(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

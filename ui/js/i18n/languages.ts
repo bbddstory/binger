@@ -1,8 +1,8 @@
-interface LangInterface {
+interface ILocaleLang {
     [key: string]: any
 }
 
-const lang: LangInterface = {
+const lang: ILocaleLang = {
     en: {
         'cats.movies': 'Movies',
         'cats.tv': 'TV',

@@ -13,9 +13,9 @@ export function loginReducer(state: any = init, action: any) {
 
   switch (action.type) {
     case LOGIN:
-      ns = action.data;
+      ns = action.buffer;
       ns.category = 'home';
-      ns.user = action.data.email.substr(0, action.data.email.indexOf('@'));
+      ns.user = action.buffer.email.substr(0, action.buffer.email.indexOf('@'));
       ns.firebase = action.firebase;
       // ns.friends = {
       //   foo_1: 'John',

@@ -1,9 +1,10 @@
-interface catsInterface {
+interface ICats {
     [key: string]: string
 }
 
-const cats: catsInterface = {
+const cats: ICats = {
     HOME: 'Home',
+    NEW: 'New',
     MOVIE: 'Movies',
     TV: 'TV',
     DOC: 'Documentaries',

@@ -1,8 +1,8 @@
-interface regexInterface {
+interface IRegex {
     [key: string]: RegExp
 }
 
-const regex: regexInterface = {
+const regex: IRegex = {
     director: /^[a-zA-Z\s,\']+$/,
     engTitle: /^[a-zA-Z0-9,.:\'\-\s]+$/,
     imdb_id: /^[t]{2}[0-9]{7}$/,

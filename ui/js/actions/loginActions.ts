@@ -38,10 +38,10 @@ export function loginAct(email: string, pwd: string) {
 
         await firebase.database().ref('Users/' + user)
           .on('value', (snapshot: any) => {
-            let data = snapshot.val();
+            let buffer = snapshot.val();
 
-            if (data) {
-              dispatch({ type: LOGIN, data, firebase });
+            if (buffer) {
+              dispatch({ type: LOGIN, buffer, firebase });
               dispatch({ type: TOGGLE_LOADER, status: false });
 
               dispatch(loadLatestAct());
