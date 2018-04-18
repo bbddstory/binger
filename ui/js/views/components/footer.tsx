@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FormattedMessage } from "react-intl";
-import { switchLocaleAct } from '../actions/uiActions';
+import { switchLocaleAct } from '../../actions/uiActions';
 
 class Footer extends React.Component<any, any> {
   constructor(props: any) {
@@ -18,7 +18,7 @@ class Footer extends React.Component<any, any> {
     return (
       <div className="footer">
         <ol>
-          <li><Link to="/main/nas"><FormattedMessage id='ft.zone' /></Link></li>
+          <li><a target="_blank" href="http://quickconnect.to/phantomzone"><FormattedMessage id='ft.zone' /></a></li>
           <li><Link to="/main/home"><FormattedMessage id='ft.home' /></Link></li>
           <li><Link to="/main/feedback">
             {/* <img alt="Feedback" src="images/footer/ic_feedback_white_24px.svg" /> */}

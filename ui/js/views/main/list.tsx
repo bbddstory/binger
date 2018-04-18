@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { resetPages } from '../../util/utils';
 import cats from '../../util/cats';
 import { setKeyAct, syncCatAct, loadDataAct } from '../../actions/dataActions';
-import Pages from '../pages';
+import Pages from '../components/pages';
 
 class List extends React.Component<any, any> {
   constructor(props: any) {

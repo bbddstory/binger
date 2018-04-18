@@ -8,7 +8,7 @@
     background: rgba(#000, .8);
     .loader-title {
         position: absolute;
-        top: 47%;
+        top: calc(50% - 20px);
         left: 50%;
         transform: translate(-50%);
         color: #f2f2f2;
@@ -19,7 +19,7 @@
         width: 50px;
         height: 50px;
         position: absolute;
-        top: 52%;
+        top: calc(50% + 20px);
         left: 50%;
         transform: translate(-50%);
         margin: 0;

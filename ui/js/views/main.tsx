@@ -7,18 +7,21 @@ import { connect } from 'react-redux';
 import { parseCookie, resetSearch, resetPages } from '../util/utils';
 import { loginAct } from '../actions/loginActions';
 
-import Loader from '../components/loader';
-import Header from '../components/header';
-import Categories from '../components/categories';
-import Search from '../components/search';
-import Home from '../components/main/home';
-import List from '../components/main/list';
-import Details from '../components/main/details';
-import EditDetails from '../components/main/editDetails';
-import Footer from '../components/footer';
+// Components
+import Loader from './components/loader';
+import Header from './components/header';
+import Categories from './components/categories';
+import Search from './components/search';
+import Footer from './components/footer';
+
+// Main
+import Home from './main/home';
+import List from './main/list';
+import Details from './main/details';
+import EditDetails from './main/editDetails';
 
 import { IntlProvider, addLocaleData } from 'react-intl';
-import lang from '../../i18n/languages';
+import lang from '../i18n/languages';
 import * as en from 'react-intl/locale-data/en';
 import * as zh from 'react-intl/locale-data/zh';
 import * as ja from 'react-intl/locale-data/ja';

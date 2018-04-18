@@ -4,9 +4,9 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { cleanUrl } from '../util/utils';
-import { switchCatAct } from '../actions/categoriesActions';
-import cats from '../util/cats';
+import { cleanUrl } from '../../util/utils';
+import { switchCatAct } from '../../actions/categoriesActions';
+import cats from '../../util/cats';
 
 class Categories extends React.Component<any, any> {
   constructor(props: any) {

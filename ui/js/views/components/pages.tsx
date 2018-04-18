@@ -3,7 +3,7 @@
 import * as jq from 'jquery';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { loadDataAct } from '../actions/dataActions';
+import { loadDataAct } from '../../actions/dataActions';
 // import vTypes from '../util/vTypes';
 
 class Pages extends React.Component<any, any> {

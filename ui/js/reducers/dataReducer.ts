@@ -1,6 +1,6 @@
 'use strict';
 
-import { GOTO_PAGE, SET_KEY, SYNC_CAT } from '../actions/dataActions';
+import { GOTO_PAGE, SET_KEY, SYNC_CAT, LOAD_LATEST } from '../actions/dataActions';
 import { SAVE_COMMENT, DEL_COMMENT, SAVE_DETAILS } from '../actions/detailsActions';
 import { SWITCH_CAT } from '../actions/categoriesActions';
 import cats from '../util/cats';
@@ -28,6 +28,7 @@ let init: initInterface = {
   // },
   key: '',
   data: {},
+  latest: {},
   prevCat: cats.HOME,
   category: cats.HOME,
   itemCnt: 0, // Total number of records in designated category
@@ -42,6 +43,10 @@ export function dataReducer(state: any = init, action: any) {
   let ns = (<any>Object).assign({}, state);
 
   switch (action.type) {
+    case LOAD_LATEST:
+      ns.latest = action.latest;
+
+      return ns;
     case SWITCH_CAT:
       if (action.cat === cats.HOME) {
         ns.category = action.cat;

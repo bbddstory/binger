@@ -6,15 +6,15 @@
 @import './views/index';
 
 // Components
-@import './components/loader';
-@import './components/header';
-@import './components/categories';
-@import './components/search';
-@import './components/pages';
-@import './components/footer';
+@import './views/components/loader';
+@import './views/components/header';
+@import './views/components/categories';
+@import './views/components/search';
+@import './views/components/pages';
+@import './views/components/footer';
 
 // Components/Main
-@import './components/main/home';
-@import './components/main/list';
-@import './components/main/details';
-@import './components/main/editDetails';
+@import './views/main/home';
+@import './views/main/list';
+@import './views/main/details';
+@import './views/main/editDetails';

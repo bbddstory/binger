@@ -1,10 +1,30 @@
-.list {
-    width: 900px;
+.home {
+    h3 {
+        color: #fff;
+        font-size: 24px;
+    }
+    .my-list {
+        background: rgba(#000, .5);
+        height: 375px;
+        width: 900px;
+        border-radius: 2px;
+        overflow-y: auto;
+        color: #f2f2f2;
+        padding: 30px;
+        box-sizing: border-box;
+        margin-top: 10px;
+        margin-bottom: 50px;
+    }
+    .empty {
+        text-align: center;
+        line-height: 315px;
+        color: #888;
+    }
     .tile {
         display: inline-block;
-        width: 280px;
-        background: rgba(0, 0, 0, .2);
-        margin: 0 10px 45px;
+        width: 277px;
+        // background: rgba(0, 0, 0, .2);
+        margin-bottom: 45px;
         @keyframes tileShadow {
             from {
                 -webkit-box-shadow: none;
@@ -29,46 +49,17 @@
                 animation-fill-mode: forwards;
             }
         }
-        .dummy-poster-movies {
+        .dummy-poster-new {
             display: inline-block;
             width: 91px;
             height: 134px;
-            background: url("../images/posters/Movies.png");
-        }
-        .dummy-poster-tv {
-            display: inline-block;
-            width: 91px;
-            height: 134px;
-            background: url("../images/posters/TV.png");
-        }
-        .dummy-poster-documentaries {
-            display: inline-block;
-            width: 91px;
-            height: 134px;
-            background: url("../images/posters/Documentaries.png");
-        }
-        .dummy-poster-animations {
-            display: inline-block;
-            width: 91px;
-            height: 134px;
-            background: url("../images/posters/Animations.png");
-        }
-        .dummy-poster-xxx {
-            display: inline-block;
-            width: 91px;
-            height: 134px;
-            background: url("../images/posters/XXX.png");
-        }
-        .dummy-poster-jav {
-            display: inline-block;
-            width: 91px;
-            height: 134px;
-            background: url("../images/posters/JAV.png");
+            background: url("../images/posters/New_2.png");
+            background-size: contain;
         }
         .details {
             display: inline-block;
             position: relative;
-            width: 184px;
+            width: 160px;
             height: 134px;
             vertical-align: top;
             color: #808080;
@@ -85,7 +76,7 @@
                 display: block;
                 margin-bottom: -5px;
             }
-            .details-btm {
+            .director {
                 position: absolute;
                 z-index: 0;
                 color: #888;

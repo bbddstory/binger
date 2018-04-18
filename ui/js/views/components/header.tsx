@@ -3,10 +3,19 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { switchCatAct } from '../actions/categoriesActions';
-import cats from '../util/cats';
+import { switchCatAct } from '../../actions/categoriesActions';
+import cats from '../../util/cats';
 
-class Header extends React.Component<any, any> {
+export interface props { txt: string, switchCatDispatch: any, loginState: any }
+
+interface IReduxProps extends React.Props<any> {
+  txt: string, switchCatDispatch: any, loginState: any
+}
+
+interface ICompProps extends React.Props<any> {
+}
+
+class Header extends React.Component<IReduxProps & ICompProps, any> {
   constructor(props: any) {
     super(props);
     this.state = {}
@@ -15,7 +24,7 @@ class Header extends React.Component<any, any> {
   render() {
     return (
       <nav className="header">
-        <Link to="/main/home" className="logo" title="Phantom"></Link>
+        <a target="_blank" href="http://10.0.0.1:5000" className="logo" title="Phantom"></a>
         <div className="nav-opts">
           <Link to="/main/home" className="opt-home" title="Home" onClick={e => this.props.switchCatDispatch(cats.HOME)}></Link>
           <Link to="/main/add" className="opt-add" title="Add video"></Link>
@@ -38,4 +47,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect<{}, {}, ICompProps>(mapStateToProps, mapDispatchToProps)(Header);

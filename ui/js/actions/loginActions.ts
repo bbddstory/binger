@@ -3,7 +3,8 @@
 import * as firebase from 'firebase';
 import config from '../util/firebase';
 import cats from '../util/cats';
-import { TOGGLE_LOADER } from '../actions/uiActions';
+import { TOGGLE_LOADER } from './uiActions';
+import { loadLatestAct } from './dataActions';
 
 // Action types
 export const LOGIN = 'LOGIN';
@@ -43,12 +44,15 @@ export function loginAct(email: string, pwd: string) {
               dispatch({ type: LOGIN, data, firebase });
               dispatch({ type: TOGGLE_LOADER, status: false });
 
+              dispatch(loadLatestAct());
+              
               let hash = location.hash;
               if (getState().dataReducer.category === cats.HOME && !hash.endsWith('main/home')) {
                 location.hash = 'main/home'
               }
             }
           });
+
 
       }
     }, reason => {

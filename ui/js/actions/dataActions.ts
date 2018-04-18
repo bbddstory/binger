@@ -1,11 +1,13 @@
 'use strict';
 
-import { TOGGLE_LOADER } from '../actions/uiActions';
+import cats from '../util/cats';
+import { TOGGLE_LOADER } from './uiActions';
 
 // Action types
 export const GOTO_PAGE = 'GOTO_PAGE';
 export const SET_KEY = 'SET_KEY';
 export const SYNC_CAT = 'SYNC_CAT';
+export const LOAD_LATEST = 'LOAD_LATEST';
 
 // Action creators
 export function setKeyAct(key: string) {
@@ -18,6 +20,30 @@ export function setKeyAct(key: string) {
 export function syncCatAct() {
   return {
     type: SYNC_CAT
+  }
+}
+
+export function loadLatestAct() {
+  return async (dispatch: any, getState: any) => {
+    let firebase = getState().loginReducer.firebase;
+
+    if (firebase.apps) {
+      let ns = {};
+
+      for(let p in cats) {
+        await firebase.database().ref(cats[p])
+          .orderByChild('index').limitToLast(3)
+          .once('value').then((snapshot: any) => {
+            let data = snapshot.val();
+  
+            if (data) {
+              ns = (<any>Object).assign(ns, data);
+            }
+          });
+      }
+
+      dispatch({ type: LOAD_LATEST, latest: ns });
+    }
   }
 }
 

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { setKeyAct } from '../../actions/dataActions';
 import { toggleEditDetailsAct } from '../../actions/uiActions';
 import { watchLaterAct, recommAct, commentAct, delCommentAct } from '../../actions/detailsActions';
-import EditDetails from '../../components/main/editDetails';
+import EditDetails from './editDetails';
 
 class Details extends React.Component<any, any> {
   constructor(props: any) {
@@ -99,8 +99,8 @@ class Details extends React.Component<any, any> {
               <div className="plot-txt">{dataState.data[key].plot}</div>
               <div className="sites">
                 <a className="imdb" target="_blank" href={'http://www.imdb.com/title/' + dataState.data[key].imdb_id}></a>
-                <a className="mtime" target="_blank" href={dataState.data[key].mtime}></a>
                 <a className="douban" target="_blank" href={dataState.data[key].douban}></a>
+                <a className="mtime" target="_blank" href={dataState.data[key].mtime}></a>
               </div>
             </div>
           </div>

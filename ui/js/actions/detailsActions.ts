@@ -1,6 +1,6 @@
 'use strict';
 
-import { TOGGLE_LOADER } from '../actions/uiActions';
+import { TOGGLE_LOADER } from './uiActions';
 
 // Action types
 export const SET_KEY = 'SET_KEY';
