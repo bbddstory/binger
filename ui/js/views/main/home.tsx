@@ -40,21 +40,21 @@ class Home extends React.Component<any, any> {
         <h1><FormattedMessage id='home.latest' /></h1>
         <div className="home-list">
           {loginState.latest ?
-            <TileList dataRef={loginState.latest} showPages={false} category="" />
+            <TileList dataRef={loginState.latest} delBtn={false} showPages={false} category="" />
             : <FormattedMessage id='home.empty' />}
         </div>
 
         <h1><FormattedMessage id='home.watch' /></h1>
         <div className="home-list">
           {loginState.watchlater ?
-            <TileList dataRef={loginState.watchlater} showPages={false} category="" />
+            <TileList dataRef={loginState.watchlater} delBtn={true} showPages={false} category="" />
             : <FormattedMessage id='home.empty' />}
         </div>
 
         <h1><FormattedMessage id='home.recomm' /></h1>
         <div className="home-list">
           {loginState.recomm ?
-            <TileList dataRef={loginState.recomm} showPages={false} category="" />
+            <TileList dataRef={loginState.recomm} delBtn={true} showPages={false} category="" />
             : <FormattedMessage id='home.empty' />}
         </div>
       </div>

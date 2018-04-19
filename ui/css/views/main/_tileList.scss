@@ -29,13 +29,14 @@ $imageHeight: 134px;
             width: 30px;
             height: 30px;
             background: rgba(#000, .5) url("../images/details/ic_delete_forever_white_24px.svg") 2px no-repeat;
-            border-top-right-radius: 2px;
+            border-top-right-radius: 5px;
             border-bottom-left-radius: 2px;
             cursor: pointer;
         }
         img {
             width: $imageWidth;
             height: $imageHeight;
+            vertical-align: bottom;
             border-radius: 2px;
             cursor: pointer;
             &:hover {
@@ -56,7 +57,7 @@ $imageHeight: 134px;
             background-size: contain;
         }
         .poster-movies {
-            background: url("../images/posters/Movies.png") no-repeat;
+            background: url("../images/posters/Movies_2.png") no-repeat;
             background-size: contain;
         }
         .poster-tv {

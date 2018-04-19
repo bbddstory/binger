@@ -1,6 +1,7 @@
 'use strict';
 
 import { LOGIN, LOAD_LATEST } from '../actions/loginActions';
+import { REMOVE_HOME_LIST_ITEM } from '../actions/homeActions';
 
 let init = {
   email: '',
@@ -34,6 +35,10 @@ export function loginReducer(state: any = init, action: any) {
       return ns;
     case LOAD_LATEST:
       ns.latest = action.latest;
+
+      return ns;
+    case REMOVE_HOME_LIST_ITEM:
+      delete ns[action.list][action.key]
 
       return ns;
     default:

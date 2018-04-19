@@ -65,11 +65,11 @@ class Details extends React.Component<any, any> {
           <div className="video-details">
             <div className="poster">
               {dataState.buffer[key].poster && dataState.buffer[key].poster !== 'N/A' ?
-              <img alt="Poster" width="182px" src={dataState.buffer[key].poster} /> :
-              <div className={'dummy-poster-' + dataState.category.toLowerCase()}></div>}
+              <img alt="Poster" src={dataState.buffer[key].poster} /> :
+              <div className={'dummy-poster poster-' + dataState.category.toLowerCase()}></div>}
             </div>
 
-            <div className="entries">
+            <div className="info">
               <span className="title">{dataState.buffer[key].engTitle}</span>
               <span className="orig-title">
                 {dataState.buffer[key].origTitle === 'N/A' || dataState.buffer[key].engTitle === dataState.buffer[key].origTitle ?
