@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loginAct } from '../../actions/loginActions';
+import { syncHomeListAct } from '../../actions/homeActions';
 import { FormattedMessage } from "react-intl";
 import TileList from './tileList';
 
@@ -13,79 +13,49 @@ class Home extends React.Component<any, any> {
     this.state = {}
   }
 
-  list(type: string) {
-    return !!this.props.loginState[type]
+  syncHomeList() {
+    const { loginState } = this.props;
+    const { dataState } = this.props;
+  
+    if ((dataState.buffer && Object.keys(dataState.buffer).length === 0
+      && loginState.latest && Object.keys(this.props.loginState.latest).length > 0)
+      || dataState.prevCat !== dataState.category) {
+      this.props.syncHomeListDispatch()
+    }
+  }
+
+  componentDidUpdate(prevProps: any, prevState: any, snapshot: any) {
+    this.syncHomeList()
+  }
+
+  componentDidMount() {
+    this.syncHomeList()
   }
 
   render() {
     const { loginState } = this.props;
-    const { dataState } = this.props;
 
     return (
       <div className="home">
-        <h3><FormattedMessage id='home.latest' /></h3>
-        <div className={!this.list('watchlater') ? "my-list empty" : "my-list"}>
-          {!this.list('watchlater') ? <FormattedMessage id='home.empty' /> :
-            <TileList dataRef={dataState.latest} showPages={false} category="" />
-            // Object.keys(dataState.latest).map((key: any) => {
-            //   return <div className="tile" key={key}>
-            //     <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
-            //       {dataState.latest[key].poster && dataState.latest[key].poster !== 'N/A' ?
-            //         <img className="thumbnail" alt="Poster" src={dataState.latest[key].poster} /> :
-            //         <div className="dummy-poster-new"></div>}
-            //     </Link>
-            //     <div className="details">
-            //       <div className="title">{dataState.latest[key].engTitle}</div>
-            //       <div className="director">
-            //         <span className="year">{dataState.latest[key].year}</span>
-            //         <br />{dataState.latest[key].director}
-            //       </div>
-            //     </div>
-            //   </div>
-            // })
-          }
+        <h1><FormattedMessage id='home.latest' /></h1>
+        <div className="home-list">
+          {loginState.latest ?
+            <TileList dataRef={loginState.latest} showPages={false} category="" />
+            : <FormattedMessage id='home.empty' />}
         </div>
 
-        <h3><FormattedMessage id='home.watch' /></h3>
-        <div className={!this.list('watchlater') ? "my-list empty" : "my-list"}>
-          {!this.list('watchlater') ? <FormattedMessage id='home.empty' /> :
-            Object.keys(loginState.watchlater).map((key: any) => {
-              return <div className="tile" key={key}>
-                <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
-                  <img className="thumbnail" alt="Poster"
-                    src={loginState.watchlater[key].poster === 'N/A' ?
-                      this.state.dummyPoster : loginState.watchlater[key].poster} />
-                </Link>
-                <div className="details">
-                  <div className="title">{loginState.watchlater[key].engTitle}</div>
-                  <div className="director">
-                    <span className="year">{loginState.watchlater[key].year}</span>
-                    <br />{loginState.watchlater[key].director}
-                  </div>
-                </div>
-              </div>
-            })}
+        <h1><FormattedMessage id='home.watch' /></h1>
+        <div className="home-list">
+          {loginState.watchlater ?
+            <TileList dataRef={loginState.watchlater} showPages={false} category="" />
+            : <FormattedMessage id='home.empty' />}
         </div>
 
-        <h3><FormattedMessage id='home.recomm' /></h3>
-        <div className={!this.list('recomm') ? "my-list empty" : "my-list"}>
-          {!this.list('recomm') ? <FormattedMessage id='home.empty' /> :
-            Object.keys(loginState.recomm).map((key: any) => {
-              return <div className="tile" key={key}>
-                <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
-                  <img className="thumbnail" alt="Poster"
-                    src={loginState.recomm[key].poster === 'N/A' ?
-                      this.state.dummyPoster : loginState.recomm[key].poster} />
-                </Link>
-                <div className="details">
-                  <div className="title">{loginState.recomm[key].engTitle}</div>
-                  <div className="director">
-                    <span className="year">{loginState.recomm[key].year}</span>
-                    <br />{loginState.recomm[key].director}
-                  </div>
-                </div>
-              </div>
-            })}
+        <h1><FormattedMessage id='home.recomm' /></h1>
+        <div className="home-list">
+          {loginState.recomm ?
+            <TileList dataRef={loginState.recomm} showPages={false} category="" />
+            : <FormattedMessage id='home.empty' />}
         </div>
       </div>
     )
@@ -98,7 +68,9 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  // loadLatestDispatch: () => dispatch(loadLatestAct())
+  syncHomeListDispatch: () => {
+    dispatch(syncHomeListAct())
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

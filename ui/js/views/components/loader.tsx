@@ -21,6 +21,7 @@ class Loader extends React.Component<any, any> {
           <div className="double-bounce1"></div>
           <div className="double-bounce2"></div>
         </div>}
+        {/* <button>Try again</button> */}
       </div>
     )
   }

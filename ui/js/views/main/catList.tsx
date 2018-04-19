@@ -7,6 +7,7 @@ import { resetPages } from '../../util/utils';
 import cats from '../../util/cats';
 import { setKeyAct, syncCatAct, loadDataAct } from '../../actions/dataActions';
 import TileList from './tileList';
+import CardList from './cardList';
 
 class CatList extends React.Component<any, any> {
   constructor(props: any) {
@@ -36,9 +37,7 @@ class CatList extends React.Component<any, any> {
 
   render() {
     return (
-      <div className="cat-list">
-        <TileList dataRef={this.props.dataState.buffer} showPages={true} category=""/>
-      </div>
+      <CardList dataRef={this.props.dataState.buffer} showPages={true} category=""/>
     )
   }
 }

@@ -2,12 +2,12 @@
 
 import cats from '../util/cats';
 import { TOGGLE_LOADER } from './uiActions';
+import { LOAD_LATEST } from './loginActions';
 
 // Action types
 export const GOTO_PAGE = 'GOTO_PAGE';
 export const SET_KEY = 'SET_KEY';
 export const SYNC_CAT = 'SYNC_CAT';
-export const LOAD_LATEST = 'LOAD_LATEST';
 
 // Action creators
 export function setKeyAct(key: string) {

@@ -202,9 +202,9 @@
         display: flex;
         .del-comment {
             width: 35px;
-            height: 35px;
-            background: url("../images/details/ic_delete_forever_white_24px.svg") 0 0 no-repeat;
-            background-size: 30px;
+            margin-right: 5px;
+            background: url("../images/details/ic_delete_forever_white_24px.svg") 0 no-repeat;
+            background-size: contain;
             cursor: pointer;
         }
         h2 {

@@ -18,7 +18,7 @@ const lang: ILocaleLang = {
         'ft.zone': 'QuickConnect',
         'ft.home': 'Home',
         'ft.fb': 'Give feedback',
-        'home.latest': 'Latest',
+        'home.latest': 'Latest Videos',
         'home.watch': 'Watch Later',
         'home.recomm': 'Recommendations',
         'home.empty': 'List is empty'

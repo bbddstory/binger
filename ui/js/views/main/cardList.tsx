@@ -19,15 +19,10 @@ interface ICompProps extends React.Props<any> {
   category: string
 }
 
-class TileList extends React.Component<IReduxProps & ICompProps, any> {
+class CardList extends React.Component<IReduxProps & ICompProps, any> {
   constructor(props: any) {
     super(props);
     this.state = {};
-  }
-
-  delItem(e: any, key: string) {
-    console.log('Delete: ', key);
-    e.preventDefault();
   }
 
   componentDidMount() {
@@ -49,24 +44,20 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
     const { dataState } = this.props;
 
     return (
-      <div className="tile-list">
+      <div className="card-list">
         {/* buffer && Object.keys(buffer).length &&  */}
         {Object.keys(buffer).map((key: any) => {
-          return <div className="tile" key={key}>
+          return <div className="card" key={key}>
             <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
-              <div className="del-item" onClick={e => this.delItem(e, key)}></div>
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
                 <div className={'dummy-poster poster-' + (dataState.category === cats.HOME ?
                   'new' : dataState.category.toLowerCase())}></div>}
             </Link>
-            <div className="info">
-              <div className="title">{buffer[key].engTitle}</div>
-              <div className="details">
-                <span className="year">{buffer[key].year}</span><br />
-                {buffer[key].director || buffer[key].creator || buffer[key].prod}
-              </div>
-            </div>
+            {/* <div className="details"> */}
+              <h2 className="title">{buffer[key].engTitle}</h2>
+              <h4 className="year">{buffer[key].year}</h4>
+            {/* </div> */}
           </div>
         })}
         {this.props.showPages && buffer && Object.keys(buffer).length && <Pages />}
@@ -85,4 +76,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   }
 });
 
-export default connect<{}, {}, ICompProps>(mapStateToProps, mapDispatchToProps)(TileList);
+export default connect<{}, {}, ICompProps>(mapStateToProps, mapDispatchToProps)(CardList);

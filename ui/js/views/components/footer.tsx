@@ -18,14 +18,10 @@ class Footer extends React.Component<any, any> {
     return (
       <div className="footer">
         <ol>
-          <li><a target="_blank" href="http://quickconnect.to/phantomzone"><FormattedMessage id='ft.zone' /></a></li>
           <li><Link to="/main/home"><FormattedMessage id='ft.home' /></Link></li>
-          <li><Link to="/main/feedback">
-            {/* <img alt="Feedback" src="images/footer/ic_feedback_white_24px.svg" /> */}
-            <FormattedMessage id='ft.fb' />
-          </Link></li>
+          <li><a target="_blank" href="http://quickconnect.to/phantomzone"><FormattedMessage id='ft.zone' /></a></li>
+          <li><Link to="/main/feedback"><FormattedMessage id='ft.fb' /></Link></li>
           <li>
-            {/* <img alt="Languages" src="images/footer/ic_language_white_24px.svg" /> */}
             <span onClick={e => switchLocaleDispatch('en')}>English</span>|
             <span onClick={e => switchLocaleDispatch('zh')}>中文</span>|
             <span onClick={e => switchLocaleDispatch('ja')}>日本語</span>

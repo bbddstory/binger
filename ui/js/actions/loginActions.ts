@@ -8,6 +8,7 @@ import { loadLatestAct } from './dataActions';
 
 // Action types
 export const LOGIN = 'LOGIN';
+export const LOAD_LATEST = 'LOAD_LATEST';
 
 // Action creators
 export function loginAct(email: string, pwd: string) {

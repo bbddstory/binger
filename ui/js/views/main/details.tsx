@@ -11,7 +11,6 @@ class Details extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      dummyPoster: 'images/movie/poster.png',
       opts: false,
       recomm: false,
       title: '',

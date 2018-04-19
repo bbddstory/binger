@@ -1,11 +1,12 @@
 'use strict';
 
-import { LOGIN } from '../actions/loginActions';
+import { LOGIN, LOAD_LATEST } from '../actions/loginActions';
 
 let init = {
   email: '',
   user: '',
-  firebase: {}
+  firebase: {},
+  latest: {}
 }
 
 export function loginReducer(state: any = init, action: any) {
@@ -29,6 +30,10 @@ export function loginReducer(state: any = init, action: any) {
       //   foo_9: 'Akira',
       //   foo_10: 'Ishigawa Kentosan'
       // }
+
+      return ns;
+    case LOAD_LATEST:
+      ns.latest = action.latest;
 
       return ns;
     default:
