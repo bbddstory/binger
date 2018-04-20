@@ -60,8 +60,7 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
               {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, key, 'watchlater')}></div>}
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
-                <div className={'dummy-poster poster-' + (dataState.category === cats.HOME ?
-                  'new' : dataState.category.toLowerCase())}></div>}
+                <div className={'dummy-poster poster-' + buffer[key].cat.toLowerCase()}></div>}
             </Link>
             <div className="info">
               <div className="title">{buffer[key].engTitle}</div>

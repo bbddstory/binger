@@ -51,8 +51,7 @@ class CardList extends React.Component<IReduxProps & ICompProps, any> {
             <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
-                <div className={'dummy-poster poster-' + (dataState.category === cats.HOME ?
-                  'new' : dataState.category.toLowerCase())}></div>}
+                <div className={'dummy-poster poster-' + buffer[key].cat.toLowerCase()}></div>}
             </Link>
             {/* <div className="details"> */}
               <h2 className="title">{buffer[key].engTitle}</h2>

@@ -23,7 +23,7 @@ export function watchLaterAct() {
   return async (dispatch: any, getState: any) => {
     let firebase = getState().loginReducer.firebase,
         user = getState().loginReducer.user,
-        values = getState().dataReducer.data[getState().dataReducer.key];
+        values = getState().dataReducer.buffer[getState().dataReducer.key];
 
     if (firebase.apps) {
       await firebase.database().ref('Users/' + user + '/watchlater/' + getState().dataReducer.key)
@@ -37,7 +37,7 @@ export function watchLaterAct() {
 export function recommAct(user: string) {
   return async (dispatch: any, getState: any) => {
     let firebase = getState().loginReducer.firebase,
-      values = getState().dataReducer.data[getState().dataReducer.key];
+      values = getState().dataReducer.buffer[getState().dataReducer.key];
 
     if (firebase.apps) {
       await firebase.database().ref('Users/' + user + '/recomm/' + getState().dataReducer.key)
