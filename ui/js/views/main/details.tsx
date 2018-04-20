@@ -65,8 +65,8 @@ class Details extends React.Component<any, any> {
           <div className="video-details">
             <div className="poster">
               {dataState.buffer[key].poster && dataState.buffer[key].poster !== 'N/A' ?
-              <img alt="Poster" src={dataState.buffer[key].poster} /> :
-              <div className={'dummy-poster poster-' + dataState.category.toLowerCase()}></div>}
+                <img alt="Poster" src={dataState.buffer[key].poster} /> :
+                <div className={'dummy-poster poster-' + dataState.buffer[key].cat.toLowerCase()}></div>}
             </div>
 
             <div className="info">
@@ -84,7 +84,7 @@ class Details extends React.Component<any, any> {
               <div className="actions">
                 <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
                 <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
-                <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true)}></div>
+                <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true, true, false)}></div>
                 <a target="_blank" href={'https://subscene.com/subtitles/title?q=' + dataState.buffer[key].engTitle}></a>
                 {recomm && <ul>
                   {Object.keys(loginState.friends).map((user: string) => {
@@ -137,7 +137,7 @@ class Details extends React.Component<any, any> {
             </div>
           })}
 
-          {uiState.editDetails && <EditDetails />}
+          {/* {uiState.editDetails && <EditDetails />} */}
         </div>
       )
     } else {
@@ -157,7 +157,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   recommDispatch: (user: string) => dispatch(recommAct(user)),
   commentDispatch: (values: any) => dispatch(commentAct(values)),
   delCommentDispatch: (id: string) => dispatch(delCommentAct(id)),
-  editDetailsDispatch: (status: boolean) => dispatch(toggleEditDetailsAct(status))
+  editDetailsDispatch: (status: boolean, disableCat: boolean, newRec: boolean) => dispatch(toggleEditDetailsAct(status, disableCat, newRec))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Details);

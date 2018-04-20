@@ -22,8 +22,8 @@ export function setKeyAct(key: string) {
 export function watchLaterAct() {
   return async (dispatch: any, getState: any) => {
     let firebase = getState().loginReducer.firebase,
-        user = getState().loginReducer.user,
-        values = getState().dataReducer.buffer[getState().dataReducer.key];
+      user = getState().loginReducer.user,
+      values = getState().dataReducer.buffer[getState().dataReducer.key];
 
     if (firebase.apps) {
       await firebase.database().ref('Users/' + user + '/watchlater/' + getState().dataReducer.key)
@@ -88,11 +88,27 @@ export function saveDetailsAct(values: any) {
     if (firebase.apps) {
       dispatch({ type: TOGGLE_LOADER, status: true });
 
-      await firebase.database().ref(getState().dataReducer.category + '/' + getState().dataReducer.key)
-        .set(values).then((snapshot: any) => {
+      let ref = '';
+
+      if (getState().uiReducer.newRec) {
+        ref = values.cat
+        // TODO: get the max index of corresponding category, then plus one and give it to values.index
+      } else {
+        ref = values.cat + '/' + getState().dataReducer.key
+      }
+
+      await firebase.database().ref(ref)
+        .set(values, { merge: true }).then((snapshot: any) => {
           dispatch({ type: TOGGLE_LOADER, status: false });
-          dispatch(toggleEditDetailsAct(false));
-          dispatch({ type: SAVE_DETAILS, values });
+          
+          if (getState().uiReducer.newRec) {
+            // TODO: if it's a new record, push into buffer, create a new case SAVE_NEW in dataReducer.ts
+
+          } else {
+            dispatch({ type: SAVE_DETAILS, values });
+          }
+
+          dispatch(toggleEditDetailsAct(false, true, false));
         });
     }
   }

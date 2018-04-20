@@ -13,9 +13,11 @@ export function switchLocaleAct(locale: string) {
   }
 }
 
-export function toggleEditDetailsAct(status: boolean) {
+export function toggleEditDetailsAct(status: boolean, disableCat: boolean, newRec: boolean) {
   return {
     type: TOGGLE_EDIT_DETAILS,
-    status
+    status,
+    disableCat,
+    newRec
   }
 }

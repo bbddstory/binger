@@ -85,6 +85,7 @@ class Main extends React.Component<any, any> {
             <Route path='/main/details' component={Details} />
           </Switch>
           <Footer />
+          {uiState.editDetails && <EditDetails />}
         </div>
       </IntlProvider>
     )

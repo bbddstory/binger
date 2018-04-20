@@ -4,7 +4,6 @@ interface ICats {
 
 const cats: ICats = {
     HOME: 'Home',
-    NEW: 'New',
     MOVIE: 'Movies',
     TV: 'TV',
     DOC: 'Documentaries',

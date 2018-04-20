@@ -7,7 +7,9 @@ let init = {
   loader: false,
   loaderTxt: '',
   loading: true,
-  editDetails: false
+  editDetails: false,
+  disableCat: true,
+  newRec: false
 }
 
 export function uiReducer(state: any = init, action: any) {
@@ -26,6 +28,8 @@ export function uiReducer(state: any = init, action: any) {
       return ns;
     case TOGGLE_EDIT_DETAILS:
       ns.editDetails = action.status;
+      ns.disableCat = action.disableCat;
+      ns.newRec = action.newRec;
       
       return ns;
     default:
