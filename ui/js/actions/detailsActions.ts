@@ -9,6 +9,7 @@ export const RECOMM = 'RECOMM';
 export const SAVE_COMMENT = 'SAVE_COMMENT';
 export const DEL_COMMENT = 'DEL_COMMENT';
 export const SAVE_DETAILS = 'SAVE_DETAILS';
+export const SAVE_NEW = 'SAVE_NEW';
 import { toggleEditDetailsAct } from '../actions/uiActions';
 
 // Action creators
@@ -88,28 +89,46 @@ export function saveDetailsAct(values: any) {
     if (firebase.apps) {
       dispatch({ type: TOGGLE_LOADER, status: true });
 
+      let vc = (<any>Object).assign({}, values);
       let ref = '';
+      let isNewRec = getState().uiReducer.newRec;
 
-      if (getState().uiReducer.newRec) {
+      if (isNewRec) {
         ref = values.cat
-        // TODO: get the max index of corresponding category, then plus one and give it to values.index
+
+        // Get the max index of corresponding category, then plus one and give it to vc (values copy)
+        await firebase.database().ref(ref)
+          .orderByChild('index').limitToLast(1)
+          .once('value').then((snapshot: any) => {
+            let buffer = snapshot.val();
+
+            if (buffer) {
+              for (let p in buffer) {
+                vc.index = buffer[p]['index'] + 1;
+              }
+            }
+          });
       } else {
         ref = values.cat + '/' + getState().dataReducer.key
       }
 
-      await firebase.database().ref(ref)
-        .set(values, { merge: true }).then((snapshot: any) => {
-          dispatch({ type: TOGGLE_LOADER, status: false });
-          
-          if (getState().uiReducer.newRec) {
-            // TODO: if it's a new record, push into buffer, create a new case SAVE_NEW in dataReducer.ts
-
-          } else {
-            dispatch({ type: SAVE_DETAILS, values });
-          }
-
-          dispatch(toggleEditDetailsAct(false, true, false));
-        });
+      if (isNewRec) {
+        await firebase.database().ref(ref)
+          .push(vc).then((snapshot: any) => {
+            let arr = snapshot.path.pieces_;
+            
+            dispatch({ type: TOGGLE_LOADER, status: false });
+            dispatch({ type: SAVE_NEW, vc, arr }); // For a new record, add it to buffer if category matches
+            dispatch(toggleEditDetailsAct(false, false));
+          });
+      } else {
+        await firebase.database().ref(ref)
+          .update(vc).then((snapshot: any) => {
+            dispatch({ type: TOGGLE_LOADER, status: false });
+            dispatch({ type: SAVE_DETAILS, vc });
+            dispatch(toggleEditDetailsAct(false, false));
+          });
+      }
     }
   }
 }

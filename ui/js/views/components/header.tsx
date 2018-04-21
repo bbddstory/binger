@@ -19,7 +19,7 @@ class Header extends React.Component<any, any> {
         <a target="_blank" href="http://10.0.0.1:5000" className="logo" title="Local connect"></a>
         <div className="nav-opts">
           <Link to="/main/home" className="opt-home" title="Home" onClick={e => this.props.switchCatDispatch(cats.HOME)}></Link>
-          <span className="opt-add" title="Add video" onClick={e => this.props.editDetailsDispatch(true, false, true)}></span>
+          <span className="opt-add" title="Add video" onClick={e => this.props.editDetailsDispatch(true, true)}></span>
           <a target="_blank" href="http://quickconnect.to/phantomzone" className="opt-quick" title="Quick connect" ></a>
           {/* <Link to="/main/notices" className="opt-notice" title="Notifications"></Link> */}
           {/* <Link to="/main/messages" className="opt-msg" title="Messages"></Link> */}
@@ -36,7 +36,7 @@ const mapStateToProps = (store: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   switchCatDispatch: (cat: string) => {dispatch(switchCatAct(cat))},
-  editDetailsDispatch: (status: boolean, disableCat: boolean, newRec: boolean) => dispatch(toggleEditDetailsAct(status, disableCat, newRec))
+  editDetailsDispatch: (status: boolean, newRec: boolean) => dispatch(toggleEditDetailsAct(status, newRec))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

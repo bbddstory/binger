@@ -53,8 +53,6 @@ export function loginAct(email: string, pwd: string) {
               }
             }
           });
-
-
       }
     }, reason => {
       console.log(reason);

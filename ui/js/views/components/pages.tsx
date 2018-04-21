@@ -4,7 +4,6 @@ import * as jq from 'jquery';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { loadDataAct } from '../../actions/dataActions';
-// import vTypes from '../util/vTypes';
 
 class Pages extends React.Component<any, any> {
     constructor(props: any) {
@@ -70,17 +69,11 @@ class Pages extends React.Component<any, any> {
 
     componentDidMount() {
         jq(document).on('keydown', (e) => {
-            if (e.which === 37) {
+            if (e.ctrlKey && e.which === 37) {
                 this.gotoPage('PREV');
             }
-            if (e.which === 39) {
+            if (e.ctrlKey && e.which === 39) {
                 this.gotoPage('NEXT');
-            }
-            if (e.shiftKey && (e.which === 36)) {
-                this.gotoPage('FIRST');
-            }
-            if (e.shiftKey && (e.which === 35)) {
-                this.gotoPage('LAST');
             }
         })
     }

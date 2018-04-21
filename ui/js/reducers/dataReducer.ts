@@ -1,7 +1,7 @@
 'use strict';
 
 import { GOTO_PAGE, SET_KEY, SYNC_CAT } from '../actions/dataActions';
-import { SAVE_COMMENT, DEL_COMMENT, SAVE_DETAILS } from '../actions/detailsActions';
+import { SAVE_COMMENT, DEL_COMMENT, SAVE_NEW, SAVE_DETAILS } from '../actions/detailsActions';
 import { SWITCH_CAT } from '../actions/categoriesActions';
 import { SYNC_HOME_LIST } from '../actions/homeActions';
 import cats from '../util/cats';
@@ -76,6 +76,12 @@ export function dataReducer(state: any = init, action: any) {
       return ns;
     case SYNC_CAT:
       ns.prevCat = ns.category;
+
+      return ns;
+    case SAVE_NEW:
+      if(ns.category === action.arr[0]) {
+        ns.buffer[action.arr[1]] = action.vc;
+      }
 
       return ns;
     case SAVE_DETAILS:

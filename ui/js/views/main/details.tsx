@@ -77,14 +77,14 @@ class Details extends React.Component<any, any> {
               </span>
               <span className="misc">
                 Year: {dataState.buffer[key].year}<br />
-                Runtime: {dataState.buffer[key].runtime}<br />
-                {dataState.buffer[key].director ? 'Director: ' + dataState.buffer[key].director : 'Creator: ' + dataState.buffer[key].creator}<br />
-                Stars: {dataState.buffer[key].stars}
+                Runtime: {dataState.buffer[key].runtime || 'N/A'}<br />
+                {dataState.buffer[key].director ? 'Director: ' + (dataState.buffer[key].director || 'N/A') : 'Creator: ' + (dataState.buffer[key].creator || 'N/A')}<br />
+                Stars: {dataState.buffer[key].stars || 'N/A'}
               </span>
               <div className="actions">
                 <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
                 <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
-                <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true, true, false)}></div>
+                <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true, false)}></div>
                 <a target="_blank" href={'https://subscene.com/subtitles/title?q=' + dataState.buffer[key].engTitle}></a>
                 {recomm && <ul>
                   {Object.keys(loginState.friends).map((user: string) => {
@@ -95,23 +95,27 @@ class Details extends React.Component<any, any> {
             </div>
 
             <div className="plot">
-              <div className="plot-txt">{dataState.buffer[key].plot}</div>
+              <div className="plot-txt">{dataState.buffer[key].plot || 'Plot is unavailable.'}</div>
               <div className="sites">
-                <a className="imdb" target="_blank" href={'http://www.imdb.com/title/' + dataState.buffer[key].imdb_id}></a>
+                <a className="imdb" target="_blank" href={dataState.buffer[key].imdb_id ?
+                  'http://www.imdb.com/title/' + dataState.buffer[key].imdb_id :
+                  'https://www.imdb.com/find?ref_=nv_sr_fn&q=' + dataState.buffer[key].engTitle.replace(' ', '+') + '&s=all'}></a>
                 <a className="douban" target="_blank" href={dataState.buffer[key].douban}></a>
                 <a className="mtime" target="_blank" href={dataState.buffer[key].mtime}></a>
               </div>
             </div>
           </div>
 
-          <h1>Trailer and featurette</h1>
-          <div className="trailer">
-            <iframe width="440" height="247.5" src={dataState.buffer[key].trailer} frameBorder="0" allowFullScreen></iframe>
-            <iframe width="440" height="247.5" src={dataState.buffer[key].featurette} frameBorder="0" allowFullScreen></iframe>
-          </div>
-          <div className="youtube">
-            <a target="_blank" href={'https://www.youtube.com/results?search_query=' + dataState.buffer[key].engTitle}>More videos on YouTube</a>
-          </div>
+          {dataState.buffer[key].trailer && <div>
+            <h1>Trailer and featurette</h1>
+            <div className="trailer">
+              <iframe width="440" height="247.5" src={dataState.buffer[key].trailer} frameBorder="0" allowFullScreen></iframe>
+              <iframe width="440" height="247.5" src={dataState.buffer[key].featurette} frameBorder="0" allowFullScreen></iframe>
+            </div>
+            <div className="youtube">
+              <a target="_blank" href={'https://www.youtube.com/results?search_query=' + dataState.buffer[key].engTitle}>More videos on YouTube</a>
+            </div>
+          </div>}
 
           <h1>Comments</h1>
 
@@ -136,8 +140,6 @@ class Details extends React.Component<any, any> {
               <span>{dataState.buffer[key].comments[id].txt}</span>
             </div>
           })}
-
-          {/* {uiState.editDetails && <EditDetails />} */}
         </div>
       )
     } else {
@@ -157,7 +159,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   recommDispatch: (user: string) => dispatch(recommAct(user)),
   commentDispatch: (values: any) => dispatch(commentAct(values)),
   delCommentDispatch: (id: string) => dispatch(delCommentAct(id)),
-  editDetailsDispatch: (status: boolean, disableCat: boolean, newRec: boolean) => dispatch(toggleEditDetailsAct(status, disableCat, newRec))
+  editDetailsDispatch: (status: boolean, newRec: boolean) => dispatch(toggleEditDetailsAct(status, newRec))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
