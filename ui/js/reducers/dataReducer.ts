@@ -85,7 +85,7 @@ export function dataReducer(state: any = init, action: any) {
 
       return ns;
     case SAVE_DETAILS:
-      ns.buffer[state.key] = action.values;
+      ns.buffer[state.key] = action.vc;
 
       return ns;
     case SAVE_COMMENT:
