@@ -1,9 +1,12 @@
 $animTime: .3s;
 
 .search {
+    position: relative;
     display: flex;
     justify-content: center;
-    height: 42px;
+    flex-direction: column;
+    align-items: center;
+    // height: 42px;
     padding-bottom: 60px;
     .search-box {
         position: relative;
@@ -36,6 +39,19 @@ $animTime: .3s;
             background: url("../images/search/ic_keyboard_arrow_down_black_24px.svg") 50% 50% no-repeat;
             cursor: pointer;
         }
+    }
+    .criteria {
+        position: absolute;
+        top: 42px;
+        width: 630px;
+        height: 80px;
+        margin-top: 1px;
+        border-radius: 2px;
+        background: #f2f2f2;
+        box-shadow: 0px 8px 15px 0px rgba(#000, .6);
+    }
+    .criteria-hide {
+        display: none;
     }
     @keyframes extentWidth {
         from {

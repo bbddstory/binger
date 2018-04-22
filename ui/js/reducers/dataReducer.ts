@@ -4,6 +4,7 @@ import { GOTO_PAGE, SET_KEY, SYNC_CAT } from '../actions/dataActions';
 import { SAVE_COMMENT, DEL_COMMENT, SAVE_NEW, SAVE_DETAILS } from '../actions/detailsActions';
 import { SWITCH_CAT } from '../actions/categoriesActions';
 import { SYNC_HOME_LIST } from '../actions/homeActions';
+import { SEARCH_RETURN } from '../actions/searchActions';
 import cats from '../util/cats';
 
 interface IDataReducer {
@@ -29,6 +30,7 @@ let init: IDataReducer = {
   // },
   key: '',
   buffer: {},
+  search: {},
   prevCat: cats.HOME,
   category: cats.HOME,
   itemCnt: 0, // Total number of records in designated category
@@ -95,6 +97,10 @@ export function dataReducer(state: any = init, action: any) {
       return ns;
     case DEL_COMMENT:
       delete ns.buffer[state.key].comments[action.id];
+
+      return ns;
+    case SEARCH_RETURN:
+      ns.search = action.buffer;
 
       return ns;
     default:

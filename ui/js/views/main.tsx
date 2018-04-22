@@ -16,6 +16,7 @@ import Footer from './components/footer';
 
 // Main
 import Home from './main/home';
+import SearchList from './main/searchList';
 import CatList from './main/catList';
 import Details from './main/details';
 import EditDetails from './main/editDetails';
@@ -76,6 +77,7 @@ class Main extends React.Component<any, any> {
           <Search />
           <Switch>
             <Route path='/main/home' component={Home} />
+            <Route path='/main/search' component={SearchList} />
             <Route path='/main/movies' component={CatList} />
             <Route path='/main/tv' component={CatList} />
             <Route path='/main/docs' component={CatList} />
