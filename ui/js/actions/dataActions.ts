@@ -1,7 +1,7 @@
 'use strict';
 
 import cats from '../util/cats';
-import { TOGGLE_LOADER } from './uiActions';
+import { TOGGLE_LOADER, resetIsSearchAct } from './uiActions';
 import { LOAD_LATEST } from './loginActions';
 
 // Action types
@@ -73,6 +73,7 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
         await firebase.database().ref(category)
           .orderByChild('index').startAt(startAt).endAt(endAt)
           .once('value').then((snapshot: any) => {
+            dispatch(resetIsSearchAct());
             dispatch({ type: GOTO_PAGE, buffer: snapshot.val(), itemCnt, currPage, startAt, endAt });
             dispatch({ type: TOGGLE_LOADER, status: false });
           });

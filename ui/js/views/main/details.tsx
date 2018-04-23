@@ -7,7 +7,23 @@ import { toggleEditDetailsAct } from '../../actions/uiActions';
 import { watchLaterAct, recommAct, commentAct, delCommentAct } from '../../actions/detailsActions';
 import EditDetails from './editDetails';
 
-class Details extends React.Component<any, any> {
+interface IReduxProps extends React.Props<any> {
+  loginState: any,
+  dataState: any,
+  uiState: any,
+  watchLaterDispatch: any,
+  recommDispatch: any,
+  commentDispatch: any,
+  delCommentDispatch: any,
+  editDetailsDispatch: any
+}
+
+interface ICompProps extends React.Props<any> {
+  dataRef: any,
+  isSearch: boolean
+}
+
+class Details extends React.Component<IReduxProps & ICompProps, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -58,34 +74,35 @@ class Details extends React.Component<any, any> {
     const { loginState, dataState, uiState } = this.props;
     const key = this.props.dataState.key;
     const { opts, recomm, showComment } = this.state;
+    const item = this.props.dataRef;
 
     if (Object.keys(dataState.buffer).length) {
       return (
         <div>
           <div className="video-details">
             <div className="poster">
-              {dataState.buffer[key].poster && dataState.buffer[key].poster !== 'N/A' ?
-                <img alt="Poster" src={dataState.buffer[key].poster} /> :
-                <div className={'dummy-poster poster-' + dataState.buffer[key].cat.toLowerCase()}></div>}
+              {item.poster && item.poster !== 'N/A' ?
+                <img alt="Poster" src={item.poster} /> :
+                <div className={'dummy-poster poster-' + item.cat.toLowerCase()}></div>}
             </div>
 
             <div className="info">
-              <span className="title">{dataState.buffer[key].engTitle}</span>
+              <span className="title">{item.engTitle}</span>
               <span className="orig-title">
-                {dataState.buffer[key].origTitle === 'N/A' || dataState.buffer[key].engTitle === dataState.buffer[key].origTitle ?
-                  '' : dataState.buffer[key].origTitle + ' (original title)'}
+                {item.origTitle === 'N/A' || item.engTitle === item.origTitle ?
+                  '' : item.origTitle + ' (original title)'}
               </span>
               <span className="misc">
-                Year: {dataState.buffer[key].year}<br />
-                Runtime: {dataState.buffer[key].runtime || 'N/A'}<br />
-                {dataState.buffer[key].director ? 'Director: ' + (dataState.buffer[key].director || 'N/A') : 'Creator: ' + (dataState.buffer[key].creator || 'N/A')}<br />
-                Stars: {dataState.buffer[key].stars || 'N/A'}
+                Year: {item.year}<br />
+                Runtime: {item.runtime || 'N/A'}<br />
+                {item.director ? 'Director: ' + (item.director || 'N/A') : 'Creator: ' + (item.creator || 'N/A')}<br />
+                Stars: {item.stars || 'N/A'}
               </span>
               <div className="actions">
                 <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
                 <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
                 <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true, false)}></div>
-                <a target="_blank" href={'https://subscene.com/subtitles/title?q=' + dataState.buffer[key].engTitle}></a>
+                <a target="_blank" href={'https://subscene.com/subtitles/title?q=' + item.engTitle}></a>
                 {recomm && <ul>
                   {Object.keys(loginState.friends).map((user: string) => {
                     return <li key={user} onClick={e => this.props.recommDispatch(user)}>{loginState.friends[user]}</li>
@@ -95,25 +112,25 @@ class Details extends React.Component<any, any> {
             </div>
 
             <div className="plot">
-              <div className="plot-txt">{dataState.buffer[key].plot || 'Plot is unavailable.'}</div>
+              <div className="plot-txt">{item.plot || 'Plot unavailable.'}</div>
               <div className="sites">
-                <a className="imdb" target="_blank" href={dataState.buffer[key].imdb_id ?
-                  'http://www.imdb.com/title/' + dataState.buffer[key].imdb_id :
-                  'https://www.imdb.com/find?ref_=nv_sr_fn&q=' + dataState.buffer[key].engTitle.replace(' ', '+') + '&s=all'}></a>
-                <a className="douban" target="_blank" href={dataState.buffer[key].douban}></a>
-                <a className="mtime" target="_blank" href={dataState.buffer[key].mtime}></a>
+                <a className="imdb" target="_blank" href={item.imdb_id ?
+                  'http://www.imdb.com/title/' + item.imdb_id :
+                  'https://www.imdb.com/find?ref_=nv_sr_fn&q=' + item.engTitle.replace(' ', '+') + '&s=all'}></a>
+                <a className="douban" target="_blank" href={item.douban}></a>
+                <a className="mtime" target="_blank" href={item.mtime}></a>
               </div>
             </div>
           </div>
 
-          {dataState.buffer[key].trailer && <div>
+          {item.trailer && <div>
             <h1>Trailer and featurette</h1>
             <div className="trailer">
-              <iframe width="440" height="247.5" src={dataState.buffer[key].trailer} frameBorder="0" allowFullScreen></iframe>
-              <iframe width="440" height="247.5" src={dataState.buffer[key].featurette} frameBorder="0" allowFullScreen></iframe>
+              <iframe width="440" height="247.5" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
+              <iframe width="440" height="247.5" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
             </div>
             <div className="youtube">
-              <a target="_blank" href={'https://www.youtube.com/results?search_query=' + dataState.buffer[key].engTitle}>More videos on YouTube</a>
+              <a target="_blank" href={'https://www.youtube.com/results?search_query=' + item.engTitle}>More videos on YouTube</a>
             </div>
           </div>}
 
@@ -128,16 +145,16 @@ class Details extends React.Component<any, any> {
             </div>}
           </div>
 
-          {dataState.buffer[key].comments && Object.keys(dataState.buffer[key].comments).map((id: any) => {
+          {item.comments && Object.keys(item.comments).map((id: any) => {
             return <div className="comment" key={id}>
               <div className="title-row">
-                {dataState.buffer[key].comments[id].user === loginState.user && <div className="del-comment" onClick={e => this.props.delCommentDispatch(id)}></div>}
+                {item.comments[id].user === loginState.user && <div className="del-comment" onClick={e => this.props.delCommentDispatch(id)}></div>}
                 <div>
-                  <h2>{dataState.buffer[key].comments[id].title}</h2>
-                  <h4>{dataState.buffer[key].comments[id].time} by {dataState.buffer[key].comments[id].user}</h4>
+                  <h2>{item.comments[id].title}</h2>
+                  <h4>{item.comments[id].time} by {item.comments[id].user}</h4>
                 </div>
               </div>
-              <span>{dataState.buffer[key].comments[id].txt}</span>
+              <span>{item.comments[id].txt}</span>
             </div>
           })}
         </div>
@@ -162,4 +179,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   editDetailsDispatch: (status: boolean, newRec: boolean) => dispatch(toggleEditDetailsAct(status, newRec))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Details);
+export default connect<{}, {}, ICompProps>(mapStateToProps, mapDispatchToProps)(Details);

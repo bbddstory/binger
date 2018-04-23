@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { resetPages } from '../../util/utils';
 import cats from '../../util/cats';
-import { setKeyAct, syncCatAct, loadDataAct } from '../../actions/dataActions';
+import { setKeyAct, syncCatAct } from '../../actions/dataActions';
 import Pages from '../components/pages';
 
 interface IReduxProps extends React.Props<any> {
@@ -16,6 +16,7 @@ interface IReduxProps extends React.Props<any> {
 interface ICompProps extends React.Props<any> {
   dataRef: any,
   showPages: boolean,
+  isSearch: boolean,
   category: string
 }
 
@@ -48,7 +49,7 @@ class CardList extends React.Component<IReduxProps & ICompProps, any> {
         {/* buffer && Object.keys(buffer).length &&  */}
         {Object.keys(buffer).map((key: any) => {
           return <div className="card" key={key}>
-            <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
+            <Link to={(this.props.isSearch ? "/main/search_details/" : "/main/cat_details/") + key} onClick={e => this.props.setKeyDispatch(key)}>
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
                 <div className={'dummy-poster poster-' + buffer[key].cat.toLowerCase()}></div>}

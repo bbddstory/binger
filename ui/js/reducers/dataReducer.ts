@@ -1,7 +1,7 @@
 'use strict';
 
 import { GOTO_PAGE, SET_KEY, SYNC_CAT } from '../actions/dataActions';
-import { SAVE_COMMENT, DEL_COMMENT, SAVE_NEW, SAVE_DETAILS } from '../actions/detailsActions';
+import { SAVE_COMMENT, DEL_COMMENT, SAVE_NEW, UPDATE_BUFFER_DETAILS } from '../actions/detailsActions';
 import { SWITCH_CAT } from '../actions/categoriesActions';
 import { SYNC_HOME_LIST } from '../actions/homeActions';
 import { SEARCH_RETURN } from '../actions/searchActions';
@@ -12,22 +12,6 @@ interface IDataReducer {
 }
 
 let init: IDataReducer = {
-  // key: '-L75lYVDwtkdnCrElxSV',
-  // buffer: {
-  //   "-L75lYVDwtkdnCrElxSV": {
-  //     "director": "Khian Bartlett, Carol Damgen",
-  //     "engTitle": "Three Billboards Outside Ebbing, Missouri",
-  //     "imdb_id": "tt7651078",
-  //     "index": 1,
-  //     "origTitle": "東京物語",
-  //     "plot": "A modern retelling of H.G. Wells classic novel, The Invisible Man. Motivated by the death of his son, Griffin, a brilliant but eccentric scientist discovers a method to invisibility. He is able to complete the experiment, with the aid of his assistant, Faith. The formula allows him to exact revenge on murderer that killed his son, but at a tragic expense, the formula slowly begins to consume his mind.",
-  //     "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMmVkNDQ1NTQtNzU4NC00MDkzLThkNTktMmM1YTRhNzljODcwXkEyXkFqcGdeQXVyNzAwMzgyMDM@._V1_UX182_CR0,0,182,268_AL_.jpg",
-  //     "rating": "4.4",
-  //     "runtime": "1h 28min",
-  //     "status": 1,
-  //     "year": "1933"
-  //   }
-  // },
   key: '',
   buffer: {},
   search: {},
@@ -81,22 +65,44 @@ export function dataReducer(state: any = init, action: any) {
 
       return ns;
     case SAVE_NEW:
-      if(ns.category === action.arr[0]) {
+      if (ns.category === action.arr[0]) {
         ns.buffer[action.arr[1]] = action.vc;
       }
 
       return ns;
-    case SAVE_DETAILS:
-      ns.buffer[state.key] = action.vc;
+    case UPDATE_BUFFER_DETAILS:
+      if (action.isSearch) {
+        ns.search[state.key] = action.vc
+        if (ns.buffer[state.key]) {
+          ns.buffer[state.key] = action.vc;
+        }
+      } else {
+        ns.buffer[state.key] = action.vc;
+      }
 
       return ns;
     case SAVE_COMMENT:
       let ck = Object.keys(action.values)[0];
-      ns.buffer[state.key].comments[ck] = action.values[ck];
+      
+      if (action.isSearch) {
+        ns.search[state.key].comments[ck] = action.values[ck];
+        if (ns.buffer[state.key]) {
+          ns.buffer[state.key].comments[ck] = action.values[ck];
+        }
+      } else {
+        ns.buffer[state.key].comments[ck] = action.values[ck];
+      }
 
       return ns;
     case DEL_COMMENT:
-      delete ns.buffer[state.key].comments[action.id];
+      if (action.isSearch) {
+        delete ns.search[state.key].comments[action.id];
+        if (ns.buffer[state.key]) {
+          delete ns.buffer[state.key].comments[action.id];
+        }
+      } else {
+        delete ns.buffer[state.key].comments[action.id];
+      }
 
       return ns;
     case SEARCH_RETURN:

@@ -35,7 +35,9 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  switchCatDispatch: (cat: string) => {dispatch(switchCatAct(cat))},
+  switchCatDispatch: (cat: string) => {
+    dispatch(switchCatAct(cat))
+  },
   editDetailsDispatch: (status: boolean, newRec: boolean) => dispatch(toggleEditDetailsAct(status, newRec))
 });
 

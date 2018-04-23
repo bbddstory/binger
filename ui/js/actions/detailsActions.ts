@@ -8,7 +8,7 @@ export const WATCH_LATER = 'WATCH_LATER';
 export const RECOMM = 'RECOMM';
 export const SAVE_COMMENT = 'SAVE_COMMENT';
 export const DEL_COMMENT = 'DEL_COMMENT';
-export const SAVE_DETAILS = 'SAVE_DETAILS';
+export const UPDATE_BUFFER_DETAILS = 'UPDATE_BUFFER_DETAILS';
 export const SAVE_NEW = 'SAVE_NEW';
 import { toggleEditDetailsAct } from '../actions/uiActions';
 
@@ -60,7 +60,7 @@ export function commentAct(values: any) {
       await firebase.database().ref(getState().dataReducer.category + '/' + getState().dataReducer.key + '/comments')
         .update(values).then((snapshot: any) => {
           dispatch({ type: TOGGLE_LOADER, status: false });
-          dispatch({ type: SAVE_COMMENT, values });
+          dispatch({ type: SAVE_COMMENT, values, isSearch: getState().uiReducer.isSearch });
         });
     }
   }
@@ -76,7 +76,7 @@ export function delCommentAct(id: string) {
       await firebase.database().ref(getState().dataReducer.category + '/' + getState().dataReducer.key + '/comments/' + id)
         .remove().then((snapshot: any) => {
           dispatch({ type: TOGGLE_LOADER, status: false });
-          dispatch({ type: DEL_COMMENT, id });
+          dispatch({ type: DEL_COMMENT, id, isSearch: getState().uiReducer.isSearch });
         });
     }
   }
@@ -125,7 +125,9 @@ export function saveDetailsAct(values: any) {
         await firebase.database().ref(ref)
           .update(vc).then((snapshot: any) => {
             dispatch({ type: TOGGLE_LOADER, status: false });
-            dispatch({ type: SAVE_DETAILS, vc });
+            // if (!getState().uiReducer.isSearch) {
+            dispatch({ type: UPDATE_BUFFER_DETAILS, vc, isSearch: getState().uiReducer.isSearch });
+            // };
             dispatch(toggleEditDetailsAct(false, false));
           });
       }

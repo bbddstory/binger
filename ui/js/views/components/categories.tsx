@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { cleanUrl } from '../../util/utils';
 import { switchCatAct } from '../../actions/categoriesActions';
+import { resetIsSearchAct } from '../../actions/uiActions';
 import cats from '../../util/cats';
 
 class Categories extends React.Component<any, any> {
@@ -67,7 +68,8 @@ const mapStateToProps = (store: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   switchCatDispatch: (cat: string) => {
-    dispatch(switchCatAct(cat))
+    dispatch(resetIsSearchAct());
+    dispatch(switchCatAct(cat));
   }
 });
 

@@ -1,6 +1,7 @@
 'use strict';
 
-import { LOCALE, TOGGLE_LOADER, TOGGLE_EDIT_DETAILS } from '../actions/uiActions';
+import { LOCALE, TOGGLE_LOADER, TOGGLE_EDIT_DETAILS, RESET_IS_SEARCH } from '../actions/uiActions';
+import { SET_SEARCH_FLAG } from '../actions/searchActions';
 
 let init = {
   locale: 'en',
@@ -28,7 +29,15 @@ export function uiReducer(state: any = init, action: any) {
     case TOGGLE_EDIT_DETAILS:
       ns.editDetails = action.status;
       ns.newRec = action.newRec;
+      // ns.isSearch = action.isSearch;
       
+      return ns;
+    case SET_SEARCH_FLAG:
+      ns.isSearch = true;
+      return ns;
+    case RESET_IS_SEARCH:
+      ns.isSearch = false;
+
       return ns;
     default:
       return state;

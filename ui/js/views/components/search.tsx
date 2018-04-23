@@ -16,9 +16,9 @@ class Search extends React.Component<any, any> {
     return lang[this.props.uiState.locale]['search.txt']
   }
 
-  toggleCriteria() {
-    this.setState({ criteria: !this.state.criteria })
-  }
+  // toggleCriteria() {
+  //   this.setState({ criteria: !this.state.criteria })
+  // }
 
   handleChange(e: any) {
     if (e.which === 13) {
@@ -33,9 +33,9 @@ class Search extends React.Component<any, any> {
           <input autoFocus className="search-input" type="text" placeholder={this.placeholderTxt()} value={this.state.keyword}
             onChange={(e) => this.handleChange(e)} onKeyDown={(e) => this.handleChange(e)} />
           <div className="mag"></div>
-          <div className="arrow" onClick={e => this.toggleCriteria()}></div>
+          {/* <div className="arrow" onClick={e => this.toggleCriteria()}></div> */}
         </div>
-        <div className={'criteria ' + (this.state.criteria && 'criteria-hide')}></div>
+        {/* <div className={'criteria ' + (this.state.criteria && 'criteria-hide')}></div> */}
       </div>
     )
   }
