@@ -75,7 +75,7 @@ class Main extends React.Component<any, any> {
           <Loader />
           <Header />
           <Categories />
-          <Search />
+          {(this.props.dataState.category !== 'Home') && <Search />}
           <Switch>
             <Route path='/main/home' component={Home} />
             <Route path='/main/search' component={SearchList} />
@@ -98,7 +98,8 @@ class Main extends React.Component<any, any> {
 
 const mapStateToProps = (store: any) => ({
   uiState: store.uiReducer,
-  loginState: store.loginReducer
+  loginState: store.loginReducer,
+  dataState: store.dataReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
