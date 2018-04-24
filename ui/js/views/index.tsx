@@ -6,7 +6,7 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import Login from './login';
@@ -28,10 +28,10 @@ class App extends React.Component<any, any> {
 let masterStore = createStore(masterReducer, applyMiddleware(thunk));
 
 // Log every state change
-const unsubscribe = masterStore.subscribe(() =>
-  // Note that subscribe() returns a function for unregistering the listener
-  console.log(masterStore.getState())
-);
+// NOTE: subscribe() returns a function for unregistering the listener
+// const unsubscribe = masterStore.subscribe(() =>
+//   console.log(masterStore.getState())
+// );
 
 // Stop listening to state changes
 // unsubscribe()

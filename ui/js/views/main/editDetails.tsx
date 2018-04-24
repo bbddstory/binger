@@ -6,8 +6,8 @@ import { FormattedMessage } from "react-intl";
 import { toggleEditDetailsAct } from '../../actions/uiActions';
 import { saveDetailsAct } from '../../actions/detailsActions';
 import cats from '../../util/cats';
+import SimpleForm from './form'
 // import regex from '../../util/regex';
-import { LocalForm, Field, Control } from 'react-redux-form';
 
 class EditDetails extends React.Component<any, any> {
   constructor(props: any) {
@@ -16,34 +16,26 @@ class EditDetails extends React.Component<any, any> {
   }
 
   onChange(values: any) {
-    // for (let p in values) {
-    //   if (!regex[p].test(values[p])) {
-    //     this.setState({ [p]: true })
-    //   } else {
-    //     this.setState({ [p]: false })
-    //   }
-    // }
   }
 
   onSubmit(values: any) {
     console.log(values);
 
-    let formValid = true;
-
-    // for (let p in values) {
-    //   values[p] = values[p].trim()
-    // }
-
-    // for (let p in values) {
-    //   if (!regex[p].test(values[p])) {
-    //     formValid = false;
-    //   }
-    // }
-
-    if (formValid) {
+    if (true) {
       this.props.saveDetailsDispatch(values);
     }
   }
+
+  // sleep(ms: number) {
+  //   new Promise(resolve => setTimeout(resolve, ms))
+  // };
+
+  sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+  submitFn = async (values: any) => {
+    await this.sleep(800); // simulate server latency
+    window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+  };
 
   render() {
     // Detect whether this is modifying an existing record or adding a new one
@@ -63,7 +55,8 @@ class EditDetails extends React.Component<any, any> {
 
     return (
       <div className="popup-bg">
-        <LocalForm onChange={(values) => this.onChange(values)} onSubmit={(values) => this.onSubmit(values)}>
+        <SimpleForm onSubmit={this.submitFn} />
+        {/* <LocalForm onChange={(values) => this.onChange(values)} onSubmit={(values) => this.onSubmit(values)}>
           <div className="popup-panel">
             <div className="panel-body">
 
@@ -189,7 +182,7 @@ class EditDetails extends React.Component<any, any> {
               <button className="btn-main" type="submit">Save</button>
             </div>
           </div>
-        </LocalForm>
+        </LocalForm> */}
       </div>
     )
   }
