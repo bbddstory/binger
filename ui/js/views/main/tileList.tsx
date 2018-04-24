@@ -43,7 +43,7 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
         {Object.keys(buffer).map((key: any) => {
           return <div className="tile" key={key}>
             <Link to={(this.props.isSearch ? '/main/search_details/' : '/main/cat_details/') + key} onClick={e => this.props.setKeyDispatch(key)}>
-              {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, key, 'watchlater')}></div>}
+              {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, key, 'recomm')}></div>}
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
                 <div className={'dummy-poster poster-' + buffer[key].cat.toLowerCase()}></div>}
