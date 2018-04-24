@@ -1,6 +1,5 @@
 'use strict';
 
-import * as jq from 'jquery';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { loadDataAct } from '../../actions/dataActions';
@@ -67,25 +66,27 @@ class Pages extends React.Component<any, any> {
         console.log(e.target.value);
     }
 
+    turnPages = (e: any) => {
+        if (e.ctrlKey && e.which === 37) {
+            this.gotoPage('PREV');
+        }
+        if (e.ctrlKey && e.which === 39) {
+            this.gotoPage('NEXT');
+        }
+    }
+
     componentDidMount() {
-        jq(document).on('keydown', (e) => {
-            if (e.ctrlKey && e.which === 37) {
-                this.gotoPage('PREV');
-            }
-            if (e.ctrlKey && e.which === 39) {
-                this.gotoPage('NEXT');
-            }
-        })
+        window.addEventListener('keydown', this.turnPages, true);
     }
 
     componentWillUnmount() {
-        jq(document).off('keydown');
+        window.removeEventListener('keydown', this.turnPages, true);
     }
 
     render() {
         return (
-            <div className="pages">
-                <div className="controls">
+            <div id="pages">
+                <div id="controls">
                     <button className="first" onClick={e => this.gotoPage('FIRST')}>❬❬</button>
                     <button onClick={e => this.gotoPage('PREV')}>❬</button>
                     <div className="page-no">

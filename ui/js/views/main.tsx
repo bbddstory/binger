@@ -57,13 +57,20 @@ class Main extends React.Component<any, any> {
 
   componentDidMount() {
     document.querySelector('body').className = 'main-bg';
+    
     window.addEventListener('scroll', resetSearch, true);
     window.addEventListener('resize', resetSearch, true);
+    
+    window.addEventListener('scroll', resetPages, true);
+    window.addEventListener('resize', resetPages, true);
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', resetSearch, true);
     window.removeEventListener('resize', resetSearch, true);
+
+    window.removeEventListener('scroll', resetPages, true);
+    window.removeEventListener('resize', resetPages, true);
   }
 
   render() {

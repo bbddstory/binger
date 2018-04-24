@@ -1,4 +1,11 @@
-import * as jq from 'jquery';
+export const cleanUrl = () => {
+    let hash = location.hash,
+        lastChar = hash.substring(hash.length - 1);
+
+    if (lastChar === '/') {
+        location.hash = hash.substr(0, hash.length - 1);
+    }
+}
 
 export const parseCookie = (ca: any) => {
     let co: any = {};
@@ -9,15 +16,6 @@ export const parseCookie = (ca: any) => {
     }
     
     return co;
-}
-
-export const cleanUrl = () => {
-    let hash = location.hash,
-        lastChar = hash.substring(hash.length - 1);
-
-    if (lastChar === '/') {
-        location.hash = hash.substr(0, hash.length - 1);
-    }
 }
 
 // export const parseHash = () => {
@@ -42,41 +40,49 @@ export const cleanUrl = () => {
 //     }
 // }
 
-export const inView = (el: string) => {
-    let docViewTop = jq(window).scrollTop();
-    let docViewBottom = docViewTop + jq(window).height();
+export const inView = (eid: string) => {
+    if (document.getElementById(eid)) {
+        let elemTop = document.getElementById(eid).offsetTop;
+        let elemBottom = elemTop + document.getElementById(eid).offsetHeight;
+        let docViewTop = document.body.scrollTop;
+        let docViewBottom = docViewTop + window.innerHeight;
+    
+        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    } else {
+        return false
+    }
+}
 
-    let elemTop = jq(el).offset().top;
-    let elemBottom = elemTop + jq(el).height();
-
-    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+export const exist = (eid: string) => {
+    return document.getElementById(eid)
 }
 
 export const resetSearch = () => {
-    if (!inView('.search') && !jq('.search-box').hasClass('search-fixed')) {
-        jq('.search-box').removeClass('search-restore');
-        jq('.search-box').addClass('search-fixed');
+    if (exist('search') && !inView('search') && !document.getElementById('search-box').classList.contains('search-fixed')) {
+        document.getElementById('search-box').classList.remove('search-restore');
+        document.getElementById('search-box').classList.add('search-fixed');
     }
-    if (inView('.search') && jq('.search-box').hasClass('search-fixed')) {
-        jq('.search-box').removeClass('search-fixed');
-        jq('.search-box').addClass('search-restore');
+    if (exist('search') && inView('search') && document.getElementById('search-box').classList.contains('search-fixed')) {
+        document.getElementById('search-box').classList.remove('search-fixed');
+        document.getElementById('search-box').classList.add('search-restore');
     }
 }
 
 export const resetPages = () => {
-    if (!inView('.controls') && !jq('.controls').hasClass('controls-fixed')) {
-        jq('.controls').addClass('controls-fixed')
+    if (exist('pages') && !inView('controls') && !document.getElementById('controls').classList.contains('controls-fixed')) {
+        document.getElementById('controls').classList.add('controls-fixed')
     }
-    if (inView('.pages')) {
-        jq('.controls').removeClass('controls-fixed')
+    if (exist('pages') && inView('pages')) {
+        document.getElementById('controls').classList.remove('controls-fixed')
     }
 }
 
 // export const resetFooter = () => {
-//     if (Math.ceil(jq('.footer').offset().top + jq('.footer').height()) < window.innerHeight) {
-//         jq('.footer').addClass('footer-fixed')
-//     }
-//     if (Math.ceil(document.querySelector('#center').scrollHeight) > window.innerHeight) {
-//         jq('.footer').removeClass('footer-fixed')
+//     console.log(document.getElementById('app').scrollHeight, window.innerHeight);
+    
+//     if (document.getElementById('center').scrollHeight > window.innerHeight) {
+//         document.getElementById('footer').classList.remove('footer-fixed')
+//     } else {
+//         document.getElementById('footer').classList.add('footer-fixed')
 //     }
 // }

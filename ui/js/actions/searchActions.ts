@@ -11,17 +11,11 @@ export function searchAct(key: string) {
     let firebase = getState().loginReducer.firebase;
 
     if (firebase.apps) {
-      // let cat = getState().dataReducer.category;
-      
-      // if (cat === 'Home') {
-      //   cat = 'Movies'
-      // }
       await firebase.database().ref(getState().dataReducer.category).orderByChild('engTitle').equalTo(key)
         .once('value').then((snapshot: any) => {
           let buffer = snapshot.val();
 
           if (buffer) {
-            console.log(buffer);
             dispatch({ type: SET_SEARCH_FLAG });
             dispatch({ type: SEARCH_RETURN, buffer });
             location.hash = 'main/search';

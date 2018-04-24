@@ -16,7 +16,7 @@ class Footer extends React.Component<any, any> {
     const { switchLocaleDispatch } = this.props;
 
     return (
-      <div className="footer">
+      <div id="footer">
         <ol>
           <li><Link to="/main/home"><FormattedMessage id='ft.home' /></Link></li>
           <li><a target="_blank" href="http://quickconnect.to/phantomzone"><FormattedMessage id='ft.zone' /></a></li>

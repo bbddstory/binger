@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { resetPages } from '../../util/utils';
 import cats from '../../util/cats';
 import { setKeyAct, syncCatAct, loadDataAct } from '../../actions/dataActions';
 import { removeHomeListItemAct } from '../../actions/homeActions';
@@ -19,6 +18,7 @@ interface ICompProps extends React.Props<any> {
   dataRef: any,
   delBtn: boolean,
   showPages: boolean,
+  isSearch: boolean,
   category: string
 }
 
@@ -33,20 +33,6 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
     this.props.removeHomeListItemDispatch(key, list);
   }
 
-  componentDidMount() {
-    if (this.props.showPages) {
-      window.addEventListener('scroll', resetPages, true);
-      window.addEventListener('resize', resetPages, true);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.props.showPages) {
-      window.removeEventListener('scroll', resetPages, true);
-      window.removeEventListener('resize', resetPages, true);
-    }
-  }
-
   render() {
     const buffer = this.props.dataRef;
     const { dataState } = this.props;
@@ -56,7 +42,7 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
         {/* buffer && Object.keys(buffer).length &&  */}
         {Object.keys(buffer).map((key: any) => {
           return <div className="tile" key={key}>
-            <Link to={"/main/details/" + key} onClick={e => this.props.setKeyDispatch(key)}>
+            <Link to={(this.props.isSearch ? '/main/search_details/' : '/main/cat_details/') + key} onClick={e => this.props.setKeyDispatch(key)}>
               {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, key, 'watchlater')}></div>}
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :

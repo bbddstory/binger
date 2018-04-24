@@ -102,7 +102,7 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
                 <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
                 <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
                 <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true, false)}></div>
-                <a target="_blank" href={'https://subscene.com/subtitles/title?q=' + item.engTitle}></a>
+                <a target="_blank" title="Search for subtitles on Subscene" href={'https://subscene.com/subtitles/title?q=' + item.engTitle.replace(' ', '+')}></a>
                 {recomm && <ul>
                   {Object.keys(loginState.friends).map((user: string) => {
                     return <li key={user} onClick={e => this.props.recommDispatch(user)}>{loginState.friends[user]}</li>
@@ -114,11 +114,15 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
             <div className="plot">
               <div className="plot-txt">{item.plot || 'Plot unavailable.'}</div>
               <div className="sites">
-                <a className="imdb" target="_blank" href={item.imdb_id ?
+                <a className="imdb" target="_blank" title="Search on IMDB" href={item.imdb_id ?
                   'http://www.imdb.com/title/' + item.imdb_id :
-                  'https://www.imdb.com/find?ref_=nv_sr_fn&q=' + item.engTitle.replace(' ', '+') + '&s=all'}></a>
-                <a className="douban" target="_blank" href={item.douban}></a>
-                <a className="mtime" target="_blank" href={item.mtime}></a>
+                  'https://www.imdb.com/find?ref_=nv_sr_fn&q=' + item.engTitle.replace(' ', '+')}></a>
+                <a className="douban" target="_blank" title="Search on Douban" href={item.douban ?
+                  'https://movie.douban.com/subject/' + item.douban :
+                  'https://movie.douban.com/subject_search?search_text=' + item.engTitle.replace(' ', '+')}></a>
+                <a className="mtime" target="_blank" title="Search on Mtime" href={item.mtime ?
+                  'http://movie.mtime.com/' + item.mtime :
+                  'http://search.mtime.com/search/?q=' + item.engTitle}></a>
               </div>
             </div>
           </div>

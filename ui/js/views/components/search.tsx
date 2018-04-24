@@ -28,8 +28,8 @@ class Search extends React.Component<any, any> {
 
   render() {
     return (
-      <div className="search">
-        <div className="search-box">
+      <div id="search">
+        <div id="search-box">
           <input autoFocus className="search-input" type="text" placeholder={this.placeholderTxt()} value={this.state.keyword}
             onChange={(e) => this.handleChange(e)} onKeyDown={(e) => this.handleChange(e)} />
           <div className="mag"></div>
