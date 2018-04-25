@@ -6,7 +6,6 @@ import { FormattedMessage } from "react-intl";
 import { toggleEditDetailsAct } from '../../actions/uiActions';
 import { saveDetailsAct } from '../../actions/detailsActions';
 import cats from '../../util/cats';
-import SimpleForm from './form'
 // import regex from '../../util/regex';
 
 class EditDetails extends React.Component<any, any> {
@@ -55,7 +54,6 @@ class EditDetails extends React.Component<any, any> {
 
     return (
       <div className="popup-bg">
-        <SimpleForm onSubmit={this.submitFn} />
         {/* <LocalForm onChange={(values) => this.onChange(values)} onSubmit={(values) => this.onSubmit(values)}>
           <div className="popup-panel">
             <div className="panel-body">
