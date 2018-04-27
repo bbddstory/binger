@@ -12,7 +12,7 @@ class Login extends React.Component<any, any> {
 
   handleChange(e: any) {
     if (e.keyCode === 13) {
-      this.props.loginDispath(this.state.email, this.state.pwd)
+      this.props.loginDispatch(this.state.email, this.state.pwd)
     } else {
       if (e.target.type === 'email') {
         this.setState({ email: e.target.value })
@@ -23,13 +23,13 @@ class Login extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    document.getElementsByTagName('body')[0].className = '';
+    document.body.className = '';
   }
 
   render() {
     return (
       <form className="login-form">
-        <img src="ui/images/login/brand.png" width="287" />
+        <div className="logo"></div>
         <input autoFocus type="email" placeholder="Email" value={this.state.email}
           onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
         <input type="password" placeholder="Password" value={this.state.pwd}
@@ -41,11 +41,10 @@ class Login extends React.Component<any, any> {
 
 // Here store is the masterStore defined in index.tsx
 const mapStateToProps = (store: any) => ({
-  // loginState: store.loginReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loginDispath: (email: string, pwd: string) => {
+  loginDispatch: (email: string, pwd: string) => {
     dispatch(loginAct(email, pwd))
   }
 });

@@ -1,0 +1,32 @@
+// These rules require authentication
+{
+  "rules": {
+//     "gmailUsers": {
+//       "$uid": {
+//         ".write": "auth.token.email_verified == true && auth.token.email.matches(/.*@gmail.com$/)"
+//       }
+//     },
+//     "users": {
+//       "$uid": { 
+//         // grants write access to the owner of this user account
+//         // whose uid must exactly match the key ($user_id)
+//         ".read": "$uid === auth.uid",
+//         ".write": "$uid === auth.uid"
+//       }
+//     },
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "Animations": {
+      ".indexOn": ["index", "year", "engTitle", "origTitle", "status"]
+    },
+    "Documentaries": {
+      ".indexOn": ["index", "year", "production", "engTitle", "status"]
+    },
+    "Movies": {
+      ".indexOn": ["index", "year", "rating", "engTitle", "origTitle", "status"]
+    },
+    "TV": {
+      ".indexOn": ["index", "year", "engTitle", "origTitle", "status"]
+    }
+  }
+}

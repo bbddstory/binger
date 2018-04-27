@@ -1,0 +1,21 @@
+// Vendor
+@import '../../node_modules/reset.css/reset.css';
+
+// Views
+@import './views/login';
+@import './views/index';
+
+// Components
+@import './views/components/loader';
+@import './views/components/header';
+@import './views/components/categories';
+@import './views/components/search';
+@import './views/components/pages';
+@import './views/components/footer';
+
+// Components/Main
+@import './views/main/home';
+@import './views/main/tileList';
+@import './views/main/cardList';
+@import './views/main/details';
+@import './views/main/editDetails';

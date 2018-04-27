@@ -9,18 +9,15 @@
     background: rgba(#000, .6);
     border-radius: 5px;
     box-shadow: 0px 5px 12px 0px rgba(#000, .5);
-    img {
-        display: block;
+    .logo {
+        width: 287px;
+        height: 150px;
         margin: 0 auto;
+        background: url("../images/login/brand.png") no-repeat;
     }
-    input {
-        width: calc(100% - 30px);
-        height: 40px;
-        border: 0;
-        padding: 0 15px;
-        font-size: 16px;
-        font-family: OpenSans, 'Microsoft YaHei', Arial, sans-serif;
-        border-radius: 2px;
-        margin-bottom: 10px;
-    }
+}
+
+.err-code {
+    font-weight: bold;
+    font-style: italic;
 }
