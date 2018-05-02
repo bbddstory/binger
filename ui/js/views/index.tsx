@@ -12,6 +12,7 @@ import thunk from 'redux-thunk';
 // Components
 import Loader from './components/loader';
 import Login from './login';
+import Register from './register';
 import Main from './main';
 import masterReducer from '../reducers/masterReducer';
 
@@ -22,6 +23,7 @@ class App extends React.Component<any, any> {
         <Loader />
         <Switch>
           <Route exact path='/' component={Login} />
+          <Route path='/register' component={Register} />
           <Route path='/main' component={Main} />
         </Switch>
       </div>

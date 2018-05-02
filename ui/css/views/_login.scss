@@ -1,4 +1,4 @@
-.login-form {
+.login-form, .register-form {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -15,9 +15,18 @@
         margin: 0 auto;
         background: url("../images/login/brand.png") no-repeat;
     }
+    label {
+        color: #f2f2f2;
+        font-size: 18px;
+    }
+    input[type="text"],
     input[type="email"],
     input[type="password"] {
+        margin-bottom: 18px;
         width: calc(100% - 30px);
+    }
+    input[type="submit"] {
+        margin-top: 10px;
     }
 
     input[type="submit"] {
