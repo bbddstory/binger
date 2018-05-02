@@ -30,12 +30,12 @@ export function loadLatestAct() {
     if (firebase.apps) {
       let ns = {};
 
-      for(let p in cats) {
+      for (let p in cats) {
         await firebase.database().ref(cats[p])
           .orderByChild('index').limitToLast(3)
           .once('value').then((snapshot: any) => {
             let buffer = snapshot.val();
-  
+
             if (buffer) {
               ns = (<any>Object).assign(ns, buffer);
             }

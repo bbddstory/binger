@@ -19,6 +19,7 @@
   "bugs": {
     "url": "https://github.com/bbddstory/binger/issues"
   },
+  "proxy": "http://localhost:3000",
   "homepage": "https://github.com/bbddstory/binger#readme",
   "devDependencies": {
     "@types/react": "^16.0.38",

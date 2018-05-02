@@ -34,6 +34,11 @@ class Login extends React.Component<any, any> {
           onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
         <input type="password" placeholder="Password" value={this.state.pwd}
           onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
+        <span className="sign-up">
+          <a href="#/register" className="sign-up-link">Sign me up!</a>
+        </span>
+        <input type="submit" value="Enter"
+          onSubmit={e => this.handleChange(e)} />
       </form>
     )
   }

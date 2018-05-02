@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
+// Components
+import Loader from './components/loader';
 import Login from './login';
 import Main from './main';
 import masterReducer from '../reducers/masterReducer';
@@ -16,10 +18,13 @@ import masterReducer from '../reducers/masterReducer';
 class App extends React.Component<any, any> {
   render() {
     return (
-      <Switch>
-        <Route exact path='/' component={Login} />
-        <Route path='/main' component={Main} />
-      </Switch>
+      <div>
+        <Loader />
+        <Switch>
+          <Route exact path='/' component={Login} />
+          <Route path='/main' component={Main} />
+        </Switch>
+      </div>
     )
   }
 }
