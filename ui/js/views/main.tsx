@@ -39,10 +39,10 @@ class Main extends React.Component<any, any> {
   }
 
   componentWillMount() {
-    // If this is a normal login firebase should exist already
-    let firebase = this.props.loginState.firebase;
+    // If this is a normal login, token should exist already
+    let token = this.props.loginState.token;
 
-    if (!firebase.apps) {
+    if (!token) {
       let ca = document.cookie.split(';');
 
       if (ca[0] === '' || ca.length < 2) { // No user cookies found or not enough user info
@@ -50,7 +50,7 @@ class Main extends React.Component<any, any> {
         location.reload();
       } else {
         let co = parseCookie(ca);
-        this.props.loginDispatch(co.email, co.pwd);
+        this.props.loginDispatch(co.email, co.token);
       }
     }
   }
@@ -111,7 +111,7 @@ const mapStateToProps = (store: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   loginDispatch: (email: string, pwd: string) => {
-    dispatch(loginAct(email, pwd))
+    // dispatch(loginAct(email, pwd))
   }
 });
 

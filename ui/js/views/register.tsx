@@ -2,19 +2,16 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { registerAct } from '../actions/registerActions';
+import { registerAct } from '../actions/loginActions';
 
 class Register extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { form: { firstName: '', lastName: '', email: '', pwd: '' } }
+    this.state = { form: { firstName: 'Leon', lastName: 'Li', email: '', pwd: '' } }
   }
 
   handleChange(e: any) {
-    e.preventDefault();
-    // console.log(e.target.name);
-
-    if (e.target.name === 'regForm') {
+    if (e.target.name === 'submit') {
       this.props.registerDispatch(this.state.form)
     } else {
       this.setState({
@@ -32,7 +29,7 @@ class Register extends React.Component<any, any> {
 
   render() {
     return (
-      <form name="regForm" className="register-form" onSubmit={e => this.handleChange(e)}>
+      <form className="register-form">
         <div className="logo"></div>
         <input autoFocus type="text" name="firstName" placeholder="First name" value={this.state.form.firstName}
           onChange={e => this.handleChange(e)} />
@@ -45,7 +42,8 @@ class Register extends React.Component<any, any> {
         <span className="sign-up">
           <a href="#/" className="sign-up-link">Go to login</a>
         </span>
-        <input type="submit" value="Register" />
+        <input type="button" name="submit" value="Register"
+          onClick={e => this.handleChange(e)} />
       </form>
     )
   }

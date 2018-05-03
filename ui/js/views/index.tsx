@@ -36,9 +36,9 @@ let masterStore = createStore(masterReducer, applyMiddleware(thunk));
 
 // Log every state change
 // NOTE: subscribe() returns a function for unregistering the listener
-// const unsubscribe = masterStore.subscribe(() =>
-//   console.log(masterStore.getState())
-// );
+const unsubscribe = masterStore.subscribe(() =>
+  console.log(masterStore.getState())
+);
 
 // Stop listening to state changes
 // unsubscribe()

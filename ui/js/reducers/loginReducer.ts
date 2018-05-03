@@ -1,12 +1,12 @@
 'use strict';
 
-import { LOGIN, LOAD_LATEST } from '../actions/loginActions';
+import { LOGIN, LOAD_LATEST, SET_TOKEN } from '../actions/loginActions';
 import { REMOVE_HOME_LIST_ITEM } from '../actions/homeActions';
 
 let init = {
-  email: '',
+  token: '',
   user: '',
-  firebase: {},
+  email: '',
   latest: {}
 }
 
@@ -14,10 +14,15 @@ export function loginReducer(state: any = init, action: any) {
   let ns = (<any>Object).assign({}, state);
 
   switch (action.type) {
+    case SET_TOKEN:
+      ns.token = action.token;
+      ns.user = action.user;
+      ns.email = action.email;
+
+      return ns;
     case LOGIN:
       ns = action.buffer;
       ns.user = action.buffer.email.substr(0, action.buffer.email.indexOf('@'));
-      ns.firebase = action.firebase;
       // ns.friends = { 
       //   foo_1: 'John',
       //   foo_2: 'Jane',

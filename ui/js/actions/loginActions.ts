@@ -1,72 +1,48 @@
 'use strict';
 
-import * as firebase from 'firebase';
-import config from '../util/firebase';
+import axios from 'axios';
 import cats from '../util/cats';
 import { TOGGLE_LOADER } from './uiActions';
 import { loadLatestAct } from './dataActions';
 
+import { CEM_URL } from '../util/utils';
+
 // Action types
+export const SET_TOKEN = 'SET_TOKEN';
 export const LOGIN = 'LOGIN';
 export const LOAD_LATEST = 'LOAD_LATEST';
 
 // Action creators
-export function loginAct(email: string, pwd: string) { //firstName: string, lastName: string, 
+export function loginAct(form: any) {
   return (dispatch: any, getState: any) => {
     dispatch({ type: TOGGLE_LOADER, status: true, loaderTxt: 'Signing in...' });
 
-    fetch('http://localhost:3000/users/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' }, // Must have, otherwise fetch doesn't work
-      body: JSON.stringify({
-        // firstName: firstName,
-        // lastName: lastName,
-        email: email,
-        password: pwd
-      })
+    axios.post(CEM_URL + '/users/login', form).then(res => {
+      if (res.status === 201) {
+        dispatch({ type: SET_TOKEN, token: res.data });
+        dispatch({ type: TOGGLE_LOADER, status: false });
+
+        location.hash = '/main'
+      }
+    }).catch(function (error) {
+      console.log(error);
     });
+  }
+}
 
-    // If Firebase has already been initialised, do not initialise again.
-    // if (!firebase.apps.length) {
-    //   firebase.initializeApp(config);
-    // }
+export function registerAct(form: any) {
+  return (dispatch: any, getState: any) => {
+    dispatch({ type: TOGGLE_LOADER, status: true, loaderTxt: 'Registering...' });
+    
+    axios.post(CEM_URL + '/users/register', form).then(res => {
+      if (res.status === 201) {
+        dispatch({ type: SET_TOKEN, token: res.data, user: form.firstName, email: form.email });
+        dispatch({ type: TOGGLE_LOADER, status: false });
 
-    // let authPromise = firebase.auth().signInWithEmailAndPassword(email, pwd).catch(error => {
-    //   // Handle Errors here.
-    //   dispatch({ type: TOGGLE_LOADER, status: true, loaderTxt: 'Sign in Failed', loading: false });
-    //   console.log(error.code, error.message);
-    // });
-
-    // authPromise.then(async e => {
-    //   if (e) {
-    //     let user = email.substr(0, email.indexOf('@'));
-
-    //     /**
-    //      * Set a cookie for keeping the user session.
-    //      * When the page is refreshed, automatically sign in again.
-    //      */
-    //     document.cookie = 'email=' + email;
-    //     document.cookie = 'pwd=' + pwd;
-
-    //     await firebase.database().ref('Users/' + user)
-    //       .on('value', (snapshot: any) => {
-    //         let buffer = snapshot.val();
-
-    //         if (buffer) {
-    //           dispatch({ type: LOGIN, buffer, firebase });
-    //           dispatch({ type: TOGGLE_LOADER, status: false });
-
-    //           dispatch(loadLatestAct());
-
-    //           let hash = location.hash;
-    //           if (getState().dataReducer.category === cats.HOME && !hash.endsWith('main/home')) {
-    //             location.hash = 'main/home'
-    //           }
-    //         }
-    //       });
-    //   }
-    // }, reason => {
-    //   console.log(reason);
-    // });
+        location.hash = '/'
+      }
+    }).catch(function (error) {
+      console.log(error);
+    });
   }
 }

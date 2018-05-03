@@ -7,18 +7,19 @@ import { loginAct } from '../actions/loginActions';
 class Login extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { email: 'bbddstory@gmail.com', pwd: 'LEON314@firebase' }
+    this.state = { form: { email: 'bbddstory@gmail.com', pwd: 'LEON314@firebase' } }
   }
 
   handleChange(e: any) {
-    if (e.keyCode === 13) {
-      this.props.loginDispatch(this.state.email, this.state.pwd)
+    if (e.target.name === 'submit') {
+      this.props.loginDispatch(this.state.form)
     } else {
-      if (e.target.type === 'email') {
-        this.setState({ email: e.target.value })
-      } else {
-        this.setState({ pwd: e.target.value })
-      }
+      this.setState({
+        form: {
+          ...this.state.form,
+          [e.target.name]: e.target.value
+        }
+      })
     }
   }
 
@@ -30,15 +31,15 @@ class Login extends React.Component<any, any> {
     return (
       <form className="login-form">
         <div className="logo"></div>
-        <input autoFocus type="email" placeholder="Email" value={this.state.email}
+        <input autoFocus type="email" name="email" placeholder="Email" value={this.state.email}
           onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
-        <input type="password" placeholder="Password" value={this.state.pwd}
+        <input type="password" name="pwd" placeholder="Password" value={this.state.pwd}
           onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
         <span className="sign-up">
           <a href="#/register" className="sign-up-link">Sign me up!</a>
         </span>
-        <input type="submit" value="Enter"
-          onSubmit={e => this.handleChange(e)} />
+        <input type="button" name="submit" value="Enter"
+          onClick={e => this.handleChange(e)} />
       </form>
     )
   }
@@ -49,8 +50,8 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loginDispatch: (email: string, pwd: string) => {
-    dispatch(loginAct(email, pwd))
+  loginDispatch: (form: any) => {
+    dispatch(loginAct(form))
   }
 });
 

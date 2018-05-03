@@ -1,10 +1,5 @@
-export const cleanUrl = () => {
-    let hash = location.hash,
-        lastChar = hash.substring(hash.length - 1);
-
-    if (lastChar === '/') {
-        location.hash = hash.substr(0, hash.length - 1);
-    }
+export const CEM_URL = () => {
+    return 'http://localhost:3000'
 }
 
 export const parseCookie = (ca: any) => {
@@ -18,29 +13,11 @@ export const parseCookie = (ca: any) => {
     return co;
 }
 
-// export const parseHash = () => {
-//     let hash = location.hash;
+const exist = (eid: string) => {
+    return document.getElementById(eid)
+}
 
-//     if (hash.indexOf('?') !== -1) { // There're parameters in the URL
-//         return hash.substring(hash.lastIndexOf('/') + 1, hash.indexOf('?'))
-//     } else { // There're no parameters
-//         let arr = hash.split('/');
-//         return arr[arr.length - 1];
-//     }
-// }
-
-// export const parseParam = (p: string) => {
-//     let results = new RegExp('[\?&]' + p + '=[a-zA-Z0-9]*').exec(location.hash);
-
-//     if (results !== null) {
-//         let arr = results[0].split('=');
-//         return arr[arr.length - 1];
-//     } else {
-//         return null;
-//     }
-// }
-
-export const inView = (eid: string) => {
+const inView = (eid: string) => {
     if (document.getElementById(eid)) {
         let elemTop = document.getElementById(eid).offsetTop;
         let elemBottom = elemTop + document.getElementById(eid).offsetHeight;
@@ -51,10 +28,6 @@ export const inView = (eid: string) => {
     } else {
         return false
     }
-}
-
-export const exist = (eid: string) => {
-    return document.getElementById(eid)
 }
 
 export const resetSearch = () => {
@@ -76,13 +49,3 @@ export const resetPages = () => {
         document.getElementById('controls').classList.remove('controls-fixed')
     }
 }
-
-// export const resetFooter = () => {
-//     console.log(document.getElementById('app').scrollHeight, window.innerHeight);
-    
-//     if (document.getElementById('center').scrollHeight > window.innerHeight) {
-//         document.getElementById('footer').classList.remove('footer-fixed')
-//     } else {
-//         document.getElementById('footer').classList.add('footer-fixed')
-//     }
-// }

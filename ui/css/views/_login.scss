@@ -25,15 +25,12 @@
         margin-bottom: 18px;
         width: calc(100% - 30px);
     }
-    input[type="submit"] {
-        margin-top: 10px;
-    }
-
-    input[type="submit"] {
+    input[type="button"] {
         width: calc(40%);
-        cursor: pointer;
         color: #f2f2f2;
         background: #00a651;
+        margin-top: 10px;
+        cursor: pointer;
         &:hover {
             color: #222;
             background: #f2f2f2;
