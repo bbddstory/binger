@@ -17,7 +17,7 @@ export function loginAct(form: any) {
   return (dispatch: any, getState: any) => {
     dispatch({ type: TOGGLE_LOADER, status: true, loaderTxt: 'Signing in...' });
 
-    axios.post(CEM_URL + '/users/login', form).then(res => {
+    axios.post(CEM_URL() + '/users/login', form).then(res => {
       if (res.status === 201) {
         dispatch({ type: SET_TOKEN, token: res.data });
         dispatch({ type: TOGGLE_LOADER, status: false });
@@ -34,7 +34,10 @@ export function registerAct(form: any) {
   return (dispatch: any, getState: any) => {
     dispatch({ type: TOGGLE_LOADER, status: true, loaderTxt: 'Registering...' });
     
-    axios.post(CEM_URL + '/users/register', form).then(res => {
+    console.log(CEM_URL() + '/users/register');
+    
+
+    axios.post(CEM_URL() + '/users/register', form).then(res => {
       if (res.status === 201) {
         dispatch({ type: SET_TOKEN, token: res.data, user: form.firstName, email: form.email });
         dispatch({ type: TOGGLE_LOADER, status: false });
