@@ -18,11 +18,13 @@ export function loginAct(form: any) {
     dispatch({ type: TOGGLE_LOADER, status: true, loaderTxt: 'Signing in...' });
 
     axios.post(CEM_URL() + '/users/login', form).then(res => {
-      if (res.status === 201) {
-        dispatch({ type: SET_TOKEN, token: res.data });
+      if (res.status === 200) {
+        dispatch({ type: SET_TOKEN, token: res.data.token });
         dispatch({ type: TOGGLE_LOADER, status: false });
+        document.cookie = "token=" + res.data.token;
+        document.cookie = "email=" + form.email;
 
-        location.hash = '/main'
+        location.hash = '/main/home'
       }
     }).catch(function (error) {
       console.log(error);
@@ -33,9 +35,6 @@ export function loginAct(form: any) {
 export function registerAct(form: any) {
   return (dispatch: any, getState: any) => {
     dispatch({ type: TOGGLE_LOADER, status: true, loaderTxt: 'Registering...' });
-    
-    console.log(CEM_URL() + '/users/register');
-    
 
     axios.post(CEM_URL() + '/users/register', form).then(res => {
       if (res.status === 201) {
@@ -47,5 +46,11 @@ export function registerAct(form: any) {
     }).catch(function (error) {
       console.log(error);
     });
+  }
+}
+
+export function setTokenAct(token: string, email: string) {
+  return (dispatch: any, getState: any) => {
+    dispatch({ type: SET_TOKEN,  token: token, email: email });
   }
 }

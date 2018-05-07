@@ -17,15 +17,17 @@ class Home extends React.Component<any, any> {
     const { loginState } = this.props;
     const { dataState } = this.props;
   
-    if ((dataState.buffer && Object.keys(dataState.buffer).length === 0
-      && loginState.latest && Object.keys(this.props.loginState.latest).length > 0)
-      || dataState.prevCat !== dataState.category) {
-      this.props.syncHomeListDispatch()
-    }
+    this.props.syncHomeListDispatch();
+
+    // if ((dataState.buffer && Object.keys(dataState.buffer).length === 0
+    //   && loginState.latest && Object.keys(this.props.loginState.latest).length > 0)
+    //   || dataState.prevCat !== dataState.category) {
+    //   this.props.syncHomeListDispatch()
+    // }
   }
 
   componentDidUpdate(prevProps: any, prevState: any, snapshot: any) {
-    this.syncHomeList()
+    // this.syncHomeList()
   }
 
   componentDidMount() {

@@ -36,20 +36,21 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
   render() {
     const buffer = this.props.dataRef;
     const { dataState } = this.props;
+    console.log(typeof buffer);
+
 
     return (
       <div className="tile-list">
-        {/* buffer && Object.keys(buffer).length &&  */}
         {Object.keys(buffer).map((key: any) => {
-          return <div className="tile" key={key}>
-            <Link to={(this.props.isSearch ? '/main/search_details/' : '/main/cat_details/') + key} onClick={e => this.props.setKeyDispatch(key)}>
-              {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, key, 'recomm')}></div>}
+          return <div className="tile" key={buffer[key].id}>
+            <Link to={(this.props.isSearch ? '/main/search_details/' : '/main/cat_details/') + buffer[key].id} onClick={e => this.props.setKeyDispatch(buffer[key].id)}>
+              {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, buffer[key].id, 'recomm')}></div>}
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
-                <div className={'dummy-poster poster-' + buffer[key].cat.toLowerCase()}></div>}
+                <div className={'dummy-poster poster-' + buffer[key].category.toLowerCase()}></div>}
             </Link>
             <div className="info">
-              <div className="title">{buffer[key].engTitle}</div>
+              <div className="title">{buffer[key].eng_title}</div>
               <div className="details">
                 <span className="year">{buffer[key].year}</span><br />
                 {buffer[key].director || buffer[key].creator || buffer[key].prod}
@@ -57,7 +58,7 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
             </div>
           </div>
         })}
-        {this.props.showPages && buffer && Object.keys(buffer).length && <Pages />}
+        {this.props.showPages && buffer && buffer.length && <Pages />}
       </div>
     )
   }

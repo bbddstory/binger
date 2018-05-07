@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { parseCookie, resetSearch, resetPages } from '../util/utils';
-import { loginAct } from '../actions/loginActions';
+import { loginAct, setTokenAct } from '../actions/loginActions';
 
 // Components
 import Loader from './components/loader';
@@ -43,14 +43,15 @@ class Main extends React.Component<any, any> {
     let token = this.props.loginState.token;
 
     if (!token) {
-      let ca = document.cookie.split(';');
-
-      if (ca[0] === '' || ca.length < 2) { // No user cookies found or not enough user info
+      let cs = document.cookie.split(';');
+      console.log(cs);
+      
+      if (cs[0] === '' || cs.length < 2) { // No user cookies found or not enough user info
         location.hash = '#';
         location.reload();
       } else {
-        let co = parseCookie(ca);
-        this.props.loginDispatch(co.email, co.token);
+        let co = parseCookie(cs);
+        this.props.loginDispatch(co.token, co.email);
       }
     }
   }
@@ -110,8 +111,8 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loginDispatch: (email: string, pwd: string) => {
-    // dispatch(loginAct(email, pwd))
+  loginDispatch: (token: string, email: string) => {
+    dispatch(setTokenAct(token, email))
   }
 });
 
