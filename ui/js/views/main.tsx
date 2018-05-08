@@ -45,23 +45,23 @@ class Main extends React.Component<any, any> {
     if (!token) {
       let cs = document.cookie.split(';');
       console.log(cs);
-      
+
       if (cs[0] === '' || cs.length < 2) { // No user cookies found or not enough user info
         location.hash = '#';
         location.reload();
       } else {
         let co = parseCookie(cs);
-        this.props.loginDispatch(co.token, co.email);
+        this.props.loginDispatch(co.token, co.email, co.user);
       }
     }
   }
 
   componentDidMount() {
     document.querySelector('body').className = 'main-bg';
-    
+
     window.addEventListener('scroll', resetSearch, true);
     window.addEventListener('resize', resetSearch, true);
-    
+
     window.addEventListener('scroll', resetPages, true);
     window.addEventListener('resize', resetPages, true);
   }
@@ -111,8 +111,8 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loginDispatch: (token: string, email: string) => {
-    dispatch(setTokenAct(token, email))
+  loginDispatch: (token: string, email: string, user: string) => {
+    dispatch(setTokenAct(token, email, user))
   }
 });
 

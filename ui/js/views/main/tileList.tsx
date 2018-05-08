@@ -19,7 +19,8 @@ interface ICompProps extends React.Props<any> {
   delBtn: boolean,
   showPages: boolean,
   isSearch: boolean,
-  category: string
+  category: string,
+  list: string
 }
 
 class TileList extends React.Component<IReduxProps & ICompProps, any> {
@@ -28,23 +29,21 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
     this.state = {};
   }
 
-  delItem(e: any, key: string, list: string) {
+  delItem(e: any, key: string) {
     e.preventDefault();
-    this.props.removeHomeListItemDispatch(key, list);
+    this.props.removeHomeListItemDispatch(key, this.props.list);
   }
 
   render() {
     const buffer = this.props.dataRef;
     const { dataState } = this.props;
-    console.log(typeof buffer);
-
 
     return (
       <div className="tile-list">
         {Object.keys(buffer).map((key: any) => {
           return <div className="tile" key={buffer[key].id}>
             <Link to={(this.props.isSearch ? '/main/search_details/' : '/main/cat_details/') + buffer[key].id} onClick={e => this.props.setKeyDispatch(buffer[key].id)}>
-              {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, buffer[key].id, 'recomm')}></div>}
+              {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, buffer[key].id)}></div>}
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
                 <div className={'dummy-poster poster-' + buffer[key].category.toLowerCase()}></div>}

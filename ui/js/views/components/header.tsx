@@ -23,7 +23,7 @@ class Header extends React.Component<any, any> {
           <a target="_blank" href="http://quickconnect.to/phantomzone" className="opt-quick" title="Quick connect" ></a>
           {/* <Link to="/main/notices" className="opt-notice" title="Notifications"></Link> */}
           {/* <Link to="/main/messages" className="opt-msg" title="Messages"></Link> */}
-          <Link to="/main/me" className="opt-me" title="Me">{this.props.loginState.nickname}</Link>
+          <Link to="/main/me" className="opt-me" title="Me">{this.props.loginState.user}</Link>
         </div>
       </nav>
     )

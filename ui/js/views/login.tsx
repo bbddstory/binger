@@ -7,7 +7,7 @@ import { loginAct } from '../actions/loginActions';
 class Login extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { form: { email: 'bbddstory@gmail.com', pwd: 'LEON314@firebase' } }
+    this.state = { form: { email: 'leon@g.com', pwd: 'leon@g.com' } }
   }
 
   handleChange(e: any) {
@@ -31,9 +31,9 @@ class Login extends React.Component<any, any> {
     return (
       <form className="login-form">
         <div className="logo"></div>
-        <input autoFocus type="email" name="email" placeholder="Email" value={this.state.email}
+        <input autoFocus type="email" name="email" placeholder="Email" value={this.state.form.email}
           onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
-        <input type="password" name="pwd" placeholder="Password" value={this.state.pwd}
+        <input type="password" name="pwd" placeholder="Password" value={this.state.form.pwd}
           onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
         <span className="sign-up">
           <a href="#/register" className="sign-up-link">Sign me up!</a>
