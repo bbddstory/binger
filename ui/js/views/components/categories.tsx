@@ -40,16 +40,6 @@ class Categories extends React.Component<any, any> {
               <FormattedMessage id='cats.anime' />
             </Link>
           </li>
-          {/* <li>
-            <Link to="/main/xxx" className={currCat === cats.XXX ? 'active' : ''} onClick={e => this.props.switchCatDispatch(cats.XXX)}>
-              <FormattedMessage id='cats.xxx' />
-            </Link>
-          </li>
-          <li>
-            <Link to="/main/jav" className={currCat === cats.JAV ? 'active' : ''} onClick={e => this.props.switchCatDispatch(cats.JAV)}>
-              <FormattedMessage id='cats.jav' />
-            </Link>
-          </li> */}
         </ol>
       </div>
     )

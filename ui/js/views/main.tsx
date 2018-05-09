@@ -83,7 +83,8 @@ class Main extends React.Component<any, any> {
           <Loader />
           <Header />
           <Categories />
-          {(this.props.dataState.category !== 'Home') && <Search />}
+          <Search />
+          {/* {(this.props.dataState.category !== 'Home') && <Search />} */}
           <Switch>
             <Route path='/main/home' component={Home} />
             <Route path='/main/search' component={SearchList} />

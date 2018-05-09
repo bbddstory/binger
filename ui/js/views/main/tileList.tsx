@@ -31,7 +31,7 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
 
   delItem(e: any, key: string) {
     e.preventDefault();
-    this.props.removeHomeListItemDispatch(key, this.props.list);
+    this.props.removeHomeListItemDispatch(this.props.list, key);
   }
 
   render() {
@@ -69,10 +69,12 @@ const mapStateToProps = (store: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   setKeyDispatch: (key: string) => {
+    console.log(key);
+    
     dispatch(setKeyAct(key))
   },
-  removeHomeListItemDispatch: (key: string, list: string) => {
-    dispatch(removeHomeListItemAct(key, list))
+  removeHomeListItemDispatch: (list: string, key: string) => {
+    dispatch(removeHomeListItemAct(list, key))
   }
 });
 

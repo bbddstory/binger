@@ -3,8 +3,9 @@
 import { GOTO_PAGE, SET_KEY, SYNC_CAT } from '../actions/dataActions';
 import { SAVE_COMMENT, DEL_COMMENT, SAVE_NEW, UPDATE_BUFFER_DETAILS } from '../actions/detailsActions';
 import { SWITCH_CAT } from '../actions/categoriesActions';
-import { SYNC_HOME_LIST } from '../actions/homeActions';
+import { LOAD_HOME_LISTS } from '../actions/homeActions';
 import { SEARCH_RETURN } from '../actions/searchActions';
+import { LOAD_LATEST, LOAD_WATCH_LATER, LOAD_RECOMM, REMOVE_HOME_LIST_ITEM } from '../actions/homeActions';
 import cats from '../util/cats';
 
 interface IDataReducer {
@@ -15,6 +16,9 @@ let init: IDataReducer = {
   key: '',
   buffer: {},
   search: {},
+  latest: {},
+  watchLater: {},
+  recomm: {},
   prevCat: cats.HOME,
   category: cats.HOME,
   itemCnt: 0, // Total number of records in designated category
@@ -29,16 +33,38 @@ export function dataReducer(state: any = init, action: any) {
   let ns = (<any>Object).assign({}, state);
 
   switch (action.type) {
-    case SYNC_HOME_LIST:
+    case LOAD_HOME_LISTS:
       ns.buffer = action.homeList;
       ns.prevCat = ns.category;
 
       return ns;
+    case LOAD_LATEST:
+      ns.latest = action.data.latest;
+
+      return ns;
+    case LOAD_WATCH_LATER:
+      ns.watchLater = action.data.watchLater;
+
+      return ns;
+    case LOAD_RECOMM:
+      ns.recomm = action.data.recomm;
+
+      return ns;
+    case REMOVE_HOME_LIST_ITEM:
+      let arr = [];
+
+      for (let i = 0; i < ns[action.list].length; i++) {
+        if (ns[action.list][i].id !== action.key) {
+          arr.push(ns[action.list][i])
+        }
+      }
+      ns[action.list] = arr;
+
+      return ns;
     case SWITCH_CAT:
-      if (action.cat === cats.HOME) {
-        ns.category = action.cat;
-      } else if (state.prevCat !== action.cat) { // Needs to reset all pagination related values
-        ns.category = action.cat;
+      ns.category = action.cat;
+
+      if (state.prevCat !== action.cat) { // Needs to reset all pagination related values
         ns.itemCnt = 0;
         ns.pageCnt = 1;
         ns.currPage = 1;

@@ -4,15 +4,12 @@ import axios from 'axios';
 
 import cats from '../util/cats';
 import { TOGGLE_LOADER } from './uiActions';
-import { loadLatestAct } from './dataActions';
+// import { loadLatestAct } from './dataActions';
 import { CEM_URL } from '../util/utils';
 
 // Action types
 export const LOGIN = 'LOGIN';
 export const SET_TOKEN = 'SET_TOKEN';
-export const LOAD_LATEST = 'LOAD_LATEST';
-export const LOAD_WATCH_LATER = 'LOAD_WATCH_LATER';
-export const LOAD_RECOMM = 'LOAD_RECOMM';
 
 // Action creators
 export function registerAct(form: any) {
@@ -31,9 +28,7 @@ export function registerAct(form: any) {
 
         location.hash = '/main/home'
       }
-    }).catch(err => {
-      console.log(err);
-    });
+    }).catch(err => console.log(err));
   }
 }
 
@@ -57,9 +52,7 @@ export function loginAct(form: any) {
 
         location.hash = '/main/home'
       }
-    }).catch(err => {
-      console.log(err);
-    });
+    }).catch(err => console.log(err));
   }
 }
 

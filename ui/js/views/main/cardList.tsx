@@ -37,11 +37,11 @@ class CardList extends React.Component<IReduxProps & ICompProps, any> {
             <Link to={(this.props.isSearch ? '/main/search_details/' : '/main/cat_details/') + key} onClick={e => this.props.setKeyDispatch(key)}>
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
-                <div className={'dummy-poster poster-' + buffer[key].cat.toLowerCase()}></div>}
+                <div className={'dummy-poster poster-' + buffer[key].category.toLowerCase()}></div>}
             </Link>
             {/* <div className="details"> */}
-              <h2 className="title">{buffer[key].engTitle}</h2>
-              <h4 className="year">{buffer[key].year}</h4>
+            <h2 className="title">{buffer[key].eng_title}</h2>
+            <h4 className="year">{buffer[key].year}</h4>
             {/* </div> */}
           </div>
         })}

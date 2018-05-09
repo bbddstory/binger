@@ -2,52 +2,43 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { syncHomeListAct } from '../../actions/homeActions';
 import { FormattedMessage } from "react-intl";
+
+import { loadHomeListsAct } from '../../actions/homeActions';
 import TileList from './tileList';
 
 class Home extends React.Component<any, any> {
   constructor(props: any) {
-    super(props);
-    this.state = {}
-  }
-
-  syncHomeList() {
-    this.props.syncHomeListDispatch();
-  }
-
-  componentDidUpdate(prevProps: any, prevState: any, snapshot: any) {
-    // this.syncHomeList()
+    super(props)
   }
 
   componentDidMount() {
-    this.syncHomeList()
+    this.props.loadHomeListsDispatch()
   }
 
   render() {
-    const { loginState } = this.props;
+    const { dataState } = this.props;
 
     return (
       <div className="home">
         <h1><FormattedMessage id='home.latest' /></h1>
         <div className="home-list">
-          {loginState.latest ?
-            <TileList dataRef={loginState.latest} delBtn={false} showPages={false} isSearch={false} category="" list="" />
+          {Object.keys(dataState.latest).length ?
+            <TileList dataRef={dataState.latest} delBtn={false} showPages={false} isSearch={false} category="" list="latest" />
             : <FormattedMessage id='home.empty' />}
         </div>
 
         <h1><FormattedMessage id='home.watch' /></h1>
         <div className="home-list">
-          {loginState.watchLater ?
-            <TileList dataRef={loginState.watchLater} delBtn={true} showPages={false} isSearch={false} category="" list="watchLater" />
+          {Object.keys(dataState.watchLater).length ?
+            <TileList dataRef={dataState.watchLater} delBtn={true} showPages={false} isSearch={false} category="" list="watchLater" />
             : <FormattedMessage id='home.empty' />}
         </div>
 
         <h1><FormattedMessage id='home.recomm' /></h1>
         <div className="home-list">
-          {loginState.recomm ?
-            <TileList dataRef={loginState.recomm} delBtn={true} showPages={false} isSearch={false} category="" list="recomm" />
+          {Object.keys(dataState.recomm).length ?
+            <TileList dataRef={dataState.recomm} delBtn={true} showPages={false} isSearch={false} category="" list="recomm" />
             : <FormattedMessage id='home.empty' />}
         </div>
       </div>
@@ -56,13 +47,12 @@ class Home extends React.Component<any, any> {
 }
 
 const mapStateToProps = (store: any) => ({
-  loginState: store.loginReducer,
   dataState: store.dataReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  syncHomeListDispatch: () => {
-    dispatch(syncHomeListAct())
+  loadHomeListsDispatch: () => {
+    dispatch(loadHomeListsAct())
   }
 });
 

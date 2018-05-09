@@ -3,7 +3,7 @@
 import { TOGGLE_LOADER } from './uiActions';
 
 // Action types
-export const SET_KEY = 'SET_KEY';
+// export const SET_KEY = 'SET_KEY';
 export const WATCH_LATER = 'WATCH_LATER';
 export const RECOMM = 'RECOMM';
 export const SAVE_COMMENT = 'SAVE_COMMENT';
@@ -13,12 +13,12 @@ export const SAVE_NEW = 'SAVE_NEW';
 import { toggleEditDetailsAct } from '../actions/uiActions';
 
 // Action creators
-export function setKeyAct(key: string) {
-  return {
-    type: SET_KEY,
-    key
-  }
-}
+// export function setKeyAct(key: string) {
+//   return {
+//     type: SET_KEY,
+//     key
+//   }
+// }
 
 export function watchLaterAct() {
   return async (dispatch: any, getState: any) => {

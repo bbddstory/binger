@@ -1,5 +1,9 @@
 'use strict';
 
+import axios from 'axios';
+
+import { CEM_URL } from '../util/utils';
+
 // Action types
 export const SEARCH = 'SEARCH';
 export const SEARCH_RETURN = 'SEARCH_RETURN';
@@ -7,20 +11,22 @@ export const SET_SEARCH_FLAG = 'SET_SEARCH_FLAG';
 
 // Action creators
 export function searchAct(key: string) {
-  return async (dispatch: any, getState: any) => {
-    let firebase = getState().loginReducer.firebase;
+  return (dispatch: any, getState: any) => {
 
-    if (firebase.apps) {
-      await firebase.database().ref(getState().dataReducer.category).orderByChild('engTitle').equalTo(key)
-        .once('value').then((snapshot: any) => {
-          let buffer = snapshot.val();
+    axios.post(CEM_URL() + '/search', {
+      token: getState().loginReducer.token,
+      key: key,
+      type: 1 // 0: fuzzy search, 1: exact search
+    }).then(res => {
+      let buffer = res.data.results;
 
-          if (buffer) {
-            dispatch({ type: SET_SEARCH_FLAG });
-            dispatch({ type: SEARCH_RETURN, buffer });
-            location.hash = 'main/search';
-          }
-        });
-    }
+      if (res.status === 200) {
+        dispatch({ type: SET_SEARCH_FLAG });
+        dispatch({ type: SEARCH_RETURN, buffer });
+        location.hash = 'main/search';
+      }
+    }).catch(err => {
+      console.log(err);
+    });
   }
 }
