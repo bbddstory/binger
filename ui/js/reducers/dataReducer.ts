@@ -34,37 +34,29 @@ export function dataReducer(state: any = init, action: any) {
 
   switch (action.type) {
     case LOAD_HOME_LISTS:
-      ns.buffer = action.homeList;
+      ns.latest = action.data.data[0];
+      ns.watchLater = action.data.data[1];
+      ns.recomm = action.data.data[2];
       ns.prevCat = ns.category;
 
       return ns;
-    case LOAD_LATEST:
-      ns.latest = action.data.latest;
-
-      return ns;
-    case LOAD_WATCH_LATER:
-      ns.watchLater = action.data.watchLater;
-
-      return ns;
-    case LOAD_RECOMM:
-      ns.recomm = action.data.recomm;
-
-      return ns;
     case REMOVE_HOME_LIST_ITEM:
-      let arr = [];
+      delete ns[action.list][action.key];
 
-      for (let i = 0; i < ns[action.list].length; i++) {
-        if (ns[action.list][i].id !== action.key) {
-          arr.push(ns[action.list][i])
-        }
-      }
-      ns[action.list] = arr;
+      // let arr = [];
+
+      // for (let i = 0; i < ns[action.list].length; i++) {
+      //   if (ns[action.list][i].id !== action.key) {
+      //     arr.push(ns[action.list][i])
+      //   }
+      // }
+      // ns[action.list] = arr;
 
       return ns;
     case SWITCH_CAT:
       ns.category = action.cat;
 
-      if (state.prevCat !== action.cat) { // Needs to reset all pagination related values
+      if (state.prevCat !== action.cat) { // Reset all pagination related values
         ns.itemCnt = 0;
         ns.pageCnt = 1;
         ns.currPage = 1;
@@ -74,7 +66,13 @@ export function dataReducer(state: any = init, action: any) {
 
       return ns;
     case GOTO_PAGE:
-      ns.buffer = action.buffer;
+      let bufferObj: IDataReducer = {};
+
+      for (let i = 0; i < action.buffer.length; i++) {
+        bufferObj[action.buffer[i].id] = action.buffer[i]
+      }
+      ns.buffer = bufferObj;
+
       ns.itemCnt = action.itemCnt;
       ns.pageCnt = Math.ceil(action.itemCnt / init.ipp);
       ns.currPage = action.currPage;
@@ -132,7 +130,12 @@ export function dataReducer(state: any = init, action: any) {
 
       return ns;
     case SEARCH_RETURN:
-      ns.search = action.buffer;
+      let searchObj: IDataReducer = {};
+
+      for (let i = 0; i < action.results.length; i++) {
+        searchObj[action.results[i].id] = action.results[i]
+      }
+      ns.search = searchObj;
 
       return ns;
     default:

@@ -27,17 +27,18 @@ export function syncCatAct() {
 
 export function loadDataAct(category: string, currPage: number, startAt: number, endAt: number) {
   return (dispatch: any, getState: any) => {
-    dispatch({ type: TOGGLE_LOADER, status: true });
+    // dispatch({ type: TOGGLE_LOADER, status: true });
 
-    axios.post(CEM_URL() + '/videos/load_cat', category).then(res => {
+    let ipp = getState().dataReducer.ipp;
+
+    axios.post(CEM_URL() + '/videos/load_cat', {
+      token: getState().loginReducer.token,
+      category, ipp, currPage
+    }).then(res => {
       if (res.status === 200) {
-        dispatch({
-          // type: SET_TOKEN,
-          // token: res.data.token,
-          // email: form.email,
-          // user: form.firstName
-        });
-        dispatch({ type: TOGGLE_LOADER, status: false });
+        let itemCnt = res.data.cnt;
+        dispatch({ type: GOTO_PAGE, buffer: res.data.data, itemCnt, currPage, startAt, endAt });
+        // dispatch({ type: TOGGLE_LOADER, status: false });
 
         // location.hash = '/main/home'
       }

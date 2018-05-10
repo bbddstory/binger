@@ -14,31 +14,40 @@ export const LOAD_RECOMM = 'LOAD_RECOMM';
 // Action creators
 export function loadHomeListsAct() {
   return (dispatch: any, getState: any) => {
-    axios.post(CEM_URL() + '/home/latest', {
-      token: getState().loginReducer.token
-    }).then(res => {
-      if (res.status === 200) {
-        dispatch({ type: LOAD_LATEST, data: res.data });
-      }
-    }).catch(err => console.log(err));
-
-    axios.post(CEM_URL() + '/home/watch_later', {
+    axios.post(CEM_URL() + '/home/lists', {
       token: getState().loginReducer.token,
       email: getState().loginReducer.email
     }).then(res => {
       if (res.status === 200) {
-        dispatch({ type: LOAD_WATCH_LATER, data: res.data });
+        dispatch({ type: LOAD_HOME_LISTS, data: res.data });
       }
     }).catch(err => console.log(err));
 
-    axios.post(CEM_URL() + '/home/recomm', {
-      token: getState().loginReducer.token,
-      email: getState().loginReducer.email
-    }).then(res => {
-      if (res.status === 200) {
-        dispatch({ type: LOAD_RECOMM, data: res.data });
-      }
-    }).catch(err => console.log(err));
+    // axios.post(CEM_URL() + '/home/latest', {
+    //   token: getState().loginReducer.token
+    // }).then(res => {
+    //   if (res.status === 200) {
+    //     dispatch({ type: LOAD_LATEST, data: res.data });
+    //   }
+    // }).catch(err => console.log(err));
+
+    // axios.post(CEM_URL() + '/home/watch_later', {
+    //   token: getState().loginReducer.token,
+    //   email: getState().loginReducer.email
+    // }).then(res => {
+    //   if (res.status === 200) {
+    //     dispatch({ type: LOAD_WATCH_LATER, data: res.data });
+    //   }
+    // }).catch(err => console.log(err));
+
+    // axios.post(CEM_URL() + '/home/recomm', {
+    //   token: getState().loginReducer.token,
+    //   email: getState().loginReducer.email
+    // }).then(res => {
+    //   if (res.status === 200) {
+    //     dispatch({ type: LOAD_RECOMM, data: res.data });
+    //   }
+    // }).catch(err => console.log(err));
   }
 }
 
@@ -50,8 +59,6 @@ export function removeHomeListItemAct(list: string, key: string) {
       key: key,
       list: list
     }).then(res => {
-      console.log(res);
-
       if (res.status === 200) {
         dispatch({ type: REMOVE_HOME_LIST_ITEM, key: key, list: list });
       }

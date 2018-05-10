@@ -18,11 +18,11 @@ export function searchAct(key: string) {
       key: key,
       type: 1 // 0: fuzzy search, 1: exact search
     }).then(res => {
-      let buffer = res.data.results;
+      let results = res.data.results;
 
       if (res.status === 200) {
         dispatch({ type: SET_SEARCH_FLAG });
-        dispatch({ type: SEARCH_RETURN, buffer });
+        dispatch({ type: SEARCH_RETURN, results });
         location.hash = 'main/search';
       }
     }).catch(err => {

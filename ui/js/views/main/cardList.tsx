@@ -28,6 +28,7 @@ class CardList extends React.Component<IReduxProps & ICompProps, any> {
   render() {
     const buffer = this.props.dataRef;
     const { dataState } = this.props;
+    console.log(buffer);
 
     return (
       <div className="card-list">

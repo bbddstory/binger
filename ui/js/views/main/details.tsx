@@ -87,10 +87,10 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
             </div>
 
             <div className="info">
-              <span className="title">{item.engTitle}</span>
+              <span className="title">{item.eng_title}</span>
               <span className="orig-title">
-                {item.origTitle === 'N/A' || item.engTitle === item.origTitle ?
-                  '' : item.origTitle + ' (original title)'}
+                {item.orig_title === 'N/A' || item.eng_title === item.orig_title ?
+                  '' : item.orig_title + ' (original title)'}
               </span>
               <span className="misc">
                 Year: {item.year}<br />
@@ -102,7 +102,7 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
                 <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
                 <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
                 <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true, false)}></div>
-                <a target="_blank" title="Search for subtitles on Subscene" href={'https://subscene.com/subtitles/title?q=' + item.engTitle.replace(' ', '+')}></a>
+                <a target="_blank" title="Search for subtitles on Subscene" href={'https://subscene.com/subtitles/title?q=' + item.eng_title.replace(' ', '+')}></a>
                 {recomm && <ul>
                   {Object.keys(loginState.friends).map((user: string) => {
                     return <li key={user} onClick={e => this.props.recommDispatch(user)}>{loginState.friends[user]}</li>
@@ -116,13 +116,13 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
               <div className="sites">
                 <a className="imdb" target="_blank" title="Search on IMDB" href={item.imdb_id ?
                   'http://www.imdb.com/title/' + item.imdb_id :
-                  'https://www.imdb.com/find?ref_=nv_sr_fn&q=' + item.engTitle.replace(' ', '+')}></a>
+                  'https://www.imdb.com/find?ref_=nv_sr_fn&q=' + item.eng_title.replace(' ', '+')}></a>
                 <a className="douban" target="_blank" title="Search on Douban" href={item.douban ?
                   'https://movie.douban.com/subject/' + item.douban :
-                  'https://movie.douban.com/subject_search?search_text=' + item.engTitle.replace(' ', '+')}></a>
+                  'https://movie.douban.com/subject_search?search_text=' + item.eng_title.replace(' ', '+')}></a>
                 <a className="mtime" target="_blank" title="Search on Mtime" href={item.mtime ?
                   'http://movie.mtime.com/' + item.mtime :
-                  'http://search.mtime.com/search/?q=' + item.engTitle}></a>
+                  'http://search.mtime.com/search/?q=' + item.eng_title}></a>
               </div>
             </div>
           </div>
@@ -134,7 +134,7 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
               <iframe width="440" height="247.5" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
             </div>
             <div className="youtube">
-              <a target="_blank" href={'https://www.youtube.com/results?search_query=' + item.engTitle}>More videos on YouTube</a>
+              <a target="_blank" href={'https://www.youtube.com/results?search_query=' + item.eng_title}>More videos on YouTube</a>
             </div>
           </div>}
 
