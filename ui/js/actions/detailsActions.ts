@@ -1,8 +1,12 @@
 'use strict';
 
+import axios from 'axios';
+import { CEM_URL } from '../util/utils';
+
 import { TOGGLE_LOADER } from './uiActions';
 
 // Action types
+export const LOAD_DETAILS = 'LOAD_DETAILS';
 export const WATCH_LATER = 'WATCH_LATER';
 export const RECOMM = 'RECOMM';
 export const SAVE_COMMENT = 'SAVE_COMMENT';
@@ -12,6 +16,21 @@ export const SAVE_NEW = 'SAVE_NEW';
 import { toggleEditDetailsAct } from '../actions/uiActions';
 
 // Action creators
+export function loadDetailsAct() {
+  return (dispatch: any, getState: any) => {
+    dispatch({ type: TOGGLE_LOADER, status: true });
+    axios.post(CEM_URL() + '/details/load', {
+      token: getState().loginReducer.token,
+      key: getState().dataReducer.key
+    }).then(res => {
+      if (res.status === 200) {
+        dispatch({ type: LOAD_DETAILS, details: res.data.details });
+        dispatch({ type: TOGGLE_LOADER, status: false });
+      }
+    }).catch(err => console.log(err));
+  }
+}
+
 export function watchLaterAct() {
   return async (dispatch: any, getState: any) => {
     let firebase = getState().loginReducer.firebase,
@@ -108,7 +127,7 @@ export function saveDetailsAct(values: any) {
         await firebase.database().ref(ref)
           .push(vc).then((snapshot: any) => {
             let arr = snapshot.path.pieces_;
-            
+
             dispatch({ type: TOGGLE_LOADER, status: false });
             dispatch({ type: SAVE_NEW, vc, arr }); // For a new record, add it to buffer if category matches
             dispatch(toggleEditDetailsAct(false, false));

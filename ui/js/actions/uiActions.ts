@@ -21,9 +21,3 @@ export function toggleEditDetailsAct(status: boolean, newRec: boolean) {
     newRec
   }
 }
-
-export function resetIsSearchAct() {
-  return {
-    type: RESET_IS_SEARCH
-  }
-}

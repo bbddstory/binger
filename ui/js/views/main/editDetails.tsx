@@ -45,11 +45,7 @@ class EditDetails extends React.Component<any, any> {
     } else { // Existing record
       let key = this.props.dataState.key;
       
-      if (this.props.uiState.isSearch) { // Edit records in search results
-        item = this.props.dataState.search[key];
-      } else { // Edit records in categories
-        item = this.props.dataState.buffer[key];
-      }
+      item = this.props.dataState.details[key];
     }
 
     return (

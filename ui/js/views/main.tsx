@@ -18,8 +18,7 @@ import Footer from './components/footer';
 import Home from './main/home';
 import SearchList from './main/searchList';
 import CatList from './main/catList';
-import CatDetails from './main/catDetails';
-import SearchDetails from './main/searchDetails';
+import Details from './main/details';
 import EditDetails from './main/editDetails';
 
 import { IntlProvider, addLocaleData } from 'react-intl';
@@ -88,17 +87,14 @@ class Main extends React.Component<any, any> {
           <Switch>
             <Route path='/main/home' component={Home} />
             <Route path='/main/search' component={SearchList} />
-            <Route path='/main/search_details' component={SearchDetails} />
             <Route path='/main/movies' component={CatList} />
             <Route path='/main/tv' component={CatList} />
             <Route path='/main/docs' component={CatList} />
             <Route path='/main/anime' component={CatList} />
-            <Route path='/main/xxx' component={CatList} />
-            <Route path='/main/jav' component={CatList} />
-            <Route path='/main/cat_details' component={CatDetails} />
+            <Route path='/main/details' component={Details} />
           </Switch>
-          <Footer />
           {uiState.editDetails && <EditDetails />}
+          <Footer />
         </div>
       </IntlProvider>
     )

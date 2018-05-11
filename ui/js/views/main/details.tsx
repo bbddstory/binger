@@ -4,13 +4,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { setKeyAct } from '../../actions/dataActions';
 import { toggleEditDetailsAct } from '../../actions/uiActions';
-import { watchLaterAct, recommAct, commentAct, delCommentAct } from '../../actions/detailsActions';
-import EditDetails from './editDetails';
+import { loadDetailsAct, watchLaterAct, recommAct, commentAct, delCommentAct } from '../../actions/detailsActions';
+// import EditDetails from './editDetails';
 
 interface IReduxProps extends React.Props<any> {
   loginState: any,
   dataState: any,
   uiState: any,
+  loadDetailsDispatch: any,
   watchLaterDispatch: any,
   recommDispatch: any,
   commentDispatch: any,
@@ -19,8 +20,7 @@ interface IReduxProps extends React.Props<any> {
 }
 
 interface ICompProps extends React.Props<any> {
-  dataRef: any,
-  isSearch: boolean
+  dataRef: any
 }
 
 class Details extends React.Component<IReduxProps & ICompProps, any> {
@@ -74,16 +74,16 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
     const { loginState, dataState, uiState } = this.props;
     const key = this.props.dataState.key;
     const { opts, recomm, showComment } = this.state;
-    const item = this.props.dataRef;
+    const item = this.props.dataState.details;
 
-    if (Object.keys(dataState.buffer).length) {
+    if (Object.keys(dataState.details).length) {
       return (
-        <div>
+        <React.Fragment>
           <div className="video-details">
             <div className="poster">
               {item.poster && item.poster !== 'N/A' ?
                 <img alt="Poster" src={item.poster} /> :
-                <div className={'dummy-poster poster-' + item.cat.toLowerCase()}></div>}
+                <div className={'dummy-poster poster-' + item.category.toLowerCase()}></div>}
             </div>
 
             <div className="info">
@@ -161,7 +161,7 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
               <span>{item.comments[id].txt}</span>
             </div>
           })}
-        </div>
+        </React.Fragment>
       )
     } else {
       return null
@@ -176,6 +176,7 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
+  loadDetailsDispatch: () => dispatch(loadDetailsAct()),
   watchLaterDispatch: () => dispatch(watchLaterAct()),
   recommDispatch: (user: string) => dispatch(recommAct(user)),
   commentDispatch: (values: any) => dispatch(commentAct(values)),

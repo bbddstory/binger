@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom';
 import cats from '../../util/cats';
 import { setKeyAct, syncCatAct, loadDataAct } from '../../actions/dataActions';
 import { removeHomeListItemAct } from '../../actions/homeActions';
+import { loadDetailsAct } from '../../actions/detailsActions';
 import Pages from '../components/pages';
 
 interface IReduxProps extends React.Props<any> {
   dataState: any,
   setKeyDispatch: any,
+  loadDetailsDispatch: any,
   removeHomeListItemDispatch: any
 }
 
@@ -18,7 +20,6 @@ interface ICompProps extends React.Props<any> {
   dataRef: any,
   delBtn: boolean,
   showPages: boolean,
-  isSearch: boolean,
   category: string,
   list: string
 }
@@ -34,6 +35,11 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
     this.props.removeHomeListItemDispatch(this.props.list, key);
   }
 
+  loadDetails(key: string) {
+    this.props.setKeyDispatch(key);
+    this.props.loadDetailsDispatch();
+  }
+
   render() {
     const buffer = this.props.dataRef;
     const { dataState } = this.props;
@@ -41,9 +47,9 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
     return (
       <div className="tile-list">
         {Object.keys(buffer).map((key: any) => {
-          return <div className="tile" key={buffer[key].id}>
-            <Link to={(this.props.isSearch ? '/main/search_details/' : '/main/cat_details/') + buffer[key].id} onClick={e => this.props.setKeyDispatch(buffer[key].id)}>
-              {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, buffer[key].id)}></div>}
+          return <div className="tile" key={key}>
+            <Link to={'/main/details'} onClick={e => this.loadDetails(key)}>
+              {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, key)}></div>}
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
                 <div className={'dummy-poster poster-' + buffer[key].category.toLowerCase()}></div>}
@@ -68,9 +74,10 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
+  loadDetailsDispatch: () => {
+    dispatch(loadDetailsAct())
+  },
   setKeyDispatch: (key: string) => {
-    console.log(key);
-    
     dispatch(setKeyAct(key))
   },
   removeHomeListItemDispatch: (list: string, key: string) => {

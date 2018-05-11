@@ -1,11 +1,10 @@
 'use strict';
 
 import { GOTO_PAGE, SET_KEY, SYNC_CAT } from '../actions/dataActions';
-import { SAVE_COMMENT, DEL_COMMENT, SAVE_NEW, UPDATE_BUFFER_DETAILS } from '../actions/detailsActions';
 import { SWITCH_CAT } from '../actions/categoriesActions';
-import { LOAD_HOME_LISTS } from '../actions/homeActions';
 import { SEARCH_RETURN } from '../actions/searchActions';
-import { LOAD_LATEST, LOAD_WATCH_LATER, LOAD_RECOMM, REMOVE_HOME_LIST_ITEM } from '../actions/homeActions';
+import { LOAD_HOME_LISTS, REMOVE_HOME_LIST_ITEM } from '../actions/homeActions';
+import { LOAD_DETAILS, SAVE_COMMENT, DEL_COMMENT, SAVE_NEW, UPDATE_BUFFER_DETAILS } from '../actions/detailsActions';
 import cats from '../util/cats';
 
 interface IDataReducer {
@@ -16,6 +15,7 @@ let init: IDataReducer = {
   key: '',
   buffer: {},
   search: {},
+  details: {},
   latest: {},
   watchLater: {},
   recomm: {},
@@ -82,6 +82,10 @@ export function dataReducer(state: any = init, action: any) {
       return ns;
     case SET_KEY:
       ns.key = action.key;
+
+      return ns;
+    case LOAD_DETAILS:
+      ns.details = action.details;
 
       return ns;
     case SYNC_CAT:
