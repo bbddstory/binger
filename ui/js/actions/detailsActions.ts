@@ -1,7 +1,7 @@
 'use strict';
 
 import axios from 'axios';
-import { CEM_URL } from '../util/utils';
+import { NODE_URL } from '../util/utils';
 
 import { TOGGLE_LOADER } from './uiActions';
 
@@ -19,7 +19,7 @@ import { toggleEditDetailsAct } from '../actions/uiActions';
 export function loadDetailsAct() {
   return (dispatch: any, getState: any) => {
     dispatch({ type: TOGGLE_LOADER, status: true });
-    axios.post(CEM_URL() + '/details/load', {
+    axios.post(NODE_URL() + '/details/load', {
       token: getState().loginReducer.token,
       key: getState().dataReducer.key
     }).then(res => {

@@ -1,5 +1,6 @@
-export const CEM_URL = () => {
-    return 'http://localhost:3000'
+export const NODE_URL = () => {
+    // return 'http://www.foreverjuniordev.com:49999'
+    return 'http://localhost:49999'
 }
 
 export const parseCookie = (ca: any) => {

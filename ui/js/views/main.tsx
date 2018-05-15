@@ -11,7 +11,7 @@ import { loginAct, setTokenAct } from '../actions/loginActions';
 import Loader from './components/loader';
 import Header from './components/header';
 import Categories from './components/categories';
-import Search from './components/search';
+// import Search from './components/search';
 import Footer from './components/footer';
 
 // Main
@@ -78,12 +78,11 @@ class Main extends React.Component<any, any> {
 
     return (
       <IntlProvider locale={uiState.locale} messages={lang[uiState.locale]}>
-        <div id='center'>
+        <div className='center'>
           <Loader />
           <Header />
           <Categories />
-          <Search />
-          {/* {(this.props.dataState.category !== 'Home') && <Search />} */}
+          {/* <Search /> */}
           <Switch>
             <Route path='/main/home' component={Home} />
             <Route path='/main/search' component={SearchList} />

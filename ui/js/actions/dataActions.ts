@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-import { CEM_URL } from '../util/utils';
+import { NODE_URL } from '../util/utils';
 import cats from '../util/cats';
 import { TOGGLE_LOADER } from './uiActions';
 
@@ -29,7 +29,7 @@ export function loadDataAct(category: string, currPage: number, startAt: number,
   return (dispatch: any, getState: any) => {
     dispatch({ type: TOGGLE_LOADER, status: true });
 
-    axios.post(CEM_URL() + '/videos/load_cat', {
+    axios.post(NODE_URL() + '/videos/load_cat', {
       token: getState().loginReducer.token,
       ipp: getState().dataReducer.ipp,
       category, currPage

@@ -1,8 +1,7 @@
 .card-list {
-    width: 900px;
     .card {
         display: inline-block;
-        width: calc(25% - 23px);
+        width: calc(20% - 23px);
         background: rgba(0, 0, 0, 0.2);
         box-sizing: border-box;
         padding: 10px;
@@ -22,8 +21,6 @@
         }
         img {
             width: 100%;
-            // width: 182px;
-            // height: 268px;
             border-radius: 2px;
             cursor: pointer;
             &:hover {

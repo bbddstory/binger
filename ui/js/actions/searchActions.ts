@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-import { CEM_URL } from '../util/utils';
+import { NODE_URL } from '../util/utils';
 
 // Action types
 export const SEARCH = 'SEARCH';
@@ -13,7 +13,7 @@ export const SET_SEARCH_FLAG = 'SET_SEARCH_FLAG';
 export function searchAct(key: string) {
   return (dispatch: any, getState: any) => {
 
-    axios.post(CEM_URL() + '/search', {
+    axios.post(NODE_URL() + '/search', {
       token: getState().loginReducer.token,
       key: key,
       type: 1 // 0: fuzzy search, 1: exact search

@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-import { CEM_URL } from '../util/utils';
+import { NODE_URL } from '../util/utils';
 
 // Action types
 export const LOAD_HOME_LISTS = 'LOAD_HOME_LISTS';
@@ -14,7 +14,7 @@ export const LOAD_RECOMM = 'LOAD_RECOMM';
 // Action creators
 export function loadHomeListsAct() {
   return (dispatch: any, getState: any) => {
-    axios.post(CEM_URL() + '/home/lists', {
+    axios.post(NODE_URL() + '/home/lists', {
       token: getState().loginReducer.token,
       email: getState().loginReducer.email
     }).then(res => {
@@ -23,7 +23,7 @@ export function loadHomeListsAct() {
       }
     }).catch(err => console.log(err));
 
-    // axios.post(CEM_URL() + '/home/latest', {
+    // axios.post(NODE_URL() + '/home/latest', {
     //   token: getState().loginReducer.token
     // }).then(res => {
     //   if (res.status === 200) {
@@ -31,7 +31,7 @@ export function loadHomeListsAct() {
     //   }
     // }).catch(err => console.log(err));
 
-    // axios.post(CEM_URL() + '/home/watch_later', {
+    // axios.post(NODE_URL() + '/home/watch_later', {
     //   token: getState().loginReducer.token,
     //   email: getState().loginReducer.email
     // }).then(res => {
@@ -40,7 +40,7 @@ export function loadHomeListsAct() {
     //   }
     // }).catch(err => console.log(err));
 
-    // axios.post(CEM_URL() + '/home/recomm', {
+    // axios.post(NODE_URL() + '/home/recomm', {
     //   token: getState().loginReducer.token,
     //   email: getState().loginReducer.email
     // }).then(res => {
@@ -53,7 +53,7 @@ export function loadHomeListsAct() {
 
 export function removeHomeListItemAct(list: string, key: string) {
   return (dispatch: any, getState: any) => {
-    axios.post(CEM_URL() + '/home/del_item', {
+    axios.post(NODE_URL() + '/home/del_item', {
       token: getState().loginReducer.token,
       email: getState().loginReducer.email,
       key: key,
