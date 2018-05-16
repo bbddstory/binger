@@ -2,6 +2,35 @@
     h1 {
         margin-top: 0;
     }
+    .home-section {
+        // background: lightslategrey;
+        display: flex;
+        margin-bottom: 50px;
+        .latest {
+            width: 75%;
+            .latest-details {
+                background: orange; // width: 80%;
+                height: 450px;
+            }
+            .latest-list {
+                background: lightblue; // width: 80%;
+                height: 150px;
+                .tile-list {
+                    // width: 900px;
+                    .tile {
+                        margin: 10px 10px;
+                    }
+                }
+            }
+        }
+        .watch-later {
+            width: 25%;
+            .watch-later-list {
+                background: pink; // width: 80%;
+                height: 600px;
+            }
+        }
+    }
     .home-list {
         position: relative;
         height: 374px;

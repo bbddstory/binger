@@ -9,7 +9,8 @@ import TileList from './tileList';
 
 class Home extends React.Component<any, any> {
   constructor(props: any) {
-    super(props)
+    super(props);
+    this.state = {}
   }
 
   componentDidMount() {
@@ -21,11 +22,26 @@ class Home extends React.Component<any, any> {
 
     return (
       <div className="home">
-        <h1><FormattedMessage id='home.latest' /></h1>
-        <div className="home-list">
-          {Object.keys(dataState.latest).length ?
-            <TileList dataRef={dataState.latest} delBtn={false} showPages={false} category="" list="latest" />
-            : <FormattedMessage id='home.empty' />}
+        <div className="home-section">
+          <div className="latest">
+            <h1><FormattedMessage id='home.latest' /></h1>
+            <div className="latest-details">
+
+            </div>
+            <div className="latest-list">
+              {Object.keys(dataState.latest).length ?
+                <TileList dataRef={dataState.latest} delBtn={false} showPages={false} category="" list="latest" />
+                : <FormattedMessage id='home.empty' />}
+            </div>
+          </div>
+          <div className="watch-later">
+            <h1><FormattedMessage id='home.watch' /></h1>
+            <div className="watch-later-list">
+              {Object.keys(dataState.latest).length ?
+                <TileList dataRef={dataState.latest} delBtn={false} showPages={false} category="" list="latest" />
+                : <FormattedMessage id='home.empty' />}
+            </div>
+          </div>
         </div>
 
         <h1><FormattedMessage id='home.watch' /></h1>

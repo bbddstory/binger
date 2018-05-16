@@ -1,32 +1,26 @@
 $animTime: .3s;
 
 #search {
-    // position: relative;
     display: flex;
     justify-content: center;
-    // flex-direction: column;
-    // align-items: center;
-    // height: 42px;
-    // padding-bottom: 60px;
     #search-box {
         position: relative;
         display: flex;
-        // justify-content: center;
-        // width: 630px;
-        height: 42px;
+        height: 40px;
         input {
             width: 250px;
+            height: 40px;
             border: 0;
-            border-radius: 2px;
+            border-radius: 20px;
             font-size: 16px;
-            line-height: 42px;
-            padding-left: 54px;
-            padding-right: 54px;
+            line-height: 40px;
+            padding-left: 50px;
+            padding-right: 50px;
         }
         div {
             position: absolute;
-            width: 54px;
-            height: 42px;
+            width: 50px;
+            height: 40px;
             opacity: .4;
             box-sizing: border-box;
         }
@@ -42,7 +36,7 @@ $animTime: .3s;
     }
     // .criteria {
     //     position: absolute;
-    //     top: 42px;
+    //     top: 40px;
     //     width: 630px;
     //     height: 80px;
     //     margin-top: 1px;
