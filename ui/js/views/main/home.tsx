@@ -6,6 +6,7 @@ import { FormattedMessage } from "react-intl";
 
 import { loadHomeListsAct } from '../../actions/homeActions';
 import TileList from './tileList';
+import SlidesList from './slidesList';
 
 class Home extends React.Component<any, any> {
   constructor(props: any) {
@@ -30,21 +31,21 @@ class Home extends React.Component<any, any> {
             </div>
             <div className="latest-list">
               {Object.keys(dataState.latest).length ?
-                <TileList dataRef={dataState.latest} delBtn={false} showPages={false} category="" list="latest" />
+                <SlidesList dataRef={dataState.latest} vertical={false} delBtn={false} showInfo={false} showDots={true} category="" list="latest" ipp="6" />
                 : <FormattedMessage id='home.empty' />}
             </div>
           </div>
           <div className="watch-later">
             <h1><FormattedMessage id='home.watch' /></h1>
             <div className="watch-later-list">
-              {Object.keys(dataState.latest).length ?
-                <TileList dataRef={dataState.latest} delBtn={false} showPages={false} category="" list="latest" />
+              {Object.keys(dataState.watchLater).length ?
+                <SlidesList dataRef={dataState.watchLater} vertical={true} delBtn={false} showInfo={true} showDots={true} category="" list="watchLater" ipp="4" />
                 : <FormattedMessage id='home.empty' />}
             </div>
           </div>
         </div>
 
-        <h1><FormattedMessage id='home.watch' /></h1>
+        {/* <h1><FormattedMessage id='home.watch' /></h1>
         <div className="home-list">
           {Object.keys(dataState.watchLater).length ?
             <TileList dataRef={dataState.watchLater} delBtn={true} showPages={false} category="" list="watchLater" />
@@ -56,7 +57,7 @@ class Home extends React.Component<any, any> {
           {Object.keys(dataState.recomm).length ?
             <TileList dataRef={dataState.recomm} delBtn={true} showPages={false} category="" list="recomm" />
             : <FormattedMessage id='home.empty' />}
-        </div>
+        </div> */}
       </div>
     )
   }
