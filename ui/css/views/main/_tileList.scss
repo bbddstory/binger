@@ -5,8 +5,6 @@ $imageHeight: 134px;
     .tile {
         position: relative;
         display: inline-block;
-        // width: calc(33.33% - 20px);
-        // background: rgba(0, 0, 0, .2);
         margin: 35px 10px 0;
         border-radius: 2px;
         @keyframes tileShadow {
@@ -27,8 +25,8 @@ $imageHeight: 134px;
         }
         .del-item {
             position: absolute;
-            left: 0;
-            bottom: 0;
+            left: 10px;
+            bottom: 8px;
             width: 30px;
             height: 30px;
             background: rgba(#000, .5) url("../images/details/ic_delete_forever_white_24px.svg") 2px no-repeat;
@@ -55,12 +53,8 @@ $imageHeight: 134px;
             vertical-align: bottom;
             border-radius: 2px;
         }
-        .poster-new {
-            background: url("../images/posters/New_2.png") no-repeat;
-            background-size: contain;
-        }
         .poster-movies {
-            background: url("../images/posters/Movies_2.png") no-repeat;
+            background: url("../images/posters/Movies.png") no-repeat;
             background-size: contain;
         }
         .poster-tv {
@@ -73,14 +67,6 @@ $imageHeight: 134px;
         }
         .poster-animations {
             background: url("../images/posters/Animations.png") no-repeat;
-            background-size: contain;
-        }
-        .poster-xxx {
-            background: url("../images/posters/XXX.png") no-repeat;
-            background-size: contain;
-        }
-        .poster-jav {
-            background: url("../images/posters/JAV.png") no-repeat;
             background-size: contain;
         }
         .info {
@@ -113,13 +99,14 @@ $imageHeight: 134px;
         }
     }
     .dots {
-        text-align: center;
+        display: flex;
+        justify-content: center;
         span {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
+            display: block;
+            width: 25px;
+            height: 10px;
             background-color: #bbb;
-            border-radius: 50%;
+            border-radius: 5px;
             margin: 0 5px;
             transition: background-color 0.6s ease;
             cursor: pointer;

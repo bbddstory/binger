@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from "react-intl";
 
 import { loadHomeListsAct } from '../../actions/homeActions';
+import LatestDetails from './latestDetails';
 import TileList from './tileList';
 import SlidesList from './slidesList';
 
@@ -26,22 +27,20 @@ class Home extends React.Component<any, any> {
         <div className="home-section">
           <div className="latest">
             <h1><FormattedMessage id='home.latest' /></h1>
-            <div className="latest-details">
-
+            <div className="latest-details-wrap">
+              <LatestDetails />
             </div>
             <div className="latest-list">
               {Object.keys(dataState.latest).length ?
-                <SlidesList dataRef={dataState.latest} vertical={false} delBtn={false} showInfo={false} showDots={true} category="" list="latest" ipp="6" />
+                <SlidesList dataRef={dataState.latest} outLink={false} vertical={false} delBtn={false} showInfo={false} showDots={true} category="" list="latest" ipp="6" />
                 : <FormattedMessage id='home.empty' />}
             </div>
           </div>
           <div className="watch-later">
             <h1><FormattedMessage id='home.watch' /></h1>
-            <div className="watch-later-list">
-              {Object.keys(dataState.watchLater).length ?
-                <SlidesList dataRef={dataState.watchLater} vertical={true} delBtn={false} showInfo={true} showDots={true} category="" list="watchLater" ipp="4" />
-                : <FormattedMessage id='home.empty' />}
-            </div>
+            {Object.keys(dataState.watchLater).length ?
+              <SlidesList dataRef={dataState.watchLater} outLink={false} vertical={true} delBtn={true} showInfo={true} showDots={true} category="" list="watchLater" ipp="4" />
+              : <FormattedMessage id='home.empty' />}
           </div>
         </div>
 

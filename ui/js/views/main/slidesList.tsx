@@ -17,6 +17,7 @@ interface IReduxProps extends React.Props<any> {
 
 interface ICompProps extends React.Props<any> {
     dataRef: any,
+    outLink: boolean,
     vertical: boolean, // Vertical or horizontal slides
     delBtn: boolean,
     showInfo: boolean,
@@ -49,18 +50,10 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
     slides = () => {
         const buffer = this.props.dataRef;
         const ipp = this.props.ipp;
-        const hidePage = {
-            display: 'none'
-        };
-        const showPage = {
-            display: 'block'
-        };
-        const tileStyle = {
-            width: this.props.vertical ? '100%' : 'calc(' + 100 / this.props.ipp + '% - 20px)'
-        };
-        const linkStyle = this.props.showInfo ? {
-            background: 'rgba(0, 0, 0, .2)'
-        } : {};
+        const hidePage = { display: 'none' };
+        const showPage = { display: 'block' };
+        const tileStyle = { width: this.props.vertical ? 'calc(100% - 20px)' : 'calc(' + 100 / ipp + '% - 20px)' };
+        const linkStyle = this.props.showInfo ? { background: 'rgba(#000, .2)' } : {};
 
         let slides = [];
         let page = [];
@@ -72,7 +65,7 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
                 if (el) {
                     page.push(
                         <div className="tile" key={j + i * ipp} style={tileStyle}>
-                            <Link to={'/main/details'} onClick={e => this.loadDetails(el.id)} style={linkStyle}>
+                            <Link to={this.props.outLink ? '/main/details' : '#'} onClick={e => this.loadDetails(el.id)} style={linkStyle}>
                                 {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, el.id)}></div>}
                                 {el.poster && el.poster !== 'N/A' ?
                                     <img alt="Poster" src={el.poster} /> :
@@ -91,7 +84,7 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
             }
 
             slides.push(
-                <div style={this.state.currPage === i ? showPage : hidePage} key={i}>
+                <div className="slide" style={this.state.currPage === i ? showPage : hidePage} key={i}>
                     {page}
                 </div>
             );
@@ -118,12 +111,8 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
     render() {
         const buffer = this.props.dataRef;
         const { dataState } = this.props;
-        const tileStyle = {
-            width: 'calc(' + 100 / this.props.ipp + '% - 20px)'
-        };
-        const linkStyle = this.props.showInfo ? {
-            background: 'rgba(0, 0, 0, .2)'
-        } : {};
+        const tileStyle = { width: 'calc(' + 100 / this.props.ipp + '% - 20px)' };
+        const linkStyle = this.props.showInfo ? { background: 'rgba(0, 0, 0, .2)' } : {};
 
         return (
             <div className="tile-list">

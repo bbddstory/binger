@@ -42,7 +42,8 @@ class CardList extends React.Component<IReduxProps & ICompProps, any> {
             <Link to={'/main/details'} onClick={e => this.loadDetails(key)}>
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
-                <div className={'dummy-poster poster-' + buffer[key].category.toLowerCase()}></div>}
+                <img alt="Poster" src={"ui/images/posters/" + buffer[key].category + ".png"} />
+              }
             </Link>
             <h2 className="title">{buffer[key].eng_title}</h2>
             <h4 className="year">{buffer[key].year}</h4>

@@ -1,8 +1,7 @@
-.video-details {
+.latest-details {
     display: flex;
     justify-content: center;
-    padding: 50px 0;
-    background: rgba(#000, .6);
+    padding: 20px 20px 0;
     border-radius: 2px;
     .poster {
         position: relative;
@@ -32,10 +31,10 @@
     }
     .info {
         position: relative;
-        width: 260px;
-        height: 268px;
+        width: calc((100% - 182px) - (100% - 182px) * 0.5);
+        height: 240px;
         color: #f2f2f2;
-        padding: 0 25px 0 8px;
+        padding: 0 25px 0 10px;
         text-overflow: ellipsis;
         .title {
             display: block;
@@ -120,19 +119,18 @@
         }
     }
     .plot {
-        width: 350px;
-        height: 268px;
+        width: calc((100% - 182px) - (100% - 182px) * 0.5);
+        height: 240px;
         .plot-txt {
-            width: 350px;
+            // width: 350px;
             height: 200px;
             color: #f2f2f2;
             line-height: 1.6;
             overflow-y: auto;
         }
         .sites {
-            display: flex;
-            width: 350px;
-            height: 68px;
+            display: flex; // width: 350px;
+            height: 40px;
             align-items: flex-end;
             a {
                 display: block;
@@ -162,102 +160,9 @@
 
 .trailer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    padding-left: 210px;
     iframe {
-        border-radius: 3px;
-    }
-}
-
-.youtube {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 10px;
-    a {
-        display: block;
-        height: 24px;
-        padding-left: 38px;
-        line-height: 24px;
-        background: url("../images/details/youtube.png") no-repeat;
-    }
-}
-
-.comment {
-    width: 900px;
-    margin-bottom: 30px;
-    .title-row {
-        position: relative;
-        display: flex;
-        .del-comment {
-            width: 35px;
-            margin-right: 5px;
-            background: url("../images/details/ic_delete_forever_white_24px.svg") 0 no-repeat;
-            background-size: contain;
-            cursor: pointer;
-        }
-        h2 {
-            color: #00a651;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        h4 {
-            color: #717171;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-    }
-    span {
-        color: #f2f2f2;
-        line-height: 1.6;
-    }
-}
-
-.add-comment {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
-    .comment-title-lt {
-        width: 900px;
-        padding: 10px 0;
-        box-sizing: border-box;
-        color: #f2f2f2;
-        background: rgba(#000, 0);
-        border-bottom: 1px solid #f2f2f2;
-    }
-    .comment-title {
-        width: 900px;
-        margin-bottom: 0;
-        padding-top: 10px;
-        box-sizing: border-box;
-        color: #f2f2f2;
-        background: rgba(#000, 0.6);
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-    textarea {
-        min-width: 900px;
-        max-width: 900px;
-        height: 200px;
-        min-height: 200px;
-        max-height: 200px;
-        box-sizing: border-box;
-        padding: 10px 15px;
-        color: #f2f2f2;
-        font-size: 16px;
-        line-height: 1.5;
-        background: rgba(#000, 0.6);
-        border: 0;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: 2px;
-        border-bottom-right-radius: 2px;
-    }
-    div {
-        display: flex;
-        justify-content: flex-end;
-        box-sizing: border-box;
-        height: 60px;
-        padding: 20px 0 0;
+        margin-right: 20px;
     }
 }

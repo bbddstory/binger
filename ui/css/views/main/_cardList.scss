@@ -2,7 +2,7 @@
     .card {
         display: inline-block;
         width: calc(20% - 23px);
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(#000, 0.2);
         box-sizing: border-box;
         padding: 10px;
         margin: 0 11.5px 45px;
@@ -28,39 +28,6 @@
                 animation-duration: .2s;
                 animation-fill-mode: forwards;
             }
-        }
-        .dummy-poster {
-            width: 182px;
-            height: 268px;
-            border-radius: 2px;
-        }
-        .poster-new {
-            background: url("../images/posters/New_2.png") no-repeat;
-            background-size: contain;
-        }
-        .poster-movies {
-            background: url("../images/posters/Movies_2.png") no-repeat;
-            background-size: contain;
-        }
-        .poster-tv {
-            background: url("../images/posters/TV.png") no-repeat;
-            background-size: contain;
-        }
-        .poster-documentaries {
-            background: url("../images/posters/Documentaries.png") no-repeat;
-            background-size: contain;
-        }
-        .poster-animations {
-            background: url("../images/posters/Animations.png") no-repeat;
-            background-size: contain;
-        }
-        .poster-xxx {
-            background: url("../images/posters/XXX.png") no-repeat;
-            background-size: contain;
-        }
-        .poster-jav {
-            background: url("../images/posters/JAV.png") no-repeat;
-            background-size: contain;
         }
         h2 {
             height: 20px;
