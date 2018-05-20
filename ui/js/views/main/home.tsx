@@ -44,6 +44,20 @@ class Home extends React.Component<any, any> {
           </div>
         </div>
 
+        <div className="home-section">
+          <div className="latest">
+            <h1><FormattedMessage id='home.recomm' /></h1>
+            <div className="latest-details-wrap">
+              <LatestDetails />
+            </div>
+            <div className="latest-list">
+              {Object.keys(dataState.recomm).length ?
+                <SlidesList dataRef={dataState.recomm} outLink={false} vertical={false} delBtn={true} showInfo={false} showDots={true} category="" list="latest" ipp="8" />
+                : <FormattedMessage id='home.empty' />}
+            </div>
+          </div>
+        </div>
+
         {/* <h1><FormattedMessage id='home.watch' /></h1>
         <div className="home-list">
           {Object.keys(dataState.watchLater).length ?
