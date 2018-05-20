@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { setKeyAct } from '../../actions/dataActions';
 import { toggleEditDetailsAct } from '../../actions/uiActions';
 import { loadDetailsAct, watchLaterAct, recommAct, commentAct, delCommentAct } from '../../actions/detailsActions';
-// import EditDetails from './editDetails';
 
 interface IReduxProps extends React.Props<any> {
   loginState: any,
@@ -126,37 +125,10 @@ class LatestDetails extends React.Component<IReduxProps & ICompProps, any> {
               </div>
             </div>
           </div>
-
-          {
-            item.trailer && <div className="trailer">
-              <iframe width="248.8" height="140" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
-              <iframe width="248.8" height="140" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
-            </div>
-          }
-
-          {/* <h1>Comments</h1>
-
-          <div className="add-comment">
-            <input className={showComment ? "comment-title" : "comment-title-lt"} type="text" placeholder={showComment ? "Title" : "Add a public comment..."} value={this.state.title} onChange={e => this.titleChange(e)} onFocus={e => this.commentFocus()} />
-            {showComment && <textarea placeholder="Add a public comment..." value={this.state.comment} onChange={e => this.commentChange(e)}></textarea>}
-            {showComment && <div>
-              <button className="btn-cancel" onClick={e => this.cancelComment()}>Cancel</button>
-              <button className="btn-main" type="submit" onClick={e => this.submitComment()}>Comment</button>
-            </div>}
-          </div>
-
-          {item.comments && Object.keys(item.comments).map((id: any) => {
-            return <div className="comment" key={id}>
-              <div className="title-row">
-                {item.comments[id].user === loginState.user && <div className="del-comment" onClick={e => this.props.delCommentDispatch(id)}></div>}
-                <div>
-                  <h2>{item.comments[id].title}</h2>
-                  <h4>{item.comments[id].time} by {item.comments[id].user}</h4>
-                </div>
-              </div>
-              <span>{item.comments[id].txt}</span>
-            </div>
-          })} */}
+          {item.trailer && <div className="trailer">
+            <iframe width="224.8" height="126.4" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
+            <iframe width="224.8" height="126.4" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
+          </div>}
         </React.Fragment>
       )
     } else {

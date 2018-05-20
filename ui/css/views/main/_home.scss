@@ -9,7 +9,9 @@
             width: 75%;
             .latest-details-wrap {
                 background: rgba(#000, .7);
-                height: 450px;
+                height: 455px;
+                padding: 20px;
+                box-sizing: border-box;
                 border-top-left-radius: 5px;
             }
             .latest-list {
@@ -25,22 +27,23 @@
         }
         .watch-later {
             width: 25%;
-            // .watch-later-list {
-                .tile-list {
-                    height: 635px;
-                    background: rgba(#000, .4);
-                    border-top-right-radius: 5px;
-                    border-bottom-right-radius: 5px;
-                    .slide {
-                        height: 612px;
-                        .tile {
-                            display: flex;
-                            padding: 10px 10px 8px;
-                            margin: 0;
-                        }
+            .tile-list {
+                height: 640px;
+                background: rgba(#000, .4);
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                .slide {
+                    min-height: 618px;
+                    max-height: 618px;
+                    padding: 20px 10px 0;
+                    box-sizing: border-box;
+                    .tile {
+                        display: flex;
+                        padding: 0 0 16px;
+                        margin: 0;
                     }
                 }
-            // }
+            }
         }
     }
     .home-list {

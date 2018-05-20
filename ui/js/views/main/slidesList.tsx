@@ -52,7 +52,7 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
         const ipp = this.props.ipp;
         const hidePage = { display: 'none' };
         const showPage = { display: 'block' };
-        const tileStyle = { width: this.props.vertical ? 'calc(100% - 20px)' : 'calc(' + 100 / ipp + '% - 20px)' };
+        const tileStyle = { width: this.props.vertical ? '100%' : 'calc(' + 100 / ipp + '% - 20px)' };
         const linkStyle = this.props.showInfo ? { background: 'rgba(#000, .2)' } : {};
 
         let slides = [];
