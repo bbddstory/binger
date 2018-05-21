@@ -1,6 +1,5 @@
 $imageWidth: 91px;
 $imageHeight: 134px;
-
 .tile-list {
     .tile {
         position: relative;
@@ -21,36 +20,35 @@ $imageHeight: 134px;
         }
         a {
             display: block;
-            text-align: center;
-        }
-        .del-item {
-            position: absolute;
-            left: 0;
-            bottom: 16px;
-            width: 30px;
-            height: 30px;
-            background: rgba(#000, .5) url("../images/details/ic_delete_forever_white_24px.svg") 2px no-repeat;
-            border-top-right-radius: 5px;
-            border-bottom-left-radius: 2px;
-            cursor: pointer;
-        }
-        img {
             width: $imageWidth;
             height: $imageHeight;
-            vertical-align: bottom;
-            border-radius: 2px;
-            cursor: pointer;
-            &:hover {
-                animation-name: tileShadow;
-                animation-duration: .2s;
-                animation-fill-mode: forwards;
+            margin: 0 auto;
+            .del-item {
+                position: absolute; // left: 0;
+                bottom: 0;
+                width: 30px;
+                height: 30px;
+                background: rgba(#000, .5) url("../images/details/ic_delete_forever_white_24px.svg") 2px no-repeat;
+                border-top-right-radius: 5px;
+                border-bottom-left-radius: 2px;
+                cursor: pointer;
+            }
+            img {
+                width: $imageWidth;
+                height: $imageHeight;
+                border-radius: 2px;
+                cursor: pointer;
+                &:hover {
+                    animation-name: tileShadow;
+                    animation-duration: .2s;
+                    animation-fill-mode: forwards;
+                }
             }
         }
         .dummy-poster {
             display: inline-block;
             width: $imageWidth;
             height: $imageHeight;
-            vertical-align: bottom;
             border-radius: 2px;
         }
         .poster-movies {

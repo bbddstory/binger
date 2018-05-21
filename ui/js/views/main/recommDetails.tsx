@@ -22,7 +22,7 @@ interface ICompProps extends React.Props<any> {
   // dataRef: any
 }
 
-class LatestDetails extends React.Component<IReduxProps & ICompProps, any> {
+class RecommDetails extends React.Component<IReduxProps & ICompProps, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -78,7 +78,7 @@ class LatestDetails extends React.Component<IReduxProps & ICompProps, any> {
     if (Object.keys(dataState.details).length) {
       return (
         <React.Fragment>
-          <div className="latest-details">
+          <div className="recomm-details">
             <div className="poster">
               {item.poster && item.poster !== 'N/A' ?
                 <img alt="Poster" src={item.poster} /> :
@@ -108,9 +108,7 @@ class LatestDetails extends React.Component<IReduxProps & ICompProps, any> {
                   })}
                 </ul>}
               </div>
-            </div>
-
-            <div className="plot">
+ 
               <div className="plot-txt">{item.plot || 'Plot unavailable.'}</div>
               <div className="sites">
                 <a className="imdb" target="_blank" title="Search on IMDB" href={item.imdb_id ?
@@ -124,11 +122,12 @@ class LatestDetails extends React.Component<IReduxProps & ICompProps, any> {
                   'http://search.mtime.com/search/?q=' + item.eng_title}></a>
               </div>
             </div>
+
+            {item.trailer && <div className="recomm-trailer">
+              <iframe width="400" height="195" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
+              <iframe width="400" height="195" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
+            </div>}
           </div>
-          {item.trailer && <div className="latest-trailer">
-            <iframe width="225" height="126" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
-            <iframe width="225" height="126" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
-          </div>}
         </React.Fragment>
       )
     } else {
@@ -152,4 +151,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   editDetailsDispatch: (status: boolean, newRec: boolean) => dispatch(toggleEditDetailsAct(status, newRec))
 });
 
-export default connect<{}, {}, ICompProps>(mapStateToProps, mapDispatchToProps)(LatestDetails);
+export default connect<{}, {}, ICompProps>(mapStateToProps, mapDispatchToProps)(RecommDetails);

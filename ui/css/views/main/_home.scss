@@ -5,7 +5,7 @@
     .home-section {
         display: flex;
         margin-bottom: 50px;
-        .latest {
+        >.latest {
             width: 75%;
             .latest-details-wrap {
                 background: rgba(#000, .7);
@@ -13,11 +13,13 @@
                 padding: 20px;
                 box-sizing: border-box;
                 border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
             }
             .latest-list {
                 background: rgba(0, 0, 0, .2);
                 height: 185px;
                 border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
                 .tile-list {
                     .tile {
                         margin: 16px 10px 12px;
@@ -25,22 +27,41 @@
                 }
             }
         }
-        .watch-later {
-            width: 25%;
+        >.watch-later {
+            width: 24%;
+            margin-left: 1%;
             .tile-list {
                 height: 640px;
                 background: rgba(#000, .4);
-                border-top-right-radius: 5px;
-                border-bottom-right-radius: 5px;
+                border-radius: 5px;
                 .slide {
-                    min-height: 618px;
-                    max-height: 618px;
-                    padding: 20px 10px 0;
+                    padding: 4px 10px 13px;
                     box-sizing: border-box;
                     .tile {
                         display: flex;
-                        padding: 0 0 16px;
-                        margin: 0;
+                        margin: 16px 0 0;
+                    }
+                }
+            }
+        }
+        >.recomm {
+            width: 100%;
+            .recomm-details-wrap {
+                background: rgba(#000, .7);
+                height: 455px;
+                padding: 20px;
+                box-sizing: border-box;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            .recomm-list {
+                background: rgba(0, 0, 0, .2);
+                height: 185px;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                .tile-list {
+                    .tile {
+                        margin: 16px 10px 12px;
                     }
                 }
             }

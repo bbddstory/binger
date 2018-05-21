@@ -6,6 +6,7 @@ import { FormattedMessage } from "react-intl";
 
 import { loadHomeListsAct } from '../../actions/homeActions';
 import LatestDetails from './latestDetails';
+import RecommDetails from './recommDetails';
 import TileList from './tileList';
 import SlidesList from './slidesList';
 
@@ -45,12 +46,12 @@ class Home extends React.Component<any, any> {
         </div>
 
         <div className="home-section">
-          <div className="latest">
+          <div className="recomm">
             <h1><FormattedMessage id='home.recomm' /></h1>
-            <div className="latest-details-wrap">
-              <LatestDetails />
+            <div className="recomm-details-wrap">
+              <RecommDetails />
             </div>
-            <div className="latest-list">
+            <div className="recomm-list">
               {Object.keys(dataState.recomm).length ?
                 <SlidesList dataRef={dataState.recomm} outLink={false} vertical={false} delBtn={true} showInfo={false} showDots={true} category="" list="latest" ipp="8" />
                 : <FormattedMessage id='home.empty' />}
