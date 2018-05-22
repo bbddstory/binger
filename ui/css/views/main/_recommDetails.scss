@@ -9,12 +9,14 @@ $imageHeight: 268px;
         img {
             width: $imageWidth;
             height: $imageHeight;
+            border-radius: 3px;
         }
         .dummy-poster {
             position: relative;
             width: $imageWidth;
             height: $imageHeight;
             background-size: contain;
+            border-radius: 3px;
         }
         .poster-movies {
             background: url("../images/posters/Movies.png") no-repeat;
@@ -125,6 +127,7 @@ $imageHeight: 268px;
         }
         .mtime {
             width: 100px;
+            border-radius: 3px;
             background: url('../images/details/mtime.png') no-repeat;
             background-size: contain;
         }

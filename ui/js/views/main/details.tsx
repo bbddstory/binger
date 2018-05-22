@@ -149,7 +149,7 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
             </div>}
           </div>
 
-          {item.comments && Object.keys(item.comments).map((id: any) => {
+          {/* {item.comments && Object.keys(item.comments).map((id: any) => {
             return <div className="comment" key={id}>
               <div className="title-row">
                 {item.comments[id].user === loginState.user && <div className="del-comment" onClick={e => this.props.delCommentDispatch(id)}></div>}
@@ -160,7 +160,7 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
               </div>
               <span>{item.comments[id].txt}</span>
             </div>
-          })}
+          })} */}
         </React.Fragment>
       )
     } else {

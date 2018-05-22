@@ -66,6 +66,7 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
                     page.push(
                         <div className="tile" key={j + i * ipp} style={tileStyle}>
                             <Link to={this.props.outLink ? '/main/details' : '#'} onClick={e => this.loadDetails(el.id)} style={linkStyle}>
+                                <div className="open-link" title="Open full details"></div>
                                 {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, el.id)}></div>}
                                 {el.poster && el.poster !== 'N/A' ?
                                     <img alt="Poster" src={el.poster} /> :
