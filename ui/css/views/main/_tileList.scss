@@ -1,5 +1,6 @@
-$imageWidth: 91px;
-$imageHeight: 134px;
+$posterWidth: 91px;
+$posterHeight: 134px;
+
 .tile-list {
     .tile {
         position: relative;
@@ -20,11 +21,11 @@ $imageHeight: 134px;
         }
         a {
             display: block;
-            width: $imageWidth;
-            height: $imageHeight;
+            width: $posterWidth;
+            height: $posterHeight;
             margin: 0 auto;
             .del-item {
-                position: absolute; // left: 0;
+                position: absolute;
                 bottom: 0;
                 width: 30px;
                 height: 30px;
@@ -34,8 +35,8 @@ $imageHeight: 134px;
                 cursor: pointer;
             }
             img {
-                width: $imageWidth;
-                height: $imageHeight;
+                width: $posterWidth;
+                height: $posterHeight;
                 border-radius: 2px;
                 cursor: pointer;
                 &:hover {
@@ -47,8 +48,8 @@ $imageHeight: 134px;
         }
         .dummy-poster {
             display: inline-block;
-            width: $imageWidth;
-            height: $imageHeight;
+            width: $posterWidth;
+            height: $posterHeight;
             border-radius: 2px;
         }
         .poster-movies {
@@ -70,8 +71,8 @@ $imageHeight: 134px;
         .info {
             display: inline-block;
             position: relative;
-            width: calc(100% - #{$imageWidth});
-            height: $imageHeight;
+            width: calc(100% - #{$posterWidth});
+            height: $posterHeight;
             vertical-align: bottom;
             color: #808080;
             font-size: 14px;
@@ -82,7 +83,7 @@ $imageHeight: 134px;
                 z-index: 0;
                 top: 2px;
                 color: #fff;
-                font-size: 16px;
+                font-size: 14px;
             }
             .details {
                 position: absolute;

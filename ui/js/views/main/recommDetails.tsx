@@ -86,27 +86,29 @@ class RecommDetails extends React.Component<IReduxProps & ICompProps, any> {
             </div>
 
             <div className="info">
-              <span className="title">{item.eng_title}</span>
-              <span className="orig-title">
-                {item.orig_title === 'N/A' || item.eng_title === item.orig_title ?
-                  '' : item.orig_title + ' (original title)'}
-              </span>
-              <span className="misc">
-                Year: {item.year}<br />
-                Runtime: {item.runtime || 'N/A'}<br />
-                {item.director ? 'Director: ' + (item.director || 'N/A') : 'Creator: ' + (item.creator || 'N/A')}<br />
-                Stars: {item.stars || 'N/A'}
-              </span>
-              <div className="actions">
-                <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
-                <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
-                <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true, false)}></div>
-                <a target="_blank" title="Search for subtitles on Subscene" href={'https://subscene.com/subtitles/title?q=' + item.eng_title.replace(' ', '+')}></a>
-                {recomm && <ul>
-                  {Object.keys(loginState.friends).map((user: string) => {
-                    return <li key={user} onClick={e => this.props.recommDispatch(user)}>{loginState.friends[user]}</li>
-                  })}
-                </ul>}
+              <div className="details-wrap">
+                <span className="title">{item.eng_title}</span>
+                <span className="orig-title">
+                  {item.orig_title === null || item.orig_title === '' || item.orig_title === 'N/A' || item.eng_title === item.orig_title ?
+                    '' : item.orig_title + ' (original title)'}
+                </span>
+                <span className="misc">
+                  Year: {item.year}<br />
+                  Runtime: {item.runtime || 'N/A'}<br />
+                  {item.director ? 'Director: ' + (item.director || 'N/A') : 'Creator: ' + (item.creator || 'N/A')}<br />
+                  Stars: {item.stars || 'N/A'}
+                </span>
+                <div className="actions">
+                  <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
+                  <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
+                  <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true, false)}></div>
+                  <a target="_blank" title="Search for subtitles on Subscene" href={'https://subscene.com/subtitles/title?q=' + item.eng_title.replace(' ', '+')}></a>
+                  {recomm && <ul>
+                    {Object.keys(loginState.friends).map((user: string) => {
+                      return <li key={user} onClick={e => this.props.recommDispatch(user)}>{loginState.friends[user]}</li>
+                    })}
+                  </ul>}
+                </div>
               </div>
  
               <div className="plot-txt">{item.plot || 'Plot unavailable.'}</div>
@@ -124,14 +126,14 @@ class RecommDetails extends React.Component<IReduxProps & ICompProps, any> {
             </div>
 
             {item.trailer && <div className="recomm-trailer">
-              <iframe width="400" height="195" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
-              <iframe width="400" height="195" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
+              <iframe width="350" height="47.3%" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
+              <iframe width="350" height="47.3%" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
             </div>}
           </div>
         </React.Fragment>
       )
     } else {
-      return 'READY'
+      return ''
     }
   }
 }

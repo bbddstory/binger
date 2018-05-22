@@ -1,16 +1,17 @@
+$posterWidth: 182px;
+
 .video-details {
     display: flex;
-    justify-content: center;
-    padding: 50px 0;
+    padding: 40px;
     background: rgba(#000, .6);
     border-radius: 2px;
     .poster {
         position: relative;
         img {
-            width: 182px;
+            width: $posterWidth;
         }
         .dummy-poster {
-            width: 182px;
+            width: $posterWidth;
             height: 268px;
         }
         .poster-movies {
@@ -32,11 +33,10 @@
     }
     .info {
         position: relative;
-        width: 260px;
+        width: 50%;
         height: 268px;
         color: #f2f2f2;
-        padding: 0 25px 0 8px;
-        text-overflow: ellipsis;
+        margin: 0 0 0 10px;
         .title {
             display: block;
             font-size: 22px;
@@ -61,7 +61,7 @@
             height: 30px;
             div {
                 border-radius: 5px;
-                margin-right: 10px;
+                margin-right: 5px;
                 cursor: pointer;
             }
             .watch-later {
@@ -83,76 +83,39 @@
                 background-size: contain;
                 cursor: pointer;
             }
-            ul {
-                position: absolute;
-                z-index: 1000;
-                top: -10px;
-                left: 80px;
-                width: 120px;
-                max-height: 200px;
-                border: 1px solid #444;
-                padding: 10px;
-                color: #f2f2f2;
-                background: rgba(#000, .8);
-                overflow-x: hidden;
-                overflow-y: auto;
-                border-radius: 5px;
-                -webkit-box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
-                -moz-box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
-                box-shadow: 0px 8px 15px 0px rgba(#000, 0.6);
-                li {
-                    height: 26px;
-                    box-sizing: border-box;
-                    padding-left: 5px;
-                    padding-right: 5px;
-                    line-height: 26px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    cursor: pointer;
-                    &:hover {
-                        background: #fff;
-                        color: #000;
-                        border-radius: 2px;
-                    }
-                }
-            }
         }
     }
     .plot {
-        width: 350px;
+        width: 50%;
         height: 268px;
+        margin: 0 0 0 20px;
         .plot-txt {
-            width: 350px;
-            height: 200px;
+            height: calc(100% - 50px);
             color: #f2f2f2;
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-y: auto;
         }
         .sites {
             display: flex;
-            width: 350px;
-            height: 68px;
-            align-items: flex-end;
+            height: 30px;
+            margin-top: 20px;
             a {
                 display: block;
-                margin-right: 10px;
+                height: 30px;
+                margin-right: 5px;
             }
             .imdb {
-                width: 67px;
-                height: 30px;
+                width: 69px;
                 background: url('../images/details/imdb.svg') no-repeat;
                 background-size: contain;
             }
             .mtime {
-                width: 97px;
-                height: 30px;
+                width: 102px;
                 background: url('../images/details/mtime.png') no-repeat;
                 background-size: contain;
             }
             .douban {
                 width: 100px;
-                height: 30px;
                 background: url('../images/details/douban.png') no-repeat;
                 background-size: contain;
             }
@@ -182,7 +145,6 @@
 }
 
 .comment {
-    width: 900px;
     margin-bottom: 30px;
     .title-row {
         position: relative;
@@ -216,7 +178,6 @@
     flex-direction: column;
     margin-bottom: 30px;
     .comment-title-lt {
-        width: 900px;
         padding: 10px 0;
         box-sizing: border-box;
         color: #f2f2f2;
@@ -224,7 +185,6 @@
         border-bottom: 1px solid #f2f2f2;
     }
     .comment-title {
-        width: 900px;
         margin-bottom: 0;
         padding-top: 10px;
         box-sizing: border-box;
@@ -236,8 +196,8 @@
         border-bottom-right-radius: 0;
     }
     textarea {
-        min-width: 900px;
-        max-width: 900px;
+        min-width: 100%;
+        max-width: 100%;
         height: 200px;
         min-height: 200px;
         max-height: 200px;

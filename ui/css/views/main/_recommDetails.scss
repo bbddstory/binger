@@ -1,156 +1,130 @@
 $imageWidth: 182px;
 $imageHeight: 268px;
+
 .recomm-details {
     display: flex;
     border-radius: 2px;
     .poster {
+        height: 100%;
         img {
             width: $imageWidth;
             height: $imageHeight;
         }
-
         .dummy-poster {
             position: relative;
             width: $imageWidth;
             height: $imageHeight;
             background-size: contain;
         }
-
         .poster-movies {
             background: url("../images/posters/Movies.png") no-repeat;
         }
-
         .poster-tv {
             background: url("../images/posters/TV.png") no-repeat;
         }
-
         .poster-documentaries {
             background: url("../images/posters/Documentaries.png") no-repeat;
         }
-
         .poster-animations {
             background: url("../images/posters/Animations.png") no-repeat;
         }
     }
     .info {
-        // background: #f00;
         position: relative;
-        min-width: calc(100% - 182px - 420px - 5px);
-        max-width: calc(100% - 182px - 420px - 5px);
-        // height: 415px;
+        min-width: calc(100% - #{$imageWidth} - 370px - 10px);
+        max-width: calc(100% - #{$imageWidth} - 370px - 10px);
+        height: 415px;
         color: #f2f2f2;
-        margin: 0 0 0 5px;
+        margin: 0 0 0 10px;
         text-overflow: ellipsis;
-        .title {
-            display: block;
-            font-size: 22px;
-        }
-        .orig-title {
-            display: block;
-            font-style: italic;
-            margin-top: 10px;
-        }
-        .misc {
-            display: block;
-            height: 120px;
-            color: #888;
-            line-height: 1.5;
-            font-size: 14px;
-            margin-top: 15px;
-        }
-        .actions {
-            display: flex;
-            height: 30px;
-            div {
-                border-radius: 5px;
-                margin-right: 5px;
-                cursor: pointer;
+        .details-wrap {
+            height: 268px;
+            position: relative;
+            .title {
+                display: block;
+                max-height: 70px;
+                padding-bottom: 5px;
+                overflow: hidden;
+                font-size: 22px;
             }
-            .watch-later {
-                width: 30px;
-                background: rgba(#717171, .6) url("../images/details/ic_watch_later_white_24px.svg") 50% no-repeat;
+            .orig-title {
+                display: block;
+                max-height: 35px;
+                padding-bottom: 5px;
+                overflow: hidden;
+                font-style: italic;
+                margin-top: 10px;
             }
-            .recomm {
-                width: 30px;
-                background: rgba(#717171, .6) url("../images/details/ic_thumb_up_white_24px.svg") 50% no-repeat;
+            .misc {
+                display: block;
+                max-height: 104px;
+                overflow: hidden;
+                color: #888;
+                line-height: 1.4;
+                font-size: 14px;
+                margin-top: 10px;
             }
-            .edit {
-                width: 30px;
-                background: rgba(#717171, .6) url("../images/details/ic_edit_white_24px.svg") 50% no-repeat;
-            }
-            a {
-                width: 120px;
+            .actions {
+                display: flex;
                 height: 30px;
-                background: url("../images/details/subscene.png") no-repeat;
-                background-size: contain;
-                cursor: pointer;
-            }
-            ul {
                 position: absolute;
-                z-index: 1000;
-                top: -10px;
-                left: 80px;
-                width: 120px;
-                max-height: 200px;
-                border: 1px solid #444;
-                padding: 10px;
-                color: #f2f2f2;
-                background: rgba(#000, .8);
-                overflow-x: hidden;
-                overflow-y: auto;
-                border-radius: 5px;
-                -webkit-box-shadow: 0px 8px 15px 0px rgba(#000, .6);
-                -moz-box-shadow: 0px 8px 15px 0px rgba(#000, .6);
-                box-shadow: 0px 8px 15px 0px rgba(#000, .6);
-                li {
-                    height: 26px;
-                    box-sizing: border-box;
-                    padding-left: 5px;
-                    padding-right: 5px;
-                    line-height: 26px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                bottom: 0;
+                div {
+                    border-radius: 5px;
+                    margin-right: 5px;
                     cursor: pointer;
-                    &:hover {
-                        background: #fff;
-                        color: #000;
-                        border-radius: 2px;
-                    }
+                }
+                .watch-later {
+                    width: 30px;
+                    background: rgba(#717171, .6) url("../images/details/ic_watch_later_white_24px.svg") 50% no-repeat;
+                }
+                .recomm {
+                    width: 30px;
+                    background: rgba(#717171, .6) url("../images/details/ic_thumb_up_white_24px.svg") 50% no-repeat;
+                }
+                .edit {
+                    width: 30px;
+                    background: rgba(#717171, .6) url("../images/details/ic_edit_white_24px.svg") 50% no-repeat;
+                }
+                a {
+                    width: 120px;
+                    height: 30px;
+                    background: url("../images/details/subscene.png") no-repeat;
+                    background-size: contain;
+                    cursor: pointer;
                 }
             }
         }
     }
     .plot-txt {
-        height: 150px;
-        margin-top: 15px;
+        height: calc(100% - 268px - 50px);
+        padding-right: 5px;
+        margin-top: 10px;
         color: #f2f2f2;
-        line-height: 1.6;
+        line-height: 1.5;
         overflow-y: auto;
     }
     .sites {
         display: flex;
         height: 30px;
-        margin-top: 5px;
-        align-items: flex-end;
+        margin-top: 10px;
         a {
             display: block;
+            height: 30px;
+            margin-right: 5px;
         }
         .imdb {
-            width: 72px;
-            height: 100%;
+            width: 69px;
             background: url('../images/details/imdb.svg') no-repeat;
             background-size: contain;
         }
         .douban {
-            width: 106px;
-            height: 30px;
+            width: 102px;
             background: url('../images/details/douban.png') no-repeat;
             background-size: contain;
         }
         .mtime {
             width: 100px;
-            height: 30px;
             background: url('../images/details/mtime.png') no-repeat;
             background-size: contain;
         }
@@ -158,8 +132,7 @@ $imageHeight: 268px;
 }
 
 .recomm-trailer {
-    // display: flex;
-    // justify-content: flex-start;
+    height: 415px;
     margin: 0 0 0 20px;
     iframe {
         margin-bottom: 20px;

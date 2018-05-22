@@ -1,17 +1,19 @@
-$imageWidth: 182px;
-$imageHeight: 268px;
+$posterWidth: 182px;
+$posterHeight: 268px;
+$infoWidth: 230px;
+
 .latest-details {
     display: flex;
     border-radius: 2px;
     .poster {
         img {
-            width: $imageWidth;
-            height: $imageHeight;
+            width: $posterWidth;
+            height: $posterHeight;
         }
         .dummy-poster {
             position: relative;
-            width: $imageWidth;
-            height: $imageHeight;
+            width: $posterWidth;
+            height: $posterHeight;
             background-size: contain;
         }
         .poster-movies {
@@ -29,27 +31,34 @@ $imageHeight: 268px;
     }
     .info {
         position: relative;
-        min-width: 235px;
-        max-width: 235px;
+        min-width: $infoWidth;
+        max-width: $infoWidth;
         height: 268px;
         color: #f2f2f2;
-        margin: 0 0 0 5px;
-        text-overflow: ellipsis;
+        margin: 0 0 0 10px;
         .title {
             display: block;
+            max-height: 70px;
+            padding-bottom: 5px;
+            overflow: hidden;
             font-size: 22px;
         }
         .orig-title {
             display: block;
+            max-height: 35px;
+            padding-bottom: 5px;
+            overflow: hidden;
             font-style: italic;
             margin-top: 10px;
         }
         .misc {
             display: block;
+            max-height: 95px;
+            overflow: hidden;
             color: #888;
-            line-height: 1.5;
+            line-height: 1.4;
             font-size: 14px;
-            margin-top: 15px;
+            margin-top: 10px;
         }
         .actions {
             position: absolute;
@@ -80,74 +89,40 @@ $imageHeight: 268px;
                 background-size: contain;
                 cursor: pointer;
             }
-            ul {
-                position: absolute;
-                z-index: 1000;
-                top: -10px;
-                left: 80px;
-                width: 120px;
-                max-height: 200px;
-                border: 1px solid #444;
-                padding: 10px;
-                color: #f2f2f2;
-                background: rgba(#000, .8);
-                overflow-x: hidden;
-                overflow-y: auto;
-                border-radius: 5px;
-                -webkit-box-shadow: 0px 8px 15px 0px rgba(#000, .6);
-                -moz-box-shadow: 0px 8px 15px 0px rgba(#000, .6);
-                box-shadow: 0px 8px 15px 0px rgba(#000, .6);
-                li {
-                    height: 26px;
-                    box-sizing: border-box;
-                    padding-left: 5px;
-                    padding-right: 5px;
-                    line-height: 26px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    cursor: pointer;
-                    &:hover {
-                        background: #fff;
-                        color: #000;
-                        border-radius: 2px;
-                    }
-                }
-            }
         }
     }
     .plot {
-        width: calc(100% - 182px - 235px);
+        width: calc(100% - #{posterWidth} - #{$infoWidth});
         height: 268px;
         margin: 0 0 0 10px;
         .plot-txt {
-            height: 238px;
+            height: calc(100% - 40px);
+            padding-right: 5px;
             color: #f2f2f2;
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-y: auto;
         }
         .sites {
             display: flex;
             height: 30px;
-            align-items: flex-end;
+            margin-top : 10px;
             a {
                 display: block;
+                height: 30px;
+                margin-right: 5px;
             }
             .imdb {
-                width: 72px;
-                height: 100%;
+                width: 69px;
                 background: url('../images/details/imdb.svg') no-repeat;
                 background-size: contain;
             }
             .douban {
-                width: 106px;
-                height: 30px;
+                width: 102px;
                 background: url('../images/details/douban.png') no-repeat;
                 background-size: contain;
             }
             .mtime {
                 width: 100px;
-                height: 30px;
                 background: url('../images/details/mtime.png') no-repeat;
                 background-size: contain;
             }
@@ -158,8 +133,8 @@ $imageHeight: 268px;
 .latest-trailer {
     display: flex;
     justify-content: flex-start;
-    margin: 20px 0 0 187px;
+    margin: 20px 0 0 192px;
     iframe {
-        margin-right: 20px;
+        margin-right: 16px;
     }
 }

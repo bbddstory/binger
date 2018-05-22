@@ -109,11 +109,6 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
     }
 
     render() {
-        // const buffer = this.props.dataRef;
-        // const { dataState } = this.props;
-        // const tileStyle = { width: 'calc(' + 100 / this.props.ipp + '% - 20px)' };
-        // const linkStyle = this.props.showInfo ? { background: 'rgba(0, 0, 0, .2)' } : {};
-
         return (
             <div className="tile-list">
                 {this.slides()}

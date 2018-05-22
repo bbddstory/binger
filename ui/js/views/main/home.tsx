@@ -58,20 +58,6 @@ class Home extends React.Component<any, any> {
             </div>
           </div>
         </div>
-
-        {/* <h1><FormattedMessage id='home.watch' /></h1>
-        <div className="home-list">
-          {Object.keys(dataState.watchLater).length ?
-            <TileList dataRef={dataState.watchLater} delBtn={true} showPages={false} category="" list="watchLater" />
-            : <FormattedMessage id='home.empty' />}
-        </div>
-
-        <h1><FormattedMessage id='home.recomm' /></h1>
-        <div className="home-list">
-          {Object.keys(dataState.recomm).length ?
-            <TileList dataRef={dataState.recomm} delBtn={true} showPages={false} category="" list="recomm" />
-            : <FormattedMessage id='home.empty' />}
-        </div> */}
       </div>
     )
   }

@@ -89,7 +89,7 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
             <div className="info">
               <span className="title">{item.eng_title}</span>
               <span className="orig-title">
-                {item.orig_title === 'N/A' || item.eng_title === item.orig_title ?
+                {item.orig_title === null || item.orig_title === '' || item.orig_title === 'N/A' || item.eng_title === item.orig_title ?
                   '' : item.orig_title + ' (original title)'}
               </span>
               <span className="misc">
@@ -130,8 +130,8 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
           {item.trailer && <div>
             <h1>Trailer and featurette</h1>
             <div className="trailer">
-              <iframe width="440" height="247.5" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
-              <iframe width="440" height="247.5" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
+              <iframe width="49%" height="275" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
+              <iframe width="49%" height="275" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
             </div>
             <div className="youtube">
               <a target="_blank" href={'https://www.youtube.com/results?search_query=' + item.eng_title}>More videos on YouTube</a>
@@ -145,7 +145,7 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
             {showComment && <textarea placeholder="Add a public comment..." value={this.state.comment} onChange={e => this.commentChange(e)}></textarea>}
             {showComment && <div>
               <button className="btn-cancel" onClick={e => this.cancelComment()}>Cancel</button>
-              <button className="btn-main" type="submit" onClick={e => this.submitComment()}>Comment</button>
+              <button className="btn-main" type="submit" onClick={e => this.submitComment()}>Publish</button>
             </div>}
           </div>
 

@@ -88,7 +88,7 @@ class LatestDetails extends React.Component<IReduxProps & ICompProps, any> {
             <div className="info">
               <span className="title">{item.eng_title}</span>
               <span className="orig-title">
-                {item.orig_title === 'N/A' || item.eng_title === item.orig_title ?
+                {item.orig_title === null || item.orig_title === '' || item.orig_title === 'N/A' || item.eng_title === item.orig_title ?
                   '' : item.orig_title + ' (original title)'}
               </span>
               <span className="misc">
@@ -126,13 +126,13 @@ class LatestDetails extends React.Component<IReduxProps & ICompProps, any> {
             </div>
           </div>
           {item.trailer && <div className="latest-trailer">
-            <iframe width="225" height="126" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
-            <iframe width="225" height="126" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
+            <iframe width="224" height="125" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
+            <iframe width="224" height="125" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
           </div>}
         </React.Fragment>
       )
     } else {
-      return 'READY'
+      return ''
     }
   }
 }

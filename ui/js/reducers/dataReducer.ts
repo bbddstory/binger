@@ -22,7 +22,7 @@ let init: IDataReducer = {
   prevCat: cats.HOME,
   category: cats.HOME,
   itemCnt: 0, // Total number of records in designated category
-  ipp: 15, // itemPerPage
+  ipp: 20, // itemPerPage
   pageCnt: 1,
   currPage: 1,
   startAt: 0, // Start index of items on current page
