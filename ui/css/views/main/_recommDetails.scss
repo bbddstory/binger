@@ -67,33 +67,27 @@ $imageHeight: 268px;
                 margin-top: 10px;
             }
             .actions {
-                display: flex;
-                height: 30px;
                 position: absolute;
                 bottom: 0;
-                div {
-                    border-radius: 5px;
+                height: 30px;
+                display: flex;
+                div, a {
+                    width: 30px;
+                    border-radius: 3px;
                     margin-right: 5px;
                     cursor: pointer;
                 }
                 .watch-later {
-                    width: 30px;
                     background: rgba(#717171, .6) url("../images/details/ic_watch_later_white_24px.svg") 50% no-repeat;
                 }
                 .recomm {
-                    width: 30px;
                     background: rgba(#717171, .6) url("../images/details/ic_thumb_up_white_24px.svg") 50% no-repeat;
                 }
                 .edit {
-                    width: 30px;
                     background: rgba(#717171, .6) url("../images/details/ic_edit_white_24px.svg") 50% no-repeat;
                 }
                 a {
-                    width: 120px;
-                    height: 30px;
-                    background: url("../images/details/subscene.png") no-repeat;
-                    background-size: contain;
-                    cursor: pointer;
+                    background: rgba(#717171, .6) url("../images/details/baseline_closed_caption_white_24dp.png") 50% no-repeat;
                 }
             }
         }
@@ -140,4 +134,14 @@ $imageHeight: 268px;
     iframe {
         margin-bottom: 20px;
     }
+}
+
+.no-vid-recomm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: #444;
+    border: 1px solid #222;
+    margin: 0 0 0 20px;
 }

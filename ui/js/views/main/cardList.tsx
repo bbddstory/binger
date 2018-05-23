@@ -28,7 +28,7 @@ class CardList extends React.Component<IReduxProps & ICompProps, any> {
 
   loadDetails(key: string) {
     this.props.setKeyDispatch(key);
-    this.props.loadDetailsDispatch();
+    this.props.loadDetailsDispatch('details');
   }
 
   render() {
@@ -60,8 +60,8 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loadDetailsDispatch: () => {
-    dispatch(loadDetailsAct())
+  loadDetailsDispatch: (list: string) => {
+    dispatch(loadDetailsAct(list))
   },
   setKeyDispatch: (key: string) => {
     dispatch(setKeyAct(key))

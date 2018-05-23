@@ -10,7 +10,7 @@ interface IReduxProps extends React.Props<any> {
   loginState: any,
   dataState: any,
   uiState: any,
-  loadDetailsDispatch: any,
+  // loadDetailsDispatch: any,
   watchLaterDispatch: any,
   recommDispatch: any,
   commentDispatch: any,
@@ -73,9 +73,9 @@ class LatestDetails extends React.Component<IReduxProps & ICompProps, any> {
     const { loginState, dataState, uiState } = this.props;
     const key = this.props.dataState.key;
     const { opts, recomm, showComment } = this.state;
-    const item = this.props.dataState.details;
+    const item = this.props.dataState.latestDetails;
 
-    if (Object.keys(dataState.details).length) {
+    if (dataState.latestDetails) {
       return (
         <React.Fragment>
           <div className="latest-details">
@@ -125,10 +125,10 @@ class LatestDetails extends React.Component<IReduxProps & ICompProps, any> {
               </div>
             </div>
           </div>
-          {item.trailer && <div className="latest-trailer">
+          {item.trailer ? <div className="latest-trailer">
             <iframe width="224" height="125" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
             <iframe width="224" height="125" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
-          </div>}
+          </div> : <div className="no-vid-latest">No videos available</div>}
         </React.Fragment>
       )
     } else {
@@ -144,7 +144,7 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loadDetailsDispatch: () => dispatch(loadDetailsAct()),
+  // loadDetailsDispatch: () => dispatch(loadDetailsAct()),
   watchLaterDispatch: () => dispatch(watchLaterAct()),
   recommDispatch: (user: string) => dispatch(recommAct(user)),
   commentDispatch: (values: any) => dispatch(commentAct(values)),

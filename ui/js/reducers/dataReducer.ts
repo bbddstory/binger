@@ -85,7 +85,11 @@ export function dataReducer(state: any = init, action: any) {
 
       return ns;
     case LOAD_DETAILS:
-      ns.details = action.details;
+      if (action.list) {
+        ns[action.list + 'Details'] = action.details;
+      } else {
+        ns.details = action.details;
+      }
 
       return ns;
     case SYNC_CAT:

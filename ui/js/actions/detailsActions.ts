@@ -16,7 +16,7 @@ export const SAVE_NEW = 'SAVE_NEW';
 import { toggleEditDetailsAct } from '../actions/uiActions';
 
 // Action creators
-export function loadDetailsAct() {
+export function loadDetailsAct(list: string) {
   return (dispatch: any, getState: any) => {
     dispatch({ type: TOGGLE_LOADER, status: true });
     axios.post(NODE_URL() + '/details/load', {
@@ -24,7 +24,7 @@ export function loadDetailsAct() {
       key: getState().dataReducer.key
     }).then(res => {
       if (res.status === 200) {
-        dispatch({ type: LOAD_DETAILS, details: res.data.details });
+        dispatch({ type: LOAD_DETAILS, list: list, details: res.data.details });
         dispatch({ type: TOGGLE_LOADER, status: false });
       }
     }).catch(err => console.log(err));

@@ -4,8 +4,9 @@ $infoWidth: 230px;
 
 .latest-details {
     display: flex;
-    border-radius: 2px;
     .poster {
+        width: $posterWidth;
+        height: $posterHeight;
         img {
             width: $posterWidth;
             height: $posterHeight;
@@ -65,31 +66,25 @@ $infoWidth: 230px;
         .actions {
             position: absolute;
             bottom: 0;
-            display: flex;
             height: 30px;
-            div {
-                border-radius: 5px;
+            display: flex;
+            div, a {
+                width: 30px;
+                border-radius: 3px;
                 margin-right: 5px;
                 cursor: pointer;
             }
             .watch-later {
-                width: 30px;
                 background: rgba(#717171, .6) url("../images/details/ic_watch_later_white_24px.svg") 50% no-repeat;
             }
             .recomm {
-                width: 30px;
                 background: rgba(#717171, .6) url("../images/details/ic_thumb_up_white_24px.svg") 50% no-repeat;
             }
             .edit {
-                width: 30px;
                 background: rgba(#717171, .6) url("../images/details/ic_edit_white_24px.svg") 50% no-repeat;
             }
             a {
-                width: 120px;
-                height: 30px;
-                background: url("../images/details/subscene.png") no-repeat;
-                background-size: contain;
-                cursor: pointer;
+                background: rgba(#717171, .6) url("../images/details/baseline_closed_caption_white_24dp.png") 50% no-repeat;
             }
         }
     }
@@ -140,4 +135,14 @@ $infoWidth: 230px;
     iframe {
         margin-right: 16px;
     }
+}
+
+.no-vid-latest {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 268px - 22px);
+    color: #444;
+    border: 1px solid #222;
+    margin: 20px 0 0 192px;
 }

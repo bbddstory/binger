@@ -10,7 +10,7 @@ interface IReduxProps extends React.Props<any> {
   loginState: any,
   dataState: any,
   uiState: any,
-  loadDetailsDispatch: any,
+  // loadDetailsDispatch: any,
   watchLaterDispatch: any,
   recommDispatch: any,
   commentDispatch: any,
@@ -73,9 +73,9 @@ class RecommDetails extends React.Component<IReduxProps & ICompProps, any> {
     const { loginState, dataState, uiState } = this.props;
     const key = this.props.dataState.key;
     const { opts, recomm, showComment } = this.state;
-    const item = this.props.dataState.details;
+    const item = this.props.dataState.recommDetails;
 
-    if (Object.keys(dataState.details).length) {
+    if (dataState.recommDetails) {
       return (
         <React.Fragment>
           <div className="recomm-details">
@@ -125,10 +125,10 @@ class RecommDetails extends React.Component<IReduxProps & ICompProps, any> {
               </div>
             </div>
 
-            {item.trailer && <div className="recomm-trailer">
+            {item.trailer ? <div className="recomm-trailer">
               <iframe width="350" height="47.3%" src={item.trailer} frameBorder="0" allowFullScreen></iframe>
               <iframe width="350" height="47.3%" src={item.featurette} frameBorder="0" allowFullScreen></iframe>
-            </div>}
+            </div> : <div className="no-vid-recomm">No videos available</div>}
           </div>
         </React.Fragment>
       )
@@ -145,7 +145,7 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loadDetailsDispatch: () => dispatch(loadDetailsAct()),
+  // loadDetailsDispatch: () => dispatch(loadDetailsAct()),
   watchLaterDispatch: () => dispatch(watchLaterAct()),
   recommDispatch: (user: string) => dispatch(recommAct(user)),
   commentDispatch: (values: any) => dispatch(commentAct(values)),

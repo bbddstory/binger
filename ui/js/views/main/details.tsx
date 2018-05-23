@@ -11,7 +11,7 @@ interface IReduxProps extends React.Props<any> {
   loginState: any,
   dataState: any,
   uiState: any,
-  loadDetailsDispatch: any,
+  // loadDetailsDispatch: any,
   watchLaterDispatch: any,
   recommDispatch: any,
   commentDispatch: any,
@@ -176,7 +176,7 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loadDetailsDispatch: () => dispatch(loadDetailsAct()),
+  // loadDetailsDispatch: () => dispatch(loadDetailsAct()),
   watchLaterDispatch: () => dispatch(watchLaterAct()),
   recommDispatch: (user: string) => dispatch(recommAct(user)),
   commentDispatch: (values: any) => dispatch(commentAct(values)),
