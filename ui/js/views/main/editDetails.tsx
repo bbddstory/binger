@@ -43,9 +43,9 @@ class EditDetails extends React.Component<any, any> {
     if (this.props.uiState.newRec) { // New record
       item = {}
     } else { // Existing record
-      let key = this.props.dataState.key;
+      // let key = this.props.dataState.key;
       
-      item = this.props.dataState.details[key];
+      item = this.props.dataState.details;
     }
 
     return (
@@ -57,13 +57,13 @@ class EditDetails extends React.Component<any, any> {
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ width: '48.5%' }}>
                   <label>English Title</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.engTitle} />
-                  {this.state.engTitle && <span>Contains invalid characters</span>}
+                  <input type="text" placeholder="N/A" defaultValue={item.eng_title} />
+                  {this.state.eng_title && <span>Contains invalid characters</span>}
                 </div>
                 <div style={{ width: '49%' }}>
                   <label>Original Title</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.origTitle} />
-                  {this.state.origTitle && <span>Contains invalid characters</span>}
+                  <input type="text" placeholder="N/A" defaultValue={item.orig_title} />
+                  {this.state.orig_title && <span>Contains invalid characters</span>}
                 </div>
               </div>
 

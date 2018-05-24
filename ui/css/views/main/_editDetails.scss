@@ -3,10 +3,10 @@
     z-index: 1000;
     top: 50%;
     left: 50%;
-    width: 900px;
-    height: 80%;
-    max-height: 810px;
     transform: translate(-50%, -50%);
+    width: 900px;
+    height: 90%;
+    max-height: 1090px;
     background: rgba(#000, .8);
     border-radius: 5px;
     .panel-body {
@@ -24,7 +24,9 @@
             margin-bottom: 15px;
         }
         input {
-            margin-bottom: 20px;
+            width: 100%;
+            margin: 0 20px 20px 0;
+            box-sizing: border-box;
         }
         textarea {
             border: 0;
