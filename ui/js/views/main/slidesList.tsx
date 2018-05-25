@@ -17,7 +17,7 @@ interface IReduxProps extends React.Props<any> {
 
 interface ICompProps extends React.Props<any> {
     dataRef: any,
-    open: boolean,
+    link: boolean,
     vertical: boolean, // Vertical or horizontal slides
     del: boolean,
     info: boolean,
@@ -37,11 +37,11 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
         this.props.removeHomeListItemDispatch(this.props.list, key);
     }
 
-    loadDetails(key: string, ref: string, link: boolean) {
+    loadDetails(key: string, ref: string, jump: boolean) {
         this.props.setKeyDispatch(key);
         this.props.loadDetailsDispatch(ref);
 
-        if (link) {
+        if (jump) {
             location.hash = 'main/details';
         }
     }
@@ -69,7 +69,7 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
                         <div className="tile" key={j + i * ipp} style={tileStyle}>
                             <div className="thumbnail" onClick={e => this.loadDetails(el.id, this.props.list, false)}>
                                 {this.props.del && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, el.id)}></div>}
-                                {this.props.open && <div onClick={e => { e.stopPropagation(); this.loadDetails(el.id, 'main', true); }} className="open-link" title="Open full details"></div>}
+                                {this.props.link && <div onClick={e => { e.stopPropagation(); this.loadDetails(el.id, 'main', true); }} className="link" title="Open full details"></div>}
                                 {el.poster && el.poster !== 'N/A' ?
                                     <img alt="Poster" src={el.poster} /> :
                                     <div className={'dummy-poster poster-' + el.category.toLowerCase()}></div>}
