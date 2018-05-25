@@ -26,7 +26,7 @@ export function registerAct(form: any) {
         });
         dispatch({ type: TOGGLE_LOADER, status: false });
 
-        location.hash = '/main/home'
+        location.hash = 'main/home'
       }
     }).catch(err => console.log(err));
   }
@@ -50,7 +50,7 @@ export function loginAct(form: any) {
         document.cookie = "email=" + form.email;
         document.cookie = "user=" + res.data.user;
 
-        location.hash = '/main/home'
+        location.hash = 'main/home'
       }
     }).catch(err => console.log(err));
   }

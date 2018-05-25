@@ -44,7 +44,7 @@ class EditDetails extends React.Component<any, any> {
       item = {}
     } else { // Existing record
       // let key = this.props.dataState.key;
-      
+
       item = this.props.dataState.details;
     }
 
@@ -54,89 +54,94 @@ class EditDetails extends React.Component<any, any> {
           <div className="popup-panel">
             <div className="panel-body">
 
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <div style={{ width: '48.5%' }}>
+              <div className="flex">
+                <div className="input-padding width-50">
                   <label>English Title</label>
                   <input type="text" placeholder="N/A" defaultValue={item.eng_title} />
                   {this.state.eng_title && <span>Contains invalid characters</span>}
                 </div>
-                <div style={{ width: '49%' }}>
+                <div className="input-padding width-50">
                   <label>Original Title</label>
                   <input type="text" placeholder="N/A" defaultValue={item.orig_title} />
                   {this.state.orig_title && <span>Contains invalid characters</span>}
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <div style={{ width: '22.9%' }}>
-                  <label>Year</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.year} />
-                  {this.state.year && <span>Must be 4 digits</span>}
+              <div className="flex">
+                <div className="input-padding flex width-50">
+                  <div className="width-50" style={{ padding: '0 10px 0 0' }}>
+                    <label>Year</label>
+                    <input type="text" placeholder="N/A" defaultValue={item.year} />
+                    {this.state.year && <span>Must be 4 digits</span>}
+                  </div>
+                  <div className="width-50" style={{ padding: '0 0 0 10px' }}>
+                    <label>Runtime</label>
+                    <input type="text" placeholder="N/A" defaultValue={item.runtime} />
+                    {this.state.runtime && <span>Format: 1h 30min</span>}
+                  </div>
                 </div>
-                <div style={{ width: '22.9%' }}>
-                  <label>Runtime</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.runtime} />
-                  {this.state.runtime && <span>Format: 1h 30min</span>}
-                </div>
-                <div style={{ width: '49%' }}>
+
+                <div className="input-padding width-50">
                   <label>Stars</label>
                   <input type="text" placeholder="N/A" defaultValue={item.stars} />
                   {this.state.director && <span>One or more names separated by comma</span>}
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <div style={{ width: '48.5%' }}>
+              <div className="flex">
+                <div className="input-padding width-50">
                   <label>Director</label>
                   <input type="text" placeholder="N/A" defaultValue={item.director} />
                   {this.state.director && <span>One or more names separated by comma</span>}
                 </div>
-                <div style={{ width: '49%' }}>
+                <div className="input-padding width-50">
                   <label>Creator</label>
                   <input type="text" placeholder="N/A" defaultValue={item.creator} />
                   {this.state.director && <span>One or more names separated by comma</span>}
                 </div>
               </div>
 
-              <label className="textarea-lbl">Plot</label>
-              <textarea className="plot" placeholder="N/A" defaultValue={item.plot} />
-              {this.state.plot && <span>Contains invalid characters</span>}
+              <div className="input-padding">
+                <label className="textarea-lbl">Plot</label>
+                <textarea placeholder="N/A" defaultValue={item.plot} />
+                {this.state.plot && <span>Contains invalid characters</span>}
+              </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <div style={{ width: '23%' }}>
+              <div className="flex">
+                <div className="input-padding width-25">
                   <label>IMDB ID</label>
                   <input type="text" placeholder="N/A" defaultValue={item.imdb_id} />
                   {this.state.imdb_id && <span>Format: tt1234567</span>}
                 </div>
-                <div style={{ width: '23%' }}>
+                <div className="input-padding width-25">
                   <label>Rating</label>
                   <input type="text" placeholder="N/A" defaultValue={item.rating} />
                   {this.state.rating && <span>Format: 9.9</span>}
                 </div>
-                <div style={{ width: '23%' }}>
+                <div className="input-padding width-25">
                   <label>Douban</label>
                   <input type="text" placeholder="N/A" defaultValue={item.douban} />
                   {this.state.imdb_id && <span>Format: tt1234567</span>}
                 </div>
-                <div style={{ width: '23%' }}>
+                <div className="input-padding width-25">
                   <label>Mtime</label>
                   <input type="text" placeholder="N/A" defaultValue={item.mtime} />
                   {this.state.rating && <span>Format: 9.9</span>}
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <div style={{ width: '23%' }}>
+              <div className="flex">
+                <div className="input-padding width-25">
                   <label>Trailer</label>
                   <input type="text" placeholder="N/A" defaultValue={item.trailer} />
                   {this.state.imdb_id && <span>Format: tt1234567</span>}
                 </div>
-                <div style={{ width: '23%' }}>
+                <div className="input-padding width-25">
                   <label>Featurette</label>
                   <input type="text" placeholder="N/A" defaultValue={item.featurette} />
                   {this.state.rating && <span>Format: 9.9</span>}
                 </div>
-                <div style={{ width: '23%' }}>
+                <div className="input-padding width-25">
                   <label>Status</label>
                   <select defaultValue={item.status}>
                     <option value="0">0</option>
@@ -151,7 +156,7 @@ class EditDetails extends React.Component<any, any> {
                     <option value="9">9</option>
                   </select>
                 </div>
-                <div style={{ width: '23%' }}>
+                <div className="input-padding width-25">
                   <label>Category</label>
                   <select ref="catSel" defaultValue={item.cat} disabled={!this.props.uiState.newRec}>
                     <option value={cats.MOVIE}>Movie</option>
@@ -162,13 +167,17 @@ class EditDetails extends React.Component<any, any> {
                 </div>
               </div>
 
-              <label>Poster</label>
-              <textarea className="poster" placeholder="N/A" defaultValue={item.poster} />
-              {this.state.poster && <span>Must be a valid URL</span>}
+              <div className="input-padding">
+                <label>Poster</label>
+                <textarea className="poster" placeholder="N/A" defaultValue={item.poster} />
+                {this.state.poster && <span>Must be a valid URL</span>}
+              </div>
 
-              <label>Subtitle</label>
-              <input type="text" placeholder="N/A" defaultValue={item.subtitle} />
-              {this.state.subtitle && <span>Must be a valid URL</span>}
+              <div className="input-padding">
+                <label>Subtitle</label>
+                <input type="text" placeholder="N/A" defaultValue={item.subtitle} />
+                {this.state.subtitle && <span>Must be a valid URL</span>}
+              </div>
 
             </div>
             <div className="panel-footer">

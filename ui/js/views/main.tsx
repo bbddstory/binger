@@ -43,10 +43,10 @@ class Main extends React.Component<any, any> {
 
     if (!token) {
       let cs = document.cookie.split(';');
-      console.log(cs);
+      // console.log(cs);
 
       if (cs[0] === '' || cs.length < 2) { // No user cookies found or not enough user info
-        location.hash = '#';
+        location.hash = '';
         location.reload();
       } else {
         let co = parseCookie(cs);

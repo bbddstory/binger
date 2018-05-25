@@ -35,9 +35,9 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
     this.props.removeHomeListItemDispatch(this.props.list, key);
   }
 
-  loadDetails(key: string) {
+  loadDetails(key: string, ref: string) {
     this.props.setKeyDispatch(key);
-    this.props.loadDetailsDispatch('details');
+    this.props.loadDetailsDispatch(ref);
   }
 
   render() {
@@ -48,7 +48,7 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
       <div className="tile-list">
         {Object.keys(buffer).map((key: any) => {
           return <div className="tile" key={key}>
-            <Link to={'/main/details'} onClick={e => this.loadDetails(key)}>
+            <Link to={'/main/details'} onClick={e => this.loadDetails(key, 'main')}>
               {this.props.delBtn && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, key)}></div>}
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :

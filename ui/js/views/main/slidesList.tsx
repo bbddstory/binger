@@ -18,7 +18,6 @@ interface IReduxProps extends React.Props<any> {
 interface ICompProps extends React.Props<any> {
     dataRef: any,
     open: boolean,
-    load: boolean,
     vertical: boolean, // Vertical or horizontal slides
     del: boolean,
     info: boolean,
@@ -38,17 +37,17 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
         this.props.removeHomeListItemDispatch(this.props.list, key);
     }
 
-    loadDetails(key: string, ref: string) {
+    loadDetails(key: string, ref: string, link: boolean) {
         this.props.setKeyDispatch(key);
-        this.props.loadDetailsDispatch(ref ? '' : this.props.list);
+        this.props.loadDetailsDispatch(ref);
 
-        if (!this.props.load) {
-            location.href = '#/main/details';
+        if (link) {
+            location.hash = 'main/details';
         }
     }
 
     showSlide = (i: number) => {
-        this.setState({ currPage: i})
+        this.setState({ currPage: i })
     }
 
     slides = () => {
@@ -57,7 +56,6 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
         const hidePage = { display: 'none' };
         const showPage = { display: 'block' };
         const tileStyle = { width: this.props.vertical ? '100%' : 'calc(' + 100 / ipp + '% - 20px)' };
-        // const linkStyle = this.props.info ? { background: 'rgba(#000, .2)' } : {};
 
         let slides = [];
         let page = [];
@@ -69,9 +67,9 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
                 if (el) {
                     page.push(
                         <div className="tile" key={j + i * ipp} style={tileStyle}>
-                            <div className="thumbnail" onClick={e => this.loadDetails(el.id, '')}>
+                            <div className="thumbnail" onClick={e => this.loadDetails(el.id, this.props.list, false)}>
                                 {this.props.del && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, el.id)}></div>}
-                                {this.props.open && <Link onClick={e => this.loadDetails(el.id, 'details')} to='/main/details' className="open-link" title="Open full details"></Link>}
+                                {this.props.open && <div onClick={e => { e.stopPropagation(); this.loadDetails(el.id, 'main', true); }} className="open-link" title="Open full details"></div>}
                                 {el.poster && el.poster !== 'N/A' ?
                                     <img alt="Poster" src={el.poster} /> :
                                     <div className={'dummy-poster poster-' + el.category.toLowerCase()}></div>}
@@ -98,22 +96,22 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
 
         return slides;
     }
-    
-    
+
+
     dots = () => {
         let dots = [];
-        
+
         for (let i = 0; i < Math.ceil(this.props.dataRef.length / this.props.ipp); i++) {
             dots.push(<span className={this.state.currPage === i ? 'currDot' : ''} onClick={e => this.showSlide(i)} key={i}></span>)
         }
-        
+
         return (
             <div className="dots">
                 {dots}
             </div>
         );
     }
-    
+
     componentWillMount() {
         this.props.setKeyDispatch(this.props.dataRef[0].id);
         this.props.loadDetailsDispatch(this.props.list);

@@ -4,14 +4,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { setKeyAct } from '../../actions/dataActions';
 import { toggleEditDetailsAct } from '../../actions/uiActions';
-import { loadDetailsAct, watchLaterAct, recommAct, commentAct, delCommentAct } from '../../actions/detailsActions';
+import { watchLaterAct, recommAct, commentAct, delCommentAct } from '../../actions/detailsActions';
 // import EditDetails from './editDetails';
 
 interface IReduxProps extends React.Props<any> {
   loginState: any,
   dataState: any,
   uiState: any,
-  // loadDetailsDispatch: any,
   watchLaterDispatch: any,
   recommDispatch: any,
   commentDispatch: any,
@@ -74,9 +73,9 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
     const { loginState, dataState, uiState } = this.props;
     const key = this.props.dataState.key;
     const { opts, recomm, showComment } = this.state;
-    const item = this.props.dataState.details;
+    const item = this.props.dataState.mainDetails;
 
-    if (Object.keys(dataState.details).length) {
+    if (item) {
       return (
         <React.Fragment>
           <div className="video-details">
@@ -176,7 +175,6 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  // loadDetailsDispatch: () => dispatch(loadDetailsAct()),
   watchLaterDispatch: () => dispatch(watchLaterAct()),
   recommDispatch: (user: string) => dispatch(recommAct(user)),
   commentDispatch: (values: any) => dispatch(commentAct(values)),

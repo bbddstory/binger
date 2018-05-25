@@ -15,7 +15,7 @@ let init: IDataReducer = {
   key: '',
   buffer: {},
   search: {},
-  details: {},
+  // mainDetails: {},
   latest: {},
   watchLater: {},
   recomm: {},
@@ -85,11 +85,7 @@ export function dataReducer(state: any = init, action: any) {
 
       return ns;
     case LOAD_DETAILS:
-      if (action.list) {
-        ns[action.list + 'Details'] = action.details;
-      } else {
-        ns.details = action.details;
-      }
+      ns[action.list + 'Details'] = action.details;
 
       return ns;
     case SYNC_CAT:

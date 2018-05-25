@@ -26,9 +26,9 @@ class CardList extends React.Component<IReduxProps & ICompProps, any> {
     this.state = {};
   }
 
-  loadDetails(key: string) {
+  loadDetails(key: string, ref: string) {
     this.props.setKeyDispatch(key);
-    this.props.loadDetailsDispatch('details');
+    this.props.loadDetailsDispatch(ref);
   }
 
   render() {
@@ -39,7 +39,7 @@ class CardList extends React.Component<IReduxProps & ICompProps, any> {
       <div className="card-list">
         {Object.keys(buffer).map((key: any) => {
           return <div className="card" key={key}>
-            <Link to={'/main/details'} onClick={e => this.loadDetails(key)}>
+            <Link to={'/main/details'} onClick={e => this.loadDetails(key, 'main')}>
               {buffer[key].poster && buffer[key].poster !== 'N/A' ?
                 <img alt="Poster" src={buffer[key].poster} /> :
                 <img alt="Poster" src={"ui/images/posters/" + buffer[key].category + ".png"} />
