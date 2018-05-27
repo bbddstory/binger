@@ -31,18 +31,19 @@ export function loadDetailsAct(list: string) {
   }
 }
 
-export function watchLaterAct() {
-  return async (dispatch: any, getState: any) => {
-    let firebase = getState().loginReducer.firebase,
-      user = getState().loginReducer.user,
-      values = getState().dataReducer.buffer[getState().dataReducer.key];
-
-    if (firebase.apps) {
-      await firebase.database().ref('Users/' + user + '/watchlater/' + getState().dataReducer.key)
-        .set(values).then((snapshot: any) => {
-          // dispatch({ type: WATCH_LATER });
-        });
-    }
+export function watchLaterAct(id: string) {
+  return (dispatch: any, getState: any) => {
+    axios.post(NODE_URL() + '/videos/watchlater', {
+      token: getState().loginReducer.token,
+      email: getState().loginReducer.email,
+      key: id
+    }).then(res => {
+      if (res.status === 200) {
+        // dispatch({ type: LOAD_DETAILS, list: list, details: res.data.details });
+        // dispatch({ type: TOGGLE_LOADER, status: false });
+      }
+    }).catch(err => console.log(err));
+    // dispatch({ type: WATCH_LATER });
   }
 }
 

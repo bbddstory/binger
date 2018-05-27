@@ -45,7 +45,7 @@ class EditDetails extends React.Component<any, any> {
     } else { // Existing record
       // let key = this.props.dataState.key;
 
-      item = this.props.dataState.details;
+      item = this.props.dataState.mainDetails;
     }
 
     return (

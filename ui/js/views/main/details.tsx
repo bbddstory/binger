@@ -98,7 +98,7 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
                 Stars: {item.stars || 'N/A'}
               </span>
               <div className="actions">
-                <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch()}></div>
+                <div className="watch-later" title="Watch later" onClick={e => this.props.watchLaterDispatch(item.id)}></div>
                 <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
                 <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true, false)}></div>
                 <a target="_blank" title="Search for subtitles on Subscene" href={'https://subscene.com/subtitles/title?q=' + item.eng_title.replace(' ', '+')}></a>
@@ -175,7 +175,7 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  watchLaterDispatch: () => dispatch(watchLaterAct()),
+  watchLaterDispatch: (id: string) => dispatch(watchLaterAct(id)),
   recommDispatch: (user: string) => dispatch(recommAct(user)),
   commentDispatch: (values: any) => dispatch(commentAct(values)),
   delCommentDispatch: (id: string) => dispatch(delCommentAct(id)),

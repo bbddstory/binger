@@ -18,6 +18,7 @@ interface IReduxProps extends React.Props<any> {
 interface ICompProps extends React.Props<any> {
     dataRef: any,
     link: boolean,
+    load: boolean, // whether or not to load the details of the first item in the list
     vertical: boolean, // Vertical or horizontal slides
     del: boolean,
     info: boolean,
@@ -67,7 +68,7 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
                 if (el) {
                     page.push(
                         <div className="tile" key={j + i * ipp} style={tileStyle}>
-                            <div className="thumbnail" onClick={e => this.loadDetails(el.id, this.props.list, false)}>
+                            <div className="thumbnail" onClick={e => this.loadDetails(el.id, this.props.list, !this.props.link)}>
                                 {this.props.del && <div className="del-item" title="Remove from the list" onClick={e => this.delItem(e, el.id)}></div>}
                                 {this.props.link && <div onClick={e => { e.stopPropagation(); this.loadDetails(el.id, 'main', true); }} className="link" title="Open full details"></div>}
                                 {el.poster && el.poster !== 'N/A' ?
@@ -113,8 +114,10 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
     }
 
     componentWillMount() {
-        this.props.setKeyDispatch(this.props.dataRef[0].id);
-        this.props.loadDetailsDispatch(this.props.list);
+        if(this.props.load) {
+            this.props.setKeyDispatch(this.props.dataRef[0].id);
+            this.props.loadDetailsDispatch(this.props.list);
+        }
     }
 
     render() {
