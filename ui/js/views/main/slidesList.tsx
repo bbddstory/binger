@@ -43,7 +43,7 @@ class SlidesList extends React.Component<IReduxProps & ICompProps, any> {
         this.props.loadDetailsDispatch(ref);
 
         if (jump) {
-            location.hash = 'main/details';
+            location.hash = '#/main/details';
         }
     }
 

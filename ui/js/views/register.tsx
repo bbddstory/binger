@@ -7,7 +7,7 @@ import { registerAct } from '../actions/loginActions';
 class Register extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { form: { firstName: 'Leon', lastName: 'Li', email: '', pwd: '' } }
+    this.state = { form: { firstName: '', lastName: '', email: '', pwd: '' } }
   }
 
   handleChange(e: any) {

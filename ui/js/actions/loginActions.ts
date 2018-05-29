@@ -26,7 +26,7 @@ export function registerAct(form: any) {
         });
         dispatch({ type: TOGGLE_LOADER, status: false });
 
-        location.hash = 'main/home'
+        location.hash = '#/main/home'
       }
     }).catch(err => console.log(err));
   }
@@ -42,7 +42,8 @@ export function loginAct(form: any) {
           type: SET_TOKEN,
           token: res.data.token,
           email: form.email,
-          user: res.data.user
+          user: res.data.user,
+          friends: res.data.friends
         });
         dispatch({ type: TOGGLE_LOADER, status: false });
 
@@ -50,7 +51,7 @@ export function loginAct(form: any) {
         document.cookie = "email=" + form.email;
         document.cookie = "user=" + res.data.user;
 
-        location.hash = 'main/home'
+        location.hash = '#/main/home'
       }
     }).catch(err => console.log(err));
   }
@@ -58,6 +59,12 @@ export function loginAct(form: any) {
 
 export function setTokenAct(token: string, email: string, user: string) {
   return (dispatch: any, getState: any) => {
+    axios.post(NODE_URL() + '/users/friends', {token: token, email: email}).then(res => {
+      if (res.status === 200) {
+        
+      }
+    }).catch(err => console.log(err));
+
     dispatch({ type: SET_TOKEN, token: token, email: email, user: user });
   }
 }

@@ -7,7 +7,7 @@ import { loginAct } from '../actions/loginActions';
 class Login extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { form: { email: 'leon@g.com', pwd: 'leon@g.com' } }
+    this.state = { form: { email: 'leon@gmail.com', pwd: 'leon@gmail.com' } }
   }
 
   handleChange(e: any) {

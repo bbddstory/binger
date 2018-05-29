@@ -23,7 +23,7 @@ export function searchAct(key: string) {
       if (res.status === 200) {
         dispatch({ type: SET_SEARCH_FLAG });
         dispatch({ type: SEARCH_RETURN, results });
-        location.hash = 'main/search';
+        location.hash = '#/main/search';
       }
     }).catch(err => {
       console.log(err);

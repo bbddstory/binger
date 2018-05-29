@@ -10,7 +10,8 @@ import { REMOVE_HOME_LIST_ITEM } from '../actions/homeActions';
 let init = {
   token: '',
   user: '',
-  email: ''
+  email: '',
+  friends: {}
 }
 
 export function loginReducer(state: any = init, action: any) {
@@ -26,6 +27,7 @@ export function loginReducer(state: any = init, action: any) {
       ns.token = action.token;
       ns.email = action.email;
       ns.user = action.user;
+      ns.friends = action.friends;
 
       return ns;
     default:
