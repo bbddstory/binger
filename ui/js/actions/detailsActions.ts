@@ -38,7 +38,7 @@ export function watchLaterAct(id: string) {
       email: getState().loginReducer.email,
       key: id
     }).then(res => {
-      if (res.status === 200) {
+      if (res.status === 201) {
         // dispatch({ type: LOAD_DETAILS, list: list, details: res.data.details });
         // dispatch({ type: TOGGLE_LOADER, status: false });
       }
@@ -47,17 +47,19 @@ export function watchLaterAct(id: string) {
   }
 }
 
-export function recommAct(user: string) {
-  return async (dispatch: any, getState: any) => {
-    let firebase = getState().loginReducer.firebase,
-      values = getState().dataReducer.buffer[getState().dataReducer.key];
-
-    if (firebase.apps) {
-      await firebase.database().ref('Users/' + user + '/recomm/' + getState().dataReducer.key)
-        .set(values).then((snapshot: any) => {
-          // dispatch({ type: RECOMM });
-        });
-    }
+export function recommAct(vid: string, friendEmail: string) {
+  return (dispatch: any, getState: any) => {
+    axios.post(NODE_URL() + '/videos/recomm', {
+      token: getState().loginReducer.token,
+      vid: vid,
+      friendEmail: friendEmail
+    }).then(res => {
+      if (res.status === 201) {
+        // dispatch({ type: LOAD_DETAILS, list: list, details: res.data.details });
+        // dispatch({ type: TOGGLE_LOADER, status: false });
+      }
+    }).catch(err => console.log(err));
+    // dispatch({ type: WATCH_LATER });
   }
 }
 

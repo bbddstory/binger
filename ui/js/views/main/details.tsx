@@ -69,6 +69,21 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
     }
   }
 
+  friends = (vid: string) => {
+    const { loginState } = this.props;
+    let friends = [];
+
+    for (let i = 0; i < loginState.friends.length; i++) {
+      friends.push(
+        <li key={i} onClick={e => this.props.recommDispatch(vid, loginState.friends[i].email)}>
+          {loginState.friends[i].name}&nbsp;(<span>{loginState.friends[i].email}</span>)
+        </li>
+      )
+    }
+
+    return friends;
+  }
+
   render() {
     const { loginState, dataState, uiState } = this.props;
     const key = this.props.dataState.key;
@@ -102,11 +117,7 @@ class Details extends React.Component<IReduxProps & ICompProps, any> {
                 <div className="recomm" title="Recommend to friends" onClick={e => this.toggleRecomm()}></div>
                 <div className="edit" title="Edit details" onClick={e => this.props.editDetailsDispatch(true, false)}></div>
                 <a target="_blank" title="Search for subtitles on Subscene" href={'https://subscene.com/subtitles/title?q=' + item.eng_title.replace(' ', '+')}></a>
-                {recomm && <ul>
-                  {Object.keys(loginState.friends).map((user: string) => {
-                    return <li key={user} onClick={e => this.props.recommDispatch(user)}>{loginState.friends[user]}</li>
-                  })}
-                </ul>}
+                {recomm && <ul>{this.friends(item.id)}</ul>}
               </div>
             </div>
 
@@ -176,7 +187,7 @@ const mapStateToProps = (store: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   watchLaterDispatch: (id: string) => dispatch(watchLaterAct(id)),
-  recommDispatch: (user: string) => dispatch(recommAct(user)),
+  recommDispatch: (vid: string, friendEmail: string) => dispatch(recommAct(vid, friendEmail)),
   commentDispatch: (values: any) => dispatch(commentAct(values)),
   delCommentDispatch: (id: string) => dispatch(delCommentAct(id)),
   editDetailsDispatch: (status: boolean, newRec: boolean) => dispatch(toggleEditDetailsAct(status, newRec))

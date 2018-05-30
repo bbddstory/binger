@@ -10,6 +10,7 @@ import { NODE_URL } from '../util/utils';
 // Action types
 export const LOGIN = 'LOGIN';
 export const SET_TOKEN = 'SET_TOKEN';
+export const SET_FRIENDS = 'SET_FRIENDS';
 
 // Action creators
 export function registerAct(form: any) {
@@ -61,7 +62,7 @@ export function setTokenAct(token: string, email: string, user: string) {
   return (dispatch: any, getState: any) => {
     axios.post(NODE_URL() + '/users/friends', {token: token, email: email}).then(res => {
       if (res.status === 200) {
-        
+        dispatch({ type: SET_FRIENDS, friends: res.data.friends });
       }
     }).catch(err => console.log(err));
 
