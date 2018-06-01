@@ -14,14 +14,14 @@ class Loader extends React.Component<any, any> {
     const { uiState } = this.props;
 
     return (
-      uiState.loader &&
+      uiState.showLoader &&
       <div className="loader-mask">
         <span className="loader-title">{uiState.loaderTxt}</span>
         {uiState.loading && <div className="spinner">
           <div className="double-bounce1"></div>
           <div className="double-bounce2"></div>
         </div>}
-        {/* <button>Try again</button> */}
+        {uiState.showLoader && !uiState.loading && <button>OK</button>}
       </div>
     )
   }

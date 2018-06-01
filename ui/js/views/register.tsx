@@ -1,6 +1,7 @@
 'use strict';
 
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerAct } from '../actions/loginActions';
 
@@ -40,7 +41,7 @@ class Register extends React.Component<any, any> {
         <input type="password" name="pwd" placeholder="Password" value={this.state.form.pwd}
           onChange={e => this.handleChange(e)} />
         <span className="sign-up">
-          <a href="#/" className="sign-up-link">Go to login</a>
+          <Link to="">Go to login</Link>
         </span>
         <input type="button" name="submit" value="Register"
           onClick={e => this.handleChange(e)} />

@@ -4,7 +4,6 @@
 export const LOCALE = 'LOCALE';
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
 export const TOGGLE_EDIT_DETAILS = 'TOGGLE_EDIT_DETAILS';
-export const RESET_IS_SEARCH = 'RESET_IS_SEARCH';
 
 // Action creators
 export function switchLocaleAct(locale: string) {

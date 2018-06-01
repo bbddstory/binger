@@ -1,20 +1,20 @@
-$imageWidth: 182px;
-$imageHeight: 268px;
+$posterWidth: 182px;
+$posterHeight: 268px;
+$videoWidth: 380px;
 
 .recomm-details {
     display: flex;
     border-radius: 2px;
     .poster {
-        height: 100%;
+        position: relative;
         img {
-            width: $imageWidth;
-            height: $imageHeight;
+            width: $posterWidth;
+            height: $posterHeight;
             border-radius: 3px;
         }
         .dummy-poster {
-            position: relative;
-            width: $imageWidth;
-            height: $imageHeight;
+            width: $posterWidth;
+            height: $posterHeight;
             background-size: contain;
             border-radius: 3px;
         }
@@ -33,8 +33,8 @@ $imageHeight: 268px;
     }
     .info {
         position: relative;
-        min-width: calc(100% - #{$imageWidth} - 370px - 10px);
-        max-width: calc(100% - #{$imageWidth} - 370px - 10px);
+        min-width: calc(100% - #{$posterWidth} - #{$videoWidth});
+        max-width: calc(100% - #{$posterWidth} - #{$videoWidth});
         height: 415px;
         color: #f2f2f2;
         margin: 0 0 0 10px;

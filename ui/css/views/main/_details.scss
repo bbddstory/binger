@@ -1,4 +1,5 @@
 $posterWidth: 182px;
+$posterHeight: 268px;
 
 .video-details {
     display: flex;
@@ -9,10 +10,14 @@ $posterWidth: 182px;
         position: relative;
         img {
             width: $posterWidth;
+            height: $posterHeight;
+            border-radius: 3px;
         }
         .dummy-poster {
             width: $posterWidth;
-            height: 268px;
+            height: $posterHeight;
+            background-size: contain;
+            border-radius: 3px;
         }
         .poster-movies {
             background: url("../images/posters/Movies.png") no-repeat;
@@ -34,7 +39,7 @@ $posterWidth: 182px;
     .info {
         position: relative;
         width: 50%;
-        height: 268px;
+        height: $posterHeight;
         color: #f2f2f2;
         margin: 0 0 0 10px;
         .title {
@@ -80,7 +85,7 @@ $posterWidth: 182px;
     }
     .plot {
         width: 50%;
-        height: 268px;
+        height: $posterHeight;
         margin: 0 0 0 20px;
         .plot-txt {
             height: calc(100% - 50px);

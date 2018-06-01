@@ -4,16 +4,15 @@ $infoWidth: 230px;
 
 .latest-details {
     display: flex;
+    border-radius: 2px;
     .poster {
-        width: $posterWidth;
-        height: $posterHeight;
+        position: relative;
         img {
             width: $posterWidth;
             height: $posterHeight;
             border-radius: 3px;
         }
         .dummy-poster {
-            position: relative;
             width: $posterWidth;
             height: $posterHeight;
             background-size: contain;

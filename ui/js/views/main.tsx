@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { parseCookie, resetSearch, resetPages } from '../util/utils';
-import { loginAct, setTokenAct } from '../actions/loginActions';
+import { setTokenAct, friendsAct } from '../actions/loginActions';
 
 // Components
 import Loader from './components/loader';
@@ -108,7 +108,8 @@ const mapStateToProps = (store: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   loginDispatch: (token: string, email: string, user: string) => {
-    dispatch(setTokenAct(token, email, user))
+    dispatch(setTokenAct(token, email, user));
+    dispatch(friendsAct(token, email));
   }
 });
 

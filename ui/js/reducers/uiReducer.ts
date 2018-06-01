@@ -1,10 +1,10 @@
 'use strict';
 
-import { LOCALE, TOGGLE_LOADER, TOGGLE_EDIT_DETAILS, RESET_IS_SEARCH } from '../actions/uiActions';
+import { LOCALE, TOGGLE_LOADER, TOGGLE_EDIT_DETAILS } from '../actions/uiActions';
 
 let init = {
   locale: 'en',
-  loader: false,
+  showLoader: false,
   loaderTxt: '',
   loading: true,
   editDetails: false,
@@ -20,7 +20,7 @@ export function uiReducer(state: any = init, action: any) {
 
       return ns;
     case TOGGLE_LOADER:
-      ns.loader = action.status;
+      ns.showLoader = action.status;
       ns.loaderTxt = action.loaderTxt || 'Loading data...';
       ns.loading = action.hasOwnProperty('loading') ? action.loading : true;
 

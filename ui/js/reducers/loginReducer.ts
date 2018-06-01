@@ -27,7 +27,6 @@ export function loginReducer(state: any = init, action: any) {
       ns.token = action.token;
       ns.email = action.email;
       ns.user = action.user;
-      ns.friends = action.friends;
 
       return ns;
     case SET_FRIENDS:

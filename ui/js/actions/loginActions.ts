@@ -60,12 +60,16 @@ export function loginAct(form: any) {
 
 export function setTokenAct(token: string, email: string, user: string) {
   return (dispatch: any, getState: any) => {
-    axios.post(NODE_URL() + '/users/friends', {token: token, email: email}).then(res => {
+    dispatch({ type: SET_TOKEN, token: token, email: email, user: user });
+  }
+}
+
+export function friendsAct(token: string, email: string) {
+  return (dispatch: any, getState: any) => {
+    axios.post(NODE_URL() + '/users/friends', { token: token, email: email }).then(res => {
       if (res.status === 200) {
         dispatch({ type: SET_FRIENDS, friends: res.data.friends });
       }
     }).catch(err => console.log(err));
-
-    dispatch({ type: SET_TOKEN, token: token, email: email, user: user });
   }
 }
