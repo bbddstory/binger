@@ -97,54 +97,56 @@ export function delCommentAct(id: string) {
 }
 
 export function saveDetailsAct(values: any) {
-  return async (dispatch: any, getState: any) => {
-    let firebase = getState().loginReducer.firebase;
+  console.log(values);
+  
+  // return async (dispatch: any, getState: any) => {
+  //   let firebase = getState().loginReducer.firebase;
 
-    if (firebase.apps) {
-      dispatch({ type: TOGGLE_LOADER, status: true });
+  //   if (firebase.apps) {
+  //     dispatch({ type: TOGGLE_LOADER, status: true });
 
-      let vc = (<any>Object).assign({}, values);
-      let ref = '';
-      let isNewRec = getState().uiReducer.newRec;
+  //     let vc = (<any>Object).assign({}, values);
+  //     let ref = '';
+  //     let isNewRec = getState().uiReducer.newRec;
 
-      if (isNewRec) {
-        ref = values.cat
+  //     if (isNewRec) {
+  //       ref = values.cat
 
-        // Get the max index of corresponding category, then plus one and give it to vc (values copy)
-        await firebase.database().ref(ref)
-          .orderByChild('index').limitToLast(1)
-          .once('value').then((snapshot: any) => {
-            let buffer = snapshot.val();
+  //       // Get the max index of corresponding category, then plus one and give it to vc (values copy)
+  //       await firebase.database().ref(ref)
+  //         .orderByChild('index').limitToLast(1)
+  //         .once('value').then((snapshot: any) => {
+  //           let buffer = snapshot.val();
 
-            if (buffer) {
-              for (let p in buffer) {
-                vc.index = buffer[p]['index'] + 1;
-              }
-            }
-          });
-      } else {
-        ref = values.cat + '/' + getState().dataReducer.key
-      }
+  //           if (buffer) {
+  //             for (let p in buffer) {
+  //               vc.index = buffer[p]['index'] + 1;
+  //             }
+  //           }
+  //         });
+  //     } else {
+  //       ref = values.cat + '/' + getState().dataReducer.key
+  //     }
 
-      if (isNewRec) {
-        await firebase.database().ref(ref)
-          .push(vc).then((snapshot: any) => {
-            let arr = snapshot.path.pieces_;
+  //     if (isNewRec) {
+  //       await firebase.database().ref(ref)
+  //         .push(vc).then((snapshot: any) => {
+  //           let arr = snapshot.path.pieces_;
 
-            dispatch({ type: TOGGLE_LOADER, status: false });
-            dispatch({ type: SAVE_NEW, vc, arr }); // For a new record, add it to buffer if category matches
-            dispatch(toggleEditDetailsAct(false, false));
-          });
-      } else {
-        await firebase.database().ref(ref)
-          .update(vc).then((snapshot: any) => {
-            dispatch({ type: TOGGLE_LOADER, status: false });
-            // if (!getState().uiReducer.isSearch) {
-            dispatch({ type: UPDATE_BUFFER_DETAILS, vc, isSearch: getState().uiReducer.isSearch });
-            // };
-            dispatch(toggleEditDetailsAct(false, false));
-          });
-      }
-    }
-  }
+  //           dispatch({ type: TOGGLE_LOADER, status: false });
+  //           dispatch({ type: SAVE_NEW, vc, arr }); // For a new record, add it to buffer if category matches
+  //           dispatch(toggleEditDetailsAct(false, false));
+  //         });
+  //     } else {
+  //       await firebase.database().ref(ref)
+  //         .update(vc).then((snapshot: any) => {
+  //           dispatch({ type: TOGGLE_LOADER, status: false });
+  //           // if (!getState().uiReducer.isSearch) {
+  //           dispatch({ type: UPDATE_BUFFER_DETAILS, vc, isSearch: getState().uiReducer.isSearch });
+  //           // };
+  //           dispatch(toggleEditDetailsAct(false, false));
+  //         });
+  //     }
+  //   }
+  // }
 }

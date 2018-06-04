@@ -11,18 +11,38 @@ import cats from '../../util/cats';
 class EditDetails extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = {};
-  }
-
-  onChange(values: any) {
-  }
-
-  onSubmit(values: any) {
-    console.log(values);
-
-    if (true) {
-      this.props.saveDetailsDispatch(values);
+    this.state = {
+      details: {
+        eng_title: '', orig_title: '',
+        year: '', runtime: '',
+        stars: '', director: '', creator: '',
+        plot: '',
+        imdb_id: '', rating: '', douban: '', mtime: '',
+        trailer: '', featurette: '',
+        status: '', cat: '',
+        poster: '',
+        subtitle: ''
+      }
     }
+  }
+
+  onChange(e: any) {
+    console.log(e.target.name, e.target.value);
+    
+    this.setState({
+      details: {
+        ...this.state.details, [e.target.name]: e.target.value
+      }
+    });
+  }
+
+  onSubmit(e: any, values: any) {
+    e.preventDefault();
+    console.log(this.state);
+
+    // if (true) {
+    //   this.props.saveDetailsDispatch(values);
+    // }
   }
 
   // sleep(ms: number) {
@@ -36,33 +56,40 @@ class EditDetails extends React.Component<any, any> {
     window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
   };
 
+  componentWillMount() {
+    // let cp = Object.assign({}, this.props.dataState.mainDetails);
+    this.setState({ details: Object.assign({}, this.props.dataState.mainDetails) });
+  }
+
   render() {
     // Detect whether this is modifying an existing record or adding a new one
-    let item;
+    let item: any;
 
     if (this.props.uiState.newRec) { // New record
       item = {}
     } else { // Existing record
       // let key = this.props.dataState.key;
 
-      item = this.props.dataState.mainDetails;
+      item = this.state.details;
     }
+
+    // const d = this.state.details;
 
     return (
       <div className="popup-bg">
-        <form onChange={(values) => this.onChange(values)} onSubmit={(values) => this.onSubmit(values)}>
+        <form onChange={(values) => this.onChange(values)} onSubmit={e => this.onSubmit(e, item)}>
           <div className="popup-panel">
             <div className="panel-body">
 
               <div className="flex">
                 <div className="input-padding width-50">
                   <label>English Title</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.eng_title} />
+                  <input type="text" name="eng_title" placeholder="N/A" defaultValue={item.eng_title} onChange={e => this.onChange(e)} />
                   {this.state.eng_title && <span>Contains invalid characters</span>}
                 </div>
                 <div className="input-padding width-50">
                   <label>Original Title</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.orig_title} />
+                  <input type="text" name="orig_title" placeholder="N/A" defaultValue={item.orig_title} onChange={e => this.onChange(e)} />
                   {this.state.orig_title && <span>Contains invalid characters</span>}
                 </div>
               </div>
@@ -71,19 +98,19 @@ class EditDetails extends React.Component<any, any> {
                 <div className="input-padding flex width-50">
                   <div className="width-50" style={{ padding: '0 10px 0 0' }}>
                     <label>Year</label>
-                    <input type="text" placeholder="N/A" defaultValue={item.year} />
+                    <input type="text" name="year" placeholder="N/A" defaultValue={item.year} onChange={e => this.onChange(e)} />
                     {this.state.year && <span>Must be 4 digits</span>}
                   </div>
                   <div className="width-50" style={{ padding: '0 0 0 10px' }}>
                     <label>Runtime</label>
-                    <input type="text" placeholder="N/A" defaultValue={item.runtime} />
+                    <input type="text" name="runtime" placeholder="N/A" defaultValue={item.runtime} onChange={e => this.onChange(e)} />
                     {this.state.runtime && <span>Format: 1h 30min</span>}
                   </div>
                 </div>
 
                 <div className="input-padding width-50">
                   <label>Stars</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.stars} />
+                  <input type="text" name="stars" placeholder="N/A" defaultValue={item.stars} onChange={e => this.onChange(e)} />
                   {this.state.director && <span>One or more names separated by comma</span>}
                 </div>
               </div>
@@ -91,41 +118,41 @@ class EditDetails extends React.Component<any, any> {
               <div className="flex">
                 <div className="input-padding width-50">
                   <label>Director</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.director} />
+                  <input type="text" name="director" placeholder="N/A" defaultValue={item.director} onChange={e => this.onChange(e)} />
                   {this.state.director && <span>One or more names separated by comma</span>}
                 </div>
                 <div className="input-padding width-50">
                   <label>Creator</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.creator} />
+                  <input type="text" name="creator" placeholder="N/A" defaultValue={item.creator} onChange={e => this.onChange(e)} />
                   {this.state.director && <span>One or more names separated by comma</span>}
                 </div>
               </div>
 
               <div className="input-padding">
                 <label className="textarea-lbl">Plot</label>
-                <textarea placeholder="N/A" defaultValue={item.plot} />
+                <textarea name="plot" placeholder="N/A" defaultValue={item.plot} onChange={e => this.onChange(e)} />
                 {this.state.plot && <span>Contains invalid characters</span>}
               </div>
 
               <div className="flex">
                 <div className="input-padding width-25">
                   <label>IMDB ID</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.imdb_id} />
+                  <input type="text" name="imdb_id" placeholder="N/A" defaultValue={item.imdb_id} onChange={e => this.onChange(e)} />
                   {this.state.imdb_id && <span>Format: tt1234567</span>}
                 </div>
                 <div className="input-padding width-25">
                   <label>Rating</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.rating} />
+                  <input type="text" name="rating" placeholder="N/A" defaultValue={item.rating} onChange={e => this.onChange(e)} />
                   {this.state.rating && <span>Format: 9.9</span>}
                 </div>
                 <div className="input-padding width-25">
                   <label>Douban</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.douban} />
+                  <input type="text" name="douban" placeholder="N/A" defaultValue={item.douban} onChange={e => this.onChange(e)} />
                   {this.state.imdb_id && <span>Format: tt1234567</span>}
                 </div>
                 <div className="input-padding width-25">
                   <label>Mtime</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.mtime} />
+                  <input type="text" name="mtime" placeholder="N/A" defaultValue={item.mtime} onChange={e => this.onChange(e)} />
                   {this.state.rating && <span>Format: 9.9</span>}
                 </div>
               </div>
@@ -133,17 +160,17 @@ class EditDetails extends React.Component<any, any> {
               <div className="flex">
                 <div className="input-padding width-25">
                   <label>Trailer</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.trailer} />
+                  <input type="text" name="trailer" placeholder="N/A" defaultValue={item.trailer} onChange={e => this.onChange(e)} />
                   {this.state.imdb_id && <span>Format: tt1234567</span>}
                 </div>
                 <div className="input-padding width-25">
                   <label>Featurette</label>
-                  <input type="text" placeholder="N/A" defaultValue={item.featurette} />
+                  <input type="text" name="featurette" placeholder="N/A" defaultValue={item.featurette} onChange={e => this.onChange(e)} />
                   {this.state.rating && <span>Format: 9.9</span>}
                 </div>
                 <div className="input-padding width-25">
                   <label>Status</label>
-                  <select defaultValue={item.status}>
+                  <select name="status" defaultValue={item.status} onChange={e => this.onChange(e)}>
                     <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -158,7 +185,7 @@ class EditDetails extends React.Component<any, any> {
                 </div>
                 <div className="input-padding width-25">
                   <label>Category</label>
-                  <select ref="catSel" defaultValue={item.cat} disabled={!this.props.uiState.newRec}>
+                  <select ref="catSel" name="cat" defaultValue={item.cat} disabled={!this.props.uiState.newRec} onChange={e => this.onChange(e)} >
                     <option value={cats.MOVIE}>Movie</option>
                     <option value={cats.TV}>TV</option>
                     <option value={cats.DOC}>Documentary</option>
@@ -169,13 +196,13 @@ class EditDetails extends React.Component<any, any> {
 
               <div className="input-padding">
                 <label>Poster</label>
-                <textarea className="poster" placeholder="N/A" defaultValue={item.poster} />
+                <textarea name="poster" className="poster" placeholder="N/A" defaultValue={item.poster} onChange={e => this.onChange(e)} />
                 {this.state.poster && <span>Must be a valid URL</span>}
               </div>
 
               <div className="input-padding">
                 <label>Subtitle</label>
-                <input type="text" placeholder="N/A" defaultValue={item.subtitle} />
+                <input type="text" name="subtitle" placeholder="N/A" defaultValue={item.subtitle} onChange={e => this.onChange(e)} />
                 {this.state.subtitle && <span>Must be a valid URL</span>}
               </div>
 

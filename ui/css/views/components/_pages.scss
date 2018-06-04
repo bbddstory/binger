@@ -9,15 +9,12 @@
         width: 360px;
         button {
             width: 60px;
-            height: 42px;
             padding: 0 25px;
             font-size: 18px;
-            background: #fff;
-            border: 0;
-            cursor: pointer;
+            background: #f2f2f2;
             &:hover {
-                background: #00a651;
                 color: #fff;
+                background: #00a651;
             }
         }
         .first {

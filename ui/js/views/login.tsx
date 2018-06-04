@@ -49,12 +49,14 @@ class Login extends React.Component<any, any> {
   }
 
   render() {
+    const f = this.state.form;
+
     return (
       <form className="login-form">
         <div className="logo"></div>
-        <input autoFocus type="email" name="email" placeholder="Email" value={this.state.form.email}
+        <input autoFocus type="email" name="email" placeholder="Email" value={f.email}
           onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
-        <input type="password" name="pwd" placeholder="Password" value={this.state.form.pwd}
+        <input type="password" name="pwd" placeholder="Password" value={f.pwd}
           onChange={e => this.handleChange(e)} onKeyDown={e => this.handleChange(e)} />
         <span className="sign-up">
           <Link to="register">Sign me up!</Link>

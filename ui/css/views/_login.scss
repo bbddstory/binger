@@ -25,6 +25,10 @@
         margin-bottom: 18px;
         width: calc(100% - 30px);
     }
+    input[type="button"] {
+        margin-top: 20px;
+        width: 40%;
+    }
     .sign-up {
         width: 60%;
         display: inline-block;
