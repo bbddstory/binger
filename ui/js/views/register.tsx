@@ -29,16 +29,18 @@ class Register extends React.Component<any, any> {
   }
 
   render() {
+    const f = this.state.form;
+
     return (
       <form className="register-form">
         <div className="logo"></div>
-        <input autoFocus type="text" name="firstName" placeholder="First name" value={this.state.form.firstName}
+        <input autoFocus type="text" name="firstName" placeholder="First name" value={f.firstName}
           onChange={e => this.handleChange(e)} />
-        <input type="text" name="lastName" placeholder="Last name" value={this.state.form.lastName}
+        <input type="text" name="lastName" placeholder="Last name" value={f.lastName}
           onChange={e => this.handleChange(e)} />
-        <input type="email" name="email" placeholder="Email" value={this.state.form.email}
+        <input type="email" name="email" placeholder="Email" value={f.email}
           onChange={e => this.handleChange(e)} />
-        <input type="password" name="pwd" placeholder="Password" value={this.state.form.pwd}
+        <input type="password" name="pwd" placeholder="Password" value={f.pwd}
           onChange={e => this.handleChange(e)} />
         <span className="sign-up">
           <Link to="">Go to login</Link>

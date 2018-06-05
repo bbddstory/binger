@@ -17,7 +17,7 @@ class EditDetails extends React.Component<any, any> {
         year: '', runtime: '',
         stars: '', director: '', creator: '',
         plot: '',
-        imdb_id: '', rating: '', douban: '', mtime: '',
+        imdb: '', rating: '', douban: '', mtime: '',
         trailer: '', featurette: '',
         status: '', cat: '',
         poster: '',
@@ -27,7 +27,7 @@ class EditDetails extends React.Component<any, any> {
   }
 
   onChange(e: any) {
-    console.log(e.target.name, e.target.value);
+    // console.log(e.target.name, e.target.value);
     
     this.setState({
       details: {
@@ -38,11 +38,11 @@ class EditDetails extends React.Component<any, any> {
 
   onSubmit(e: any, values: any) {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
 
-    // if (true) {
-    //   this.props.saveDetailsDispatch(values);
-    // }
+    if (true) {
+      this.props.saveDetailsDispatch(values);
+    }
   }
 
   // sleep(ms: number) {
@@ -137,8 +137,8 @@ class EditDetails extends React.Component<any, any> {
               <div className="flex">
                 <div className="input-padding width-25">
                   <label>IMDB ID</label>
-                  <input type="text" name="imdb_id" placeholder="N/A" defaultValue={item.imdb_id} onChange={e => this.onChange(e)} />
-                  {this.state.imdb_id && <span>Format: tt1234567</span>}
+                  <input type="text" name="imdb" placeholder="N/A" defaultValue={item.imdb} onChange={e => this.onChange(e)} />
+                  {this.state.imdb && <span>Format: tt1234567</span>}
                 </div>
                 <div className="input-padding width-25">
                   <label>Rating</label>

@@ -99,6 +99,19 @@ export function delCommentAct(id: string) {
 export function saveDetailsAct(values: any) {
   console.log(values);
   
+  return (dispatch: any, getState: any) => {
+    axios.post(NODE_URL() + '/videos/update', {
+      token: getState().loginReducer.token,
+      details: values
+    }).then(res => {
+      if (res.status === 201) {
+        // dispatch({ type: LOAD_DETAILS, list: list, details: res.data.details });
+        // dispatch({ type: TOGGLE_LOADER, status: false });
+      }
+    }).catch(err => console.log(err));
+    // dispatch({ type: WATCH_LATER });
+  }
+
   // return async (dispatch: any, getState: any) => {
   //   let firebase = getState().loginReducer.firebase;
 
