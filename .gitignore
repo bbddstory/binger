@@ -1,9 +1,9 @@
-# System & Editor Settings
+# System & Editor
 .*/
 bin/
-build/
 .classpath
 .project
 
-# UI Related
+# App
+dist/
 node_modules/
