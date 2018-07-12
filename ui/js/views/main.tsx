@@ -1,10 +1,12 @@
 'use strict';
 
+import axios from 'axios';
+
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { parseCookie, resetSearch, resetPages } from '../util/utils';
+import { parseCookie, resetPages } from '../util/utils';
 import { setTokenAct, friendsAct } from '../actions/loginActions';
 
 // Components
@@ -35,6 +37,35 @@ class Main extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {}
+
+    // Global Axios request interceptor
+    axios.interceptors.request.use((config: any) => {
+      // console.log('-- AXIOS request intercep');
+      // console.log(this.props.loginState.token);
+      // let token = this.props.loginState.token;
+
+      config.headers.token = this.props.loginState.token;
+      return config;
+    }, err => {
+      console.log(err);
+    });
+
+    // Global Axios response interceptor
+    axios.interceptors.response.use(null, err => {
+      console.log(err);
+
+      // For handling cookie expiration
+      if (err.response.status === 401 || err.response.status === 403) { // Not authorized
+        location.hash = '';
+      }
+      if (err.response.status === 406) { // Email not found / Email or password wrong
+        console.log('--', 123);
+
+        // console.log(err.response);
+
+        this.props.loaderDispatch(err.response.data.data);
+      }
+    });
   }
 
   componentWillMount() {

@@ -1,5 +1,8 @@
 'use strict';
 
+import axios from 'axios';
+import { NODE_URL } from '../../util/utils';
+
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -11,13 +14,29 @@ import cats from '../../util/cats';
 class Header extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = {}
+    this.state = {
+      imgData: ''
+    };
+    // console.log(this.logoStyle.background);
+
+    axios.post(NODE_URL() + '/users/images/andy.png').then(res => {
+      console.log('-- ', res.data.data);
+      this.setState({
+        imgData: res.data.data
+      })
+    }).catch(err => console.log(err));
   }
+
+  // logoStyle = {
+  //   background: 'url("http://localhost:49999/images/us.png") no-repeat'
+  // };
 
   render() {
     return (
       <nav className="header">
-        <a target="_blank" href="http://10.0.0.1:5000" className="logo" title="Local connect"></a>
+        {/* <img src={"data:image/png;base64," + this.state.imgData} alt=""/> */}
+        <a target="_blank" href="http://localhost:5000" className="logo" title="Local connect"
+          style={{ background:'url(data:image/png;base64,' + this.state.imgData + ') no-repeat'}}></a>
         <div className="nav-opts">
           <Search />
           <Link to="/main/home" className="opt-home" title="Home" onClick={e => this.props.switchCatDispatch(cats.HOME)}></Link>

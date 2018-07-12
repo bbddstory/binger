@@ -13,7 +13,6 @@ export const SAVE_COMMENT = 'SAVE_COMMENT';
 export const DEL_COMMENT = 'DEL_COMMENT';
 export const UPDATE_BUFFER_DETAILS = 'UPDATE_BUFFER_DETAILS';
 export const SAVE_NEW = 'SAVE_NEW';
-import { toggleEditDetailsAct } from '../actions/uiActions';
 
 // Action creators
 export function loadDetailsAct(list: string) {
@@ -28,6 +27,12 @@ export function loadDetailsAct(list: string) {
         dispatch({ type: TOGGLE_LOADER, status: false });
       }
     }).catch(err => console.log(err));
+
+    // Static image loading test
+    // axios.get(NODE_URL() + '/images/us.png').then(res => {
+    //   console.log(res);
+      
+    // }).catch(err => console.log(err));
   }
 }
 

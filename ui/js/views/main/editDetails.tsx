@@ -2,11 +2,9 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormattedMessage } from "react-intl";
 import { toggleEditDetailsAct } from '../../actions/uiActions';
 import { saveDetailsAct } from '../../actions/detailsActions';
 import cats from '../../util/cats';
-// import regex from '../../util/regex';
 
 class EditDetails extends React.Component<any, any> {
   constructor(props: any) {

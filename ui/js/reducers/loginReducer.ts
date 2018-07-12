@@ -1,7 +1,6 @@
 'use strict';
 
 import { LOGIN, SET_TOKEN, SET_FRIENDS } from '../actions/loginActions';
-import { REMOVE_HOME_LIST_ITEM } from '../actions/homeActions';
 
 // interface ILocaleLang {
 //   [key: string]: any

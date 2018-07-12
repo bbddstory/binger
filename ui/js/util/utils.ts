@@ -1,5 +1,5 @@
 export const NODE_URL = () => {
-    // return 'http://www.foreverjuniordev.com:49999'
+    // The port number corresponds to the port on which NodeJS backend (cemetery) is listening
     return 'http://localhost:49999'
 }
 

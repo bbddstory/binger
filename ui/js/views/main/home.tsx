@@ -7,7 +7,6 @@ import { FormattedMessage } from "react-intl";
 import { loadHomeListsAct } from '../../actions/homeActions';
 import LatestDetails from './latestDetails';
 import RecommDetails from './recommDetails';
-import TileList from './tileList';
 import SlidesList from './slidesList';
 
 class Home extends React.Component<any, any> {

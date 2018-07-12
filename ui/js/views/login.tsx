@@ -11,8 +11,21 @@ import { TOGGLE_LOADER } from '../actions/uiActions';
 class Login extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { form: { email: 'leon@gmail.coms', pwd: 'leon@gmail.com' } }
+    this.state = { form: { email: 'leon@gmail.com', pwd: 'leon@gmail.com' } }
 
+    // TODO: If visit main.tsx directly, these interceptors DON'T initiated
+    // Global Axios request interceptor
+    axios.interceptors.request.use((config: any) => {
+      console.log('-- AXIOS request intercep');
+      console.log(this.props.loginState.token);
+      // let token = this.props.loginState.token;
+      
+      config.headers.token = this.props.loginState.token;
+      return config;
+    }, err => {
+      console.log(err);
+    });
+    
     // Global Axios response interceptor
     axios.interceptors.response.use(null, err => {
       console.log(err);
@@ -70,6 +83,7 @@ class Login extends React.Component<any, any> {
 
 // Here store is the masterStore defined in index.tsx
 const mapStateToProps = (store: any) => ({
+  loginState: store.loginReducer,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

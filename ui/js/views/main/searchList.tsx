@@ -2,10 +2,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import cats from '../../util/cats';
-import { setKeyAct, syncCatAct, loadDataAct } from '../../actions/dataActions';
-import TileList from './tileList';
+import { syncCatAct, loadDataAct } from '../../actions/dataActions';
 import CardList from './cardList';
 
 class SearchList extends React.Component<any, any> {

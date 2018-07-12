@@ -2,7 +2,6 @@
 
 import axios from 'axios';
 
-import cats from '../util/cats';
 import { TOGGLE_LOADER } from './uiActions';
 // import { loadLatestAct } from './dataActions';
 import { NODE_URL } from '../util/utils';

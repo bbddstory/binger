@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormattedMessage } from "react-intl";
 import lang from '../../i18n/languages';
 import { searchAct } from '../../actions/searchActions';
 

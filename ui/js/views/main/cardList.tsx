@@ -3,8 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import cats from '../../util/cats';
-import { setKeyAct, syncCatAct } from '../../actions/dataActions';
+import { setKeyAct } from '../../actions/dataActions';
 import { loadDetailsAct } from '../../actions/detailsActions';
 import Pages from '../components/pages';
 

@@ -3,8 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import cats from '../../util/cats';
-import { setKeyAct, syncCatAct, loadDataAct } from '../../actions/dataActions';
+import { setKeyAct } from '../../actions/dataActions';
 import { removeHomeListItemAct } from '../../actions/homeActions';
 import { loadDetailsAct } from '../../actions/detailsActions';
 import Pages from '../components/pages';
@@ -42,7 +41,7 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
 
   render() {
     const buffer = this.props.dataRef;
-    const { dataState } = this.props;
+    // const { dataState } = this.props;
 
     return (
       <div className="tile-list">
@@ -70,7 +69,7 @@ class TileList extends React.Component<IReduxProps & ICompProps, any> {
 }
 
 const mapStateToProps = (store: any) => ({
-  dataState: store.dataReducer
+  // dataState: store.dataReducer
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

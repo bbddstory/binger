@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { setKeyAct } from '../../actions/dataActions';
 import { toggleEditDetailsAct } from '../../actions/uiActions';
 import { watchLaterAct, recommAct, commentAct, delCommentAct } from '../../actions/detailsActions';
 

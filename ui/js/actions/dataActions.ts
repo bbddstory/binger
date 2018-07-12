@@ -3,7 +3,6 @@
 import axios from 'axios';
 
 import { NODE_URL } from '../util/utils';
-import cats from '../util/cats';
 import { TOGGLE_LOADER } from './uiActions';
 
 // Action types
