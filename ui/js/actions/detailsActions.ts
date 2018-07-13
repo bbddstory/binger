@@ -27,12 +27,6 @@ export function loadDetailsAct(list: string) {
         dispatch({ type: TOGGLE_LOADER, status: false });
       }
     }).catch(err => console.log(err));
-
-    // Static image loading test
-    // axios.get(NODE_URL() + '/images/us.png').then(res => {
-    //   console.log(res);
-      
-    // }).catch(err => console.log(err));
   }
 }
 

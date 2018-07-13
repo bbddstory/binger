@@ -15,28 +15,29 @@ class Header extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      imgData: ''
+      imgData: []
     };
-    // console.log(this.logoStyle.background);
 
-    axios.post(NODE_URL() + '/users/images/andy.png').then(res => {
-      console.log('-- ', res.data.data);
-      this.setState({
-        imgData: res.data.data
-      })
+    /**
+     * Image base64 loading tryout
+     */
+    axios.post(NODE_URL() + '/images/get/3d.png').then(res => {
+      this.setState((prevState: any) => ({
+        imgData: [...prevState.imgData, ...res.data.data]
+      }))
     }).catch(err => console.log(err));
   }
 
-  // logoStyle = {
-  //   background: 'url("http://localhost:49999/images/us.png") no-repeat'
-  // };
-
   render() {
+    const imgArr = this.state.imgData;
+    //background: url('data:image/svg+xml; ... ');
+
     return (
       <nav className="header">
-        {/* <img src={"data:image/png;base64," + this.state.imgData} alt=""/> */}
-        <a target="_blank" href="http://localhost:5000" className="logo" title="Local connect"
-          style={{ background:'url(data:image/png;base64,' + this.state.imgData + ') no-repeat'}}></a>
+        {Object.keys(imgArr).map((i: any) => {
+          return <img src={"data:image/png;base64," + imgArr[i]} key={i} alt="" />
+        })}
+        <a target="_blank" href="http://localhost:5000" className="logo" title="Local NAS Shortcut"></a>
         <div className="nav-opts">
           <Search />
           <Link to="/main/home" className="opt-home" title="Home" onClick={e => this.props.switchCatDispatch(cats.HOME)}></Link>

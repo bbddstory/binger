@@ -40,10 +40,6 @@ class Main extends React.Component<any, any> {
 
     // Global Axios request interceptor
     axios.interceptors.request.use((config: any) => {
-      // console.log('-- AXIOS request intercep');
-      // console.log(this.props.loginState.token);
-      // let token = this.props.loginState.token;
-
       config.headers.token = this.props.loginState.token;
       return config;
     }, err => {
@@ -59,10 +55,8 @@ class Main extends React.Component<any, any> {
         location.hash = '';
       }
       if (err.response.status === 406) { // Email not found / Email or password wrong
-        console.log('--', 123);
-
-        // console.log(err.response);
-
+        console.log('--', 'Email not found / Email or password wrong');
+        console.log(err.response);
         this.props.loaderDispatch(err.response.data.data);
       }
     });

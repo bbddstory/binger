@@ -1,6 +1,10 @@
+// The port number corresponds to the port on which NodeJS backend (cemetery) is listening
 export const NODE_URL = () => {
-    // The port number corresponds to the port on which NodeJS backend (cemetery) is listening
-    return 'http://localhost:49999'
+    // For local development
+    // return 'http://localhost:49995'
+
+    // For deploying on a hosting service
+    return 'http://us.foreverjuniordev.com:49995'
 }
 
 export const parseCookie = (ca: any) => {
